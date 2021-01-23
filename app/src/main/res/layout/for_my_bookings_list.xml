@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_margin="10dp"
+    android:id="@+id/bookings_card"
+    app:cardElevation="3dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/re3"
+        android:layout_margin="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="from"
+            android:id="@+id/pickup"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right_arrow"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/pickup"
+            android:id="@+id/to" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"
+            android:id="@+id/drop"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/to"
+            android:textColor="@color/black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pickup"
+            android:id="@+id/pickup_time"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_marginTop="10dp"
+            android:text="06:30AM" />
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/right_arrow"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/pickup_time"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/pickup"
+            android:id="@+id/to1" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/drop"
+            android:id="@+id/drop_time"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@id/to1"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:text="07:30PM" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pickup_time"
+            android:id="@+id/journey_date"
+            android:layout_marginTop="10dp"
+            android:text="25-01-2021" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Travels"
+            android:textSize="16sp"
+            android:id="@+id/travels"
+            android:layout_marginTop="5dp"
+            android:layout_below="@id/journey_date"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:id="@+id/status"
+            android:layout_marginStart="15dp"
+            android:textColor="#0071cc"
+            android:layout_below="@id/drop"
+            android:layout_toEndOf="@id/drop_time"
+            android:text="Completed"/>
+    </RelativeLayout>
+
+
+
+</androidx.cardview.widget.CardView>

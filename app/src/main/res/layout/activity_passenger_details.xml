@@ -1,0 +1,642 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    tools:context=".bus.passengerDetails">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/purple_700"
+        android:id="@+id/re1">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="7dp"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_baseline_chevron_left_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Passenger Details"
+            android:id="@+id/te1"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:layout_marginTop="25dp" />
+    </RelativeLayout>
+<!--    <androidx.recyclerview.widget.RecyclerView-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/passenger"-->
+<!--        android:layout_below="@id/re1"-->
+<!--        android:layout_margin="10dp"-->
+<!--        />-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/re1"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="3dp"
+            android:orientation="vertical"
+
+            >
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="6dp"
+                android:id="@+id/cardOne"
+                android:elevation="3dp"
+                android:visibility="gone"
+                android:layout_margin="1dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details for seat : "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/seatTitleOne"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L4"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toEndOf="@+id/seatTitleOne"
+                        android:id="@+id/seatNumberOne"
+                        />
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/seatTitleOne"
+                        android:id="@+id/passEditOne"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:id="@+id/passNameOne"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Age"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_below="@+id/passEditOne"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/ageEditOne"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:id="@+id/passAgeOne"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <RadioGroup
+                        android:id="@+id/radioGroupOne"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ageEditOne"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/maleOne"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/femaleOne"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="6dp"
+                android:id="@+id/cardTwo"
+                android:visibility="gone"
+                android:elevation="3dp"
+                android:layout_margin="1dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details for seat : "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/seatTitleTwo"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L4"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toEndOf="@+id/seatTitleTwo"
+                        android:id="@+id/seatNumberTwo"
+                        />
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/seatTitleTwo"
+                        android:id="@+id/passEditTwo"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:id="@+id/passNameTwo"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Age"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_below="@+id/passEditTwo"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/ageEditTwo"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:id="@+id/passAgeTwo"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <RadioGroup
+                        android:id="@+id/radioGroupTwo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ageEditTwo"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/maleTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/femaleTwo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="6dp"
+                android:id="@+id/cardThree"
+                android:elevation="3dp"
+                android:layout_margin="1dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details for seat : "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/seatTitleThree"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L4"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toEndOf="@+id/seatTitleThree"
+                        android:id="@+id/seatNumberThree"
+                        />
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/seatTitleThree"
+                        android:id="@+id/passEditThree"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:id="@+id/passNameThree"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Age"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_below="@+id/passEditThree"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/ageEditThree"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:id="@+id/passAgeThree"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <RadioGroup
+                        android:id="@+id/radioGroupThree"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ageEditThree"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/maleThree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/femaleThree"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="6dp"
+                android:id="@+id/cardFour"
+                android:elevation="3dp"
+                android:layout_margin="1dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details for seat : "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/seatTitleFour"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L4"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toEndOf="@+id/seatTitleFour"
+                        android:id="@+id/seatNumberFour"
+                        />
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/seatTitleFour"
+                        android:id="@+id/passEditFour"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:id="@+id/passNameFour"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Age"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_below="@+id/passEditFour"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/ageEditFour"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:id="@+id/passAgeFour"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <RadioGroup
+                        android:id="@+id/radioGroupFour"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ageEditFour"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/maleFour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/femaleFour"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="6dp"
+                android:id="@+id/cardFive"
+                android:elevation="3dp"
+                android:layout_margin="1dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details for seat : "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/seatTitleFive"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L4"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toEndOf="@+id/seatTitleFive"
+                        android:id="@+id/seatNumberFive"
+                        />
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/seatTitleFive"
+                        android:id="@+id/passEditFive"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:id="@+id/passNameFive"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Age"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_below="@+id/passEditFive"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/ageEditFive"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:id="@+id/passAgeFive"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <RadioGroup
+                        android:id="@+id/radioGroupFive"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ageEditFive"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/maleFive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/femaleFive"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:cardCornerRadius="6dp"
+                android:id="@+id/cardSix"
+                android:elevation="3dp"
+                android:layout_margin="1dp"
+                >
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Details for seat : "
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="8dp"
+                        android:id="@+id/seatTitleSix"
+                        />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="L4"
+                        android:textColor="@color/black"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_toEndOf="@+id/seatTitleSix"
+                        android:id="@+id/seatNumberSix"
+                        />
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Full Name"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_marginTop="10dp"
+                        android:layout_below="@+id/seatTitleSix"
+                        android:id="@+id/passEditSix"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="text"
+                            android:id="@+id/passNameSix"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Age"
+                        app:boxStrokeColor="#FF03DAC5"
+                        android:layout_below="@+id/passEditSix"
+                        android:layout_marginTop="10dp"
+                        android:id="@+id/ageEditSix"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:inputType="number"
+                            android:id="@+id/passAgeSix"
+                            android:imeOptions="actionNext"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <RadioGroup
+                        android:id="@+id/radioGroupSix"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/ageEditSix"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/maleSix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Male" />
+
+                        <com.google.android.material.radiobutton.MaterialRadioButton
+                            android:id="@+id/femaleSix"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Female" />
+                    </RadioGroup>
+                </RelativeLayout>
+            </com.google.android.material.card.MaterialCardView>
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/next"
+                android:text="Next"
+                android:layout_marginTop="10dp"
+                android:textColor="#ffffff"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                android:background="@drawable/button_bg"
+                />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+
+</RelativeLayout>

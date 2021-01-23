@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.yashswi.dilpay">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <application
+        android:name=".Myapp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Dilbus"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".bus.My_bookings" />
+        <activity android:name=".bus.Booking_details" />
+        <activity android:name=".Gas_booking_successfull" />
+        <activity android:name=".Gas_screen" />
+        <activity android:name=".Datacard_recharge_successfull" />
+        <activity android:name=".Datacard_screen" />
+        <activity android:name=".electricity.Electricity_recharge_successfull" />
+        <activity android:name=".electricity.Electricity_screen" />
+        <activity android:name=".Postpaid_screen" />
+        <activity android:name=".dth.DTH_recharge_successfull" />
+        <activity android:name=".dth.Dth_screen" />
+        <activity android:name=".mobile.Mobile_recharge_successfull" />
+        <activity android:name=".bus.busDetailsConfirmation" />
+        <activity android:name=".bus.passengerDetails" />
+        <activity android:name=".bus.Bus_seating" />
+        <activity android:name=".bus.Bus_customer_details" />
+        <activity android:name=".Terms_conditions" />
+        <activity android:name=".Privacy_policy" />
+        <activity android:name=".Faq" />
+        <activity android:name=".Contact_us" />
+        <activity android:name=".About_us" />
+        <activity android:name=".Support_screen" />
+        <activity android:name=".Add_account_details" />
+        <activity android:name=".UPI_payments_screen" />
+        <activity android:name=".Profile" />
+        <activity android:name=".gas.Gas_booking_screen" />
+        <activity android:name=".gas.Gas_booking" />
+        <activity android:name=".electricity.Electricity_recharge_screen" />
+        <activity android:name=".electricity.Electricity_recharge" />
+        <activity android:name=".dth.Dth_recharge_screen" />
+        <activity android:name=".dth.Dth_recharge" />
+        <activity android:name=".mobile.Mobile_recharge" />
+        <activity android:name=".bus.Bus_payment_options" />
+        <activity android:name=".bus.Available_buses" />
+        <activity android:name=".gas.Gas" />
+        <activity android:name=".electricity.Electricity" />
+        <activity android:name=".Postpaid" />
+        <activity android:name=".Datacard" />
+        <activity android:name=".dth.Dth" />
+        <activity android:name=".mobile.Mobile" />
+        <activity android:name=".bus.Bus" />
+        <activity android:name=".View_more" />
+        <activity android:name=".More" />
+        <activity android:name=".Home_screen" />
+        <activity android:name=".Otp" />
+        <activity android:name=".Forgot_password" />
+        <activity android:name=".Register_screen" />
+        <activity android:name=".Welcome_screen" />
+        <activity android:name=".Login_screen" />
+        <activity android:name=".Splash_screen">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
