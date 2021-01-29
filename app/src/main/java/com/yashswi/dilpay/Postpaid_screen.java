@@ -175,11 +175,14 @@ public class Postpaid_screen extends AppCompatActivity {
         itemImg.add(R.drawable.mobile1);
         itemImg.add(R.drawable.dth1);
         itemImg.add(R.drawable.datacard1);
+        itemImg.add(R.drawable.datacard1);
 
         itemName.add("Recharge History");//
         itemName.add("Upcoming Trips");
         itemName.add("cancelled Tickets");
         itemName.add("Offers");
+        itemName.add("Offers");
+
 
         items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, this);
         postpaid_items.setAdapter(adapter2);
