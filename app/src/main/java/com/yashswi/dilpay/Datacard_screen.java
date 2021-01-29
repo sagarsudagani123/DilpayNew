@@ -2,6 +2,8 @@ package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Mobile_interface;
+import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.electricity.Electricity_screen;
 import com.yashswi.dilpay.mobile.Mobile_recharge_successfull;
 
@@ -42,6 +45,10 @@ public class Datacard_screen extends AppCompatActivity {
     ArrayList<String> circleCode=new ArrayList<>();
     ArrayList<String> circleName=new ArrayList<>();
 
+    RecyclerView datacard_items;
+    ArrayList<Integer> itemImg = new ArrayList<>();
+    ArrayList<String> itemName = new ArrayList<>();
+
     String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
     RelativeLayout progress_layout;
     @Override
@@ -53,6 +60,7 @@ public class Datacard_screen extends AppCompatActivity {
         e_mobile=findViewById(R.id.datacard_number);
         e_amount=findViewById(R.id.amount);
         next=findViewById(R.id.next);
+        datacard_items=findViewById(R.id.datacard_items);
 
         operatorName.add("Reliance NetConnect 3G");
         operatorName.add("Reliance NetConnect+");
@@ -159,6 +167,21 @@ public class Datacard_screen extends AppCompatActivity {
         operator_spin.setAdapter(adapter);
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(), R.layout.menu_popup, circleName);
         circle_spin.setAdapter(adapter1);
+
+        itemImg.add(R.drawable.bus);
+        itemImg.add(R.drawable.mobile1);
+//        itemImg.add(R.drawable.dth1);
+//        itemImg.add(R.drawable.datacard1);
+
+        itemName.add("Recharge History");//
+        itemName.add("Offers");
+//        itemName.add("cancelled Tickets");
+//        itemName.add("Offers");
+
+        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, this);
+        datacard_items.setAdapter(adapter2);
+        GridLayoutManager manager = new GridLayoutManager(this,3);
+        datacard_items.setLayoutManager(manager);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override

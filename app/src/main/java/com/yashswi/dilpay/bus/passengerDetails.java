@@ -10,6 +10,9 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -28,7 +31,12 @@ public class passengerDetails extends AppCompatActivity {
     ArrayList<String> passengerNames=new ArrayList<>();
     ArrayList<String> passengerAge=new ArrayList<>();
     ArrayList<String> gender=new ArrayList<>();
+    ArrayList<String> amountsList=new ArrayList<>();
+    ArrayList<String> serviceTaxList =new ArrayList<>();
+    ArrayList<String> serviceChargeList=new ArrayList<>();
+    ArrayList<String> titlesList=new ArrayList<>();
 
+    ImageView back;
     RecyclerView passenger;
     TextView seatNumberOne,seatNumberTwo,seatNumberThree,seatNumberFour,seatNumberFive,seatNumberSix;
     TextInputEditText passNameOne,passNameTwo,passNameThree,passNameFour,passNameFive,passNameSix,
@@ -36,8 +44,11 @@ public class passengerDetails extends AppCompatActivity {
     RadioGroup radioGroupOne,radioGroupTwo,radioGroupThree,radioGroupFour,radioGroupFive,radioGroupSix;
     RadioButton maleOne,femaleOne,maleTwo,femaleTwo,maleThree,femaleThree,maleFour,femaleFour,maleFive,femaleFive,maleSix,femaleSix;
     AppCompatButton next;
+    AutoCompleteTextView titleSpinOne,titleSpinTwo,titleSpinThree,titleSpinFour,titleSpinFive,titleSpinSix;
     CardView cardOne,cardTwo,cardThree,cardFour,cardFive,cardSix;
-    String tripId, providerCode,operator_name,source_id,destination_id,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName;
+    String tripId, providerCode,operator_name,source_id,destination_id,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName,
+            operatorID, CancellationPolicy, PartialCancellationAllowed, convienceFee, IdproofRequried,boardingPointID,dropingPointID;
+    ArrayList<String> titles=new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +62,7 @@ public class passengerDetails extends AppCompatActivity {
         cardFive=findViewById(R.id.cardFive);
         cardSix=findViewById(R.id.cardSix);
         next=findViewById(R.id.next);
+        back=findViewById(R.id.back);
 
         passNameOne=findViewById(R.id.passNameOne);
         passNameTwo=findViewById(R.id.passNameTwo);
@@ -80,24 +92,63 @@ public class passengerDetails extends AppCompatActivity {
         seatNumberFive=findViewById(R.id.seatNumberFive);
         seatNumberSix=findViewById(R.id.seatNumberSix);
 
+        titleSpinOne=findViewById(R.id.title_spin1);
+        titleSpinTwo=findViewById(R.id.title_spin2);
+        titleSpinThree=findViewById(R.id.title_spin3);
+        titleSpinFour=findViewById(R.id.title_spin4);
+        titleSpinFive=findViewById(R.id.title_spin5);
+        titleSpinSix=findViewById(R.id.title_spin6);
+
+        tripId = (String) this.getIntent().getSerializableExtra("tripID");
+        providerCode = (String) this.getIntent().getSerializableExtra("providercode");
+        operator_name= (String) this.getIntent().getSerializableExtra("operatorname");
         boardingPoint=getIntent().getStringExtra("boardingPoint");
         dropingPoint=getIntent().getStringExtra("dropingPoint");
+        boardingPointID=getIntent().getStringExtra("boardingPointID");
+        dropingPointID=getIntent().getStringExtra("dropingPointID");
         email=getIntent().getStringExtra("email");
         number=getIntent().getStringExtra("number");
-        amount=getIntent().getStringExtra("amount");
+        amount=getIntent().getStringExtra("amount");//amount with out taxes
         arrivalTime=getIntent().getStringExtra("arrivalTime");
         departureTime=getIntent().getStringExtra("departureTime");
         duration =getIntent().getStringExtra("duration");
         travelsName=getIntent().getStringExtra("travelsName");
-
         date= (String) this.getIntent().getSerializableExtra("journeydate");
         type=getIntent().getStringExtra("type");
-
         sourceName=getIntent().getStringExtra("sourceName");
         destinationName=getIntent().getStringExtra("destinationName");
-
-
         selectedSeats=getIntent().getStringArrayListExtra("selectedSeats");
+        source_id= (String) this.getIntent().getSerializableExtra("sourceid");
+        destination_id= (String) this.getIntent().getSerializableExtra("destinationid");
+        operatorID = (String) this.getIntent().getSerializableExtra("operatorID");
+        CancellationPolicy = (String) this.getIntent().getSerializableExtra("CancellationPolicy");
+        PartialCancellationAllowed = (String) this.getIntent().getSerializableExtra("PartialCancellationAllowed");
+        convienceFee = (String) this.getIntent().getSerializableExtra("convienceFee");
+        IdproofRequried = (String) this.getIntent().getSerializableExtra("IdproofRequried");
+        amountsList=getIntent().getStringArrayListExtra("amountsList");
+        serviceTaxList=getIntent().getStringArrayListExtra("serviceTaxList");
+        serviceChargeList=getIntent().getStringArrayListExtra("serviceChargeList");
+
+        titles.add("Mr");
+        titles.add("Ms");
+        titles.add("Mrs");
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.menu_popup, titles);
+        titleSpinOne.setAdapter(adapter);
+        titleSpinTwo.setAdapter(adapter);
+        titleSpinThree.setAdapter(adapter);
+        titleSpinFour.setAdapter(adapter);
+        titleSpinFive.setAdapter(adapter);
+        titleSpinSix.setAdapter(adapter);
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+
 switch (selectedSeats.size()){
     case 1:
     {
@@ -187,7 +238,11 @@ next.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         if(selectedSeats.size()>=1){
-
+            if(titleSpinOne.getText().toString().equalsIgnoreCase("")){
+            }
+            else{
+                titlesList.add(titleSpinOne.getText().toString());
+            }
             if(passNameOne.getText().toString().equalsIgnoreCase("")){
             }else{
                 passengerNames.add(passNameOne.getText().toString());
@@ -207,6 +262,11 @@ next.setOnClickListener(new View.OnClickListener() {
             }
         }
         if(selectedSeats.size()>=2){
+            if(titleSpinTwo.getText().toString().equalsIgnoreCase("")){
+            }
+            else{
+                titlesList.add(titleSpinTwo.getText().toString());
+            }
             if(passNameTwo.getText().toString().equalsIgnoreCase("")){
             }else{
                 passengerNames.add(passNameTwo.getText().toString());
@@ -227,6 +287,11 @@ next.setOnClickListener(new View.OnClickListener() {
             }
         }
         if(selectedSeats.size()>=3){
+            if(titleSpinThree.getText().toString().equalsIgnoreCase("")){
+            }
+            else{
+                titlesList.add(titleSpinThree.getText().toString());
+            }
             if(passNameThree.getText().toString().equalsIgnoreCase("")){
             }else{
                 passengerNames.add(passNameThree.getText().toString());
@@ -247,6 +312,11 @@ next.setOnClickListener(new View.OnClickListener() {
             }
         }
         if(selectedSeats.size()>=4){
+            if(titleSpinFour.getText().toString().equalsIgnoreCase("")){
+            }
+            else{
+                titlesList.add(titleSpinFour.getText().toString());
+            }
             if(passNameFour.getText().toString().equalsIgnoreCase("")){
             }else{
                 passengerNames.add(passNameFour.getText().toString());
@@ -267,6 +337,11 @@ next.setOnClickListener(new View.OnClickListener() {
             }
         }
         if(selectedSeats.size()>=5){
+            if(titleSpinFive.getText().toString().equalsIgnoreCase("")){
+            }
+            else{
+                titlesList.add(titleSpinFive.getText().toString());
+            }
             if(passNameFive.getText().toString().equalsIgnoreCase("")){
             }else{
                 passengerNames.add(passNameFive.getText().toString());
@@ -286,6 +361,11 @@ next.setOnClickListener(new View.OnClickListener() {
             }
         }
         if(selectedSeats.size()>=6){
+            if(titleSpinSix.getText().toString().equalsIgnoreCase("")){
+            }
+            else{
+                titlesList.add(titleSpinSix.getText().toString());
+            }
             if(passNameSix.getText().toString().equalsIgnoreCase("")){
             }else{
                 passengerNames.add(passNameSix.getText().toString());
@@ -304,43 +384,60 @@ next.setOnClickListener(new View.OnClickListener() {
                 }
             }
         }
-        if(passengerNames.size()==selectedSeats.size() && passengerAge.size()==selectedSeats.size() && gender.size()==selectedSeats.size()){
+        if(passengerNames.size()==selectedSeats.size() && passengerAge.size()==selectedSeats.size() && gender.size()==selectedSeats.size() && titlesList.size()==selectedSeats.size()){
             nextPage();
         }else{
-            Toast.makeText(passengerDetails.this,"Please enter all details names size"+passengerNames.size()+"="+passengerAge.size()+"="+gender.size(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(passengerDetails.this,"Please enter all details",Toast.LENGTH_SHORT).show();
             passengerNames.clear();
             passengerAge.clear();
             gender.clear();
+            titlesList.clear();
         }
-
-
-
     }
 });
     }
 
     private void nextPage() {
         Intent intent=new Intent(passengerDetails.this,busDetailsConfirmation.class);
+        intent.putExtra("tripID", tripId);//new
         intent.putExtra("boardingPoint",boardingPoint);
         intent.putExtra("dropingPoint",dropingPoint);
+        intent.putExtra("boardingPointID",boardingPointID);
+        intent.putExtra("dropingPointID",dropingPointID);
+        intent.putExtra("sourceid", source_id);//new
+        intent.putExtra("destinationid", destination_id);//new
         intent.putExtra("email",email);
         intent.putExtra("number",number);
+        intent.putExtra("sourceName", sourceName);
+        intent.putExtra("journeydate",date);
+        intent.putExtra("type",type);
+        intent.putExtra("destinationName", destinationName);
         intent.putStringArrayListExtra("selectedSeats",selectedSeats);
-        intent.putStringArrayListExtra("passengerNames",passengerNames);
-        intent.putStringArrayListExtra("passengerAges",passengerAge);
-        intent.putStringArrayListExtra("passengerGenders",gender);
         intent.putExtra("amount",amount);
         intent.putExtra("arrivalTime", arrivalTime);
         intent.putExtra("departureTime", departureTime);
         intent.putExtra("duration",duration);
         intent.putExtra("travelsName",travelsName);
-        intent.putExtra("sourceName", sourceName);
-        intent.putExtra("destinationName", destinationName);
-        intent.putExtra("journeydate",date);
-        intent.putExtra("type",type);
+        //NEW ITEMS ADDED
+        intent.putExtra("operatorID",operatorID);//new
+        intent.putExtra("operatorname", operator_name);//new
+        intent.putExtra("providercode", providerCode);//new
+        intent.putExtra("CancellationPolicy",CancellationPolicy);
+        intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
+        intent.putExtra("IdproofRequried",IdproofRequried);
+        intent.putExtra("convienceFee",convienceFee);
+        intent.putStringArrayListExtra("selectedSeats",selectedSeats);
+        intent.putStringArrayListExtra("passengerNames",passengerNames);
+        intent.putStringArrayListExtra("passengerAges",passengerAge);
+        intent.putStringArrayListExtra("passengerGenders",gender);
+        intent.putStringArrayListExtra("Titles",titlesList);
+        intent.putStringArrayListExtra("amountsList",amountsList);
+        intent.putStringArrayListExtra("serviceTaxList",serviceTaxList);
+        intent.putStringArrayListExtra("serviceChargeList",serviceChargeList);
         startActivity(intent);
         passengerNames.clear();
         passengerAge.clear();
         gender.clear();
+        titlesList.clear();
     }
 }

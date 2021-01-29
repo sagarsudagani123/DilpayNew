@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.bus;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -40,10 +41,11 @@ import java.util.List;
 import static retrofit2.converter.gson.GsonConverterFactory.create;
 
 public class Bus_seating extends AppCompatActivity implements seatSelection {
+
     RelativeLayout progress,mainLayout;
     LinearLayout selectIndex;
     ImageView back;
-    TextView upperText,lowerText,seatsSelected,amountText;
+    TextView upperText,lowerText,seatsSelected,amountText,travels;
     AppCompatButton done;
     List<Boolean> isAvailable=new ArrayList<>();
     List<String> seatType=new ArrayList<>();
@@ -61,11 +63,18 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     List<Float> zindexOperatorServiceCharge=new ArrayList<>();
     List<Boolean> zindexisSelected=new ArrayList<>();
     List<String> zindexseatNumber=new ArrayList<>();
+
     ArrayList<String> selectedSeats=new ArrayList<>();
     ArrayList<String> bordingPoints =new ArrayList<>();
     ArrayList<String> dropingPoints=new ArrayList<>();
+    ArrayList<String> bordingID =new ArrayList<>();
+    ArrayList<String> dropingID=new ArrayList<>();
+    ArrayList<String> amountsList=new ArrayList<>();
+    ArrayList<String> serviceTaxList =new ArrayList<>();
+    ArrayList<String> serviceChargeList=new ArrayList<>();
+
     float total_amount=0f;
-    String tripId, providerCode,operator_name,source_id,destination_id,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName;
+    String tripId, providerCode,operator_name,source_id,destination_id,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName, operatorID, CancellationPolicy, PartialCancellationAllowed, convienceFee, IdproofRequried;
     RequestQueue mqueue;
     RecyclerView upper,seater;
     @Override
@@ -86,28 +95,42 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         seatsSelected=findViewById(R.id.seatsSelected);
         done=findViewById(R.id.selectDrop);
         amountText=findViewById(R.id.amount1);
+        travels=findViewById(R.id.travel_name);
 
         seater.setAdapter(null);
         seater.setHasFixedSize(true);
         upper.setAdapter(null);
         upper.setHasFixedSize(true);
 
+
         tripId = (String) this.getIntent().getSerializableExtra("tripID");
         providerCode = (String) this.getIntent().getSerializableExtra("providercode");
         operator_name= (String) this.getIntent().getSerializableExtra("operatorname");
         source_id= (String) this.getIntent().getSerializableExtra("sourceid");
         destination_id= (String) this.getIntent().getSerializableExtra("destinationid");
+        sourceName=getIntent().getStringExtra("sourceName");
+        destinationName=getIntent().getStringExtra("destinationName");
         date= (String) this.getIntent().getSerializableExtra("journeydate");
 
         type=getIntent().getStringExtra("type");
-        sourceName=getIntent().getStringExtra("sourceName");
-        destinationName=getIntent().getStringExtra("destinationName");
+
         bordingPoints =getIntent().getStringArrayListExtra("bordingPoints");
         dropingPoints=getIntent().getStringArrayListExtra("dropingPints");
+        bordingID=getIntent().getStringArrayListExtra("bordingID");
+        dropingID=getIntent().getStringArrayListExtra("dropingID");
         arrivalTime=getIntent().getStringExtra("arrivalTime");
         departureTime=getIntent().getStringExtra("departureTime");
         duration =getIntent().getStringExtra("duration");
         travelsName=getIntent().getStringExtra("travelsName");
+
+        //new
+        operatorID = (String) this.getIntent().getSerializableExtra("operatorID");
+        CancellationPolicy = (String) this.getIntent().getSerializableExtra("CancellationPolicy");
+        PartialCancellationAllowed = (String) this.getIntent().getSerializableExtra("PartialCancellationAllowed");
+        convienceFee = (String) this.getIntent().getSerializableExtra("convienceFee");
+        IdproofRequried = (String) this.getIntent().getSerializableExtra("IdproofRequried");
+
+        travels.setText(operator_name);
 
         Log.e("bordingPoints", bordingPoints.toString());
 
@@ -122,8 +145,11 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         upperText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                upperText.setBackgroundColor(getResources().getColor(R.color.purple_700));
-                lowerText.setBackgroundColor(getResources().getColor(R.color.white));
+//                upperText.setBackgroundColor(getResources().getColor(R.color.gradientStart));
+                upperText.setBackground(ContextCompat.getDrawable(Bus_seating.this,R.drawable.btn_right_active));
+                upperText.setTextColor(getResources().getColor(R.color.white));
+                lowerText.setBackground(ContextCompat.getDrawable(Bus_seating.this,R.drawable.btn_left));
+                lowerText.setTextColor(getResources().getColor(R.color.gradientStart));
                 seater.setVisibility(View.GONE);
                 upper.setVisibility(View.VISIBLE);
             }
@@ -131,8 +157,10 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         lowerText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                upperText.setBackgroundColor(getResources().getColor(R.color.white));
-                lowerText.setBackgroundColor(getResources().getColor(R.color.purple_700));
+                upperText.setBackground(ContextCompat.getDrawable(Bus_seating.this,R.drawable.btn_right));
+                upperText.setTextColor(getResources().getColor(R.color.gradientStart));
+                lowerText.setBackground(ContextCompat.getDrawable(Bus_seating.this,R.drawable.btn_left_active));
+                lowerText.setTextColor(getResources().getColor(R.color.white));
                 upper.setVisibility(View.GONE);
                 seater.setVisibility(View.VISIBLE);
             }
@@ -152,12 +180,24 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 intent.putExtra("destinationName", destinationName);
                 intent.putStringArrayListExtra("dropingPints",dropingPoints);
                 intent.putStringArrayListExtra("bordingPoints",bordingPoints);
+                intent.putStringArrayListExtra("dropingID",dropingID);
+                intent.putStringArrayListExtra("bordingID",bordingID);
                 intent.putStringArrayListExtra("selectedSeats",selectedSeats);
-                intent.putExtra("totalAmt",total_amount);
+
+                intent.putStringArrayListExtra("amountsList",amountsList);
+                intent.putStringArrayListExtra("serviceTaxList",serviceTaxList);
+                intent.putStringArrayListExtra("serviceChargeList",serviceChargeList);
+                intent.putExtra("totalAmt",total_amount);//with out taxes
                 intent.putExtra("arrivalTime", arrivalTime);
                 intent.putExtra("departureTime", departureTime);
                 intent.putExtra("duration",duration);
                 intent.putExtra("travelsName",travelsName);
+                //NEW ITEMS ADDED
+                intent.putExtra("operatorID",operatorID);//new
+                intent.putExtra("CancellationPolicy",CancellationPolicy);
+                intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
+                intent.putExtra("IdproofRequried",IdproofRequried);
+                intent.putExtra("convienceFee",convienceFee);
                 startActivity(intent);
             }
         });
@@ -315,7 +355,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
 
                     setRecycler(isAvailable,seatType,isLadies,NetFare,Servicetax,OperatorServiceCharge,isSelected,seatNumber,zindexIsAvailable,zindexSeatType,zindexIsLadies,zindexNetFare,zindexServicetax,zindexOperatorServiceCharge,zindexisSelected,zindexseatNumber);
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),"No Data Available",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"No Data Available"+e.toString(),Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                     finish();
                 }
@@ -342,6 +382,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 else{
                     message = "Something went wrong! Please try again!!";
                     Toast.makeText(Bus_seating.this, message, Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
         });
@@ -363,9 +404,13 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     }
 
     @Override
-    public void selectSelected(float position,String seatNumber,Float amount) {
+    public void seatSelected(float position,String seatNumber,Float amount,Float seatAmount,Float serviceTax,Float serviceCharge) {
         seatsSelected.setText("");
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
         selectedSeats.add(seatNumber);
+        amountsList.add(String.valueOf(decimalFormat.format(seatAmount)));
+        serviceTaxList.add(String.valueOf(decimalFormat.format(serviceTax)));
+        serviceChargeList.add(String.valueOf(decimalFormat.format(serviceCharge)));
         total_amount=total_amount+amount;
         for(int i=0;i<selectedSeats.size();i++){
             if(i==0){
@@ -374,7 +419,8 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 seatsSelected.append(","+selectedSeats.get(i));
             }
         }
-        amountText.setText(""+ total_amount);
+
+        amountText.setText(""+decimalFormat.format(total_amount));
     }
 
     @Override

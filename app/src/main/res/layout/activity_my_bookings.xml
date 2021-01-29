@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".My_bookings">
+    android:background="@color/white"
+    tools:context=".bus.My_bookings">
     <RelativeLayout
         android:id="@+id/re1"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/purple_700">
+        android:background="@color/gradientEnd">
 
         <ImageView
             android:id="@+id/back"

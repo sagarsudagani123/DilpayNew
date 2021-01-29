@@ -3,7 +3,6 @@ package com.yashswi.dilpay;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnima
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 import com.yashswi.dilpay.adapters.SliderAdapter;
-import com.yashswi.dilpay.adapters.home_screen_adapter;
+import com.yashswi.dilpay.adapters.items_list_adapter;
 import java.util.ArrayList;
 
 public class Home_screen extends AppCompatActivity {
@@ -74,7 +73,7 @@ public class Home_screen extends AppCompatActivity {
         buton_names.add("Electricity");
         buton_names.add("Gas");
 
-        home_screen_adapter adapter = new home_screen_adapter(buton_img, buton_names, this);
+        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names, this);
         rv.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(this,3);
         rv.setLayoutManager(manager);

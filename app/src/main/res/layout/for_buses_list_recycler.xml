@@ -51,6 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
+                android:id="@+id/li_amount"
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
 
@@ -67,41 +68,49 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@id/rupee"
                     android:text="250"
-                    android:textSize="16sp"
                     android:textColor="#0071cc"
+                    android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/duration"
+                android:layout_below="@id/depart_time"
+                android:layout_marginStart="10dp"
+                android:text="10:00 hrs"/>
 
             <TextView
                 android:id="@+id/ts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/depart_time"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="3dp"
+                android:layout_below="@id/duration"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="8dp"
                 android:text="TSRTC"
+                android:textStyle="bold"
                 android:textColor="#0071cc" />
-       <LinearLayout
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:orientation="horizontal"
-           android:layout_toRightOf="@id/ts"
-           android:layout_marginTop="3dp"
-           android:layout_below="@id/depart_time">
-           <ImageView
-               android:layout_width="15dp"
-               android:layout_height="15dp"
-               android:layout_marginTop="3dp"
-               android:layout_marginStart="10dp"
-               android:src="@drawable/bus_seat"/>
-           <TextView
-               android:id="@+id/seats"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:layout_marginStart="5dp"
-               android:layout_below="@id/depart_time"
-               android:text="45" />
-       </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="10dp"
+                android:layout_below="@id/li_amount">
+                <ImageView
+                    android:layout_width="15dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="3dp"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/bus_seat"/>
+                <TextView
+                    android:id="@+id/seats"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="45" />
+            </LinearLayout>
 
 
 
@@ -111,8 +120,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/ts"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginStart="10dp"
                 android:layout_marginBottom="10dp"
                 android:text="Deluxe" />
             <TextView

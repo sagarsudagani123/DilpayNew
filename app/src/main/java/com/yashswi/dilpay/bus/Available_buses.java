@@ -104,6 +104,7 @@ public class Available_buses extends AppCompatActivity {
                             model.setDisplayName(dataObject.getString("DisplayName"));
                             model.setAvailableSeats(dataObject.getString("AvailableSeats"));
                             model.setArrivalTime(dataObject.getString("ArrivalTime"));
+                            model.setIdProofRequired(String.valueOf(dataObject.getBoolean("IdProofRequired")));//new
                             JSONArray jsonArray1 = dataObject.getJSONArray("BoardingTimes");
                             for (int  j= 0; j < jsonArray1.length(); j++) {
                                 JSONObject dataObject1 = jsonArray1.getJSONObject(j);
@@ -117,9 +118,11 @@ public class Available_buses extends AppCompatActivity {
                                 model.setTimeBoard(dataObject1.getString("Time"));
                             }
                             model.setBusType(dataObject.getString("BusType"));
+                            model.setCancellationPolicy(dataObject.getString("CancellationPolicy"));//new
                             model.setDuration(dataObject.getString("Duration"));
                             model.setDepartureTime(dataObject.getString("DepartureTime"));
                             model.setDestinationId(dataObject.getString("DestinationId"));
+//                            model.setDestinationId(dataObject.getString("DestinationId"));
                             JSONArray jsonArray2 = dataObject.getJSONArray("DroppingTimes");
                             for (int  k= 0; k < jsonArray2.length(); k++) {
                                 JSONObject dataObject2 = jsonArray2.getJSONObject(k);
@@ -133,19 +136,25 @@ public class Available_buses extends AppCompatActivity {
                                 model.setTimeDrop(dataObject2.getString("Time"));
                             }
                             model.setFares(dataObject.getString("Fares"));
-                            model.setId(dataObject.getString("Id"));
+                            model.setOperatorId(dataObject.getString("OperatorId"));
+                            model.setId(dataObject.getString("Id"));//trip id
                             model.setProvider(dataObject.getString("Provider"));
+                            model.setPartialCancellationAllowed(dataObject.getString("PartialCancellationAllowed"));
+                            model.setSourceId("SourceId");
+                            model.setConvenienceFee(dataObject.getString("ConvenienceFee"));
                             model.setTravels(dataObject.getString("Travels"));
                             model.setSourceId(dataObject.getString("SourceId"));
                             model.setJourneydate(dataObject.getString("Journeydate"));
                             retromodearraylist.add(model);
+
                         }
                         buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id,journey_date,retromodearraylist, Available_buses.this);
                         rv.setAdapter(adapter);
                         LinearLayoutManager manager = new LinearLayoutManager(Available_buses.this, RecyclerView.VERTICAL, false);
                         rv.setLayoutManager(manager);
                     }catch (Exception e){
-                        Toast.makeText(Available_buses.this,"No Data Available"+e.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Available_buses.this,"No Data Available", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
                 }
             }

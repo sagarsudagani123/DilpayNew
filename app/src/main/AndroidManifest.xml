@@ -4,6 +4,7 @@
     package="com.yashswi.dilpay">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
@@ -14,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dilbus"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:node="merge">
+        <activity android:name=".payment.paymentTest"></activity>
         <activity android:name=".bus.My_bookings" />
         <activity android:name=".bus.Booking_details" />
         <activity android:name=".Gas_booking_successfull" />
@@ -58,13 +61,13 @@
         <activity android:name=".bus.Bus" />
         <activity android:name=".View_more" />
         <activity android:name=".More" />
-        <activity android:name=".Home_screen" />
+        <activity android:name=".Splash_screen" />
         <activity android:name=".Otp" />
         <activity android:name=".Forgot_password" />
         <activity android:name=".Register_screen" />
         <activity android:name=".Welcome_screen" />
         <activity android:name=".Login_screen" />
-        <activity android:name=".Splash_screen">
+        <activity android:name=".Home_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import com.yashswi.dilpay.adapters.home_screen_adapter;
+import com.yashswi.dilpay.adapters.items_list_adapter;
 
 import java.util.ArrayList;
 
@@ -48,7 +48,7 @@ public class View_more extends AppCompatActivity {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         rv.setLayoutManager(gridLayoutManager);
-        home_screen_adapter adapter = new home_screen_adapter(buton_img, buton_names, this);
+        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names, this);
         rv.setAdapter(adapter);
 
 

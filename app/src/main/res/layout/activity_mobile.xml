@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".mobile.Mobile">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/purple_700"
+        android:background="@color/gradientEnd"
         android:id="@+id/re1">
         <ImageView
             android:id="@+id/back"
@@ -40,13 +41,14 @@
         android:layout_below="@id/re1"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        app:boxStrokeColor="@color/teal_200"
+        app:boxStrokeColor="@color/gradientStart"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:id="@+id/mobile"
+            android:maxLength="10"
             android:imeOptions="actionDone"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -58,12 +60,14 @@
         android:layout_below="@id/e_mobile"
         android:layout_marginEnd="15dp"
         android:id="@+id/operator"
+        app:boxStrokeColor="@color/gradientStart"
         android:hint="Operator">
 
         <AutoCompleteTextView
             android:id="@+id/operator_spin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="none"
             />
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
@@ -74,13 +78,15 @@
         android:layout_marginTop="5dp"
         android:layout_marginEnd="15dp"
         android:layout_below="@id/operator"
+        app:boxStrokeColor="@color/gradientStart"
         android:id="@+id/circle_code"
         android:hint="Circle code">
 
         <AutoCompleteTextView
             android:id="@+id/circle_spin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="none"/>
     </com.google.android.material.textfield.TextInputLayout>
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/e_amount"
@@ -92,7 +98,7 @@
         android:layout_below="@id/circle_code"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="15dp"
-        app:boxStrokeColor="@color/teal_200"
+        app:boxStrokeColor="@color/gradientStart"
         >
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -120,6 +126,16 @@
         android:layout_marginTop="25dp"
         android:background="@drawable/button_bg"
         android:text="Next"
-        android:textColor="#fff" />
+        android:textColor="@color/gradientStart" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mobile_items"
+        android:layout_below="@+id/next"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginTop="15dp"
+        />
 
 </RelativeLayout>

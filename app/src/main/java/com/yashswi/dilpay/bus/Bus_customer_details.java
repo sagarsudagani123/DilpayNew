@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,20 +16,28 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.yashswi.dilpay.R;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 
 public class Bus_customer_details extends AppCompatActivity {
     TextInputEditText e_email,e_name,e_number;
     TextView seatsSelected,amount;
+    ImageView back;
     AutoCompleteTextView board_spin,drop_spin;
     ArrayList<String> bordingPoints =new ArrayList<>();
     ArrayList<String> dropingPoints=new ArrayList<>();
+    ArrayList<String> bordingID =new ArrayList<>();
+    ArrayList<String> dropingID=new ArrayList<>();
     ArrayList<String> selectedSeats=new ArrayList<>();
+    ArrayList<String> amountsList=new ArrayList<>();
+    ArrayList<String> serviceTaxList =new ArrayList<>();
+    ArrayList<String> serviceChargeList=new ArrayList<>();
     double totalAmount;
     AppCompatButton proceed;
     String boardingPoint,dropingPoint,email,number,seats="";
 
-    String tripId, providerCode,operator_name,source_id,destination_id,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName;
+    String tripId, providerCode,operator_name,source_id,destination_id,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName,
+            operatorID, CancellationPolicy, PartialCancellationAllowed, convienceFee, IdproofRequried;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +50,7 @@ public class Bus_customer_details extends AppCompatActivity {
         seatsSelected=findViewById(R.id.seatsSelectedBookDetails);
         amount=findViewById(R.id.amountBookDetails);
         proceed=findViewById(R.id.proceed);
+        back=findViewById(R.id.back);
 
         tripId = (String) this.getIntent().getSerializableExtra("tripID");
         providerCode = (String) this.getIntent().getSerializableExtra("providercode");
@@ -51,16 +61,34 @@ public class Bus_customer_details extends AppCompatActivity {
         type=getIntent().getStringExtra("type");
         bordingPoints =getIntent().getStringArrayListExtra("bordingPoints");
         dropingPoints=getIntent().getStringArrayListExtra("dropingPints");
+        bordingID=getIntent().getStringArrayListExtra("bordingID");
+        dropingID=getIntent().getStringArrayListExtra("dropingID");
         sourceName=getIntent().getStringExtra("sourceName");
         destinationName=getIntent().getStringExtra("destinationName");
         arrivalTime=getIntent().getStringExtra("arrivalTime");
         departureTime=getIntent().getStringExtra("departureTime");
         duration =getIntent().getStringExtra("duration");
         travelsName=getIntent().getStringExtra("travelsName");
-
         selectedSeats=getIntent().getStringArrayListExtra("selectedSeats");
         totalAmount=getIntent().getFloatExtra("totalAmt",0.0f);
 
+        amountsList=getIntent().getStringArrayListExtra("amountsList");
+        serviceTaxList=getIntent().getStringArrayListExtra("serviceTaxList");
+        serviceChargeList=getIntent().getStringArrayListExtra("serviceChargeList");
+        //new
+        operatorID = (String) this.getIntent().getSerializableExtra("operatorID");
+        CancellationPolicy = (String) this.getIntent().getSerializableExtra("CancellationPolicy");
+        PartialCancellationAllowed = (String) this.getIntent().getSerializableExtra("PartialCancellationAllowed");
+        convienceFee = (String) this.getIntent().getSerializableExtra("convienceFee");
+        IdproofRequried = (String) this.getIntent().getSerializableExtra("IdproofRequried");
+
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         proceed.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,9 +96,27 @@ public class Bus_customer_details extends AppCompatActivity {
                 dropingPoint=drop_spin.getText().toString();
                 email=e_email.getText().toString();
                 number=e_number.getText().toString();
+                String bordingPointID="",dropingPointID="";
+
+                for(int i=0;i<bordingPoints.size();i++){
+                    if(boardingPoint.equalsIgnoreCase(bordingPoints.get(i))){
+                        bordingPointID=bordingID.get(i);
+                    }
+                }
+                for(int i=0;i<dropingPoints.size();i++){
+                    if(dropingPoint.equalsIgnoreCase(dropingPoints.get(i))){
+                        dropingPointID=dropingID.get(i);
+                    }
+                }
+
                 Intent intent=new Intent(Bus_customer_details.this,passengerDetails.class);
+                intent.putExtra("tripID", tripId);//new
                 intent.putExtra("boardingPoint",boardingPoint);
                 intent.putExtra("dropingPoint",dropingPoint);
+                intent.putExtra("boardingPointID",bordingPointID);
+                intent.putExtra("dropingPointID",dropingPointID);
+                intent.putExtra("sourceid", source_id);//new
+                intent.putExtra("destinationid", destination_id);//new
                 intent.putExtra("email",email);
                 intent.putExtra("number",number);
                 intent.putExtra("sourceName", sourceName);
@@ -83,6 +129,17 @@ public class Bus_customer_details extends AppCompatActivity {
                 intent.putExtra("departureTime", departureTime);
                 intent.putExtra("duration",duration);
                 intent.putExtra("travelsName",travelsName);
+                intent.putStringArrayListExtra("amountsList",amountsList);
+                intent.putStringArrayListExtra("serviceTaxList",serviceTaxList);
+                intent.putStringArrayListExtra("serviceChargeList",serviceChargeList);
+                //NEW ITEMS ADDED
+                intent.putExtra("operatorID",operatorID);//new
+                intent.putExtra("operatorname", operator_name);//new
+                intent.putExtra("providercode", providerCode);//new
+                intent.putExtra("CancellationPolicy",CancellationPolicy);
+                intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
+                intent.putExtra("IdproofRequried",IdproofRequried);
+                intent.putExtra("convienceFee",convienceFee);
                 startActivity(intent);
             }
         });
@@ -95,7 +152,9 @@ public class Bus_customer_details extends AppCompatActivity {
                 seats.concat(","+selectedSeats.get(i));
             }
         }
-        amount.setText(""+totalAmount);
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
+        amount.setText(decimalFormat.format(totalAmount));
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.menu_popup, bordingPoints);
         board_spin.setAdapter(adapter);

@@ -14,22 +14,18 @@ import com.yashswi.dilpay.Gas_screen;
 import com.yashswi.dilpay.Postpaid_screen;
 import com.yashswi.dilpay.dth.Dth_screen;
 import com.yashswi.dilpay.bus.Bus;
-import com.yashswi.dilpay.Datacard;
-import com.yashswi.dilpay.electricity.Electricity;
 import com.yashswi.dilpay.electricity.Electricity_screen;
-import com.yashswi.dilpay.gas.Gas;
 import com.yashswi.dilpay.mobile.Mobile;
-import com.yashswi.dilpay.Postpaid;
 import com.yashswi.dilpay.R;
 
 import java.util.ArrayList;
 
-public class home_screen_adapter extends RecyclerView.Adapter<home_screen_adapter.MyViewHolder> {
+public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.MyViewHolder> {
     ArrayList image;
     ArrayList name;
     Context context;
 
-    public home_screen_adapter(ArrayList image, ArrayList name, Context context) {
+    public items_list_adapter(ArrayList image, ArrayList name, Context context) {
         this.image = image;
         this.name = name;
         this.context = context;
@@ -37,14 +33,14 @@ public class home_screen_adapter extends RecyclerView.Adapter<home_screen_adapte
 
     @NonNull
     @Override
-    public home_screen_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public items_list_adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View a = LayoutInflater.from(parent.getContext()).inflate(R.layout.for_categories_recyclerview, parent, false);
         MyViewHolder holder = new MyViewHolder(a);
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull home_screen_adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull items_list_adapter.MyViewHolder holder, int position) {
         Glide.with(context).load(image.get(position)).into(holder.image);
         holder.name.setText((CharSequence) name.get(position));
 

@@ -4,11 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".bus.Bus_customer_details">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/purple_700"
+        android:background="@color/gradientEnd"
         android:id="@+id/re1">
 
         <ImageView
@@ -59,6 +60,7 @@
                         android:id="@+id/board_spin"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:inputType="none"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -76,7 +78,8 @@
                     <AutoCompleteTextView
                         android:id="@+id/drop_spin"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="wrap_content"
+                        android:inputType="none"/>
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -92,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/drop2"
                     android:hint="Email"
-                    app:boxStrokeColor="@color/teal_200">
+                    app:boxStrokeColor="@color/gradientStart">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
@@ -112,12 +115,13 @@
                     android:layout_marginEnd="15dp"
                     android:layout_marginTop="10dp"
                     android:layout_below="@id/emailLoyout"
-                    app:boxStrokeColor="@color/teal_200">
+                    app:boxStrokeColor="@color/gradientStart">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/e_number"
+                        android:maxLength="10"
                         android:imeOptions="actionDone"
                         android:inputType="number" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -125,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Selected seats:"
-                    android:textColor="@color/purple_700"
+                    android:textColor="@color/gradientStart"
                     android:id="@+id/seatSelectedBookDetailsText"
                     android:layout_below="@+id/numberLayout"
                     android:layout_marginTop="20dp"
@@ -150,7 +154,7 @@
                     android:layout_height="wrap_content"
                     android:text="Amount : "
                     android:textSize="16sp"
-                    android:textColor="@color/purple_700"
+                    android:textColor="@color/gradientStart"
                     android:id="@+id/amountBookDetailsText"
                     android:layout_marginTop="10dp"
                     android:textStyle="bold"
@@ -180,7 +184,8 @@
                     android:layout_marginBottom="10dp"
                     android:background="@drawable/button_bg"
                     android:text="Proceed"
-                    android:textColor="#fff" />
+                    android:textStyle="bold"
+                    android:textColor="@color/gradientStart" />
                 <RelativeLayout
                     android:id="@+id/progress_layout"
                     android:layout_width="match_parent"

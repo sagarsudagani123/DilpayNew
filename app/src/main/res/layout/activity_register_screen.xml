@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".Register_screen">
 
     <RelativeLayout
@@ -12,7 +13,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:src="@drawable/bg_gradient"
+            android:src="@drawable/background_gradiant"
             android:scaleType="centerCrop"/>
 
         <TextView
@@ -62,7 +63,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Full Name"
-                    app:boxStrokeColor="#FF03DAC5"
+                    app:boxStrokeColor="@color/gradientStart"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -81,7 +82,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="Mobile Number"
-                    app:boxStrokeColor="#FF03DAC5"
+                    app:boxStrokeColor="@color/gradientStart"
                     android:layout_marginTop="5dp"
 
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
@@ -89,7 +90,8 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="number"
+                        android:inputType="text"
+                        android:maxLength="10"
                         android:id="@+id/e_mobile"
                         android:imeOptions="actionNext"
                         />
@@ -101,41 +103,40 @@
                     android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Password"
-                    app:boxStrokeColor="#FF03DAC5"
-                    app:endIconMode="password_toggle"
+                    android:hint="emial"
+                    app:boxStrokeColor="@color/gradientStart"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"
+                        android:inputType="textEmailAddress"
                         android:imeOptions="actionNext"
-                        android:id="@+id/e_pwd"
+                        android:id="@+id/email"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
-
                 <com.google.android.material.textfield.TextInputLayout
 
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Confirm Password"
-                    app:boxStrokeColor="#FF03DAC5"
-                    android:layout_marginTop="5dp"
-                    app:endIconMode="password_toggle"
+                    android:hint="Referal code (Optional)"
+                    app:boxStrokeColor="@color/gradientStart"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:inputType="textPassword"
-                        android:id="@+id/e_confirm_pwd"
-                        android:imeOptions="actionDone"
+                        android:inputType="textEmailAddress"
+                        android:imeOptions="actionNext"
+                        android:id="@+id/refercode"
                         />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -145,7 +146,7 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/button_bg"
                     android:text="Register"
-                    android:textColor="#fff"
+                    android:textColor="@color/gradientStart"
                     android:layout_marginBottom="20dp"
                     android:layout_gravity="center"/>
 

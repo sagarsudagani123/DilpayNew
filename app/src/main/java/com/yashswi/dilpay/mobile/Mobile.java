@@ -2,6 +2,9 @@ package com.yashswi.dilpay.mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +16,8 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Mobile_interface;
 import com.yashswi.dilpay.R;
+import com.yashswi.dilpay.adapters.items_list_adapter;
+
 import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -35,6 +40,9 @@ public class Mobile extends AppCompatActivity  {
 
     ArrayList<String> circleCode=new ArrayList<>();
     ArrayList<String> circleName=new ArrayList<>();
+    RecyclerView mobile_items;
+    ArrayList<Integer> itemImg = new ArrayList<>();
+    ArrayList<String> itemName = new ArrayList<>();
 
    String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
     RelativeLayout progress_layout;
@@ -47,6 +55,7 @@ public class Mobile extends AppCompatActivity  {
         circle_spin=findViewById(R.id.circle_spin);
         e_mobile=findViewById(R.id.mobile);
         e_amount=findViewById(R.id.amount);
+        mobile_items=findViewById(R.id.mobile_items);
 
 
         operatorName.add("Airtel");
@@ -167,6 +176,21 @@ public class Mobile extends AppCompatActivity  {
         ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(), R.layout.menu_popup, circleName);
         circle_spin.setAdapter(adapter1);
 
+        itemImg.add(R.drawable.bus);
+        itemImg.add(R.drawable.mobile1);
+//        itemImg.add(R.drawable.dth1);
+//        itemImg.add(R.drawable.datacard1);
+
+        itemName.add("Recharge History");
+        itemName.add("Offers");
+//        itemName.add("cancelled Tickets");
+//        itemName.add("Offers");
+
+        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, this);
+        mobile_items.setAdapter(adapter2);
+        GridLayoutManager manager = new GridLayoutManager(this,3);
+        mobile_items.setLayoutManager(manager);
+
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -190,7 +214,15 @@ public class Mobile extends AppCompatActivity  {
                 Random rand = new Random();
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
-                getResponse(number,year+""+rand_int1,username,password,amount,operator_code,circle_code);
+                if(number.length()<10){
+                    Toast.makeText(Mobile.this,"Enter valid number",Toast.LENGTH_SHORT).show();
+                }
+                else if(amount.equalsIgnoreCase("")||operator_code.equalsIgnoreCase("")||circle_code.equalsIgnoreCase("")){
+                    Toast.makeText(Mobile.this,"Please fill in all details",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
+                }
             }
         });
 
@@ -219,6 +251,7 @@ public class Mobile extends AppCompatActivity  {
                     Intent i = new Intent(Mobile.this, Mobile_recharge_successfull.class);
                     i.putExtra("status",obj.getString("status"));
                     i.putExtra("txid",obj.getInt("txid"));
+                    i.putExtra("opid",obj.getInt("opid"));
                     i.putExtra("number",obj.getString("number"));
                     i.putExtra("amount",obj.getString("amount"));
                     i.putExtra("orderid",obj.getString("orderid"));

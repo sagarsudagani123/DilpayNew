@@ -7,9 +7,15 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class available_buses_model implements Serializable {
 
+    //"partner fare details"
 
-    String DisplayName,AvailableSeats,IsRtc, ArrivalTime,BusType,CancellationPolicy,idProofRequired,DepartureTime,DestinationId,Duration,Fares,ServiceTax,OperatorServiceCharge,
-    ConvenienceFee,ConvenienceFeeType,AffiliateId,NetFares,Commission,CommissionType,OperatorId,Id,Provider,PartialCancellationAllowed,Seattype,SourceId,Travels,Mticket,Journeydate;
+    String DisplayName,AvailableSeats,IsRtc,IdProofRequired,isOpTicketTemplateRequired,isOpLogoRequired,ArrivalTime,Amenities,
+            BusType,SeatLayoutType,CancellationPolicy,MaxSeatsPerTicket,DepartureTime,DestinationId,Duration,
+            Fares,ServiceTax,OperatorServiceCharge,ConvenienceFee,ConvenienceFeeType,AffiliateId,NetFares,PartnerFee,
+            OperatorId,BpDpSeatLayout,Id,Provider,PartialCancellationAllowed,SeatType,SourceId,Travels,Mticket,InventoryType,Journeydate;
+
+
+    //bording details
     ArrayList<String> addressBoard=new ArrayList<>();
     ArrayList<String> contactPersonsBoard=new ArrayList<>();
     ArrayList<String> contactNumbersBoard=new ArrayList<>();
@@ -18,6 +24,8 @@ public class available_buses_model implements Serializable {
     ArrayList<String> locationBoard=new ArrayList<>();
     ArrayList<String> nameBoard=new ArrayList<>();
     ArrayList<String> timeBoard=new ArrayList<>();
+
+    //droping details
     ArrayList<String> addressDrop=new ArrayList<>();
     ArrayList<String> contactPersonsDrop=new ArrayList<>();
     ArrayList<String> contactNumbersDrop=new ArrayList<>();
@@ -27,13 +35,12 @@ public class available_buses_model implements Serializable {
     ArrayList<String> nameDrop=new ArrayList<>();
     ArrayList<String> timeDrop=new ArrayList<>();
 
-
     public String getDisplayName() {
         return DisplayName;
     }
 
     public void setDisplayName(String displayName) {
-        this.DisplayName = displayName;
+        DisplayName = displayName;
     }
 
     public String getAvailableSeats() {
@@ -41,7 +48,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setAvailableSeats(String availableSeats) {
-        this.AvailableSeats = availableSeats;
+        AvailableSeats = availableSeats;
     }
 
     public String getIsRtc() {
@@ -49,7 +56,25 @@ public class available_buses_model implements Serializable {
     }
 
     public void setIsRtc(String isRtc) {
-        this.IsRtc = isRtc;
+        IsRtc = isRtc;
+    }
+
+
+
+    public String getIsOpTicketTemplateRequired() {
+        return isOpTicketTemplateRequired;
+    }
+
+    public void setIsOpTicketTemplateRequired(String isOpTicketTemplateRequired) {
+        this.isOpTicketTemplateRequired = isOpTicketTemplateRequired;
+    }
+
+    public String getIsOpLogoRequired() {
+        return isOpLogoRequired;
+    }
+
+    public void setIsOpLogoRequired(String isOpLogoRequired) {
+        this.isOpLogoRequired = isOpLogoRequired;
     }
 
     public String getArrivalTime() {
@@ -57,16 +82,31 @@ public class available_buses_model implements Serializable {
     }
 
     public void setArrivalTime(String arrivalTime) {
-        this.ArrivalTime = arrivalTime;
+        ArrivalTime = arrivalTime;
     }
 
+    public String getAmenities() {
+        return Amenities;
+    }
+
+    public void setAmenities(String amenities) {
+        Amenities = amenities;
+    }
 
     public String getBusType() {
         return BusType;
     }
 
     public void setBusType(String busType) {
-        this.BusType = busType;
+        BusType = busType;
+    }
+
+    public String getSeatLayoutType() {
+        return SeatLayoutType;
+    }
+
+    public void setSeatLayoutType(String seatLayoutType) {
+        SeatLayoutType = seatLayoutType;
     }
 
     public String getCancellationPolicy() {
@@ -74,15 +114,23 @@ public class available_buses_model implements Serializable {
     }
 
     public void setCancellationPolicy(String cancellationPolicy) {
-        this.CancellationPolicy = cancellationPolicy;
+        CancellationPolicy = cancellationPolicy;
     }
 
     public String getIdProofRequired() {
-        return idProofRequired;
+        return IdProofRequired;
     }
 
     public void setIdProofRequired(String idProofRequired) {
-        this.idProofRequired = idProofRequired;
+        IdProofRequired = idProofRequired;
+    }
+
+    public String getMaxSeatsPerTicket() {
+        return MaxSeatsPerTicket;
+    }
+
+    public void setMaxSeatsPerTicket(String maxSeatsPerTicket) {
+        MaxSeatsPerTicket = maxSeatsPerTicket;
     }
 
     public String getDepartureTime() {
@@ -90,7 +138,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setDepartureTime(String departureTime) {
-        this.DepartureTime = departureTime;
+        DepartureTime = departureTime;
     }
 
     public String getDestinationId() {
@@ -98,7 +146,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setDestinationId(String destinationId) {
-        this.DestinationId = destinationId;
+        DestinationId = destinationId;
     }
 
     public String getDuration() {
@@ -106,7 +154,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setDuration(String duration) {
-        this.Duration = duration;
+        Duration = duration;
     }
 
     public String getFares() {
@@ -114,7 +162,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setFares(String fares) {
-        this.Fares = fares;
+        Fares = fares;
     }
 
     public String getServiceTax() {
@@ -122,7 +170,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setServiceTax(String serviceTax) {
-        this.ServiceTax = serviceTax;
+        ServiceTax = serviceTax;
     }
 
     public String getOperatorServiceCharge() {
@@ -130,7 +178,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setOperatorServiceCharge(String operatorServiceCharge) {
-        this.OperatorServiceCharge = operatorServiceCharge;
+        OperatorServiceCharge = operatorServiceCharge;
     }
 
     public String getConvenienceFee() {
@@ -138,7 +186,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setConvenienceFee(String convenienceFee) {
-        this.ConvenienceFee = convenienceFee;
+        ConvenienceFee = convenienceFee;
     }
 
     public String getConvenienceFeeType() {
@@ -146,7 +194,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setConvenienceFeeType(String convenienceFeeType) {
-        this.ConvenienceFeeType = convenienceFeeType;
+        ConvenienceFeeType = convenienceFeeType;
     }
 
     public String getAffiliateId() {
@@ -154,7 +202,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setAffiliateId(String affiliateId) {
-        this.AffiliateId = affiliateId;
+        AffiliateId = affiliateId;
     }
 
     public String getNetFares() {
@@ -162,23 +210,15 @@ public class available_buses_model implements Serializable {
     }
 
     public void setNetFares(String netFares) {
-        this.NetFares = netFares;
+        NetFares = netFares;
     }
 
-    public String getCommission() {
-        return Commission;
+    public String getPartnerFee() {
+        return PartnerFee;
     }
 
-    public void setCommission(String commission) {
-        this.Commission = commission;
-    }
-
-    public String getCommissionType() {
-        return CommissionType;
-    }
-
-    public void setCommissionType(String commissionType) {
-        this.CommissionType = commissionType;
+    public void setPartnerFee(String partnerFee) {
+        PartnerFee = partnerFee;
     }
 
     public String getOperatorId() {
@@ -186,7 +226,15 @@ public class available_buses_model implements Serializable {
     }
 
     public void setOperatorId(String operatorId) {
-        this.OperatorId = operatorId;
+        OperatorId = operatorId;
+    }
+
+    public String getBpDpSeatLayout() {
+        return BpDpSeatLayout;
+    }
+
+    public void setBpDpSeatLayout(String bpDpSeatLayout) {
+        BpDpSeatLayout = bpDpSeatLayout;
     }
 
     public String getId() {
@@ -194,7 +242,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setId(String id) {
-        this.Id = id;
+        Id = id;
     }
 
     public String getProvider() {
@@ -202,7 +250,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setProvider(String provider) {
-        this.Provider = provider;
+        Provider = provider;
     }
 
     public String getPartialCancellationAllowed() {
@@ -210,15 +258,15 @@ public class available_buses_model implements Serializable {
     }
 
     public void setPartialCancellationAllowed(String partialCancellationAllowed) {
-        this.PartialCancellationAllowed = partialCancellationAllowed;
+        PartialCancellationAllowed = partialCancellationAllowed;
     }
 
-    public String getSeattype() {
-        return Seattype;
+    public String getSeatType() {
+        return SeatType;
     }
 
-    public void setSeattype(String seattype) {
-        this.Seattype = seattype;
+    public void setSeatType(String seatType) {
+        SeatType = seatType;
     }
 
     public String getSourceId() {
@@ -226,7 +274,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setSourceId(String sourceId) {
-        this.SourceId = sourceId;
+        SourceId = sourceId;
     }
 
     public String getTravels() {
@@ -234,7 +282,7 @@ public class available_buses_model implements Serializable {
     }
 
     public void setTravels(String travels) {
-        this.Travels = travels;
+        Travels = travels;
     }
 
     public String getMticket() {
@@ -242,7 +290,15 @@ public class available_buses_model implements Serializable {
     }
 
     public void setMticket(String mticket) {
-        this.Mticket = mticket;
+        Mticket = mticket;
+    }
+
+    public String getInventoryType() {
+        return InventoryType;
+    }
+
+    public void setInventoryType(String inventoryType) {
+        InventoryType = inventoryType;
     }
 
     public String getJourneydate() {
@@ -250,7 +306,71 @@ public class available_buses_model implements Serializable {
     }
 
     public void setJourneydate(String journeydate) {
-        this.Journeydate = journeydate;
+        Journeydate = journeydate;
+    }
+
+    public void setAddressBoard(ArrayList<String> addressBoard) {
+        this.addressBoard = addressBoard;
+    }
+
+    public void setContactPersonsBoard(ArrayList<String> contactPersonsBoard) {
+        this.contactPersonsBoard = contactPersonsBoard;
+    }
+
+    public void setContactNumbersBoard(ArrayList<String> contactNumbersBoard) {
+        this.contactNumbersBoard = contactNumbersBoard;
+    }
+
+    public void setPointIdboard(ArrayList<String> pointIdboard) {
+        this.pointIdboard = pointIdboard;
+    }
+
+    public void setLandmarkBoard(ArrayList<String> landmarkBoard) {
+        this.landmarkBoard = landmarkBoard;
+    }
+
+    public void setLocationBoard(ArrayList<String> locationBoard) {
+        this.locationBoard = locationBoard;
+    }
+
+    public void setNameBoard(ArrayList<String> nameBoard) {
+        this.nameBoard = nameBoard;
+    }
+
+    public void setTimeBoard(ArrayList<String> timeBoard) {
+        this.timeBoard = timeBoard;
+    }
+
+    public void setAddressDrop(ArrayList<String> addressDrop) {
+        this.addressDrop = addressDrop;
+    }
+
+    public void setContactPersonsDrop(ArrayList<String> contactPersonsDrop) {
+        this.contactPersonsDrop = contactPersonsDrop;
+    }
+
+    public void setContactNumbersDrop(ArrayList<String> contactNumbersDrop) {
+        this.contactNumbersDrop = contactNumbersDrop;
+    }
+
+    public void setPointIdDrop(ArrayList<String> pointIdDrop) {
+        this.pointIdDrop = pointIdDrop;
+    }
+
+    public void setLandmarkDrop(ArrayList<String> landmarkDrop) {
+        this.landmarkDrop = landmarkDrop;
+    }
+
+    public void setLocationDrop(ArrayList<String> locationDrop) {
+        this.locationDrop = locationDrop;
+    }
+
+    public void setNameDrop(ArrayList<String> nameDrop) {
+        this.nameDrop = nameDrop;
+    }
+
+    public void setTimeDrop(ArrayList<String> timeDrop) {
+        this.timeDrop = timeDrop;
     }
 
     public ArrayList<String> getAddressBoard() {

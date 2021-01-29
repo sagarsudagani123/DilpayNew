@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".mobile.Mobile_recharge_successfull">
     <RelativeLayout
         android:id="@+id/re1"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/purple_700">
+        android:background="@color/gradientEnd">
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
@@ -42,9 +43,18 @@
     android:id="@+id/success1"
     android:layout_width="100dp"
     android:layout_height="100dp"
+        android:visibility="gone"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="50dp"
     android:src="@drawable/ic_baseline_check_circle_outline_24" />
+    <ImageView
+        android:id="@+id/pending"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:visibility="gone"
+        android:src="@drawable/pending" />
 
     <ImageView
         android:id="@+id/failure"
@@ -63,6 +73,16 @@
         android:id="@+id/success"
         android:layout_centerHorizontal="true"
         android:text="Successfull"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/success"
+        android:id="@+id/opid"
+        android:layout_centerHorizontal="true"
+        android:text=""
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="bold" />

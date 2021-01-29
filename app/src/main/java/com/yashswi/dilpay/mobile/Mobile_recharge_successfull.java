@@ -10,9 +10,9 @@ import android.widget.TextView;
 import com.yashswi.dilpay.R;
 
 public class Mobile_recharge_successfull extends AppCompatActivity {
-TextView status,transaction_id,number,amount,order;
-ImageView success,failure,back;
-String status1,number1,amount1,order1;
+TextView status,transaction_id,number,amount,order,opid;
+ImageView success,failure,pending,back;
+String status1,number1,amount1,order1,opID;
 Integer transaction1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,25 +24,42 @@ Integer transaction1;
         amount=findViewById(R.id.amount1);
         success=findViewById(R.id.success1);
         failure=findViewById(R.id.failure);
+        pending=findViewById(R.id.pending);
         order=findViewById(R.id.order1);
         back=findViewById(R.id.back);
+        opid=findViewById(R.id.opid);
         status1= (String) this.getIntent().getSerializableExtra("status");
         transaction1=this.getIntent().getIntExtra("txid",0);
         number1= (String) this.getIntent().getSerializableExtra("number");
         amount1= (String) this.getIntent().getSerializableExtra("amount");
         order1= (String) this.getIntent().getSerializableExtra("orderid");
-        status.setText(status1);
-        transaction_id.setText(""+transaction1);
-        number.setText(""+number1);
-        amount.setText(amount1);
-        order.setText(order1);
+        opID=(String) this.getIntent().getSerializableExtra("opid");
+
         if (status1.equalsIgnoreCase("failure")){
             failure.setVisibility(View.VISIBLE);
-            success.setVisibility(View.GONE);
-        } else {
-            failure.setVisibility(View.GONE);
-            success.setVisibility(View.VISIBLE);
+            status.setText(status1);
+            transaction_id.setText(String.valueOf(""));
+            number.setText(String.valueOf(""));
+            amount.setText("");
+            order.setText("");
+            opid.setText(opID);
+        } else if(status1.equalsIgnoreCase("pending")) {
+            pending.setVisibility(View.VISIBLE);
+            status.setText(status1);
+            transaction_id.setText(String.valueOf(transaction1));
+            number.setText(String.valueOf(number1));
+            amount.setText(amount1);
+            order.setText(order1);
         }
+        else {
+            success.setVisibility(View.VISIBLE);
+            status.setText(status1);
+            transaction_id.setText(String.valueOf(transaction1));
+            number.setText(String.valueOf(number1));
+            amount.setText(amount1);
+            order.setText(order1);
+        }
+
 
 
     }

@@ -47,7 +47,7 @@ public class Login_screen extends AppCompatActivity {
         getOTP = findViewById(R.id.getOTP);
         login=findViewById(R.id.login);
         signup = findViewById(R.id.signup_btn);
-        forgot_pwd = findViewById(R.id.forgot_pwd);
+//        forgot_pwd = findViewById(R.id.forgot_pwd);
         mobile_number=findViewById(R.id.e_mobile);
         password=findViewById(R.id.e_password);
         progress_layout=findViewById(R.id.progress_layout);
@@ -71,13 +71,13 @@ public class Login_screen extends AppCompatActivity {
 
             }
         });
-        forgot_pwd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Login_screen.this, Forgot_password.class);
-                startActivity(i);
-            }
-        });
+//        forgot_pwd.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(Login_screen.this, Forgot_password.class);
+//                startActivity(i);
+//            }
+//        });
 
         getOTP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -86,6 +86,8 @@ public class Login_screen extends AppCompatActivity {
                 String password="0";
                 if(number.equalsIgnoreCase("")){
                     Toast.makeText(Login_screen.this,"Enter your mobile number",Toast.LENGTH_SHORT).show();
+                }else if(number.length()<10){
+                    Toast.makeText(Login_screen.this,"Enter valid mobile number",Toast.LENGTH_SHORT).show();
                 }
                 else{
                     sendOtp(number,password);

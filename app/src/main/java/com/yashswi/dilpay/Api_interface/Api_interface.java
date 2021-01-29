@@ -25,5 +25,8 @@ public interface Api_interface {
     @FormUrlEncoded
     Call<String> login(@Field("username") String username, @Field("password") String password);
 
+    @GET("passdetails.php")
+    Call<String> generateToken(@Query("checks") String checks);
+
 
 }

@@ -118,7 +118,7 @@ public class seat_image_adapter extends RecyclerView.Adapter<seat_image_adapter.
                 int count=((Bus_seating)context).numOfSeatsSelected();
 
                 //calculate total amount including service tax etc..
-                float amt=NetFare.get(position)+Servicetax.get(position)+OperatorServiceCharge.get(position);
+                float amt=NetFare.get(position);
 
                 //check if seat is available
                 if(isAvailable.get(position)){
@@ -150,7 +150,7 @@ public class seat_image_adapter extends RecyclerView.Adapter<seat_image_adapter.
                     else{
                         if(count<=5&&count>=0){
                             isSelected.set(position,true);
-                            ((Bus_seating)context).selectSelected(position,seatNumber.get(position),amt);
+                            ((Bus_seating)context).seatSelected(position,seatNumber.get(position),amt,NetFare.get(position),Servicetax.get(position),OperatorServiceCharge.get(position));
                             if(seatType.get(position).equalsIgnoreCase("seater")){
                                 holder.image1.setImageResource(R.drawable.seat_sitting_choose);
                             }else if(seatType.get(position).equalsIgnoreCase("verticalSleeper")){

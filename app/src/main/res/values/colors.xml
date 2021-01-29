@@ -11,5 +11,8 @@
     <color name="colorlight">#FF8A65</color>
     <color name="gray">#9C9B9B</color>
     <color name="error">#B00020</color>
+    <color name="gradientStart">#2193b0</color>
+    <color name="gradientEnd">#6dd5ed</color>
+    <color name="textColor">#0071cc</color>
 
 </resources>
