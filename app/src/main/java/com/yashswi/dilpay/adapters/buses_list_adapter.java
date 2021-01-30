@@ -16,7 +16,6 @@ import com.yashswi.dilpay.bus.Bus_seating;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.models.Seats_details_model;
 import com.yashswi.dilpay.models.available_buses_model;
-
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +67,6 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
         holder.bus_type.setText(retroModelArray_list.get(i).getBusType());
         holder.trip_id.setText(retroModelArray_list.get(i).getId());
         holder.duration.setText(retroModelArray_list.get(i).getDuration());
-
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -109,6 +107,7 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
                 intent.putExtra("destinationName", destinationName);
                 intent.putExtra("sourceName", sourceName);
                 intent.putExtra("journeydate",journey_date);
+
                 intent.putExtra("type",type);
                 intent.putExtra("arrivalTime", arrivalTime);
                 intent.putExtra("departureTime", departureTime);
@@ -121,8 +120,6 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
                 intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
                 intent.putExtra("IdproofRequried",IdproofRequried);
                 intent.putExtra("convienceFee",convienceFee);
-
-
 
                 intent.putStringArrayListExtra("dropingPints",dropingPoints);
                 intent.putStringArrayListExtra("bordingPoints",bordingPoints);
@@ -145,6 +142,7 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
+
             depart = itemView.findViewById(R.id.depart_time);
             arrival = itemView.findViewById(R.id.arrival_time);
             charge = itemView.findViewById(R.id.amount);

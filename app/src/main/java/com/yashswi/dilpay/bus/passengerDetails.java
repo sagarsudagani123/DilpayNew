@@ -229,10 +229,8 @@ switch (selectedSeats.size()){
             seatNumberFive.setText(selectedSeats.get(4));
             seatNumberSix.setText(selectedSeats.get(5));
         }
-
         break;
     }
-
 }
 next.setOnClickListener(new View.OnClickListener() {
     @Override
@@ -325,7 +323,6 @@ next.setOnClickListener(new View.OnClickListener() {
             }else{
                 passengerAge.add(passAgeFour.getText().toString());
             }
-
             int checkGender=radioGroupFour.getCheckedRadioButtonId();
             if(checkGender==-1){
             }else{

@@ -19,8 +19,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.Validator;
 import com.yashswi.dilpay.Api_interface.Api_interface;
-import com.yashswi.dilpay.Api_interface.SmsListener;
-import com.yashswi.dilpay.Broadcast.SmsReceiver;
+
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -76,13 +75,13 @@ public class Register_screen extends AppCompatActivity{
         name=findViewById(R.id.name);
         progress_layout=findViewById(R.id.progress_layout);
         //======================================
-        SmsReceiver.bindListener(new SmsListener() {
-            @Override
-            public void messageReceived(String messageText) {
-                password.setText(messageText);
-                Toast.makeText(Register_screen.this,"message recieved",Toast.LENGTH_SHORT).show();
-            }
-        });
+//        SmsReceiver.bindListener(new SmsListener() {
+//            @Override
+//            public void messageReceived(String messageText) {
+//                password.setText(messageText);
+//                Toast.makeText(Register_screen.this,"message recieved",Toast.LENGTH_SHORT).show();
+//            }
+//        });
         //======================================
 
         login.setOnClickListener(new View.OnClickListener() {
