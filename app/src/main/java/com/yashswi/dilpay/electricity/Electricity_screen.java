@@ -50,6 +50,7 @@ public class Electricity_screen extends AppCompatActivity {
     RecyclerView electricity_items;
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
+    RelativeLayout progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,7 @@ public class Electricity_screen extends AppCompatActivity {
         e_amount=findViewById(R.id.amount);
         next=findViewById(R.id.next);
         electricity_items=findViewById(R.id.electricity_items);
+        progress=findViewById(R.id.progress);
 
         operatorName.add("North Bihar Electricity");
         operatorName.add("JBVNL - JHARKHAND");
@@ -299,6 +301,8 @@ public class Electricity_screen extends AppCompatActivity {
                 Random rand = new Random();
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
+                progress.setVisibility(View.VISIBLE);
+
                 getResponse(number,year+""+rand_int1,username,password,amount,operator_code,circle_code);
             }
         });
@@ -321,9 +325,12 @@ public class Electricity_screen extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                progress.setVisibility(View.GONE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
                     Intent i = new Intent(Electricity_screen.this, Mobile_recharge_successfull.class);
+                    String status=obj.getString("status");
+                    abc(status);
                     i.putExtra("status",obj.getString("status"));
                     i.putExtra("txid",obj.getInt("txid"));
                     i.putExtra("number",obj.getString("number"));
@@ -338,8 +345,12 @@ public class Electricity_screen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(Electricity_screen.this,t.toString(),Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+                Toast.makeText(Electricity_screen.this,"Something went wrong! try again",Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    void abc(String status){
+        Toast.makeText(Electricity_screen.this,status,Toast.LENGTH_SHORT).show();
     }
 }

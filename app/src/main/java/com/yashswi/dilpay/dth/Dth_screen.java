@@ -50,6 +50,7 @@ public class Dth_screen extends AppCompatActivity {
     RecyclerView dth_items;
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
+    RelativeLayout progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +61,7 @@ public class Dth_screen extends AppCompatActivity {
         e_amount=findViewById(R.id.amount);
         next=findViewById(R.id.next);
         dth_items=findViewById(R.id.dth_items);
+        progress=findViewById(R.id.progress);
 
         operatorName.add("Airtel Digital DTH TV");
         operatorName.add("SUNDIRECT DTH TV");
@@ -183,6 +185,7 @@ public class Dth_screen extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 username="500594";
                 password="5jfbpbe5";
 //                number=e_mobile.getText().toString();
@@ -204,6 +207,7 @@ public class Dth_screen extends AppCompatActivity {
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
                 getResponse(number,year+""+rand_int1,username,password,amount,operator_code,circle_code);
+                progress.setVisibility(View.VISIBLE);
             }
         });
 
@@ -226,6 +230,7 @@ public class Dth_screen extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                progress.setVisibility(View.GONE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
 
@@ -245,7 +250,8 @@ public class Dth_screen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(Dth_screen.this,t.toString(),Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+                Toast.makeText(Dth_screen.this,"Something went wrong! try again",Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -43,6 +43,7 @@ public class Mobile extends AppCompatActivity  {
     RecyclerView mobile_items;
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
+    RelativeLayout progress;
 
    String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
     RelativeLayout progress_layout;
@@ -56,6 +57,7 @@ public class Mobile extends AppCompatActivity  {
         e_mobile=findViewById(R.id.mobile);
         e_amount=findViewById(R.id.amount);
         mobile_items=findViewById(R.id.mobile_items);
+        progress=findViewById(R.id.progress);
 
 
         operatorName.add("Airtel");
@@ -194,6 +196,7 @@ public class Mobile extends AppCompatActivity  {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 username="500594";
                 password="5jfbpbe5";
 //                number=e_mobile.getText().toString();
@@ -221,6 +224,7 @@ public class Mobile extends AppCompatActivity  {
                     Toast.makeText(Mobile.this,"Please fill in all details",Toast.LENGTH_SHORT).show();
                 }
                 else {
+                    progress.setVisibility(View.VISIBLE);
                     getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
                 }
             }
@@ -245,13 +249,14 @@ public class Mobile extends AppCompatActivity  {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                progress.setVisibility(View.GONE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
 
                     Intent i = new Intent(Mobile.this, Mobile_recharge_successfull.class);
                     i.putExtra("status",obj.getString("status"));
                     i.putExtra("txid",obj.getInt("txid"));
-                    i.putExtra("opid",obj.getInt("opid"));
+//                    i.putExtra("opid",obj.getInt("opid"));
                     i.putExtra("number",obj.getString("number"));
                     i.putExtra("amount",obj.getString("amount"));
                     i.putExtra("orderid",obj.getString("orderid"));
@@ -265,7 +270,8 @@ public class Mobile extends AppCompatActivity  {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(Mobile.this,t.toString(),Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+                Toast.makeText(Mobile.this,"Something went wrong! try again",Toast.LENGTH_SHORT).show();
             }
         });
     }

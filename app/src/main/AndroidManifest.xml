@@ -6,6 +6,13 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS"/>
+    <queries>
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="upi" android:host="pay"/>
+        </intent>
+    </queries>
 
     <application
         android:name=".Myapp"
@@ -16,8 +23,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Dilbus"
         android:usesCleartextTraffic="true"
-        tools:node="merge">
-        <activity android:name=".payment.paymentTest"></activity>
+        tools:node="merge"
+        tools:targetApi="m">
+<!--        <meta-data android:name="com.google.android.gms.version"-->
+<!--            android:value="@integer/google_play_services_version" />-->
+
         <activity android:name=".bus.My_bookings" />
         <activity android:name=".bus.Booking_details" />
         <activity android:name=".Gas_booking_successfull" />
@@ -67,6 +77,7 @@
         <activity android:name=".Register_screen" />
         <activity android:name=".Welcome_screen" />
         <activity android:name=".Login_screen" />
+        <activity android:name=".payment.paymentTest" />
         <activity android:name=".Home_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -74,6 +85,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <receiver android:name=".Broadcast.SmsReceiver">
+            <intent-filter>
+                <action android:name="android.provider.Telephony.SMS_RECEIVED"/>
+            </intent-filter>
+        </receiver>
+
     </application>
 
 </manifest>

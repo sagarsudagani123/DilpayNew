@@ -45,7 +45,7 @@ public class Postpaid_screen extends AppCompatActivity {
     ArrayList<String> itemName = new ArrayList<>();
 
     String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
-    RelativeLayout progress_layout;
+    RelativeLayout progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +56,7 @@ public class Postpaid_screen extends AppCompatActivity {
         e_amount=findViewById(R.id.amount);
         next=findViewById(R.id.next);
         postpaid_items=findViewById(R.id.postpaid_items);
+        progress=findViewById(R.id.progress);
 
         operatorName.add("Airtel Postpaid");
         operatorName.add("Idea Postpaid");
@@ -192,6 +193,7 @@ public class Postpaid_screen extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 username="500594";
                 password="5jfbpbe5";
                 amount=e_amount.getText().toString();
@@ -211,7 +213,17 @@ public class Postpaid_screen extends AppCompatActivity {
                 Random rand = new Random();
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
-                getResponse(number,year+""+rand_int1,username,password,amount,operator_code,circle_code);
+                progress.setVisibility(View.VISIBLE);
+                if(number.length()<10){
+                    Toast.makeText(Postpaid_screen.this,"Invalid number",Toast.LENGTH_SHORT).show();
+                }
+                else if(operator_code.equalsIgnoreCase("") || operator_code.equals(null) || circle_code.equalsIgnoreCase("") || circle_code.equals(null)){
+                    Toast.makeText(Postpaid_screen.this,"fill in all details",Toast.LENGTH_SHORT).show();
+
+                }else{
+                    progress.setVisibility(View.VISIBLE);
+                    getResponse(number,year+""+rand_int1,username,password,amount,operator_code,circle_code);
+                }
             }
         });
         back=findViewById(R.id.back);
@@ -232,6 +244,7 @@ public class Postpaid_screen extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                progress.setVisibility(View.GONE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
 
@@ -250,7 +263,8 @@ public class Postpaid_screen extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(Postpaid_screen.this,t.toString(),Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+                Toast.makeText(Postpaid_screen.this,"Somethong went wrong! try again"+t.toString(),Toast.LENGTH_SHORT).show();
             }
         });
     }

@@ -114,7 +114,7 @@
         android:layout_below="@id/e_amount"
         android:layout_marginTop="25dp"
         android:background="@drawable/button_bg"
-        android:text="Next"
+        android:text="proceed"
         android:textColor="@color/gradientStart" />
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
@@ -126,7 +126,21 @@
         android:layout_marginTop="15dp"
         />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/progress"
+        android:background="#61000000"
+        android:visibility="gone"
+        android:elevation="3dp"
 
+        >
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
 
 
 

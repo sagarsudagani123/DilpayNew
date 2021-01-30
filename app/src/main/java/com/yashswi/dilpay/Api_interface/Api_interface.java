@@ -28,5 +28,11 @@ public interface Api_interface {
     @GET("passdetails.php")
     Call<String> generateToken(@Query("checks") String checks);
 
+    @GET("FreeRegister.php")
+    Call<String> register(@Query("My_mobile") String name);
+
+    @GET("FreeRegister1.php")
+    Call<String> register1(@Query("data") String name);
+
 
 }

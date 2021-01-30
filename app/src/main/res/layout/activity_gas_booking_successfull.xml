@@ -47,7 +47,14 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:src="@drawable/ic_baseline_check_circle_outline_24" />
-
+        <ImageView
+            android:id="@+id/pending"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:visibility="gone"
+            android:src="@drawable/pending" />
         <ImageView
             android:id="@+id/failure"
             android:layout_width="100dp"
@@ -71,13 +78,30 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/success"
+        android:id="@+id/opid"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/details"
+        android:layout_below="@id/success"
+        >
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="TransactionId"
         android:layout_marginTop="20dp"
         android:textStyle="bold"
         android:textSize="16sp"
         android:id="@+id/transaction_id"
         android:layout_marginStart="15dp"
-        android:layout_below="@id/success"/>
+        />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -144,5 +168,6 @@
         android:textColor="#2196F3"
         android:id="@+id/order1"
         android:text="123456"/>
+    </RelativeLayout>
 
 </RelativeLayout>

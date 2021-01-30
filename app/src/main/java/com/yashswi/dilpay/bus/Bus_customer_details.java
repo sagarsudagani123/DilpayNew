@@ -140,7 +140,11 @@ public class Bus_customer_details extends AppCompatActivity {
                 intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
                 intent.putExtra("IdproofRequried",IdproofRequried);
                 intent.putExtra("convienceFee",convienceFee);
-                startActivity(intent);
+                if(boardingPoint.equalsIgnoreCase("") || dropingPoint.equalsIgnoreCase("") || email.equalsIgnoreCase("") || number.equalsIgnoreCase("")){
+                    Toast.makeText(Bus_customer_details.this,"Fill in all details",Toast.LENGTH_SHORT).show();
+                }else{
+                    startActivity(intent);
+                }
             }
         });
         for(int i=0;i<selectedSeats.size();i++){

@@ -46,6 +46,7 @@ public class Gas_screen extends AppCompatActivity {
     RecyclerView gas_items;
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
+    RelativeLayout progress;
 
     String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
     RelativeLayout progress_layout;
@@ -59,6 +60,7 @@ public class Gas_screen extends AppCompatActivity {
         e_amount=findViewById(R.id.amount);
         next=findViewById(R.id.next);
         gas_items=findViewById(R.id.gas_items);
+        progress=findViewById(R.id.progress);
 
         operatorName.add("Haryana City Gas");
         operatorName.add("Mahanagar Gas");
@@ -206,6 +208,7 @@ public class Gas_screen extends AppCompatActivity {
                 Random rand = new Random();
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
+                progress.setVisibility(View.VISIBLE);
                 getResponse(number,year+""+rand_int1,username,password,amount,operator_code,circle_code);
             }
         });
@@ -227,12 +230,13 @@ public class Gas_screen extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                progress.setVisibility(View.GONE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
                     Intent i = new Intent(Gas_screen.this, Mobile_recharge_successfull.class);
                     i.putExtra("status",obj.getString("status"));
                     i.putExtra("txid",obj.getInt("txid"));
-                    i.putExtra("number",obj.getString("number"));
+//                    i.putExtra("opid",obj.getInt("opid"));                    i.putExtra("number",obj.getString("number"));
                     i.putExtra("amount",obj.getString("amount"));
                     i.putExtra("orderid",obj.getString("orderid"));
                     startActivity(i);
@@ -243,7 +247,9 @@ public class Gas_screen extends AppCompatActivity {
             }
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(Gas_screen.this,t.toString(),Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+
+                Toast.makeText(Gas_screen.this,"Something went wrong! try again",Toast.LENGTH_SHORT).show();
             }
         });
     }

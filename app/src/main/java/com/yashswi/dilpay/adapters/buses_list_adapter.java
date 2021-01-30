@@ -6,6 +6,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -70,6 +72,12 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Animation animation;
+//                animation = AnimationUtils.loadAnimation(context,
+//                        R.anim.zoomin);
+//                v.startAnimation(animation);
+//                v.startAnimation(animation);
+//                v.setAnimation(animation);
                 final String trip_id = retroModelArray_list.get(i).getId();
                 final String provider = retroModelArray_list.get(i).getProvider();
                 final String operator_name = retroModelArray_list.get(i).getTravels();

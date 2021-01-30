@@ -83,7 +83,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="5dp"
-                    android:hint="Password"
+                    android:hint="OTP"
                     android:visibility="gone"
                     app:boxStrokeColor="@color/teal_200"
                     app:endIconMode="password_toggle">

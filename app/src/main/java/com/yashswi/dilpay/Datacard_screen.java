@@ -50,7 +50,7 @@ public class Datacard_screen extends AppCompatActivity {
     ArrayList<String> itemName = new ArrayList<>();
 
     String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
-    RelativeLayout progress_layout;
+    RelativeLayout progress;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +61,7 @@ public class Datacard_screen extends AppCompatActivity {
         e_amount=findViewById(R.id.amount);
         next=findViewById(R.id.next);
         datacard_items=findViewById(R.id.datacard_items);
+        progress=findViewById(R.id.progress);
 
         operatorName.add("Reliance NetConnect 3G");
         operatorName.add("Reliance NetConnect+");
@@ -186,6 +187,7 @@ public class Datacard_screen extends AppCompatActivity {
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 username="500594";
                 password="5jfbpbe5";
                 amount=e_amount.getText().toString();
@@ -205,6 +207,7 @@ public class Datacard_screen extends AppCompatActivity {
                 Random rand = new Random();
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
+                progress.setVisibility(View.VISIBLE);
                 getResponse(number,year+""+rand_int1,username,password,amount,operator_code,circle_code);
             }
         });
@@ -228,6 +231,7 @@ public class Datacard_screen extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                progress.setVisibility(View.GONE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
                     Intent i = new Intent(Datacard_screen.this, Mobile_recharge_successfull.class);
@@ -245,7 +249,8 @@ public class Datacard_screen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(Datacard_screen.this,t.toString(),Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+                Toast.makeText(Datacard_screen.this,"Somethong went wrong! try again",Toast.LENGTH_SHORT).show();
             }
         });
     }
