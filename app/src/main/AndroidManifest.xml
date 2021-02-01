@@ -71,14 +71,14 @@
         <activity android:name=".bus.Bus" />
         <activity android:name=".View_more" />
         <activity android:name=".More" />
-        <activity android:name=".Splash_screen" />
+        <activity android:name=".Home_screen" />
         <activity android:name=".Otp" />
         <activity android:name=".Forgot_password" />
         <activity android:name=".Register_screen" />
         <activity android:name=".Welcome_screen" />
         <activity android:name=".Login_screen" />
         <activity android:name=".payment.paymentTest" />
-        <activity android:name=".Home_screen">
+        <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

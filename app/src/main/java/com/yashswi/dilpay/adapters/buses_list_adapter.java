@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.card.MaterialCardView;
@@ -25,6 +27,8 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
     ArrayList<available_buses_model> retroModelArray_list;
     Context context;
     String sourceName, destinationName, journey_date;
+    ArrayList<String> dropingPoints=new ArrayList<>();
+    ArrayList<String> bordingPoints=new ArrayList<>();
     //   SharedPrefs_model spm;
     List<Seats_details_model> seats_model;
 
@@ -87,10 +91,24 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
                 final String departureTime= retroModelArray_list.get(i).getDepartureTime();
                 final String duration= retroModelArray_list.get(i).getDuration();
                 final String travelsName= retroModelArray_list.get(i).getTravels();
-                final ArrayList<String> bordingPoints= retroModelArray_list.get(i).getNameBoard();
-                final ArrayList<String> dropingPoints= retroModelArray_list.get(i).getNameDrop();
-                 ArrayList<String> bordingID= retroModelArray_list.get(i).getPointIdboard();
-                 ArrayList<String> dropingID= retroModelArray_list.get(i).getPointIdDrop();
+
+
+//                int hours=Integer.parseInt(retroModelArray_list.get(i).getTimeBoard());
+                ArrayList<String> bordingTime=retroModelArray_list.get(i).getTimeBoard();
+                ArrayList<String> dropingTime=retroModelArray_list.get(i).getTimeDrop();
+                ArrayList<String> bordingLandmark= retroModelArray_list.get(i).getLandmarkBoard();
+                ArrayList<String> dropingLandmark= retroModelArray_list.get(i).getLandmarkDrop();
+                ArrayList<String> bordingLocation= retroModelArray_list.get(i).getLocationBoard();
+                ArrayList<String> dropingLocation= retroModelArray_list.get(i).getLocationDrop();
+
+                for(int i=0;i<bordingTime.size();i++){
+                    bordingPoints.add(bordingTime.get(i)+" @"+bordingLocation.get(i)+","+bordingLandmark.get(i));
+                }
+                for(int j=0;j<dropingTime.size();j++){
+                    dropingPoints.add(dropingTime.get(j)+" @"+dropingLocation.get(j)+","+dropingLandmark.get(j));
+                }
+                ArrayList<String> bordingID= retroModelArray_list.get(i).getPointIdboard();
+                ArrayList<String> dropingID= retroModelArray_list.get(i).getPointIdDrop();
                 String operatorID=retroModelArray_list.get(i).getOperatorId();//operator code
                 String CancellationPolicy=retroModelArray_list.get(i).getCancellationPolicy();
                 String PartialCancellationAllowed=retroModelArray_list.get(i).getPartialCancellationAllowed();
@@ -125,7 +143,7 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
                 intent.putStringArrayListExtra("bordingPoints",bordingPoints);
                 intent.putStringArrayListExtra("dropingID",dropingID);
                 intent.putStringArrayListExtra("bordingID",bordingID);
-
+//                Toast.makeText(context,dropingPoints.toString(),Toast.LENGTH_SHORT).show();
                 context.startActivity(intent);
             }
         });

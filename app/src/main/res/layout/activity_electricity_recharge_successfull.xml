@@ -46,6 +46,14 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:src="@drawable/ic_baseline_check_circle_outline_24" />
+        <ImageView
+            android:id="@+id/pending"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/pending"
+            android:visibility="gone"/>
 
         <ImageView
             android:id="@+id/failure"

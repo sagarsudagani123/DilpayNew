@@ -139,7 +139,7 @@ public class Bus_customer_details extends AppCompatActivity {
                 intent.putExtra("CancellationPolicy",CancellationPolicy);
                 intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
                 intent.putExtra("IdproofRequried",IdproofRequried);
-                intent.putExtra("convienceFee",convienceFee);
+                intent.putExtra("convienceFee","0.00");
                 if(boardingPoint.equalsIgnoreCase("") || dropingPoint.equalsIgnoreCase("") || email.equalsIgnoreCase("") || number.equalsIgnoreCase("")){
                     Toast.makeText(Bus_customer_details.this,"Fill in all details",Toast.LENGTH_SHORT).show();
                 }else{

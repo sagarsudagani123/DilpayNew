@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -17,11 +16,8 @@ import com.cashfree.pg.CFPaymentService;
 import com.cashfree.pg.ui.gpay.GooglePayStatusListener;
 import com.google.gson.Gson;
 import com.yashswi.dilpay.Api_interface.Api_interface;
+import com.yashswi.dilpay.Home_screen;
 import com.yashswi.dilpay.R;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,11 +28,6 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 
 import static com.cashfree.pg.CFPaymentService.PARAM_APP_ID;
-import static com.cashfree.pg.CFPaymentService.PARAM_CARD_CVV;
-import static com.cashfree.pg.CFPaymentService.PARAM_CARD_HOLDER;
-import static com.cashfree.pg.CFPaymentService.PARAM_CARD_MM;
-import static com.cashfree.pg.CFPaymentService.PARAM_CARD_NUMBER;
-import static com.cashfree.pg.CFPaymentService.PARAM_CARD_YYYY;
 import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_EMAIL;
 import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_NAME;
 import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_PHONE;
@@ -52,7 +43,8 @@ import static retrofit2.converter.gson.GsonConverterFactory.create;
 public class paymentTest extends AppCompatActivity {
     EditText orderID,orderAmount;
     Button getToken;
-    TextView dataText;
+    TextView statusText;
+
     String from,to,date,travelsName,time,duration,passName1,passAge1,passGender1,passName2,passAge2,passGender2;
 String jsonData=null;
 
@@ -60,24 +52,10 @@ String jsonData=null;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment_test);
-        dataText=findViewById(R.id.data);
-//        jsonData=getIntent().getStringExtra("data");
-        getToken=findViewById(R.id.getToken);
-        getToken.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                payment();
-            }
-        });
-
-
-
-//        Log.e("jsonDatafinal",jsonData);
-//            generateToken(jsonData);
-
-
-
-
+        statusText=findViewById(R.id.status);
+        jsonData=getIntent().getStringExtra("data");
+//        generateToken(jsonData);
+        payment();
     }
 
     private void generateToken(String jsonData) {
@@ -94,7 +72,9 @@ String jsonData=null;
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                dataText.setText(response.body());
+
+                //get token and initiate payment
+
 
             }
 
@@ -107,7 +87,7 @@ String jsonData=null;
     }
     void payment()
     {
-        String token="uA9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.BQQfiIGZwMjYmNzMyUTMwYjI6ICdsF2cfJCL1EDMwkTN0EjNxojIwhXZiwiIS5USiojI5NmblJnc1NkclRmcvJCLwIjOiQnb19WbBJXZkJ3biwiIyIjMyIjMyIjMiojIklkclRmcvJye.TJp7boayLiUDY2d_LccBn4IB1Ij6cxSzJ4NlYaMm-q30d7-IY5XN07_fl8YpHVfo4f";
+        String token="yR9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.PN9JCM2U2MyIjZjdzNxAjNiojI0xWYz9lIsATNwQDN3QTM2EjOiAHelJCLiIlTJJiOik3YuVmcyV3QyVGZy9mIsAjM6ICduV3btFkclRmcvJCLiYTN2UjN1YTNiojIklkclRmcvJye.zmK00Eg8rP-t0DV-nR5S44eIWw9b1_CNjl3x80KAADGdZi5ouyXPe4jjC8C7JlpsuW";
         Map<String,String> params=new HashMap<>();
 //        params.put(PARAM_PAYMENT_OPTION, "card");
 //        params.put(PARAM_CARD_NUMBER, "4591150004359659");//Replace Card number
@@ -117,12 +97,12 @@ String jsonData=null;
 //        params.put(PARAM_CARD_CVV, "503"); // Card CVV
         /////////////////////////////
         params.put(PARAM_APP_ID, "4207d3b63a1ecc9a5d79a8687024");
-        params.put(PARAM_ORDER_ID, "222222222");
+        params.put(PARAM_ORDER_ID, "56565656");
         params.put(PARAM_ORDER_AMOUNT, "20");
         params.put(PARAM_ORDER_NOTE, "Order for food");
         params.put(PARAM_CUSTOMER_NAME,"Rajeev");
-        params.put(PARAM_CUSTOMER_PHONE, "9798379822");
-        params.put(PARAM_CUSTOMER_EMAIL, "thottempudi52@gmail.com");
+        params.put(PARAM_CUSTOMER_PHONE, "9121382727");
+        params.put(PARAM_CUSTOMER_EMAIL, "thottempudi22@gmail.com");
         params.put(PARAM_ORDER_CURRENCY, "INR");
         //////////////////////
         try {
@@ -149,7 +129,7 @@ String jsonData=null;
 //            });
         }
         catch (Exception e){
-            Toast.makeText(paymentTest.this,e.toString(),Toast.LENGTH_SHORT).show();
+            Toast.makeText(paymentTest.this,"payment"+e.toString(),Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -165,10 +145,18 @@ String jsonData=null;
                         Log.d("paymentcheck", key + " : " + bundle.getString(key));
                         if(key.equalsIgnoreCase("txStatus")){
                             String status=bundle.getString(key);
-                            dataText.setText(status);
+                            statusText.setText(status);
                         }
                     }
                 }
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(paymentTest.this, Home_screen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }

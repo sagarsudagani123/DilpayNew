@@ -68,6 +68,10 @@ public class Bus extends AppCompatActivity {
         progress_layout = findViewById(R.id.progress_layout);
         bus_items=findViewById(R.id.bus_items);
 
+        //===============
+
+        //================
+
         String[] names=new String[]{"Hyderabad","Vijayawada","Chennai","Bangalore"};
         ArrayAdapter<String> adapter1=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,names);
         from.setAdapter(adapter1);
@@ -90,8 +94,18 @@ public class Bus extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month = month + 1;
-                        String date = day + "/" + month + "/" + year;
-                        date1.setText(date);
+                        String formattedMonth = "" + month;
+                        String formattedDayOfMonth = "" + day;
+                        String date = day + "-" + month + "-" + year;
+                        if(month < 10){
+
+                            formattedMonth = "0" + month;
+                        }
+                        if(day < 10){
+
+                            formattedDayOfMonth = "0" + day;
+                        }
+                        date1.setText(formattedDayOfMonth + "-" + formattedMonth + "-" + year);
                         dateChecked=true;
                     }
                 }, year, month, day);

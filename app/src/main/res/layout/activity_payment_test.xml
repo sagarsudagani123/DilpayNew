@@ -6,39 +6,80 @@
     android:layout_height="match_parent"
     tools:context=".payment.paymentTest"
     android:background="@color/white"
-    android:padding="8dp">
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/orderID"
-        android:hint="order id"
-        android:layout_marginTop="30dp"
-        />
-    <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/orderAmount"
+    >
 
-        android:layout_below="@+id/orderID"
-        android:layout_marginTop="30dp"
-        />
-    <Button
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:id="@+id/re1"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/gradientEnd">
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="7dp"
+            android:src="@drawable/ic_baseline_chevron_left_24" />
+
+        <TextView
+            android:id="@+id/te1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:text="Status"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/getToken"
-        android:text="make payment"
-        android:background="@drawable/button_main"
-        android:layout_below="@+id/orderAmount"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        />
+        android:layout_below="@id/re1"
+        android:orientation="vertical"
+        android:id="@+id/li1">
+
+        <ImageView
+            android:id="@+id/success1"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:visibility="gone"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_baseline_check_circle_outline_24" />
+        <ImageView
+            android:id="@+id/pending"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:visibility="gone"
+            android:src="@drawable/pending" />
+
+        <ImageView
+            android:id="@+id/failure"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_below="@id/success1"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/ic_baseline_cancel_24"
+            android:visibility="gone" />
+    </RelativeLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/data"
+        android:text="status"
+        android:textStyle="bold"
+        android:textColor="@color/gradientStart"
+        android:layout_below="@id/li1"
+        android:textSize="18sp"
+        android:gravity="center"
         android:padding="10dp"
-        android:layout_below="@+id/getToken"
-        android:text="dkjhadkj"/>
+        android:id="@+id/status"
+        />
 
 
 </RelativeLayout>

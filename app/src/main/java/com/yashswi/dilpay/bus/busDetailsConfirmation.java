@@ -79,6 +79,7 @@ public class busDetailsConfirmation extends AppCompatActivity {
         duration =getIntent().getStringExtra("duration");
         travelsName=getIntent().getStringExtra("travelsName");
         date= (String) this.getIntent().getSerializableExtra("journeydate");
+        Log.e("datecheck",date);
         type=getIntent().getStringExtra("type");
         sourceName=getIntent().getStringExtra("sourceName");
         destinationName=getIntent().getStringExtra("destinationName");
@@ -97,8 +98,6 @@ public class busDetailsConfirmation extends AppCompatActivity {
         serviceTaxList=getIntent().getStringArrayListExtra("serviceTaxList");
         serviceChargeList=getIntent().getStringArrayListExtra("serviceChargeList");
         titlesList=getIntent().getStringArrayListExtra("Titles");
-
-        //==================================================================================
 
         StringBuilder names= new StringBuilder();
         StringBuilder ages= new StringBuilder();
@@ -133,47 +132,62 @@ public class busDetailsConfirmation extends AppCompatActivity {
         }
         JSONObject data2=new JSONObject();
         try{
-            data2.put("Address","Miyapur"); //present static
-            data2.put("Ages",ages);
-            data2.put("BoardingId",boardingPointID);
-            data2.put("BoardingPointDetails",boardingPoint);
-            data2.put("BusTypeName",type);
-            data2.put("CancellationPolicy",CancellationPolicy);
-            data2.put("City","Hyderabad");  //present static
-            data2.put("ConvenienceFee",convienceFee);
-            data2.put("DepartureTime",departureTime);
-            data2.put("DestinationId",destination_id);
-            data2.put("DestinationName",destinationName);
-            data2.put("DisplayName",travelsName);
-            data2.put("DroppingId",dropingPointID);
-            data2.put("DroppingPointDetails",dropingPoint);
-            data2.put("EmailId",email);
-            data2.put("EmergencyMobileNo",number);
-            data2.put("Fares",fares);
-            data2.put("Genders",genders);
-            data2.put("IdCardIssuedBy","Gov");// present static
-            data2.put("IdCardNo","323");  //present static
-            data2.put("IdCardType","PAN");  //present static
-            data2.put("JourneyDate",date);
-            data2.put("MobileNo",number);
-            data2.put("Names",names);
-            data2.put("NoofSeats",selectedSeats.size());
-            data2.put("Operator",travelsName);
-            data2.put("PartialCancellationAllowed",PartialCancellationAllowed);//boolean
-            data2.put("PostalCode","500090");  //present static
-            data2.put("Provider",providerCode);
-            data2.put("ReturnDate",null);
-            data2.put("Seatcodes",seats); // sent seat numbers for present
-            data2.put("SeatNos",seats);
-            data2.put("ServiceCharge",serviceCharges);
-            data2.put("Servicetax",serviceTax);
-            data2.put("SourceId",source_id);
-            data2.put("SourceName",sourceName);
-            data2.put("State","Telangana");  //present static
-            data2.put("Titles",titles);
             data2.put("TripId",tripId);
-            data2.put("TripType",1);
-            data2.put("UserType",5);
+            data2.put("BoardingId",boardingPointID);
+            data2.put("DroppingId",dropingPointID);
+            data2.put("NoofSeats",""+selectedSeats.size());
+            data2.put("Fares",fares);
+            data2.put("Servicetax",serviceTax);
+//            data2.put("Servicetax","0.00");
+            data2.put("ServiceCharge",serviceCharges);
+//            data2.put("ServiceCharge","0.00");
+            data2.put("SeatNos",seats);
+            data2.put("Seatcodes",""); // sent seat numbers for present
+            data2.put("Titles",titles);
+            data2.put("Names",names);
+            data2.put("Ages",ages);
+            data2.put("Genders",genders);
+            data2.put("Address","Miyapur"); //present static
+            data2.put("PostalCode","500090");  //present static
+            data2.put("IdCardType","PAN");  //present static
+            data2.put("IdCardNo","323");  //present static
+            data2.put("IdCardIssuedBy","");// present static
+            data2.put("MobileNo",number);
+            data2.put("EmailId",email);
+            data2.put("SourceId",source_id);
+            data2.put("DestinationId",destination_id);
+            data2.put("JourneyDate",date);
+            data2.put("TripType","1");
+            data2.put("SourceName",sourceName);
+            data2.put("DestinationName",destinationName);
+            data2.put("Provider",providerCode);
+            data2.put("Operator",travelsName);
+            data2.put("DisplayName",travelsName);
+            data2.put("BusTypeName",type);
+            data2.put("BusType","4");/////////////////
+            data2.put("BoardingPointDetails",boardingPoint);
+            data2.put("DroppingPointDetails",dropingPoint);
+            data2.put("DepartureTime",departureTime);
+            data2.put("ArrivalTime",arrivalTime);
+            data2.put("CancellationPolicy",CancellationPolicy);
+            data2.put("PartialCancellationAllowed",PartialCancellationAllowed);//boolean
+            data2.put("ConvenienceFee",convienceFee);
+            data2.put("UserType","5");
+            data2.put("IsIdProofRequried",false);
+
+
+//            data2.put("City","Hyderabad");  //present static
+//
+//
+//
+//            data2.put("EmergencyMobileNo",number);
+//
+//
+//            data2.put("ReturnDate",null);
+//
+//
+//
+//            data2.put("State","Telangana");  //present static
 
             Log.e("detailsJSON",data2.toString());
         }catch (JSONException e){

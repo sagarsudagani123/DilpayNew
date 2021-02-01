@@ -253,9 +253,9 @@ next.setOnClickListener(new View.OnClickListener() {
             if(checkGender==-1){
             }else{
                 if(checkGender==R.id.maleOne){
-                    gender.add("male");
+                    gender.add("M");
                 }else{
-                    gender.add("female");
+                    gender.add("F");
                 }
             }
         }
@@ -278,9 +278,9 @@ next.setOnClickListener(new View.OnClickListener() {
             if(checkGender==-1){
             }else{
                 if(checkGender==R.id.maleTwo){
-                    gender.add("male");
+                    gender.add("M");
                 }else{
-                    gender.add("female");
+                    gender.add("F");
                 }
             }
         }
@@ -303,9 +303,9 @@ next.setOnClickListener(new View.OnClickListener() {
             if(checkGender==-1){
             }else{
                 if(checkGender==R.id.maleThree){
-                    gender.add("male");
+                    gender.add("M");
                 }else{
-                    gender.add("female");
+                    gender.add("F");
                 }
             }
         }
@@ -327,9 +327,9 @@ next.setOnClickListener(new View.OnClickListener() {
             if(checkGender==-1){
             }else{
                 if(checkGender==R.id.maleFour){
-                    gender.add("male");
+                    gender.add("M");
                 }else{
-                    gender.add("female");
+                    gender.add("F");
                 }
             }
         }
@@ -351,9 +351,9 @@ next.setOnClickListener(new View.OnClickListener() {
             if(checkGender==-1){
             }else{
                 if(checkGender==R.id.maleFive){
-                    gender.add("male");
+                    gender.add("M");
                 }else{
-                    gender.add("female");
+                    gender.add("F");
                 }
             }
         }
@@ -375,9 +375,9 @@ next.setOnClickListener(new View.OnClickListener() {
             if(checkGender==-1){
             }else{
                 if(checkGender==R.id.maleSix){
-                    gender.add("male");
+                    gender.add("M");
                 }else{
-                    gender.add("female");
+                    gender.add("F");
                 }
             }
         }

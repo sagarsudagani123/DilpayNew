@@ -115,7 +115,29 @@ public class Available_buses extends AppCompatActivity {
                                 model.setLandmarkBoard(dataObject1.getString("Landmark"));
                                 model.setLocationBoard(dataObject1.getString("Location"));
                                 model.setNameBoard(dataObject1.getString("Name"));
-                                model.setTimeBoard(dataObject1.getString("Time"));
+                                int hours=Integer.parseInt(dataObject1.getString("Time"))/60;
+                                int min=Integer.parseInt(dataObject1.getString("Time"))%60;
+                                String time;
+                                if(hours>=24){
+                                    hours=hours%24;
+                                }
+                                if(hours>=12 && hours <24){
+                                    hours=hours%12;
+                                    if(hours==0){
+                                        time=12+":"+min+" PM";
+                                    }
+                                    else{
+                                        time=hours%12+":"+min+" PM";
+                                    }
+                                }
+                                else{
+                                    if(hours==0){
+                                        time=12+":"+min+" AM";
+                                    }else{
+                                        time=hours+"::"+min+" AM";
+                                    }
+                                }
+                                model.setTimeBoard(time);
                             }
                             model.setBusType(dataObject.getString("BusType"));
                             model.setCancellationPolicy(dataObject.getString("CancellationPolicy"));//new
@@ -133,7 +155,29 @@ public class Available_buses extends AppCompatActivity {
                                 model.setLandmarkDrop(dataObject2.getString("Landmark"));
                                 model.setLocationDrop(dataObject2.getString("Location"));
                                 model.setNameDrop(dataObject2.getString("Name"));
-                                model.setTimeDrop(dataObject2.getString("Time"));
+                                int hours=Integer.parseInt(dataObject2.getString("Time"))/60;
+                                int min=Integer.parseInt(dataObject2.getString("Time"))%60;
+                                String time;
+                                if(hours>=24){
+                                    hours=hours%24;
+                                }
+                                if(hours>=12 && hours <24){
+                                    hours=hours%12;
+                                    if(hours==0){
+                                        time=12+":"+min+" PM";
+                                    }
+                                    else{
+                                        time=hours%12+":"+min+" PM";
+                                    }
+                                }
+                                else{
+                                    if(hours==0){
+                                        time=12+":"+min+" AM";
+                                    }else{
+                                        time=hours+":"+min+" AM";
+                                    }
+                                }
+                                model.setTimeDrop(time);
                             }
                             model.setFares(dataObject.getString("Fares"));
                             model.setOperatorId(dataObject.getString("OperatorId"));

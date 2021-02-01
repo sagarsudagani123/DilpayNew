@@ -39,6 +39,7 @@ public class Home_screen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Home_screen.this,Profile.class);
                 startActivity(i);
+
             }
         });
         menu.setOnClickListener(new View.OnClickListener() {

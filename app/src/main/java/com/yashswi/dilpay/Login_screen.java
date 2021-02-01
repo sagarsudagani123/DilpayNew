@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
@@ -17,7 +18,9 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.mobsandgeeks.saripaar.Validator;
 import com.yashswi.dilpay.Api_interface.Api_interface;
+import com.yashswi.dilpay.models.userDetails;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,6 +41,7 @@ public class Login_screen extends AppCompatActivity {
     RelativeLayout progress_layout;
     Validator validator;
     String number;
+    com.yashswi.dilpay.models.userDetails userDetails;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +60,7 @@ public class Login_screen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Login_screen.this, Register_screen.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -115,11 +120,21 @@ public class Login_screen extends AppCompatActivity {
                         JSONObject obj = new JSONObject(response.body());
                         String status=obj.optString("Status");
                         String message=obj.optString("Message");
+                        JSONArray dataArray=obj.getJSONArray("Data");
+                        JSONObject details=dataArray.getJSONObject(0);
+                        Log.e("userDetails",details.toString());
                         if (status.equalsIgnoreCase("true")) {
                             progress_layout.setVisibility(View.GONE);
                             Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(Login_screen.this, Home_screen.class);
+                            userDetails=new userDetails(Login_screen.this);
+                            userDetails.setLoged(true);
+                            userDetails.setName(details.getString("fname1"));
+                            userDetails.setNumber(details.getString("MobileNo"));
+                            userDetails.setWallet(details.getString("Wallet"));
+                            Toast.makeText(Login_screen.this,details.getString("fname1")+" "+details.getString("MobileNo")+" "+details.getString("Wallet"),Toast.LENGTH_SHORT).show();
                             startActivity(i);
+                            finish();
 
                         } else if (status.equalsIgnoreCase("false")) {
                             progress_layout.setVisibility(View.GONE);

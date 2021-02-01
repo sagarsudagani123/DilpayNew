@@ -35,6 +35,7 @@ public class Welcome_screen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Welcome_screen.this,Register_screen.class);
                 startActivity(i);
+                finish();
             }
         });
     }

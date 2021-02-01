@@ -132,7 +132,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
 
         travels.setText(operator_name);
 
-        Log.e("bordingPoints", bordingPoints.toString());
+//        Log.e("bordingPoints", bordingPoints.toString());
 
             upper.setVisibility(View.GONE);
             seater.setVisibility(View.VISIBLE);
@@ -410,6 +410,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         selectedSeats.add(seatNumber);
         amountsList.add(String.valueOf(decimalFormat.format(seatAmount)));
         serviceTaxList.add(String.valueOf(decimalFormat.format(serviceTax)));
+
         serviceChargeList.add(String.valueOf(decimalFormat.format(serviceCharge)));
         total_amount=total_amount+amount;
         for(int i=0;i<selectedSeats.size();i++){
