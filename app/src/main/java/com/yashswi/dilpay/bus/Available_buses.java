@@ -12,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.NetworkError;
 import com.android.volley.ParseError;
-import com.android.volley.RequestQueue;
 import com.android.volley.ServerError;
 import com.google.android.material.card.MaterialCardView;
 import com.yashswi.dilpay.Api_interface.Api_interface;
@@ -33,12 +32,11 @@ import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
 public class Available_buses extends AppCompatActivity {
     RelativeLayout progress;
     RecyclerView rv;
-    ArrayList<available_buses_model> retromodearraylist = new ArrayList<>();
+    ArrayList<available_buses_model> modalBusesList = new ArrayList<>();
     ImageView back;
     TextView from, to, date;
     String source_id, destination_id, journey_date;
     RelativeLayout progress_layout;
-    RequestQueue mqueue;
     MaterialCardView card;
     TextView t1, depart, arrive, amount, travel, avail_seats, bus_type;
 
@@ -47,6 +45,7 @@ public class Available_buses extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_buses);
 
+        //FINDING VIEWS
         progress = findViewById(R.id.progress);
         progress.setVisibility(View.VISIBLE);
         rv = findViewById(R.id.buses_list_recyclerview);
@@ -64,11 +63,15 @@ public class Available_buses extends AppCompatActivity {
         to = findViewById(R.id.to);
         date = findViewById(R.id.date1);
         progress_layout = findViewById(R.id.progress_layout);
+
+        //GETTING INTENTS DATA
         source_id = this.getIntent().getStringExtra("from");
-        from.setText(source_id);
         destination_id = this.getIntent().getStringExtra("to");
-        to.setText(destination_id);
         journey_date = this.getIntent().getStringExtra("date");
+
+        //SETTING DATA TO VIEW'S
+        from.setText(source_id);
+        to.setText(destination_id);
         date.setText(journey_date);
 
         back.setOnClickListener(new View.OnClickListener() {
@@ -80,6 +83,8 @@ public class Available_buses extends AppCompatActivity {
 
         jsonParse();
     }
+
+    //GETTING AVAILABLE BUSES DATA
     private void jsonParse() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
@@ -93,10 +98,10 @@ public class Available_buses extends AppCompatActivity {
                 if(response.body()==null){
                     Toast.makeText(Available_buses.this,"No Data Available! Try again", Toast.LENGTH_SHORT).show();
                 }else {
-                    Log.e("responseBussesList",response.body());
                     progress.setVisibility(View.GONE);
                     try {
                         JSONObject obj = new JSONObject(response.body());
+                        //GETTING DATA FROM API
                         JSONArray jsonArray = obj.getJSONArray("AvailableTrips");
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject dataObject = jsonArray.getJSONObject(i);
@@ -115,6 +120,7 @@ public class Available_buses extends AppCompatActivity {
                                 model.setLandmarkBoard(dataObject1.getString("Landmark"));
                                 model.setLocationBoard(dataObject1.getString("Location"));
                                 model.setNameBoard(dataObject1.getString("Name"));
+                                //CONVERTING TIME TIME TO 12HRS FORMAT
                                 int hours=Integer.parseInt(dataObject1.getString("Time"))/60;
                                 int min=Integer.parseInt(dataObject1.getString("Time"))%60;
                                 String time;
@@ -144,7 +150,6 @@ public class Available_buses extends AppCompatActivity {
                             model.setDuration(dataObject.getString("Duration"));
                             model.setDepartureTime(dataObject.getString("DepartureTime"));
                             model.setDestinationId(dataObject.getString("DestinationId"));
-//                            model.setDestinationId(dataObject.getString("DestinationId"));
                             JSONArray jsonArray2 = dataObject.getJSONArray("DroppingTimes");
                             for (int  k= 0; k < jsonArray2.length(); k++) {
                                 JSONObject dataObject2 = jsonArray2.getJSONObject(k);
@@ -155,6 +160,7 @@ public class Available_buses extends AppCompatActivity {
                                 model.setLandmarkDrop(dataObject2.getString("Landmark"));
                                 model.setLocationDrop(dataObject2.getString("Location"));
                                 model.setNameDrop(dataObject2.getString("Name"));
+                                //CONVERTING TIME TIME TO 12HRS FORMAT
                                 int hours=Integer.parseInt(dataObject2.getString("Time"))/60;
                                 int min=Integer.parseInt(dataObject2.getString("Time"))%60;
                                 String time;
@@ -189,10 +195,12 @@ public class Available_buses extends AppCompatActivity {
                             model.setTravels(dataObject.getString("Travels"));
                             model.setSourceId(dataObject.getString("SourceId"));
                             model.setJourneydate(dataObject.getString("Journeydate"));
-                            retromodearraylist.add(model);
+                            modalBusesList.add(model);
 
                         }
-                        buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id,journey_date,retromodearraylist, Available_buses.this);
+
+                        //SETTING AVAILABLE BUSSES DATA TO RECYCLERVIEW
+                        buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id,journey_date, modalBusesList, Available_buses.this);
                         rv.setAdapter(adapter);
                         LinearLayoutManager manager = new LinearLayoutManager(Available_buses.this, RecyclerView.VERTICAL, false);
                         rv.setLayoutManager(manager);
@@ -209,21 +217,12 @@ public class Available_buses extends AppCompatActivity {
                 if(t instanceof NetworkError)
                 {
                     message = "Cannot connect to Internet...Please check your connection!";
-                    Toast.makeText(Available_buses.this, message, Toast.LENGTH_SHORT).show();
-                }
-                else if(t instanceof ServerError)
-                {
-                    message = "The server could not be found. Please try again after some time!!";
-                    Toast.makeText(Available_buses.this, message, Toast.LENGTH_SHORT).show();
-                }
-                else if (t instanceof ParseError) {
-                    message = "Parsing error! Please try again after some time!!";
-                    Toast.makeText(Available_buses.this, message, Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    message = "Somethiing went wrong! Please try again after some time!!"+t.toString();
-                    Toast.makeText(Available_buses.this, message, Toast.LENGTH_SHORT).show();
+                    message = "Something went wrong! Please try again after some time!!"+t.toString();
                 }
+                Toast.makeText(Available_buses.this, message, Toast.LENGTH_SHORT).show();
+
             }
         });
     }

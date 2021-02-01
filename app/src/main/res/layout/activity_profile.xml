@@ -95,7 +95,7 @@
             />
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/selectDrop"
+            android:id="@+id/membership"
             android:layout_width="100dp"
             android:layout_height="30dp"
             android:layout_gravity="bottom"

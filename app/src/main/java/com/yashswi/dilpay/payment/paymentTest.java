@@ -60,30 +60,30 @@ String jsonData=null;
 
     private void generateToken(String jsonData) {
 
-        Log.e("jsonDatafinal",jsonData);
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Api_interface.JSONURL)
-                .addConverterFactory(create())
-                .build();
-        Api_interface api = retrofit.create(Api_interface.class);
-
-        Call<String> call = api.generateToken(jsonData);
-//        Toast.makeText(paymentTest.this,"called..."+jsonData,Toast.LENGTH_SHORT).show();
-        call.enqueue(new Callback<String>() {
-            @Override
-            public void onResponse(Call<String> call, Response<String> response) {
-
-                //get token and initiate payment
-
-
-            }
-
-            @Override
-            public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(paymentTest.this,"failed to send!!"+t.toString(),Toast.LENGTH_SHORT).show();
-
-            }
-        });
+//        Log.e("jsonDatafinal",jsonData);
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Api_interface.JSONURL)
+//                .addConverterFactory(create())
+//                .build();
+//        Api_interface api = retrofit.create(Api_interface.class);
+//
+//        Call<String> call = api.generateToken(jsonData);
+////        Toast.makeText(paymentTest.this,"called..."+jsonData,Toast.LENGTH_SHORT).show();
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//
+//                //get token and initiate payment
+//
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                Toast.makeText(paymentTest.this,"failed to send!!"+t.toString(),Toast.LENGTH_SHORT).show();
+//
+//            }
+//        });
     }
     void payment()
     {

@@ -2,12 +2,13 @@ package com.yashswi.dilpay.models;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.widget.Toast;
 
 public class userDetails {
     String name1,number1,wallet1;
     Boolean isLoged;
     Context context;
-    String nameKey="name",numberKey="number",walletKey="wallet",logedKey="isLoged";
+    String nameKey="name",numberKey="number",walletKey="wallet",logedKey="isLoged",membershipKey="membership";
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -15,6 +16,15 @@ public class userDetails {
         this.context = context;
         sharedPreferences=context.getSharedPreferences(context.getPackageName(),Context.MODE_PRIVATE);
         editor=sharedPreferences.edit();
+    }
+
+    public String getMembership() {
+        return sharedPreferences.getString(membershipKey,"");
+    }
+
+    public void setMembership(String name) {
+        editor.putString(membershipKey,name);
+        editor.commit();
     }
 
     public String getName() {
@@ -51,5 +61,10 @@ public class userDetails {
     public void setLoged(Boolean loged) {
         editor.putBoolean(logedKey,loged);
         editor.commit();
+    }
+
+    public void clearData(){
+        editor.clear();
+        editor.apply();
     }
 }

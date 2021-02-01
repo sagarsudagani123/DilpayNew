@@ -68,44 +68,44 @@
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
               android:paddingStart="8dp"
-              android:paddingRight="8dp"
+              android:paddingEnd="8dp"
               android:layout_gravity="center">
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Hyderabad"
-          android:textSize="16sp"
-          android:gravity="center"
-          android:id="@+id/from"
-          android:textStyle="bold"/>
-     <TextView
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="To"
-         android:id="@+id/to1"
-         android:layout_marginTop="3dp"
-         android:layout_toEndOf="@id/from"
-         android:layout_marginStart="8dp"
-         android:layout_marginEnd="8dp"
-         />
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="Bangalore"
-          android:textSize="16sp"
-          android:layout_marginEnd="10dp"
-          android:layout_toEndOf="@id/to1"
-          android:id="@+id/to"
-          android:textStyle="bold"/>
-      <TextView
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:text="26/11/2020"
-          android:textSize="16sp"
-          android:id="@+id/date1"
-          android:layout_marginEnd="10dp"
-          android:layout_alignParentEnd="true"
-          android:textStyle="bold" />
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Hyderabad"
+                  android:textSize="16sp"
+                  android:gravity="center"
+                  android:id="@+id/from"
+                  android:textStyle="bold"/>
+             <TextView
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="To"
+                 android:id="@+id/to1"
+                 android:layout_marginTop="3dp"
+                 android:layout_toEndOf="@id/from"
+                 android:layout_marginStart="8dp"
+                 android:layout_marginEnd="8dp"
+                 />
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="Bangalore"
+                  android:textSize="16sp"
+                  android:layout_marginEnd="10dp"
+                  android:layout_toEndOf="@id/to1"
+                  android:id="@+id/to"
+                  android:textStyle="bold"/>
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:text="26/11/2020"
+                  android:textSize="16sp"
+                  android:id="@+id/date1"
+                  android:layout_marginEnd="10dp"
+                  android:layout_alignParentEnd="true"
+                  android:textStyle="bold" />
           </RelativeLayout>
       </com.google.android.material.card.MaterialCardView>
     <TextView

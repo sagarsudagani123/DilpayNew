@@ -132,7 +132,7 @@ public class Login_screen extends AppCompatActivity {
                             userDetails.setName(details.getString("fname1"));
                             userDetails.setNumber(details.getString("MobileNo"));
                             userDetails.setWallet(details.getString("Wallet"));
-                            Toast.makeText(Login_screen.this,details.getString("fname1")+" "+details.getString("MobileNo")+" "+details.getString("Wallet"),Toast.LENGTH_SHORT).show();
+                            userDetails.setMembership(details.getString("userstatus"));
                             startActivity(i);
                             finish();
 
@@ -141,7 +141,7 @@ public class Login_screen extends AppCompatActivity {
                             Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                         } else {
                             progress_layout.setVisibility(View.GONE);
-                            Toast.makeText(Login_screen.this, "Error in server", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login_screen.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (Exception e) {
@@ -214,9 +214,6 @@ public class Login_screen extends AppCompatActivity {
                     }catch (Exception e){
                         Toast.makeText(Login_screen.this, "Something went wrong! please try again", Toast.LENGTH_SHORT).show();
                     }
-
-
-
                 }
             }
             @Override
@@ -226,15 +223,6 @@ public class Login_screen extends AppCompatActivity {
                 if(t instanceof NetworkError)
                 {
                     message = "Cannot connect to Internet...Please check your connection!";
-                    Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
-                }
-                else if(t instanceof ServerError)
-                {
-                    message = "The server could not be found. Please try again after some time!!";
-                    Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
-                }
-                else if (t instanceof ParseError) {
-                    message = "Parsing error! Please try again after some time!!";
                     Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                 }
                 else{

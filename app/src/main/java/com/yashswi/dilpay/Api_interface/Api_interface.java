@@ -25,14 +25,17 @@ public interface Api_interface {
     @FormUrlEncoded
     Call<String> login(@Field("username") String username, @Field("password") String password);
 
-    @GET("passdetails.php")
-    Call<String> generateToken(@Query("checks") String checks);
+    @GET("TicketBlock.php")
+    Call<String> bookingDetails(@Query("TicketBlock") String data);
 
     @GET("FreeRegister.php")
     Call<String> register(@Query("My_mobile") String name);
 
     @GET("FreeRegister1.php")
     Call<String> register1(@Query("data") String name);
+
+    @GET("BusSources.php")
+    Call<String> getPlaces();
 
 
 }

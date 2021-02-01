@@ -7,31 +7,45 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.passDetailsAdapter;
+import com.yashswi.dilpay.models.userDetails;
 import com.yashswi.dilpay.payment.paymentTest;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
+
+import static retrofit2.converter.gson.GsonConverterFactory.create;
+
 public class busDetailsConfirmation extends AppCompatActivity {
     TextView pickup_location,drop_location,pickup_time,drop_time,duration1,journey_date,travels,bus_type,boarding_point,drop_point,base_fare,taxes;
     ImageView back;
     AppCompatButton proceed_payment;
     RecyclerView passDetails;
-    JSONObject data=null;
+    JSONObject bookingDetails =null;
     Float taxAmount=0f;
+    RelativeLayout progress;
+    userDetails userDetails;
 
     String boardingPoint,dropingPoint,email,number,amount,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName,
     tripId, providerCode,operator_name,source_id,destination_id,
@@ -49,6 +63,7 @@ public class busDetailsConfirmation extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_details_confirmation);
 
+        //finding view
         back=findViewById(R.id.back);
         pickup_location=findViewById(R.id.pickup);
         drop_location=findViewById(R.id.drop);
@@ -63,7 +78,12 @@ public class busDetailsConfirmation extends AppCompatActivity {
         base_fare=findViewById(R.id.amount);
         taxes=findViewById(R.id.taxes);
         proceed_payment=findViewById(R.id.proceed_payment);
+        passDetails=findViewById(R.id.passDetails);
+        progress=findViewById(R.id.progress_layout);
 
+
+        userDetails=new userDetails(busDetailsConfirmation.this);
+        //getting intet data from previous activity
         tripId = (String) this.getIntent().getSerializableExtra("tripID");
         providerCode = (String) this.getIntent().getSerializableExtra("providercode");
         operator_name= (String) this.getIntent().getSerializableExtra("operatorname");
@@ -79,7 +99,6 @@ public class busDetailsConfirmation extends AppCompatActivity {
         duration =getIntent().getStringExtra("duration");
         travelsName=getIntent().getStringExtra("travelsName");
         date= (String) this.getIntent().getSerializableExtra("journeydate");
-        Log.e("datecheck",date);
         type=getIntent().getStringExtra("type");
         sourceName=getIntent().getStringExtra("sourceName");
         destinationName=getIntent().getStringExtra("destinationName");
@@ -99,6 +118,7 @@ public class busDetailsConfirmation extends AppCompatActivity {
         serviceChargeList=getIntent().getStringArrayListExtra("serviceChargeList");
         titlesList=getIntent().getStringArrayListExtra("Titles");
 
+        //CONVERTING LIST ITEMS INTO SINGLE STRING FORMAT EX: "M~M~F"
         StringBuilder names= new StringBuilder();
         StringBuilder ages= new StringBuilder();
         StringBuilder genders= new StringBuilder();
@@ -107,7 +127,6 @@ public class busDetailsConfirmation extends AppCompatActivity {
         StringBuilder fares= new StringBuilder();
         StringBuilder serviceTax= new StringBuilder();
         StringBuilder serviceCharges= new StringBuilder();
-
         for(int i=0;i<passengerAges.size();i++){
             if(ages.toString().equalsIgnoreCase("")){
                 ages = new StringBuilder(passengerAges.get(i));
@@ -130,75 +149,74 @@ public class busDetailsConfirmation extends AppCompatActivity {
 
             }
         }
-        JSONObject data2=new JSONObject();
+
+        //CONVERTING BOOKING DETAILS INTO JSON FORMAT
+        bookingDetails =new JSONObject();
         try{
-            data2.put("TripId",tripId);
-            data2.put("BoardingId",boardingPointID);
-            data2.put("DroppingId",dropingPointID);
-            data2.put("NoofSeats",""+selectedSeats.size());
-            data2.put("Fares",fares);
-            data2.put("Servicetax",serviceTax);
+            bookingDetails.put("TripId",tripId);
+            bookingDetails.put("BoardingId",boardingPointID);
+            bookingDetails.put("DroppingId",dropingPointID);
+            bookingDetails.put("NoofSeats",""+selectedSeats.size());
+            bookingDetails.put("Fares",fares);
+            bookingDetails.put("Servicetax",serviceTax);
 //            data2.put("Servicetax","0.00");
-            data2.put("ServiceCharge",serviceCharges);
+            bookingDetails.put("ServiceCharge",serviceCharges);
 //            data2.put("ServiceCharge","0.00");
-            data2.put("SeatNos",seats);
-            data2.put("Seatcodes",""); // sent seat numbers for present
-            data2.put("Titles",titles);
-            data2.put("Names",names);
-            data2.put("Ages",ages);
-            data2.put("Genders",genders);
-            data2.put("Address","Miyapur"); //present static
-            data2.put("PostalCode","500090");  //present static
-            data2.put("IdCardType","PAN");  //present static
-            data2.put("IdCardNo","323");  //present static
-            data2.put("IdCardIssuedBy","");// present static
-            data2.put("MobileNo",number);
-            data2.put("EmailId",email);
-            data2.put("SourceId",source_id);
-            data2.put("DestinationId",destination_id);
-            data2.put("JourneyDate",date);
-            data2.put("TripType","1");
-            data2.put("SourceName",sourceName);
-            data2.put("DestinationName",destinationName);
-            data2.put("Provider",providerCode);
-            data2.put("Operator",travelsName);
-            data2.put("DisplayName",travelsName);
-            data2.put("BusTypeName",type);
-            data2.put("BusType","4");/////////////////
-            data2.put("BoardingPointDetails",boardingPoint);
-            data2.put("DroppingPointDetails",dropingPoint);
-            data2.put("DepartureTime",departureTime);
-            data2.put("ArrivalTime",arrivalTime);
-            data2.put("CancellationPolicy",CancellationPolicy);
-            data2.put("PartialCancellationAllowed",PartialCancellationAllowed);//boolean
-            data2.put("ConvenienceFee",convienceFee);
-            data2.put("UserType","5");
-            data2.put("IsIdProofRequried",false);
-
-
-//            data2.put("City","Hyderabad");  //present static
-//
-//
-//
-//            data2.put("EmergencyMobileNo",number);
-//
-//
-//            data2.put("ReturnDate",null);
-//
-//
-//
-//            data2.put("State","Telangana");  //present static
-
-            Log.e("detailsJSON",data2.toString());
+            bookingDetails.put("SeatNos",seats);
+            bookingDetails.put("Seatcodes",""); // sent seat numbers for present
+            bookingDetails.put("Titles",titles);
+            bookingDetails.put("Names",names);
+            bookingDetails.put("Ages",ages);
+            bookingDetails.put("Genders",genders);
+            bookingDetails.put("Address","Miyapur"); //present static
+            bookingDetails.put("PostalCode","500090");  //present static
+            bookingDetails.put("IdCardType","PAN");  //present static
+            bookingDetails.put("IdCardNo","323");  //present static
+            bookingDetails.put("IdCardIssuedBy","");// present static
+            bookingDetails.put("MobileNo",number);
+            bookingDetails.put("EmailId",email);
+            bookingDetails.put("SourceId",source_id);
+            bookingDetails.put("DestinationId",destination_id);
+            bookingDetails.put("JourneyDate",date);
+            bookingDetails.put("TripType","1");
+            bookingDetails.put("SourceName",sourceName);
+            bookingDetails.put("DestinationName",destinationName);
+            bookingDetails.put("Provider",providerCode);
+            bookingDetails.put("Operator",travelsName);
+            bookingDetails.put("DisplayName",travelsName);
+            bookingDetails.put("BusTypeName",type);
+            bookingDetails.put("BusType","4");/////////////////
+            bookingDetails.put("BoardingPointDetails",boardingPoint);
+            bookingDetails.put("DroppingPointDetails",dropingPoint);
+            bookingDetails.put("DepartureTime",departureTime);
+            bookingDetails.put("ArrivalTime",arrivalTime);
+            bookingDetails.put("CancellationPolicy",CancellationPolicy);
+            bookingDetails.put("PartialCancellationAllowed",PartialCancellationAllowed);//boolean
+            bookingDetails.put("ConvenienceFee",convienceFee);
+            bookingDetails.put("UserType","5");
+            bookingDetails.put("IsIdProofRequried",false);
         }catch (JSONException e){
 
         }
-        //==================================================================================
+        //==================================
+        JSONObject user=new JSONObject();
+        try{
+        user.put("username",userDetails.getName());
+        user.put("amount",amount);
+    } catch (JSONException e) {
+        e.printStackTrace();
+    }
+        JSONObject main=new JSONObject();
+        try {
+            main.put("passengerDetails",bookingDetails);
+            main.put("userDetails",user);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Log.e("MainData",main.toString());
 
-
-
-
-
+        //==================================
+        //SETTING DATA TO VIEW'S
         pickup_location.setText(sourceName);
         drop_location.setText(destinationName);
         pickup_time.setText(arrivalTime);
@@ -217,30 +235,69 @@ public class busDetailsConfirmation extends AppCompatActivity {
         }
         taxes.setText(String.valueOf(decimalFormat.format(taxAmount)));
 
-        passDetails=findViewById(R.id.passDetails);
-
+        //SETTING PASSENGER'S LIST
         LinearLayoutManager layoutManager=new LinearLayoutManager(busDetailsConfirmation.this,RecyclerView.VERTICAL, false);
         passDetails.setLayoutManager(layoutManager);
         passDetailsAdapter adapter=new passDetailsAdapter(passengerNames,passengerGenders,passengerAges,selectedSeats,busDetailsConfirmation.this);
         passDetails.setAdapter(adapter);
 
+        back.setOnClickListener(v -> finish());
 
-
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        //send data to server and if response is positive take to payment page
+        proceed_payment.setOnClickListener(v -> {
+            if(bookingDetails !=null){
+//                Intent i=new Intent(busDetailsConfirmation.this, paymentTest.class);
+//                i.putExtra("data", bookingDetails.toString());
+//                startActivity(i);
+                progress.setVisibility(View.VISIBLE);
+                sendBookingDetails(bookingDetails.toString());
+            }else{
+                Toast.makeText(busDetailsConfirmation.this,"Something went wrong! Try again",Toast.LENGTH_SHORT).show();
                 finish();
             }
+
         });
-        proceed_payment.setOnClickListener(new View.OnClickListener() {
+
+
+    }
+    private void sendBookingDetails(String jsonData) {
+        progress.setVisibility(View.VISIBLE);
+        Log.e("jsonDatafinal",jsonData);
+        Gson gson=new GsonBuilder().setLenient().create();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api_interface.JSONURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        Api_interface api = retrofit.create(Api_interface.class);
+
+        Call<String> call = api.bookingDetails(jsonData);
+//        Toast.makeText(paymentTest.this,"called..."+jsonData,Toast.LENGTH_SHORT).show();
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onClick(View v) {
-                Intent i=new Intent(busDetailsConfirmation.this, paymentTest.class);
-                i.putExtra("data",data2.toString());
-                startActivity(i);
+            public void onResponse(Call<String> call, Response<String> response) {
+
+                if(response.body()!=null){
+                    try {
+                        JSONObject obj=new JSONObject(response.body());
+                        Toast.makeText(busDetailsConfirmation.this,obj.get("Message").toString(),Toast.LENGTH_LONG).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(busDetailsConfirmation.this,e.toString(),Toast.LENGTH_LONG).show();
+
+                    }
+                }
+                //get token and initiate payment
+                Toast.makeText(busDetailsConfirmation.this,response.body(),Toast.LENGTH_LONG).show();
+                Log.e("BlockCheck",response.body());
+                progress.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(busDetailsConfirmation.this,"failed to send data!!"+t.toString(),Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
             }
         });
-
-
     }
 }

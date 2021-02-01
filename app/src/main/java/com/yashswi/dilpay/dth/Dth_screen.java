@@ -177,10 +177,10 @@ public class Dth_screen extends AppCompatActivity {
 //        itemName.add("cancelled Tickets");
 //        itemName.add("Offers");
 
-        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, this);
-        dth_items.setAdapter(adapter2);
-        GridLayoutManager manager = new GridLayoutManager(this,3);
-        dth_items.setLayoutManager(manager);
+//        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, this);
+//        dth_items.setAdapter(adapter2);
+//        GridLayoutManager manager = new GridLayoutManager(this,3);
+//        dth_items.setLayoutManager(manager);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
