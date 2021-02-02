@@ -171,7 +171,6 @@ public class Bus extends AppCompatActivity {
                         for(int i=0;i<data.length();i++){
                             names.add(data.get(i).toString());
                         }
-                        Toast.makeText(Bus.this,names.toString(),Toast.LENGTH_SHORT).show();
                         progress_layout.setVisibility(View.GONE);
 
                     } catch (JSONException e) {

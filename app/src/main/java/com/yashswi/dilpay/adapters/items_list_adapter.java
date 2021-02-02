@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.yashswi.dilpay.Datacard_screen;
-import com.yashswi.dilpay.Gas_screen;
+import com.yashswi.dilpay.gas.Gas_screen;
 import com.yashswi.dilpay.Postpaid_screen;
 import com.yashswi.dilpay.dth.Dth_screen;
 import com.yashswi.dilpay.bus.Bus;

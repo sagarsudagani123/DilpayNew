@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".payment.paymentTest"
+    tools:context=".payment.paymentStart"
     android:background="@color/white"
     >
 
@@ -45,18 +45,9 @@
             android:id="@+id/success1"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:visibility="gone"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="50dp"
             android:src="@drawable/ic_baseline_check_circle_outline_24" />
-        <ImageView
-            android:id="@+id/pending"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:visibility="gone"
-            android:src="@drawable/pending" />
 
         <ImageView
             android:id="@+id/failure"
@@ -69,17 +60,131 @@
             android:visibility="gone" />
     </RelativeLayout>
     <TextView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="status"
-        android:textStyle="bold"
-        android:textColor="@color/gradientStart"
         android:layout_below="@id/li1"
-        android:textSize="18sp"
-        android:gravity="center"
-        android:padding="10dp"
-        android:id="@+id/status"
-        />
+        android:id="@+id/txMessage"
+        android:layout_centerHorizontal="true"
+        android:text="Transaction Message"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Order Id"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:id="@+id/orderId"
+        android:layout_marginStart="15dp"
+        android:layout_below="@id/txMessage"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orderId"
+        android:layout_marginTop="4dp"
+        android:textColor="#2196F3"
+        android:layout_marginStart="15dp"
+        android:id="@+id/orderId1"
+        android:text=""/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/paymentMode"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/orderId1"
+        android:text="Payment Mode"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/paymentMode"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="15dp"
+        android:id="@+id/paymentMode1"
+        android:textColor="#2196F3"
+        android:text=""/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/txTime"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/paymentMode1"
+        android:text="Transaction Time"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txTime"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="15dp"
+        android:textColor="#2196F3"
+        android:id="@+id/txTime1"
+        android:text=""/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/refId"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/txTime1"
+        android:text="Referrance Id"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/refId"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="15dp"
+        android:textColor="#2196F3"
+        android:id="@+id/refId1"
+        android:text=""/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/orderAmount"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/refId1"
+        android:text="Order Amount"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orderAmount"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="15dp"
+        android:textColor="#2196F3"
+        android:id="@+id/orderAmount1"
+        android:text=""/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        android:id="@+id/txStatus"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:layout_below="@id/orderAmount1"
+        android:text="Transaction Status"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/txStatus"
+        android:layout_marginTop="4dp"
+        android:layout_marginStart="15dp"
+        android:textColor="#2196F3"
+        android:id="@+id/txStatus1"
+        android:text=""/>
 
 
 </RelativeLayout>

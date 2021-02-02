@@ -1,5 +1,6 @@
 package com.yashswi.dilpay.bus;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,27 +15,44 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cashfree.pg.CFPaymentService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.passDetailsAdapter;
 import com.yashswi.dilpay.models.userDetails;
-import com.yashswi.dilpay.payment.paymentTest;
+import com.yashswi.dilpay.payment.paymentStart;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
+import static com.cashfree.pg.CFPaymentService.PARAM_APP_ID;
+import static com.cashfree.pg.CFPaymentService.PARAM_CARD_CVV;
+import static com.cashfree.pg.CFPaymentService.PARAM_CARD_HOLDER;
+import static com.cashfree.pg.CFPaymentService.PARAM_CARD_MM;
+import static com.cashfree.pg.CFPaymentService.PARAM_CARD_NUMBER;
+import static com.cashfree.pg.CFPaymentService.PARAM_CARD_YYYY;
+import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_EMAIL;
+import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_NAME;
+import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_PHONE;
+import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_AMOUNT;
+import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_CURRENCY;
+import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_ID;
+import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_NOTE;
+import static com.cashfree.pg.CFPaymentService.PARAM_PAYMENT_OPTION;
+import static com.cashfree.pg.CFPaymentService.PARAM_UPI_VPA;
 import static retrofit2.converter.gson.GsonConverterFactory.create;
 
 public class busDetailsConfirmation extends AppCompatActivity {
@@ -43,6 +61,8 @@ public class busDetailsConfirmation extends AppCompatActivity {
     AppCompatButton proceed_payment;
     RecyclerView passDetails;
     JSONObject bookingDetails =null;
+    JSONObject main=null;
+    JSONObject user=null;
     Float taxAmount=0f;
     RelativeLayout progress;
     userDetails userDetails;
@@ -199,14 +219,14 @@ public class busDetailsConfirmation extends AppCompatActivity {
 
         }
         //==================================
-        JSONObject user=new JSONObject();
+        user=new JSONObject();
         try{
-        user.put("username",userDetails.getName());
+        user.put("username",userDetails.getNumber());
         user.put("amount",amount);
-    } catch (JSONException e) {
-        e.printStackTrace();
-    }
-        JSONObject main=new JSONObject();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        main=new JSONObject();
         try {
             main.put("passengerDetails",bookingDetails);
             main.put("userDetails",user);
@@ -246,11 +266,9 @@ public class busDetailsConfirmation extends AppCompatActivity {
         //send data to server and if response is positive take to payment page
         proceed_payment.setOnClickListener(v -> {
             if(bookingDetails !=null){
-//                Intent i=new Intent(busDetailsConfirmation.this, paymentTest.class);
-//                i.putExtra("data", bookingDetails.toString());
-//                startActivity(i);
                 progress.setVisibility(View.VISIBLE);
-                sendBookingDetails(bookingDetails.toString());
+//                sendBookingDetails(bookingDetails.toString());
+                sendBookingDetails(main.toString());
             }else{
                 Toast.makeText(busDetailsConfirmation.this,"Something went wrong! Try again",Toast.LENGTH_SHORT).show();
                 finish();
@@ -276,21 +294,46 @@ public class busDetailsConfirmation extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-
+                progress.setVisibility(View.GONE);
+                Log.e("testFinal",response.body());
                 if(response.body()!=null){
                     try {
+//                        Toast.makeText(busDetailsConfirmation.this,"inside  "+response.body(),Toast.LENGTH_LONG).show();
+
                         JSONObject obj=new JSONObject(response.body());
-                        Toast.makeText(busDetailsConfirmation.this,obj.get("Message").toString(),Toast.LENGTH_LONG).show();
+                        //IF TOKEN GENERATED INITIATE PAYMENT
+                        if(obj.getString("Status").equalsIgnoreCase("OK")){
+                            String token,orderID,amount,name,number;
+                            orderID=obj.getString("Orderid");
+                            token=obj.getString("Token");
+                            Log.e("Tokencheck",token);
+                            amount=obj.getString("Amount");
+//                            Intent intent=new Intent(busDetailsConfirmation.this,paymentStart.class);
+//                            intent.putExtra("orderID",orderID);
+//                            intent.putExtra("Token",token);
+//                            intent.putExtra("Amount",amount);
+//                            startActivity(intent);
+//                            userDetails=new userDetails(paymentStart.this);
+                            name=userDetails.getName();
+                            number=userDetails.getNumber();
+                            payment(token,orderID,amount,name,number);
+                        }else{
+                            Toast.makeText(busDetailsConfirmation.this, "Seat is no longer available", Toast.LENGTH_SHORT).show();
+                        }
+//                        Intent intent=new Intent(busDetailsConfirmation.this, paymentStart.class);
+                        //PASS ORDER ID, TOKEN, AMOUNT, NAME, NUMBER TO PROCEED TO PAYMENT
+//                        intent.putExtra("data", bookingDetails.toString());
+//                        startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(busDetailsConfirmation.this,e.toString(),Toast.LENGTH_LONG).show();
-
                     }
                 }
+                else{
+                    Toast.makeText(busDetailsConfirmation.this,"Something went wrong! Try again",Toast.LENGTH_LONG).show();
+                }
                 //get token and initiate payment
-                Toast.makeText(busDetailsConfirmation.this,response.body(),Toast.LENGTH_LONG).show();
                 Log.e("BlockCheck",response.body());
-                progress.setVisibility(View.GONE);
             }
 
             @Override
@@ -299,5 +342,76 @@ public class busDetailsConfirmation extends AppCompatActivity {
                 progress.setVisibility(View.GONE);
             }
         });
+    }
+    void payment(String token,String orderID,String amount,String name,String number)
+    {
+        String token1="9c9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.t5QfiIzMxImM2YzNykTMwYjI6ICdsF2cfJCLyIjMzUDO0EjNxojIwhXZiwiIS5USiojI5NmblJnc1NkclRmcvJCLwIjOiQnb19WbBJXZkJ3biwiI2UjN1YTNiojIklkclRmcvJye.Kt51e7bb3KJ5JmU39WfPhVmoYPIGbHNcj_m_lSbLqaQdcyFBud0qkXLNEclduZDno_";
+        Map<String,String> params=new HashMap<>();
+        params.put(PARAM_APP_ID, "4207d3b63a1ecc9a5d79a8687024");
+        params.put(PARAM_ORDER_ID, orderID);
+        params.put(PARAM_ORDER_AMOUNT, amount);
+        params.put(PARAM_ORDER_NOTE, "Bus Ticket booking");
+        params.put(PARAM_CUSTOMER_NAME,name);
+        params.put(PARAM_CUSTOMER_PHONE, number);
+        params.put(PARAM_CUSTOMER_EMAIL, "thottempudi22@gmail.com");
+        params.put(PARAM_ORDER_CURRENCY, "INR");
+        //////////////////////
+//        params.put(PARAM_PAYMENT_OPTION, "card");
+//        params.put(PARAM_CARD_NUMBER, "4111111111111111");//Replace Card number
+//        params.put(PARAM_CARD_MM, "07"); // Card Expiry Month in MM
+//        params.put(PARAM_CARD_YYYY, "2023"); // Card Expiry Year in YYYY
+//        params.put(PARAM_CARD_HOLDER, "Test"); // Card Holder name
+//        params.put(PARAM_CARD_CVV, "123"); // Card CVV
+        //////////////////////
+
+        params.put(PARAM_PAYMENT_OPTION, "userVPA");
+        params.put(PARAM_UPI_VPA, "testtpv@gocash");
+        try {
+            CFPaymentService cfPaymentService = CFPaymentService.getCFPaymentServiceInstance();
+            cfPaymentService.setOrientation(0);
+//            cfPaymentService.doPayment(busDetailsConfirmation.this, params, token, "TEST","#6dd5ed", "#FAFAFA", false);
+            cfPaymentService.upiPayment(busDetailsConfirmation.this,params,token,"TEST");
+        }
+        catch (Exception e){
+            Toast.makeText(busDetailsConfirmation.this,"payment"+e.toString(),Toast.LENGTH_SHORT).show();
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        Log.d("paymentcheck", "ReqCode : " + CFPaymentService.REQ_CODE);
+        if (data != null) {
+            Bundle  bundle = data.getExtras();
+            if (bundle != null) {
+                for (String  key  :  bundle.keySet()) {
+                    if (bundle.getString(key) != null) {
+                        Log.d("paymentcheck", key + " : " + bundle.getString(key));
+//
+                    }
+                }
+                String status = bundle.getString("txStatus");
+                String paymentMode = bundle.getString("paymentMode");
+                String orderId = bundle.getString("orderId");
+                String txTime = bundle.getString("txTime");
+                String referenceId = bundle.getString("referenceId");
+                String txMsg = bundle.getString("txMsg");
+                String signature = bundle.getString("signature");
+                String orderAmount = bundle.getString("orderAmount");
+//                if (status.equalsIgnoreCase("success")) {
+                    Intent intent = new Intent(busDetailsConfirmation.this, paymentStart.class);
+                    intent.putExtra("status", status);
+                    intent.putExtra("paymentMode", paymentMode);
+                    intent.putExtra("orderId", orderId);
+                    intent.putExtra("txTime", txTime);
+                    intent.putExtra("referenceId", referenceId);
+                    intent.putExtra("txMsg", txMsg);
+                    intent.putExtra("signature", signature);
+                    intent.putExtra("orderAmount",orderAmount);
+//                    Log.e("sendingData",status+""+);
+                    startActivity(intent);
+
+//                }
+            }
+        }
     }
 }

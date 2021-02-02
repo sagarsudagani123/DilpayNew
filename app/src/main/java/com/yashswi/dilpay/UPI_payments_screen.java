@@ -2,8 +2,6 @@ package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityOptionsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,9 +11,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.material.card.MaterialCardView;
-import com.yashswi.dilpay.dth.Dth_recharge_screen;
-
-import java.util.ArrayList;
 
 public class UPI_payments_screen extends AppCompatActivity {
     MaterialCardView add_account;

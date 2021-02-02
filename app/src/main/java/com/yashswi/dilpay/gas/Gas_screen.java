@@ -1,4 +1,4 @@
-package com.yashswi.dilpay;
+package com.yashswi.dilpay.gas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Mobile_interface;
+import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.mobile.Mobile_recharge_successfull;
 
