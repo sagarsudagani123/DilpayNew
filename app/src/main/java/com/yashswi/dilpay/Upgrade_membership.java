@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.Bundle;
-import android.view.View;
 
 public class Upgrade_membership extends AppCompatActivity {
     AppCompatButton skip,submit;
@@ -15,7 +14,7 @@ public class Upgrade_membership extends AppCompatActivity {
         setContentView(R.layout.activity_upgrade_membership);
 
         //FINDING VIEW'S
-        skip=findViewById(R.id.skip_btn);
+        skip=findViewById(R.id.sign_up);
         submit=findViewById(R.id.submit);
 
         submit.setOnClickListener(v -> {

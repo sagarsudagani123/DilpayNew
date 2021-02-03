@@ -66,8 +66,8 @@
         <activity android:name=".Welcome_screen" />
         <activity android:name=".Login_screen" />
         <activity android:name=".payment.paymentStart" />
-        <activity android:name=".Splash_screen" />
-        <activity android:name=".bus.test">
+        <activity android:name=".bus.test" />
+        <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -75,7 +75,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Broadcast.SmsReceiver">
+        <receiver android:name=".Broadcast.SmsBroadcastReceiver">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>

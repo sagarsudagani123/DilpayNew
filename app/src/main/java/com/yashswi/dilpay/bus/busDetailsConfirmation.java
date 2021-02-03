@@ -253,7 +253,8 @@ public class busDetailsConfirmation extends AppCompatActivity {
             taxAmount=taxAmount+Float.parseFloat(serviceTaxList.get(i));
             taxAmount=taxAmount+Float.parseFloat(serviceChargeList.get(i));
         }
-        taxes.setText(String.valueOf(decimalFormat.format(taxAmount)));
+//        taxes.setText(String.valueOf(decimalFormat.format(taxAmount)));
+        taxes.setText("0.00");
 
         //SETTING PASSENGER'S LIST
         LinearLayoutManager layoutManager=new LinearLayoutManager(busDetailsConfirmation.this,RecyclerView.VERTICAL, false);
@@ -364,13 +365,13 @@ public class busDetailsConfirmation extends AppCompatActivity {
 //        params.put(PARAM_CARD_CVV, "123"); // Card CVV
         //////////////////////
 
-        params.put(PARAM_PAYMENT_OPTION, "userVPA");
-        params.put(PARAM_UPI_VPA, "testtpv@gocash");
+//        params.put(PARAM_PAYMENT_OPTION, "userVPA");
+//        params.put(PARAM_UPI_VPA, "testtpv@gocash");
         try {
             CFPaymentService cfPaymentService = CFPaymentService.getCFPaymentServiceInstance();
             cfPaymentService.setOrientation(0);
-//            cfPaymentService.doPayment(busDetailsConfirmation.this, params, token, "TEST","#6dd5ed", "#FAFAFA", false);
-            cfPaymentService.upiPayment(busDetailsConfirmation.this,params,token,"TEST");
+            cfPaymentService.doPayment(busDetailsConfirmation.this, params, token, "TEST","#6dd5ed", "#FAFAFA", false);
+//            cfPaymentService.upiPayment(busDetailsConfirmation.this,params,token,"TEST");
         }
         catch (Exception e){
             Toast.makeText(busDetailsConfirmation.this,"payment"+e.toString(),Toast.LENGTH_SHORT).show();

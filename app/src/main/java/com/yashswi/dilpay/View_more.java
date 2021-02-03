@@ -46,10 +46,10 @@ public class View_more extends AppCompatActivity {
         buton_names.add("Electricity");
         buton_names.add("Gas");
 
-//        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
-//        rv.setLayoutManager(gridLayoutManager);
-//        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names, this);
-//        rv.setAdapter(adapter);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
+        rv.setLayoutManager(gridLayoutManager);
+        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names, this);
+        rv.setAdapter(adapter);
 
 
     }
