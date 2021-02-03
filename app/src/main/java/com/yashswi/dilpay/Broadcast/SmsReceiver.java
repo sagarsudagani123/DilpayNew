@@ -6,10 +6,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.telephony.SmsMessage;
 
-import com.yashswi.dilpay.Api_interface.SmsListener;
+//import com.yashswi.dilpay.Api_interface.SmsListener;
 
 public class SmsReceiver extends BroadcastReceiver {
-    private static SmsListener mListener;
+//    private static SmsListener mListener;
     Boolean b;
     String abcd,xyz;
     @Override
@@ -25,7 +25,7 @@ public class SmsReceiver extends BroadcastReceiver {
 //            which is in number format
             //Pass on the text to our listener.
             if(b==true) {
-                mListener.messageReceived(abcd);  // attach value to interface
+//                mListener.messageReceived(abcd);  // attach value to interface
 //                object
             }
             else
@@ -33,7 +33,7 @@ public class SmsReceiver extends BroadcastReceiver {
             }
         }
     }
-    public static void bindListener(SmsListener listener) {
-        mListener = listener;
-    }
+//    public static void bindListener(SmsListener listener) {
+//        mListener = listener;
+//    }
 }

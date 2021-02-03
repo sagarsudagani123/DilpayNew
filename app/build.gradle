@@ -86,8 +86,11 @@ dependencies {
 
     //doAmazonPayment
     implementation 'androidx.browser:browser:1.3.0'
-
     implementation 'com.google.guava:guava:27.0.1-android'
+
+    //auto read messeages
+    implementation 'com.google.android.gms:play-services-auth:19.0.0'
+    implementation 'com.google.android.gms:play-services-auth-api-phone:17.5.0'
 
 
 

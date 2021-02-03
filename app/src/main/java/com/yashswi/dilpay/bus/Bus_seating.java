@@ -102,7 +102,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         upper.setAdapter(null);
         upper.setHasFixedSize(true);
 
-
+        //getting the intent data
         tripId = (String) this.getIntent().getSerializableExtra("tripID");
         providerCode = (String) this.getIntent().getSerializableExtra("providercode");
         operator_name= (String) this.getIntent().getSerializableExtra("operatorname");
@@ -111,13 +111,14 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         sourceName=getIntent().getStringExtra("sourceName");
         destinationName=getIntent().getStringExtra("destinationName");
         date= (String) this.getIntent().getSerializableExtra("journeydate");
-
         type=getIntent().getStringExtra("type");
 
+        //getting the intent arraylist data
         bordingPoints =getIntent().getStringArrayListExtra("bordingPoints");
         dropingPoints=getIntent().getStringArrayListExtra("dropingPints");
         bordingID=getIntent().getStringArrayListExtra("bordingID");
         dropingID=getIntent().getStringArrayListExtra("dropingID");
+
         arrivalTime=getIntent().getStringExtra("arrivalTime");
         departureTime=getIntent().getStringExtra("departureTime");
         duration =getIntent().getStringExtra("duration");
@@ -212,6 +213,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         private void loadProducts() {
             String finalURL="";
             String url1 = "http://dilbus.in/api/seatbooking.php?id="+tripId+"&OperatorCode="+ providerCode +"&OperatorName="+operator_name+"&SourceIDJ="+source_id+"&DestinationIDJ="+destination_id+"&DateDOJ="+date;
+            //operator code encoding start
             URL url= null;
             try {
                 url = new URL(url1);
@@ -221,6 +223,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
+            //operator code encoding end
             mqueue = Volley.newRequestQueue(this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, finalURL, new Response.Listener<String>() {

@@ -105,7 +105,6 @@ public class Bus extends AppCompatActivity {
                 String formattedDayOfMonth = "" + day1;
                 String date = day1 + "-" + month1 + "-" + year1;
                 if(month1 < 10){
-
                     formattedMonth = "0" + month1;
                 }
                 if(day1 < 10){
@@ -171,6 +170,7 @@ public class Bus extends AppCompatActivity {
                         for(int i=0;i<data.length();i++){
                             names.add(data.get(i).toString());
                         }
+                        Toast.makeText(Bus.this,names.toString(),Toast.LENGTH_SHORT).show();
                         progress_layout.setVisibility(View.GONE);
 
                     } catch (JSONException e) {
