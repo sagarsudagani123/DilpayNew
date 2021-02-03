@@ -66,8 +66,8 @@
         <activity android:name=".Welcome_screen" />
         <activity android:name=".Login_screen" />
         <activity android:name=".payment.paymentStart" />
-        <activity android:name=".Splash_screen" />
-        <activity android:name=".bus.test">
+        <activity android:name=".bus.test" />
+        <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

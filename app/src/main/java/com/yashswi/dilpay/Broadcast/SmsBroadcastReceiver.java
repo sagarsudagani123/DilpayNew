@@ -10,7 +10,6 @@ import android.widget.Toast;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.Status;
-import com.yashswi.dilpay.Api_interface.SmsListener;
 
 public class SmsBroadcastReceiver extends BroadcastReceiver {
     public SmsBroadcastReceiverListener smsBroadcastReceiverListener;
