@@ -19,6 +19,8 @@ import com.yashswi.dilpay.Home_screen;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.models.userDetails;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,8 +68,10 @@ String jsonData=null;
         String signature1 = getIntent().getStringExtra("signature");
         String orderAmount1 = getIntent().getStringExtra("orderAmount");
 
+        JSONObject finalData=new JSONObject();
 
-        if(status1.equalsIgnoreCase("success")){
+
+        if(status1.equalsIgnoreCase("SUCCESS")){
             success.setVisibility(View.VISIBLE);
             failure.setVisibility(View.GONE);
             status.setText(status1);
@@ -77,12 +81,44 @@ String jsonData=null;
             txTime.setText(txTime1);
             txMsg.setText(txMsg1);
             refId.setText(referenceId1);
-        }else{
+            try {
+                finalData.put("Status", status1);
+                finalData.put("Mode",paymentMode1);
+                finalData.put("Amount",orderAmount1);
+                finalData.put("OrderID",orderId1);
+                finalData.put("RefID",referenceId1);
+                finalData.put("TxTime",txTime1);
+                finalData.put("Message",txMsg1);
+                finalData.put("Signature",signature1);
+
+            }
+            catch (Exception e){
+
+            }
+
+        }else if(status1.equalsIgnoreCase("FAILED")){
             success.setVisibility(View.GONE);
             failure.setVisibility(View.VISIBLE);
             status.setText(status1);
             txMsg.setText(txMsg1);
+            try{
+                finalData.put("Status", status1);
+                finalData.put("Message",txMsg1);
+            }
+            catch (Exception e){
+
+            }
         }
+        else{
+            try{
+                finalData.put("Status", status1);
+                finalData.put("Message","Your transaction has cancelled.");
+            }
+            catch (Exception e){
+
+            }
+        }
+        Log.e("finalDetails",finalData.toString());
     }
 
 

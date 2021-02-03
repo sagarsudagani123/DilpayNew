@@ -29,19 +29,16 @@
         android:usesCleartextTraffic="true"
         tools:node="merge"
         tools:targetApi="m">
-        <activity android:name=".MyWallet"></activity>
+
         <activity android:name=".Upgrade_membership" /> <!-- <meta-data android:name="com.google.android.gms.version" -->
         <!-- android:value="@integer/google_play_services_version" /> -->
         <activity android:name=".bus.My_bookings" />
         <activity android:name=".bus.Booking_details" />
         <activity android:name=".Gas_booking_successfull" />
-        <activity android:name=".Gas_screen" />
-        <activity android:name=".Datacard_recharge_successfull" />
+        <activity android:name=".gas.Gas_screen" />
         <activity android:name=".Datacard_screen" />
-        <activity android:name=".electricity.Electricity_recharge_successfull" />
         <activity android:name=".electricity.Electricity_screen" />
         <activity android:name=".Postpaid_screen" />
-        <activity android:name=".dth.DTH_recharge_successfull" />
         <activity android:name=".dth.Dth_screen" />
         <activity android:name=".mobile.Mobile_recharge_successfull" />
         <activity android:name=".bus.busDetailsConfirmation" />
@@ -57,32 +54,20 @@
         <activity android:name=".Add_account_details" />
         <activity android:name=".UPI_payments_screen" />
         <activity android:name=".Profile" />
-        <activity android:name=".gas.Gas_booking_screen" />
-        <activity android:name=".gas.Gas_booking" />
-        <activity android:name=".electricity.Electricity_recharge_screen" />
-        <activity android:name=".electricity.Electricity_recharge" />
-        <activity android:name=".dth.Dth_recharge_screen" />
-        <activity android:name=".dth.Dth_recharge" />
-        <activity android:name=".mobile.Mobile_recharge" />
         <activity android:name=".bus.Bus_payment_options" />
         <activity android:name=".bus.Available_buses" />
-        <activity android:name=".gas.Gas" />
-        <activity android:name=".electricity.Electricity" />
         <activity android:name=".Postpaid" />
-        <activity android:name=".Datacard" />
-        <activity android:name=".dth.Dth" />
         <activity android:name=".mobile.Mobile" />
         <activity android:name=".bus.Bus" />
         <activity android:name=".View_more" />
         <activity android:name=".More" />
         <activity android:name=".Home_screen" />
-        <activity android:name=".Otp" />
-        <activity android:name=".Forgot_password" />
         <activity android:name=".Register_screen" />
         <activity android:name=".Welcome_screen" />
         <activity android:name=".Login_screen" />
-        <activity android:name=".payment.paymentTest" />
-        <activity android:name=".Splash_screen">
+        <activity android:name=".payment.paymentStart" />
+        <activity android:name=".Splash_screen" />
+        <activity android:name=".bus.test">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

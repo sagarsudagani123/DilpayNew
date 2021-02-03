@@ -62,13 +62,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="10dp"
                     android:text="Login"
                     android:textColor="@color/gradientStart"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="start"
-                    />
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -105,17 +104,30 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionDone"
+                        android:enabled="false"
                         android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:id="@+id/readOtp"
+                    android:layout_marginBottom="10dp"
+                    android:text="READ OTP"
+                    android:textColor="@color/gradientStart"
+                    android:textSize="18sp"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:layout_marginTop="5dp"
+                    android:textStyle="normal"/>
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/getOTP"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:background="@drawable/button_main"
                     android:text="get otp"
                     android:textColor="#fff"

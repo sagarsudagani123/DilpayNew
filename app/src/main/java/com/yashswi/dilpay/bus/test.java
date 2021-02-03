@@ -33,10 +33,10 @@ public class test extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        String token1="yk9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.Kk9JyMkVWN5IGNkJTOxAjNiojI0xWYz9lIsEzMwMjNyITM2EjOiAHelJCLiIlTJJiOik3YuVmcyV3QyVGZy9mIsEjOiQnb19WbBJXZkJ3biwiI3UjN1YTN2UjN1YTNiojIklkclRmcvJye.D8S5oWDvI_OPoR1eZ4gokpI_YJaVwBlPI2G6tKgLMEQAiMig30xzDKZ0ttSnPK8dkr";
+        String token1="Qe9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.mG9JiZ3QDMzMmZkNTOxAjNiojI0xWYz9lIsQDMzcjNyITM2EjOiAHelJCLiIlTJJiOik3YuVmcyV3QyVGZy9mIsEjOiQnb19WbBJXZkJ3biwiIxYjN1YTN2UjN1YTNiojIklkclRmcvJye.uAXnyzGpJsrrlB5ZC7P7Pe1_3_97B5RIbCjdhFoPRYdS7U9Mg6IT5X-axE5F_cDjbu";
         Map<String,String> params=new HashMap<>();
         params.put(PARAM_APP_ID, "112692af3484e0119eafbb96096211");
-        params.put(PARAM_ORDER_ID, "565656565657");
+        params.put(PARAM_ORDER_ID, "565656565661");
         params.put(PARAM_ORDER_AMOUNT, "1");
         params.put(PARAM_ORDER_NOTE, "Bus Ticket booking");
         params.put(PARAM_CUSTOMER_NAME,"test");
@@ -52,8 +52,8 @@ public class test extends AppCompatActivity {
 //        params.put(PARAM_CARD_CVV, "123"); // Card CVV
         //////////////////////
 
-        params.put(PARAM_PAYMENT_OPTION, "userVPA");
-        params.put(PARAM_UPI_VPA, "8498959480@ybl");
+//        params.put(PARAM_PAYMENT_OPTION, "userVPA");
+//        params.put(PARAM_UPI_VPA, "9059547672");
         try {
             CFPaymentService cfPaymentService = CFPaymentService.getCFPaymentServiceInstance();
             cfPaymentService.setOrientation(0);
