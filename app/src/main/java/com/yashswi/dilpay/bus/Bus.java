@@ -1,5 +1,6 @@
 package com.yashswi.dilpay.bus;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -57,10 +58,15 @@ public class Bus extends AppCompatActivity {
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
     MaterialAutoCompleteTextView from,to;
+//    String fromCategory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        //GETTING INTENT FROM CATEGORY
+//        fromCategory=getIntent().getStringExtra("FromCategory");
 
         //FINDING VIEWS
         date1 = findViewById(R.id.date1);
@@ -138,15 +144,15 @@ public class Bus extends AppCompatActivity {
 
         // BUS RELATED MENU IN BUS ACTIVITY
         itemImg.add(R.drawable.bus);
-        itemImg.add(R.drawable.mobile1);
-        itemImg.add(R.drawable.dth1);
+//        itemImg.add(R.drawable.mobile1);
+//        itemImg.add(R.drawable.dth1);
         itemImg.add(R.drawable.datacard1);
         itemName.add("My Bookings");//
-        itemName.add("Upcoming Trips");
-        itemName.add("cancelled Tickets");
+//        itemName.add("Upcoming Trips");
+//        itemName.add("cancelled Tickets");
         itemName.add("Offers");
 
-        items_list_adapter adapter = new items_list_adapter(itemImg, itemName, this);
+        items_list_adapter adapter = new items_list_adapter(itemImg, itemName,"Bus", this);
         bus_items.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(this,3);
         bus_items.setLayoutManager(manager);
@@ -170,7 +176,7 @@ public class Bus extends AppCompatActivity {
                         for(int i=0;i<data.length();i++){
                             names.add(data.get(i).toString());
                         }
-                        Toast.makeText(Bus.this,names.toString(),Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Bus.this,names.toString(),Toast.LENGTH_SHORT).show();
                         progress_layout.setVisibility(View.GONE);
 
                     } catch (JSONException e) {

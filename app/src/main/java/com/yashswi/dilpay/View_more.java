@@ -1,6 +1,7 @@
 package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
@@ -19,6 +20,8 @@ public class View_more extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_more);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         rv=findViewById(R.id.recyclerview_more);
         back=findViewById(R.id.back);
         rv.setHasFixedSize(true);
@@ -48,7 +51,7 @@ public class View_more extends AppCompatActivity {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 3);
         rv.setLayoutManager(gridLayoutManager);
-        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names, this);
+        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names,"Main", this);
         rv.setAdapter(adapter);
 
 

@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.bus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,8 @@ String status;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_details);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         back=findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

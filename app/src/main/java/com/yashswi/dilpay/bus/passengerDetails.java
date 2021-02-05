@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.bus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
@@ -49,6 +50,8 @@ public class passengerDetails extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_passenger_details);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
 //        passenger=findViewById(R.id.passenger);
 //        passenger.setHasFixedSize(true);
         cardOne=findViewById(R.id.cardOne);

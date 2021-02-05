@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.dth;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -51,10 +52,14 @@ public class Dth_screen extends AppCompatActivity {
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
     RelativeLayout progress;
+    String fromCategory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dth_screen);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        fromCategory=getIntent().getStringExtra("FromCategory");
         operator_spin=findViewById(R.id.operator_spin);
         circle_spin=findViewById(R.id.circle_spin);
         e_mobile=findViewById(R.id.dth_number);
@@ -177,7 +182,7 @@ public class Dth_screen extends AppCompatActivity {
 //        itemName.add("cancelled Tickets");
 //        itemName.add("Offers");
 
-        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, this);
+        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName,"DTH", this);
         dth_items.setAdapter(adapter2);
         GridLayoutManager manager = new GridLayoutManager(this,3);
         dth_items.setLayoutManager(manager);

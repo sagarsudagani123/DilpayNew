@@ -1,6 +1,7 @@
 package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
 import android.view.View;
@@ -35,6 +36,8 @@ public class Faq extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         back=findViewById(R.id.back);
         qn1=findViewById(R.id.qn1);
         qn2=findViewById(R.id.qn2);

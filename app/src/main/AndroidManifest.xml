@@ -33,6 +33,8 @@
         <activity android:name=".Upgrade_membership" /> <!-- <meta-data android:name="com.google.android.gms.version" -->
         <!-- android:value="@integer/google_play_services_version" /> -->
         <activity android:name=".bus.My_bookings" />
+        <activity android:name=".payment.SelectPayment"/>
+        <activity android:name=".MyWallet"/>
         <activity android:name=".bus.Booking_details" />
         <activity android:name=".Gas_booking_successfull" />
         <activity android:name=".gas.Gas_screen" />
@@ -66,7 +68,6 @@
         <activity android:name=".Welcome_screen" />
         <activity android:name=".Login_screen" />
         <activity android:name=".payment.paymentStart" />
-        <activity android:name=".bus.test" />
         <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

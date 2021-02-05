@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,8 @@ Integer transaction1;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile_recharge_successfull);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         status=findViewById(R.id.success);
         transaction_id=findViewById(R.id.transaction_id1);
         number=findViewById(R.id.number1);

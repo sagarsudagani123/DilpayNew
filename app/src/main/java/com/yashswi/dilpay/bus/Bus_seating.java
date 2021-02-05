@@ -1,5 +1,6 @@
 package com.yashswi.dilpay.bus;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -81,6 +82,8 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_seating);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         //finding views
         progress=findViewById(R.id.progress);
         mainLayout=findViewById(R.id.mainLayout);

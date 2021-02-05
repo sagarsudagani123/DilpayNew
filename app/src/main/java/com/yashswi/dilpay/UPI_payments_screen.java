@@ -1,6 +1,7 @@
 package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
@@ -23,6 +24,8 @@ public class UPI_payments_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_u_p_i_payments_screen);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         add_account=findViewById(R.id.card1);
         li1=findViewById(R.id.li1);
         li2=findViewById(R.id.lin1);

@@ -1,6 +1,8 @@
 package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,6 +20,7 @@ import com.yashswi.dilpay.models.userDetails;
 public class Profile extends AppCompatActivity {
     ImageView back;
     LinearLayout logout,my_bookings;
+    AppCompatButton upgrade;
     RelativeLayout my_wallet,bank_accounts;
     TextView customer_name,customer_mobile,amountWallet;
     com.yashswi.dilpay.models.userDetails userDetails;
@@ -25,6 +28,8 @@ public class Profile extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         back=findViewById(R.id.back);
         logout=findViewById(R.id.logout);
         my_bookings=findViewById(R.id.lin3);
@@ -32,6 +37,7 @@ public class Profile extends AppCompatActivity {
         bank_accounts=findViewById(R.id.lin5);
         customer_name=findViewById(R.id.customer_name);
         customer_mobile=findViewById(R.id.customer_mobile);
+        upgrade=findViewById(R.id.membership);
 //        amountWallet=findViewById(R.id.amount);
 
 
@@ -41,6 +47,13 @@ public class Profile extends AppCompatActivity {
 //        amountWallet.setText(userDetails.getWallet());
 //        Toast.makeText(Profile.this,userDetails.getName()+" "+userDetails.getNumber()+" "+" "+userDetails.getWallet(),Toast.LENGTH_SHORT).show();
 
+        upgrade.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Profile.this,Upgrade_membership.class);
+                startActivity(intent);
+            }
+        });
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -1,6 +1,7 @@
 package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -46,10 +47,15 @@ public class Postpaid_screen extends AppCompatActivity {
 
     String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
     RelativeLayout progress;
+    String fromCategory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_postpaid_screen);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        fromCategory=getIntent().getStringExtra("FromCategory");
+
         operator_spin=findViewById(R.id.operator_spin);
         circle_spin=findViewById(R.id.circle_spin);
         e_mobile=findViewById(R.id.postpaid_number);
@@ -185,7 +191,7 @@ public class Postpaid_screen extends AppCompatActivity {
         itemName.add("Offers");
 
 
-        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, this);
+        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName,"postpaid", this);
         postpaid_items.setAdapter(adapter2);
         GridLayoutManager manager = new GridLayoutManager(this,3);
         postpaid_items.setLayoutManager(manager);

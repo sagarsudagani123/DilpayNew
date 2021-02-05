@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.bus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.app.ActivityOptionsCompat;
 
 import android.content.Intent;
@@ -19,6 +20,8 @@ public class Bus_payment_options extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_payment_options);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         back=findViewById(R.id.back);
         upi_card=findViewById(R.id.card1);
         net_card=findViewById(R.id.card2);

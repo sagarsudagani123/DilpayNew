@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.bus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
@@ -42,6 +43,8 @@ public class Bus_customer_details extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_customer_details);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         board_spin=findViewById(R.id.board_spin);
         drop_spin=findViewById(R.id.drop_spin);
         e_email=findViewById(R.id.e_email);
@@ -103,9 +106,9 @@ public class Bus_customer_details extends AppCompatActivity {
                         bordingPointID=bordingID.get(i);
                     }
                 }
-                for(int i=0;i<dropingPoints.size();i++){
-                    if(dropingPoint.equalsIgnoreCase(dropingPoints.get(i))){
-                        dropingPointID=dropingID.get(i);
+                for(int j=0;j<dropingPoints.size();j++){
+                    if(dropingPoint.equalsIgnoreCase(dropingPoints.get(j))){
+                        dropingPointID=dropingID.get(j);
                     }
                 }
 

@@ -2,6 +2,7 @@ package com.yashswi.dilpay.bus;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -22,6 +23,7 @@ import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.passDetailsAdapter;
 import com.yashswi.dilpay.models.userDetails;
+import com.yashswi.dilpay.payment.SelectPayment;
 import com.yashswi.dilpay.payment.paymentStart;
 
 import org.json.JSONException;
@@ -82,6 +84,7 @@ public class busDetailsConfirmation extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_details_confirmation);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         //finding view
         back=findViewById(R.id.back);
@@ -222,7 +225,8 @@ public class busDetailsConfirmation extends AppCompatActivity {
         user=new JSONObject();
         try{
         user.put("username",userDetails.getNumber());
-        user.put("amount",amount);
+        user.put("amount",amount);//test
+//            user.put("amount","20");
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -297,11 +301,12 @@ public class busDetailsConfirmation extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 progress.setVisibility(View.GONE);
                 Log.e("testFinal",response.body());
-                if(response.body()!=null){
+                if(response.body()!=null || !response.body().isEmpty()){
                     try {
-//                        Toast.makeText(busDetailsConfirmation.this,"inside  "+response.body(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(busDetailsConfirmation.this,"confirm details"+response.body(),Toast.LENGTH_LONG).show();
 
                         JSONObject obj=new JSONObject(response.body());
+                        Toast.makeText(busDetailsConfirmation.this,"=="+response.body(),Toast.LENGTH_SHORT).show();
                         //IF TOKEN GENERATED INITIATE PAYMENT
                         if(obj.getString("Status").equalsIgnoreCase("OK")){
                             String token,orderID,amount,name,number;
@@ -309,17 +314,20 @@ public class busDetailsConfirmation extends AppCompatActivity {
                             token=obj.getString("Token");
                             Log.e("Tokencheck",token);
                             amount=obj.getString("Amount");
-//                            Intent intent=new Intent(busDetailsConfirmation.this,paymentStart.class);
-//                            intent.putExtra("orderID",orderID);
-//                            intent.putExtra("Token",token);
-//                            intent.putExtra("Amount",amount);
-//                            startActivity(intent);
-//                            userDetails=new userDetails(paymentStart.this);
                             name=userDetails.getName();
                             number=userDetails.getNumber();
-                            payment(token,orderID,amount,name,number);
+                            Intent intent=new Intent(busDetailsConfirmation.this, SelectPayment.class);
+                            intent.putExtra("orderID",orderID);
+                            intent.putExtra("Token",token);
+                            intent.putExtra("Amount",amount);
+                            intent.putExtra("Name",name);
+                            intent.putExtra("Number",number);
+                            startActivity(intent);
+//                            userDetails=new userDetails(paymentStart.this);
+
+//                            payment(token,orderID,amount,name,number);
                         }else{
-                            Toast.makeText(busDetailsConfirmation.this, "Seat is no longer available", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(busDetailsConfirmation.this, "Seat is no longer available"+response.body(), Toast.LENGTH_SHORT).show();
                         }
 //                        Intent intent=new Intent(busDetailsConfirmation.this, paymentStart.class);
                         //PASS ORDER ID, TOKEN, AMOUNT, NAME, NUMBER TO PROCEED TO PAYMENT
@@ -343,76 +351,5 @@ public class busDetailsConfirmation extends AppCompatActivity {
                 progress.setVisibility(View.GONE);
             }
         });
-    }
-    void payment(String token,String orderID,String amount,String name,String number)
-    {
-        String token1="9c9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.t5QfiIzMxImM2YzNykTMwYjI6ICdsF2cfJCLyIjMzUDO0EjNxojIwhXZiwiIS5USiojI5NmblJnc1NkclRmcvJCLwIjOiQnb19WbBJXZkJ3biwiI2UjN1YTNiojIklkclRmcvJye.Kt51e7bb3KJ5JmU39WfPhVmoYPIGbHNcj_m_lSbLqaQdcyFBud0qkXLNEclduZDno_";
-        Map<String,String> params=new HashMap<>();
-        params.put(PARAM_APP_ID, "4207d3b63a1ecc9a5d79a8687024");
-        params.put(PARAM_ORDER_ID, orderID);
-        params.put(PARAM_ORDER_AMOUNT, amount);
-        params.put(PARAM_ORDER_NOTE, "Bus Ticket booking");
-        params.put(PARAM_CUSTOMER_NAME,name);
-        params.put(PARAM_CUSTOMER_PHONE, number);
-        params.put(PARAM_CUSTOMER_EMAIL, "thottempudi22@gmail.com");
-        params.put(PARAM_ORDER_CURRENCY, "INR");
-        //////////////////////
-//        params.put(PARAM_PAYMENT_OPTION, "card");
-//        params.put(PARAM_CARD_NUMBER, "4111111111111111");//Replace Card number
-//        params.put(PARAM_CARD_MM, "07"); // Card Expiry Month in MM
-//        params.put(PARAM_CARD_YYYY, "2023"); // Card Expiry Year in YYYY
-//        params.put(PARAM_CARD_HOLDER, "Test"); // Card Holder name
-//        params.put(PARAM_CARD_CVV, "123"); // Card CVV
-        //////////////////////
-
-//        params.put(PARAM_PAYMENT_OPTION, "userVPA");
-//        params.put(PARAM_UPI_VPA, "testtpv@gocash");
-        try {
-            CFPaymentService cfPaymentService = CFPaymentService.getCFPaymentServiceInstance();
-            cfPaymentService.setOrientation(0);
-            cfPaymentService.doPayment(busDetailsConfirmation.this, params, token, "TEST","#6dd5ed", "#FAFAFA", false);
-//            cfPaymentService.upiPayment(busDetailsConfirmation.this,params,token,"TEST");
-        }
-        catch (Exception e){
-            Toast.makeText(busDetailsConfirmation.this,"payment"+e.toString(),Toast.LENGTH_SHORT).show();
-        }
-    }
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Log.d("paymentcheck", "ReqCode : " + CFPaymentService.REQ_CODE);
-        if (data != null) {
-            Bundle  bundle = data.getExtras();
-            if (bundle != null) {
-                for (String  key  :  bundle.keySet()) {
-                    if (bundle.getString(key) != null) {
-                        Log.d("paymentcheck", key + " : " + bundle.getString(key));
-//
-                    }
-                }
-                String status = bundle.getString("txStatus");
-                String paymentMode = bundle.getString("paymentMode");
-                String orderId = bundle.getString("orderId");
-                String txTime = bundle.getString("txTime");
-                String referenceId = bundle.getString("referenceId");
-                String txMsg = bundle.getString("txMsg");
-                String signature = bundle.getString("signature");
-                String orderAmount = bundle.getString("orderAmount");
-//                if (status.equalsIgnoreCase("success")) {
-                    Intent intent = new Intent(busDetailsConfirmation.this, paymentStart.class);
-                    intent.putExtra("status", status);
-                    intent.putExtra("paymentMode", paymentMode);
-                    intent.putExtra("orderId", orderId);
-                    intent.putExtra("txTime", txTime);
-                    intent.putExtra("referenceId", referenceId);
-                    intent.putExtra("txMsg", txMsg);
-                    intent.putExtra("signature", signature);
-                    intent.putExtra("orderAmount",orderAmount);
-//                    Log.e("sendingData",status+""+);
-                    startActivity(intent);
-
-//                }
-            }
-        }
     }
 }

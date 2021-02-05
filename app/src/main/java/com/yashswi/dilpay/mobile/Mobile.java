@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.mobile;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -47,10 +48,15 @@ public class Mobile extends AppCompatActivity  {
 
    String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
     RelativeLayout progress_layout;
+    String fromCategory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        fromCategory=getIntent().getStringExtra("FromCategory");
+
         next=findViewById(R.id.next);
         operator_spin=findViewById(R.id.operator_spin);
         circle_spin=findViewById(R.id.circle_spin);
@@ -188,7 +194,7 @@ public class Mobile extends AppCompatActivity  {
 //        itemName.add("cancelled Tickets");
 //        itemName.add("Offers");
 
-        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, this);
+        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName,"Mobile", this);
         mobile_items.setAdapter(adapter2);
         GridLayoutManager manager = new GridLayoutManager(this,3);
         mobile_items.setLayoutManager(manager);

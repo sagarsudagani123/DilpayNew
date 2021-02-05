@@ -1,6 +1,7 @@
 package com.yashswi.dilpay.bus;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -30,6 +31,8 @@ public class My_bookings extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_bookings);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         rv = findViewById(R.id.bookings_list__recyclerview);
         rv.setHasFixedSize(true);
         back = findViewById(R.id.back);
@@ -54,7 +57,7 @@ public class My_bookings extends AppCompatActivity {
         to.add("Chennai");
         from_time.add("09:30PM");
         to_time.add("04:30AM");
-        status.add("Completed");
+        status.add("Cancelled");
         journey_date.add("20-01-2021");
         travels.add("Sai Tavels");
 

@@ -2,6 +2,7 @@ package com.yashswi.dilpay;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
@@ -27,10 +28,13 @@ public class Home_screen extends AppCompatActivity {
     TextView view_more;
     RecyclerView rv;
     ImageView menu,profile;
+//    String fromCategory="Main";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         //====================
         String android_id = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
@@ -82,7 +86,7 @@ public class Home_screen extends AppCompatActivity {
         buton_names.add("Electricity");
         buton_names.add("Gas");
 
-        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names, this);
+        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names,"Main", this);
         rv.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(this,3);
         rv.setLayoutManager(manager);
@@ -95,6 +99,7 @@ public class Home_screen extends AppCompatActivity {
                     case R.id.action_home:
                             Intent i = new Intent(Home_screen.this, Home_screen.class);
                             startActivity(i);
+                            finish();
                         break;
                     case R.id.action_more:
                             Intent j = new Intent(Home_screen.this, More.class);

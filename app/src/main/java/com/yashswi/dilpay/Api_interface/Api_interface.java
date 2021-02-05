@@ -1,9 +1,14 @@
 package com.yashswi.dilpay.Api_interface;
 
+import com.yashswi.dilpay.models.Add_account_model;
+
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -37,5 +42,10 @@ public interface Api_interface {
     @GET("BusSources.php")
     Call<String> getPlaces();
 
+    @GET("BusTicketConfirmation.php")
+    Call<String> confirmTicket(@Query("BusTicketConfirmation") String data);
+
+    @GET("WalletUpdate.php")
+    Call<String> WalletUpdate(@Query("username") String number);
 
 }
