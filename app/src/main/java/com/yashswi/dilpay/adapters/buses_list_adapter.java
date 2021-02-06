@@ -52,20 +52,20 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
     public void onBindViewHolder(@NonNull buses_list_adapter.MyViewHolder holder, int i) {
         holder.depart.setText(retroModelArray_list.get(i).getDepartureTime());
         holder.arrival.setText(retroModelArray_list.get(i).getArrivalTime());
-        String string = retroModelArray_list.get(i).getFares();
-        String[] parts = string.split("/");
-        double min=Double.parseDouble(parts[0]);
-        double max=Double.parseDouble(parts[0]);
-        for(int x=0;x<parts.length;x++){
-            if(Double.parseDouble(parts[x])<=min){
-                min=Double.parseDouble(parts[x]);
-            }
-            else if(Double.parseDouble(parts[x])>=max){
-                max=Double.parseDouble(parts[x]);
-            }
-        }
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
-        holder.charge.setText(""+decimalFormat.format(min));
+//        String string = retroModelArray_list.get(i).getFares();
+//        String[] parts = string.split("/");
+//        double min=Double.parseDouble(parts[0]);
+//        double max=Double.parseDouble(parts[0]);
+//        for(int x=0;x<parts.length;x++){
+//            if(Double.parseDouble(parts[x])<=min){
+//                min=Double.parseDouble(parts[x]);
+//            }
+//            else if(Double.parseDouble(parts[x])>=max){
+//                max=Double.parseDouble(parts[x]);
+//            }
+//        }
+//        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        holder.charge.setText(retroModelArray_list.get(i).getFares());
         holder.number.setText(retroModelArray_list.get(i).getDisplayName());
         holder.seats.setText(retroModelArray_list.get(i).getAvailableSeats());
         holder.bus_type.setText(retroModelArray_list.get(i).getBusType());

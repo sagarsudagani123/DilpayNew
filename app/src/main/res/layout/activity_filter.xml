@@ -24,7 +24,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Available Buses"
+            android:text="Apply Filter"
             android:id="@+id/te1"
             android:textStyle="bold"
             android:textColor="#fff"
@@ -52,7 +52,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
-                android:id="@+id/passNameOne"
+                android:id="@+id/travelsName"
                 android:imeOptions="actionNext"
                 />
 
@@ -74,7 +74,7 @@
                 android:layout_marginTop="20dp"
                 />
             <RadioGroup
-                android:id="@+id/radioGroupOne"
+                android:id="@+id/radioGroupBusType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_toEndOf="@+id/bustypeText"
@@ -83,16 +83,21 @@
                 android:layout_centerVertical="true"
                 android:orientation="horizontal">
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/maleOne"
+                    android:id="@+id/seater"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Seater" />
 
                 <com.google.android.material.radiobutton.MaterialRadioButton
-                    android:id="@+id/femaleOne"
+                    android:id="@+id/sleeper"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sleeper" />
+                <com.google.android.material.radiobutton.MaterialRadioButton
+                    android:id="@+id/semiSleeper"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Semi-Sleeper" />
             </RadioGroup>
         </RelativeLayout>
         <TextView
@@ -108,21 +113,51 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
-            android:text="2388"
-            android:id="@+id/amount"
+            android:text="0"
+            android:id="@+id/amountFrom"
             android:textColor="@color/textColor"
             android:layout_below="@+id/typeLayout"
             android:layout_toEndOf="@+id/amountText"
             android:layout_marginStart="10dp"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/amountFrom"
+            android:layout_below="@+id/typeLayout"
+            android:text="-"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            android:id="@+id/dash"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="2388"
+            android:id="@+id/amountTo"
+            android:textColor="@color/textColor"
+            android:layout_below="@+id/typeLayout"
+            android:layout_toEndOf="@+id/dash"
+            />
         <com.google.android.material.slider.RangeSlider
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
+            android:id="@+id/amountSlider"
             android:layout_below="@+id/amountText"
             android:valueFrom="0.0"
             android:valueTo="10000.0"
             app:values="@array/initial_slider_values"
             android:stepSize="10.0"  />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:text="Apply Filter"
+            android:layout_below="@+id/amountSlider"
+            android:background="@drawable/button_bg"
+            android:id="@+id/applyFilter"
+            android:layout_centerHorizontal="true"
+            />
     </RelativeLayout>
 
 

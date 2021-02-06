@@ -21,6 +21,7 @@ import com.smarteist.autoimageslider.SliderView;
 import com.yashswi.dilpay.adapters.SliderAdapter;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class Home_screen extends AppCompatActivity {
     ArrayList<Integer> buton_img = new ArrayList<>();
@@ -35,6 +36,7 @@ public class Home_screen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        Toast.makeText(Home_screen.this,""+ Pattern.compile(Pattern.quote("Hello world"), Pattern.CASE_INSENSITIVE).matcher("hello world").find(),Toast.LENGTH_LONG).show();
         //====================
         String android_id = Settings.Secure.getString(this.getContentResolver(),
                 Settings.Secure.ANDROID_ID);
