@@ -58,15 +58,11 @@ public class Bus extends AppCompatActivity {
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
     MaterialAutoCompleteTextView from,to;
-//    String fromCategory;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-        //GETTING INTENT FROM CATEGORY
-//        fromCategory=getIntent().getStringExtra("FromCategory");
 
         //FINDING VIEWS
         date1 = findViewById(R.id.date1);
@@ -81,18 +77,9 @@ public class Bus extends AppCompatActivity {
         progress_layout = findViewById(R.id.progress_layout);
         bus_items=findViewById(R.id.bus_items);
 
-
         progress_layout.setVisibility(View.VISIBLE);
 
         //SETTING SOURCE AND DESTINATIONS LIST TO SPINNERS
-//        String[] names=new String[]{"","Vijayawada","",""};
-//        ArrayList<String> names=new ArrayList<>();
-//        names.add("Hyderabad");
-//        names.add("Vijayawada");
-//        names.add("Chennai");
-//        names.add("Bangalore");
-
-
         ArrayAdapter<String> adapter1=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,getPlaceNames());
         from.setAdapter(adapter1);
         to.setAdapter(adapter1);
@@ -114,7 +101,6 @@ public class Bus extends AppCompatActivity {
                     formattedMonth = "0" + month1;
                 }
                 if(day1 < 10){
-
                     formattedDayOfMonth = "0" + day1;
                 }
                 date1.setText(formattedDayOfMonth + "-" + formattedMonth + "-" + year1);
@@ -124,40 +110,36 @@ public class Bus extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        search.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                source_id = from.getText().toString();
-                destination_id = to.getText().toString();
-                journey_date=date1.getText().toString();
-                if(source_id.equals("") ||source_id==null || destination_id.equals("") ||destination_id==null || !dateChecked){
-                    error.setText("Please fill in all details");
-                }else{
-                    Intent intent = new Intent(Bus.this,Available_buses.class);
-                    intent.putExtra("from",source_id);
-                    intent.putExtra("to",destination_id);
-                    intent.putExtra("date",journey_date);
-                    startActivity(intent);
-                }
+        //SEARCH BUTTON
+        search.setOnClickListener(v -> {
+            source_id = from.getText().toString();
+            destination_id = to.getText().toString();
+            journey_date=date1.getText().toString();
+            if(source_id.equals("") ||source_id==null || destination_id.equals("") ||destination_id==null || !dateChecked){
+                error.setText("Please fill in all details");
+            }else{
+                Intent intent = new Intent(Bus.this,Available_buses.class);
+                intent.putExtra("from",source_id);
+                intent.putExtra("to",destination_id);
+                intent.putExtra("date",journey_date);
+                startActivity(intent);
             }
         });
 
         // BUS RELATED MENU IN BUS ACTIVITY
         itemImg.add(R.drawable.bus);
-//        itemImg.add(R.drawable.mobile1);
-//        itemImg.add(R.drawable.dth1);
         itemImg.add(R.drawable.datacard1);
         itemName.add("My Bookings");//
-//        itemName.add("Upcoming Trips");
-//        itemName.add("cancelled Tickets");
         itemName.add("Offers");
 
+        //ITEMS ADAPTER
         items_list_adapter adapter = new items_list_adapter(itemImg, itemName,"Bus", this);
         bus_items.setAdapter(adapter);
         GridLayoutManager manager = new GridLayoutManager(this,3);
         bus_items.setLayoutManager(manager);
     }
 
+    //GETTING CITY NAMES SUGGESTIONS
     public ArrayList<String> getPlaceNames(){
         ArrayList<String> names=new ArrayList<>();
         Retrofit retrofit = new Retrofit.Builder()
@@ -176,7 +158,6 @@ public class Bus extends AppCompatActivity {
                         for(int i=0;i<data.length();i++){
                             names.add(data.get(i).toString());
                         }
-//                        Toast.makeText(Bus.this,names.toString(),Toast.LENGTH_SHORT).show();
                         progress_layout.setVisibility(View.GONE);
 
                     } catch (JSONException e) {
@@ -190,7 +171,6 @@ public class Bus extends AppCompatActivity {
                 Toast.makeText(Bus.this,"Failed to connect! Try again",Toast.LENGTH_SHORT).show();
             }
         });
-
         return names;
     }
 }

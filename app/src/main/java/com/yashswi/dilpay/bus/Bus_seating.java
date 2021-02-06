@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -64,7 +63,6 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     List<Float> zindexOperatorServiceCharge=new ArrayList<>();
     List<Boolean> zindexisSelected=new ArrayList<>();
     List<String> zindexseatNumber=new ArrayList<>();
-
     ArrayList<String> selectedSeats=new ArrayList<>();
     ArrayList<String> bordingPoints =new ArrayList<>();
     ArrayList<String> dropingPoints=new ArrayList<>();
@@ -73,18 +71,19 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     ArrayList<String> amountsList=new ArrayList<>();
     ArrayList<String> serviceTaxList =new ArrayList<>();
     ArrayList<String> serviceChargeList=new ArrayList<>();
-
     float total_amount=0f;
     String tripId, providerCode,operator_name,source_id,destination_id,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName, operatorID, CancellationPolicy, PartialCancellationAllowed, convienceFee, IdproofRequried;
     RequestQueue mqueue;
     RecyclerView upper,seater;
+
+    //MAIN METHOD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_seating);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        //finding views
+        //FINDING VIEW,S
         progress=findViewById(R.id.progress);
         mainLayout=findViewById(R.id.mainLayout);
         mainLayout.setVisibility(View.GONE);
@@ -105,7 +104,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         upper.setAdapter(null);
         upper.setHasFixedSize(true);
 
-        //getting the intent data
+        //GETTING INTENT DATA
         tripId = (String) this.getIntent().getSerializableExtra("tripID");
         providerCode = (String) this.getIntent().getSerializableExtra("providercode");
         operator_name= (String) this.getIntent().getSerializableExtra("operatorname");
@@ -115,41 +114,37 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         destinationName=getIntent().getStringExtra("destinationName");
         date= (String) this.getIntent().getSerializableExtra("journeydate");
         type=getIntent().getStringExtra("type");
-
-        //getting the intent arraylist data
         bordingPoints =getIntent().getStringArrayListExtra("bordingPoints");
         dropingPoints=getIntent().getStringArrayListExtra("dropingPints");
         bordingID=getIntent().getStringArrayListExtra("bordingID");
         dropingID=getIntent().getStringArrayListExtra("dropingID");
-
         arrivalTime=getIntent().getStringExtra("arrivalTime");
         departureTime=getIntent().getStringExtra("departureTime");
         duration =getIntent().getStringExtra("duration");
         travelsName=getIntent().getStringExtra("travelsName");
-
-        //new
         operatorID = (String) this.getIntent().getSerializableExtra("operatorID");
         CancellationPolicy = (String) this.getIntent().getSerializableExtra("CancellationPolicy");
         PartialCancellationAllowed = (String) this.getIntent().getSerializableExtra("PartialCancellationAllowed");
         convienceFee = (String) this.getIntent().getSerializableExtra("convienceFee");
         IdproofRequried = (String) this.getIntent().getSerializableExtra("IdproofRequried");
 
+        //SETTING TRAVELS NAME TO HEADER TOOLBAR
         travels.setText(operator_name);
 
-//        Log.e("bordingPoints", bordingPoints.toString());
+        upper.setVisibility(View.GONE);
+        seater.setVisibility(View.VISIBLE);
 
-            upper.setVisibility(View.GONE);
-            seater.setVisibility(View.VISIBLE);
-
+        //HIDING UPPER LOWER BUTTONS FOR SEATER AND SEMI SLEEPER BUS
         if((type.contains("sleeper")||type.contains("Sleeper")) ){
             selectIndex.setVisibility(View.VISIBLE);
         }if((type.contains("semi sleeper")||type.contains("Semi sleeper")||type.contains("semi Sleeper")||type.contains("Semi Sleeper"))) {
             selectIndex.setVisibility(View.GONE);
         }
+
+        //UPPER BUTTON ACTION
         upperText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                upperText.setBackgroundColor(getResources().getColor(R.color.gradientStart));
                 upperText.setBackground(ContextCompat.getDrawable(Bus_seating.this,R.drawable.btn_right_active));
                 upperText.setTextColor(getResources().getColor(R.color.white));
                 lowerText.setBackground(ContextCompat.getDrawable(Bus_seating.this,R.drawable.btn_left));
@@ -158,6 +153,8 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 upper.setVisibility(View.VISIBLE);
             }
         });
+
+        //LOWER BUTTON ACTION
         lowerText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -169,6 +166,8 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 seater.setVisibility(View.VISIBLE);
             }
         });
+
+        //PROCEEDING TO NEXT SCREEN
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -187,7 +186,6 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 intent.putStringArrayListExtra("dropingID",dropingID);
                 intent.putStringArrayListExtra("bordingID",bordingID);
                 intent.putStringArrayListExtra("selectedSeats",selectedSeats);
-
                 intent.putStringArrayListExtra("amountsList",amountsList);
                 intent.putStringArrayListExtra("serviceTaxList",serviceTaxList);
                 intent.putStringArrayListExtra("serviceChargeList",serviceChargeList);
@@ -196,7 +194,6 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 intent.putExtra("departureTime", departureTime);
                 intent.putExtra("duration",duration);
                 intent.putExtra("travelsName",travelsName);
-                //NEW ITEMS ADDED
                 intent.putExtra("operatorID",operatorID);//new
                 intent.putExtra("CancellationPolicy",CancellationPolicy);
                 intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
@@ -205,18 +202,23 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 startActivity(intent);
             }
         });
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();
             }
         });
-        loadProducts();
+
+        //GETTING SEATING DATA
+        loadSeats();
     }
-        private void loadProducts() {
+
+        //
+        private void loadSeats() {
             String finalURL="";
             String url1 = "http://dilbus.in/api/seatbooking.php?id="+tripId+"&OperatorCode="+ providerCode +"&OperatorName="+operator_name+"&SourceIDJ="+source_id+"&DestinationIDJ="+destination_id+"&DateDOJ="+date;
-            //operator code encoding start
+            //ENCODING URL
             URL url= null;
             try {
                 url = new URL(url1);
@@ -226,7 +228,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             }
-            //operator code encoding end
+
             mqueue = Volley.newRequestQueue(this);
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, finalURL, new Response.Listener<String>() {
@@ -376,15 +378,6 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                     message = "Cannot connect to Internet...Please check your connection!";
                     Toast.makeText(Bus_seating.this, message, Toast.LENGTH_SHORT).show();
                 }
-                else if(error instanceof ServerError)
-                {
-                    message = "The server could not be found. Please try again after some time!!";
-                    Toast.makeText(Bus_seating.this, message, Toast.LENGTH_SHORT).show();
-                }
-                else if (error instanceof ParseError) {
-                    message = "Parsing error! Please try again after some time!!";
-                    Toast.makeText(Bus_seating.this, message, Toast.LENGTH_SHORT).show();
-                }
                 else{
                     message = "Something went wrong! Please try again!!";
                     Toast.makeText(Bus_seating.this, message, Toast.LENGTH_SHORT).show();
@@ -409,6 +402,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         upper.setAdapter(adapter1);
     }
 
+    //RUNS WHEN SEAT IS SELECTED
     @Override
     public void seatSelected(float position,String seatNumber,Float amount,Float seatAmount,Float serviceTax,Float serviceCharge) {
         seatsSelected.setText("");
@@ -416,7 +410,6 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         selectedSeats.add(seatNumber);
         amountsList.add(String.valueOf(decimalFormat.format(seatAmount)));
         serviceTaxList.add(String.valueOf(decimalFormat.format(serviceTax)));
-
         serviceChargeList.add(String.valueOf(decimalFormat.format(serviceCharge)));
         total_amount=total_amount+amount;
         for(int i=0;i<selectedSeats.size();i++){
@@ -426,16 +419,16 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 seatsSelected.append(","+selectedSeats.get(i));
             }
         }
-
         amountText.setText(""+decimalFormat.format(total_amount));
     }
 
+    //RUNS WHEN EVER SEAT IS CLICKED TO GET NUM OF SEATS SELECTED
     @Override
     public int numOfSeatsSelected() {
-
         return selectedSeats.size();
     }
 
+    //RUNS WHEN EVER SELECTED SEAT IS AGAIN CLICKED
     @Override
     public void deleteSeatSelected(int position,String seatNumber,Float amount) {
         try{

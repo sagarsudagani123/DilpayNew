@@ -70,13 +70,14 @@ public class Home_screen extends AppCompatActivity {
             }
         });
 
-        buton_img.add(R.drawable.bus);
+        buton_img.add(R.drawable.bus_icon);
         buton_img.add(R.drawable.mobile1);
         buton_img.add(R.drawable.dth1);
         buton_img.add(R.drawable.datacard1);
         buton_img.add(R.drawable.post1);
         buton_img.add(R.drawable.ele);
         buton_img.add(R.drawable.gas);
+        buton_img.add(R.drawable.mobile1);
 
         buton_names.add("Bus");
         buton_names.add("Mobile");
@@ -85,6 +86,7 @@ public class Home_screen extends AppCompatActivity {
         buton_names.add("Postpaid");
         buton_names.add("Electricity");
         buton_names.add("Gas");
+        buton_names.add("Money Transfer");
 
         items_list_adapter adapter = new items_list_adapter(buton_img, buton_names,"Main", this);
         rv.setAdapter(adapter);

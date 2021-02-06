@@ -1,6 +1,5 @@
 package com.yashswi.dilpay.payment;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -8,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -17,32 +14,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.cashfree.pg.CFPaymentService;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Home_screen;
 import com.yashswi.dilpay.R;
-import com.yashswi.dilpay.models.userDetails;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
-
-import static com.cashfree.pg.CFPaymentService.PARAM_APP_ID;
-import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_EMAIL;
-import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_NAME;
-import static com.cashfree.pg.CFPaymentService.PARAM_CUSTOMER_PHONE;
-import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_AMOUNT;
-import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_CURRENCY;
-import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_ID;
-import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_NOTE;
 
 import static retrofit2.converter.gson.GsonConverterFactory.create;
 
@@ -60,7 +43,7 @@ String jsonData=null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_payment_test);
+        setContentView(R.layout.activity_payment_start);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         status=findViewById(R.id.txStatus1);

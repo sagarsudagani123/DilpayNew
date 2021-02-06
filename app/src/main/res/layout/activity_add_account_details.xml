@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Add_account_details">
+    tools:context=".bank.Add_account_details">
     <RelativeLayout
         android:id="@+id/re1"
         android:layout_width="match_parent"
@@ -182,7 +182,7 @@
         android:id="@+id/progress"
         android:visibility="gone"
         android:elevation="3dp"
-        android:background="#79000000"
+        android:background="@color/progressBGColor"
         >
         <ProgressBar
             android:layout_width="wrap_content"

@@ -4,16 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.NetworkError;
-import com.android.volley.ParseError;
-import com.android.volley.ServerError;
 import com.google.android.material.card.MaterialCardView;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.R;
@@ -40,6 +39,7 @@ public class Available_buses extends AppCompatActivity {
     RelativeLayout progress_layout;
     MaterialCardView card;
     TextView t1, depart, arrive, amount, travel, avail_seats, bus_type;
+    TextView filter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +65,7 @@ public class Available_buses extends AppCompatActivity {
         to = findViewById(R.id.to);
         date = findViewById(R.id.date1);
         progress_layout = findViewById(R.id.progress_layout);
+        filter=findViewById(R.id.filter);
 
         //GETTING INTENTS DATA
         source_id = this.getIntent().getStringExtra("from");
@@ -76,6 +77,13 @@ public class Available_buses extends AppCompatActivity {
         to.setText(destination_id);
         date.setText(journey_date);
 
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(Available_buses.this,FilterActivity.class);
+                startActivity(intent);
+            }
+        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -83,11 +91,11 @@ public class Available_buses extends AppCompatActivity {
             }
         });
 
-        jsonParse();
+        getAvailableBusses();
     }
 
     //GETTING AVAILABLE BUSES DATA
-    private void jsonParse() {
+    private void getAvailableBusses() {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(create())

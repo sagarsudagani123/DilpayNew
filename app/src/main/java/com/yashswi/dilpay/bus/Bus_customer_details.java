@@ -45,6 +45,7 @@ public class Bus_customer_details extends AppCompatActivity {
         setContentView(R.layout.activity_bus_customer_details);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        //FINDING VIEWS
         board_spin=findViewById(R.id.board_spin);
         drop_spin=findViewById(R.id.drop_spin);
         e_email=findViewById(R.id.e_email);
@@ -55,6 +56,7 @@ public class Bus_customer_details extends AppCompatActivity {
         proceed=findViewById(R.id.proceed);
         back=findViewById(R.id.back);
 
+        //GETTING INTENT DATA
         tripId = (String) this.getIntent().getSerializableExtra("tripID");
         providerCode = (String) this.getIntent().getSerializableExtra("providercode");
         operator_name= (String) this.getIntent().getSerializableExtra("operatorname");
@@ -74,82 +76,79 @@ public class Bus_customer_details extends AppCompatActivity {
         travelsName=getIntent().getStringExtra("travelsName");
         selectedSeats=getIntent().getStringArrayListExtra("selectedSeats");
         totalAmount=getIntent().getFloatExtra("totalAmt",0.0f);
-
         amountsList=getIntent().getStringArrayListExtra("amountsList");
         serviceTaxList=getIntent().getStringArrayListExtra("serviceTaxList");
         serviceChargeList=getIntent().getStringArrayListExtra("serviceChargeList");
-        //new
         operatorID = (String) this.getIntent().getSerializableExtra("operatorID");
         CancellationPolicy = (String) this.getIntent().getSerializableExtra("CancellationPolicy");
         PartialCancellationAllowed = (String) this.getIntent().getSerializableExtra("PartialCancellationAllowed");
         convienceFee = (String) this.getIntent().getSerializableExtra("convienceFee");
         IdproofRequried = (String) this.getIntent().getSerializableExtra("IdproofRequried");
 
+        //SETTING DATA TO SPINNERS
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.menu_popup, bordingPoints);
+        board_spin.setAdapter(adapter);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(), R.layout.menu_popup, dropingPoints);
+        drop_spin.setAdapter(adapter1);
 
-        back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        proceed.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                boardingPoint=board_spin.getText().toString();
-                dropingPoint=drop_spin.getText().toString();
-                email=e_email.getText().toString();
-                number=e_number.getText().toString();
-                String bordingPointID="",dropingPointID="";
+        back.setOnClickListener(v -> finish());
 
-                for(int i=0;i<bordingPoints.size();i++){
-                    if(boardingPoint.equalsIgnoreCase(bordingPoints.get(i))){
-                        bordingPointID=bordingID.get(i);
-                    }
-                }
-                for(int j=0;j<dropingPoints.size();j++){
-                    if(dropingPoint.equalsIgnoreCase(dropingPoints.get(j))){
-                        dropingPointID=dropingID.get(j);
-                    }
-                }
-
-                Intent intent=new Intent(Bus_customer_details.this,passengerDetails.class);
-                intent.putExtra("tripID", tripId);//new
-                intent.putExtra("boardingPoint",boardingPoint);
-                intent.putExtra("dropingPoint",dropingPoint);
-                intent.putExtra("boardingPointID",bordingPointID);
-                intent.putExtra("dropingPointID",dropingPointID);
-                intent.putExtra("sourceid", source_id);//new
-                intent.putExtra("destinationid", destination_id);//new
-                intent.putExtra("email",email);
-                intent.putExtra("number",number);
-                intent.putExtra("sourceName", sourceName);
-                intent.putExtra("journeydate",date);
-                intent.putExtra("type",type);
-                intent.putExtra("destinationName", destinationName);
-                intent.putStringArrayListExtra("selectedSeats",selectedSeats);
-                intent.putExtra("amount",amount.getText());
-                intent.putExtra("arrivalTime", arrivalTime);
-                intent.putExtra("departureTime", departureTime);
-                intent.putExtra("duration",duration);
-                intent.putExtra("travelsName",travelsName);
-                intent.putStringArrayListExtra("amountsList",amountsList);
-                intent.putStringArrayListExtra("serviceTaxList",serviceTaxList);
-                intent.putStringArrayListExtra("serviceChargeList",serviceChargeList);
-                //NEW ITEMS ADDED
-                intent.putExtra("operatorID",operatorID);//new
-                intent.putExtra("operatorname", operator_name);//new
-                intent.putExtra("providercode", providerCode);//new
-                intent.putExtra("CancellationPolicy",CancellationPolicy);
-                intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
-                intent.putExtra("IdproofRequried",IdproofRequried);
-                intent.putExtra("convienceFee","0.00");
-                if(boardingPoint.equalsIgnoreCase("") || dropingPoint.equalsIgnoreCase("") || email.equalsIgnoreCase("") || number.equalsIgnoreCase("")){
-                    Toast.makeText(Bus_customer_details.this,"Fill in all details",Toast.LENGTH_SHORT).show();
-                }else{
-                    startActivity(intent);
+        //GOING TO ACTIVITY TO ENTER PASSENEGR DETAILS
+        proceed.setOnClickListener(view -> {
+            boardingPoint=board_spin.getText().toString();
+            dropingPoint=drop_spin.getText().toString();
+            email=e_email.getText().toString();
+            number=e_number.getText().toString();
+            String bordingPointID="",dropingPointID="";
+            for(int i=0;i<bordingPoints.size();i++){
+                if(boardingPoint.equalsIgnoreCase(bordingPoints.get(i))){
+                    bordingPointID=bordingID.get(i);
                 }
             }
+            for(int j=0;j<dropingPoints.size();j++){
+                if(dropingPoint.equalsIgnoreCase(dropingPoints.get(j))){
+                    dropingPointID=dropingID.get(j);
+                }
+            }
+
+            Intent intent=new Intent(Bus_customer_details.this,passengerDetails.class);
+            intent.putExtra("tripID", tripId);//new
+            intent.putExtra("boardingPoint",boardingPoint);
+            intent.putExtra("dropingPoint",dropingPoint);
+            intent.putExtra("boardingPointID",bordingPointID);
+            intent.putExtra("dropingPointID",dropingPointID);
+            intent.putExtra("sourceid", source_id);//new
+            intent.putExtra("destinationid", destination_id);//new
+            intent.putExtra("email",email);
+            intent.putExtra("number",number);
+            intent.putExtra("sourceName", sourceName);
+            intent.putExtra("journeydate",date);
+            intent.putExtra("type",type);
+            intent.putExtra("destinationName", destinationName);
+            intent.putStringArrayListExtra("selectedSeats",selectedSeats);
+            intent.putExtra("amount",amount.getText());
+            intent.putExtra("arrivalTime", arrivalTime);
+            intent.putExtra("departureTime", departureTime);
+            intent.putExtra("duration",duration);
+            intent.putExtra("travelsName",travelsName);
+            intent.putStringArrayListExtra("amountsList",amountsList);
+            intent.putStringArrayListExtra("serviceTaxList",serviceTaxList);
+            intent.putStringArrayListExtra("serviceChargeList",serviceChargeList);
+            intent.putExtra("operatorID",operatorID);//new
+            intent.putExtra("operatorname", operator_name);//new
+            intent.putExtra("providercode", providerCode);//new
+            intent.putExtra("CancellationPolicy",CancellationPolicy);
+            intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
+            intent.putExtra("IdproofRequried",IdproofRequried);
+            intent.putExtra("convienceFee","0.00");
+            if(boardingPoint.equalsIgnoreCase("") || dropingPoint.equalsIgnoreCase("") || email.equalsIgnoreCase("") || number.equalsIgnoreCase("")){
+                Toast.makeText(Bus_customer_details.this,"Fill in all details",Toast.LENGTH_SHORT).show();
+            }else{
+                startActivity(intent);
+            }
         });
+
+        //APPENDING THE SELECTED SEAT TO TEXT VIEW
         for(int i=0;i<selectedSeats.size();i++){
             if(i==0){
                 seatsSelected.append(""+selectedSeats.get(i));
@@ -159,13 +158,11 @@ public class Bus_customer_details extends AppCompatActivity {
                 seats.concat(","+selectedSeats.get(i));
             }
         }
-        DecimalFormat decimalFormat = new DecimalFormat("#.##");
 
+        //CONVERTING FLOAT TO 2 DECIMAL VALUE
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
         amount.setText(decimalFormat.format(totalAmount));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.menu_popup, bordingPoints);
-        board_spin.setAdapter(adapter);
-        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(getApplicationContext(), R.layout.menu_popup, dropingPoints);
-        drop_spin.setAdapter(adapter1);
+
     }
 }

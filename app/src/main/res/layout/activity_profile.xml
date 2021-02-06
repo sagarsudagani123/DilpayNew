@@ -122,7 +122,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lin2"
+        android:id="@+id/withdraw"
         android:padding="10dp"
         android:layout_below="@id/v1"
         android:orientation="horizontal">
@@ -131,13 +131,13 @@
             android:id="@+id/dish"
             android:layout_height="35dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/bhim"
+            android:src="@drawable/ic_baseline_account_balance_24"
             />
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/dish1"
-            android:text="My Bhim UPI Id"
+            android:text="Withdraw Amount"
             android:textStyle="bold"
             android:transitionName="trans2"
             android:textColor="#000"
@@ -151,7 +151,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:background="#33000000"
-        android:layout_below="@id/lin2"
+        android:layout_below="@id/withdraw"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"

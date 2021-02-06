@@ -29,18 +29,19 @@
         android:usesCleartextTraffic="true"
         tools:node="merge"
         tools:targetApi="m">
-
+        <activity android:name=".bus.FilterActivity"></activity>
+        <activity android:name=".bank.BankAccounts" />
         <activity android:name=".Upgrade_membership" /> <!-- <meta-data android:name="com.google.android.gms.version" -->
         <!-- android:value="@integer/google_play_services_version" /> -->
         <activity android:name=".bus.My_bookings" />
-        <activity android:name=".payment.SelectPayment"/>
-        <activity android:name=".MyWallet"/>
+        <activity android:name=".payment.SelectPayment" />
+        <activity android:name=".MyWallet" />
         <activity android:name=".bus.Booking_details" />
         <activity android:name=".Gas_booking_successfull" />
         <activity android:name=".gas.Gas_screen" />
         <activity android:name=".Datacard_screen" />
         <activity android:name=".electricity.Electricity_screen" />
-        <activity android:name=".Postpaid_screen" />
+        <activity android:name=".postpaid.Postpaid_screen" />
         <activity android:name=".dth.Dth_screen" />
         <activity android:name=".mobile.Mobile_recharge_successfull" />
         <activity android:name=".bus.busDetailsConfirmation" />
@@ -53,12 +54,9 @@
         <activity android:name=".Contact_us" />
         <activity android:name=".About_us" />
         <activity android:name=".Support_screen" />
-        <activity android:name=".Add_account_details" />
-        <activity android:name=".UPI_payments_screen" />
+        <activity android:name=".bank.Add_account_details" />
         <activity android:name=".Profile" />
-        <activity android:name=".bus.Bus_payment_options" />
         <activity android:name=".bus.Available_buses" />
-        <activity android:name=".Postpaid" />
         <activity android:name=".mobile.Mobile" />
         <activity android:name=".bus.Bus" />
         <activity android:name=".View_more" />

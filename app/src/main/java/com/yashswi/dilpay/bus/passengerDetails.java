@@ -52,8 +52,7 @@ public class passengerDetails extends AppCompatActivity {
         setContentView(R.layout.activity_passenger_details);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-//        passenger=findViewById(R.id.passenger);
-//        passenger.setHasFixedSize(true);
+        //FINDING VIEW'S
         cardOne=findViewById(R.id.cardOne);
         cardTwo=findViewById(R.id.cardTwo);
         cardThree=findViewById(R.id.cardThree);
@@ -98,6 +97,8 @@ public class passengerDetails extends AppCompatActivity {
         titleSpinFive=findViewById(R.id.title_spin5);
         titleSpinSix=findViewById(R.id.title_spin6);
 
+
+        //GETTING INTENT DATA
         tripId = (String) this.getIntent().getSerializableExtra("tripID");
         providerCode = (String) this.getIntent().getSerializableExtra("providercode");
         operator_name= (String) this.getIntent().getSerializableExtra("operatorname");
@@ -148,6 +149,7 @@ public class passengerDetails extends AppCompatActivity {
         });
 
 
+        //VISIBLE CARDS ACCORDING TO NUMBER OF SEATS SELECTED
 switch (selectedSeats.size()){
     case 1:
     {
@@ -231,6 +233,8 @@ switch (selectedSeats.size()){
         break;
     }
 }
+
+//GETTING USERS DATA ACCORDING TO NUMBER OF PASSERGERS
 next.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
@@ -393,6 +397,7 @@ next.setOnClickListener(new View.OnClickListener() {
 });
     }
 
+    //PROCEEDING TO NEXT ACTIVITY WITH ALL BOOKING DETAILS
     private void nextPage() {
         Intent intent=new Intent(passengerDetails.this,busDetailsConfirmation.class);
         intent.putExtra("tripID", tripId);//new
@@ -414,7 +419,6 @@ next.setOnClickListener(new View.OnClickListener() {
         intent.putExtra("departureTime", departureTime);
         intent.putExtra("duration",duration);
         intent.putExtra("travelsName",travelsName);
-        //NEW ITEMS ADDED
         intent.putExtra("operatorID",operatorID);//new
         intent.putExtra("operatorname", operator_name);//new
         intent.putExtra("providercode", providerCode);//new

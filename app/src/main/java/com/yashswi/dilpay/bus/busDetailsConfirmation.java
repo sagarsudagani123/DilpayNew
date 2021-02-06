@@ -68,7 +68,6 @@ public class busDetailsConfirmation extends AppCompatActivity {
     Float taxAmount=0f;
     RelativeLayout progress;
     userDetails userDetails;
-
     String boardingPoint,dropingPoint,email,number,amount,date,type,sourceName,destinationName,arrivalTime,departureTime,duration,travelsName,
     tripId, providerCode,operator_name,source_id,destination_id,
     operatorID, CancellationPolicy, PartialCancellationAllowed, convienceFee, IdproofRequried,boardingPointID,dropingPointID;
@@ -80,13 +79,15 @@ public class busDetailsConfirmation extends AppCompatActivity {
     ArrayList<String> serviceTaxList =new ArrayList<>();
     ArrayList<String> serviceChargeList=new ArrayList<>();
     ArrayList<String> titlesList=new ArrayList<>();
+
+    //MAIN METHOD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus_details_confirmation);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        //finding view
+        //FINDING VIEWS
         back=findViewById(R.id.back);
         pickup_location=findViewById(R.id.pickup);
         drop_location=findViewById(R.id.drop);
@@ -104,8 +105,9 @@ public class busDetailsConfirmation extends AppCompatActivity {
         passDetails=findViewById(R.id.passDetails);
         progress=findViewById(R.id.progress_layout);
 
-
+        //CREATING SHAREDPREFERENCE REFRENCE
         userDetails=new userDetails(busDetailsConfirmation.this);
+
         //getting intet data from previous activity
         tripId = (String) this.getIntent().getSerializableExtra("tripID");
         providerCode = (String) this.getIntent().getSerializableExtra("providercode");
@@ -182,9 +184,7 @@ public class busDetailsConfirmation extends AppCompatActivity {
             bookingDetails.put("NoofSeats",""+selectedSeats.size());
             bookingDetails.put("Fares",fares);
             bookingDetails.put("Servicetax",serviceTax);
-//            data2.put("Servicetax","0.00");
             bookingDetails.put("ServiceCharge",serviceCharges);
-//            data2.put("ServiceCharge","0.00");
             bookingDetails.put("SeatNos",seats);
             bookingDetails.put("Seatcodes",""); // sent seat numbers for present
             bookingDetails.put("Titles",titles);
@@ -219,27 +219,27 @@ public class busDetailsConfirmation extends AppCompatActivity {
             bookingDetails.put("UserType","5");
             bookingDetails.put("IsIdProofRequried",false);
         }catch (JSONException e){
-
         }
-        //==================================
+
+        //USER DETAILS OBJECT
         user=new JSONObject();
         try{
         user.put("username",userDetails.getNumber());
-        user.put("amount",amount);//test
-//            user.put("amount","20");
+        user.put("amount",amount);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
+        //MIAN JSON OBJECT
         main=new JSONObject();
         try {
+            //INSERTING BOOKING DETAILS AND USER DETAILS INTO MAIN OBJECT
             main.put("passengerDetails",bookingDetails);
             main.put("userDetails",user);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e("MainData",main.toString());
 
-        //==================================
         //SETTING DATA TO VIEW'S
         pickup_location.setText(sourceName);
         drop_location.setText(destinationName);
@@ -257,7 +257,6 @@ public class busDetailsConfirmation extends AppCompatActivity {
             taxAmount=taxAmount+Float.parseFloat(serviceTaxList.get(i));
             taxAmount=taxAmount+Float.parseFloat(serviceChargeList.get(i));
         }
-//        taxes.setText(String.valueOf(decimalFormat.format(taxAmount)));
         taxes.setText("0.00");
 
         //SETTING PASSENGER'S LIST
@@ -272,7 +271,6 @@ public class busDetailsConfirmation extends AppCompatActivity {
         proceed_payment.setOnClickListener(v -> {
             if(bookingDetails !=null){
                 progress.setVisibility(View.VISIBLE);
-//                sendBookingDetails(bookingDetails.toString());
                 sendBookingDetails(main.toString());
             }else{
                 Toast.makeText(busDetailsConfirmation.this,"Something went wrong! Try again",Toast.LENGTH_SHORT).show();
@@ -280,33 +278,28 @@ public class busDetailsConfirmation extends AppCompatActivity {
             }
 
         });
-
-
     }
+
+    //SENDING COMPLETE DATA JSON OBJECT TO BACKEND
     private void sendBookingDetails(String jsonData) {
         progress.setVisibility(View.VISIBLE);
-        Log.e("jsonDatafinal",jsonData);
-        Gson gson=new GsonBuilder().setLenient().create();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-
         Call<String> call = api.bookingDetails(jsonData);
-//        Toast.makeText(paymentTest.this,"called..."+jsonData,Toast.LENGTH_SHORT).show();
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 progress.setVisibility(View.GONE);
                 Log.e("testFinal",response.body());
-                if(response.body()!=null || !response.body().isEmpty()){
+                if(response.body().isEmpty()){
+                    Toast.makeText(busDetailsConfirmation.this,"getting empty response",Toast.LENGTH_SHORT).show();
+                }
+                if(response.body()!=null){
                     try {
-                        Toast.makeText(busDetailsConfirmation.this,"confirm details"+response.body(),Toast.LENGTH_LONG).show();
-
                         JSONObject obj=new JSONObject(response.body());
-                        Toast.makeText(busDetailsConfirmation.this,"=="+response.body(),Toast.LENGTH_SHORT).show();
                         //IF TOKEN GENERATED INITIATE PAYMENT
                         if(obj.getString("Status").equalsIgnoreCase("OK")){
                             String token,orderID,amount,name,number;
@@ -323,16 +316,9 @@ public class busDetailsConfirmation extends AppCompatActivity {
                             intent.putExtra("Name",name);
                             intent.putExtra("Number",number);
                             startActivity(intent);
-//                            userDetails=new userDetails(paymentStart.this);
-
-//                            payment(token,orderID,amount,name,number);
                         }else{
                             Toast.makeText(busDetailsConfirmation.this, "Seat is no longer available"+response.body(), Toast.LENGTH_SHORT).show();
                         }
-//                        Intent intent=new Intent(busDetailsConfirmation.this, paymentStart.class);
-                        //PASS ORDER ID, TOKEN, AMOUNT, NAME, NUMBER TO PROCEED TO PAYMENT
-//                        intent.putExtra("data", bookingDetails.toString());
-//                        startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
                         Toast.makeText(busDetailsConfirmation.this,e.toString(),Toast.LENGTH_LONG).show();
@@ -341,8 +327,6 @@ public class busDetailsConfirmation extends AppCompatActivity {
                 else{
                     Toast.makeText(busDetailsConfirmation.this,"Something went wrong! Try again",Toast.LENGTH_LONG).show();
                 }
-                //get token and initiate payment
-                Log.e("BlockCheck",response.body());
             }
 
             @Override

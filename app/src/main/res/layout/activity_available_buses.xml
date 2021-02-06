@@ -56,10 +56,47 @@
             android:textSize="18sp"
             android:layout_marginTop="25dp" />
     </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/filterLayout"
+        android:layout_below="@+id/re1"
+        android:orientation="horizontal"
+       android:padding="5dp"
+        >
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/filter"
+            android:text="Filter"
+            android:drawableStart="@drawable/filter"
+            android:drawablePadding="5dp"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:background="@drawable/button_bg"
+            />
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Sort"
+            android:drawableStart="@drawable/sort"
+            android:drawablePadding="5dp"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:background="@drawable/button_bg"
+            />
+
+    </LinearLayout>
       <com.google.android.material.card.MaterialCardView
           android:layout_width="match_parent"
           android:layout_height="70dp"
-          android:layout_below="@id/re1"
+          android:layout_below="@id/filterLayout"
           app:cardCornerRadius="6dp"
           android:id="@+id/card"
           android:elevation="3dp"

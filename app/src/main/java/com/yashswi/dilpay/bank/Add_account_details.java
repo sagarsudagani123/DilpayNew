@@ -1,31 +1,23 @@
-package com.yashswi.dilpay;
+package com.yashswi.dilpay.bank;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
-import com.squareup.okhttp.Interceptor;
-import com.squareup.okhttp.OkHttpClient;
-import com.squareup.okhttp.Request;
-import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.cashFree;
+import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.models.Add_account_model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
-
-import retrofit.GsonConverterFactory;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -45,6 +37,7 @@ public class Add_account_details extends AppCompatActivity {
         setContentView(R.layout.activity_add_account_details);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        //FINDING VIEWS
         back=findViewById(R.id.back);
         name=findViewById(R.id.e_name1);
         email=findViewById(R.id.e_email1);
@@ -55,6 +48,7 @@ public class Add_account_details extends AppCompatActivity {
         address=findViewById(R.id.e_address1);
         submit=findViewById(R.id.submit);
         progress=findViewById(R.id.progress);
+
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,6 +83,7 @@ public class Add_account_details extends AppCompatActivity {
         });
     }
 
+    //ADD BENEFICIARY TO CASHFREE
     private void addBeneficiary(String token,String name1, String email1, String phone1, String bank_account1, String ifsc1, String vpa1, String address1) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://payout-gamma.cashfree.com/")

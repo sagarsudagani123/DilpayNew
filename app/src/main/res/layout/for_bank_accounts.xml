@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="5dp"
+    android:layout_margin="5dp"
+    android:background="@color/white">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Account No:"
+        android:id="@+id/acntText"
+        android:textStyle="bold"
+        android:textColor="@color/textColor"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/acntNum"
+        android:text="98347984797487"
+        android:layout_toEndOf="@+id/acntText"
+        android:layout_marginStart="2dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="IFSC Code:"
+        android:id="@+id/ifscText"
+        android:textStyle="bold"
+        android:layout_below="@+id/acntText"
+        android:textColor="@color/textColor"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ifscNum"
+        android:text="SBIN0000168"
+        android:layout_toEndOf="@+id/ifscText"
+        android:layout_marginStart="2dp"
+        android:layout_below="@+id/acntText"
+        android:textStyle="bold"
+        />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:id="@+id/remove"
+            android:background="@drawable/button_bg"
+            android:text="remove"
+            android:layout_below="@+id/ifscText"
+            android:layout_margin="10dp"
+            />
+
+
+</RelativeLayout>

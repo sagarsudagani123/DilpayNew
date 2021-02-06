@@ -38,7 +38,7 @@
             android:textSize="16sp"
             android:textStyle="bold"
             android:layout_below="@+id/dateText"
-            android:textColor="@color/black" />
+            android:textColor="@color/textHeading" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -59,7 +59,7 @@
             android:layout_below="@+id/dateText"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/to"
-            android:textColor="@color/black" />
+            android:textColor="@color/textHeading" />
 
         <TextView
             android:layout_width="wrap_content"

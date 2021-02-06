@@ -9,18 +9,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.yashswi.dilpay.bank.BankAccounts;
 import com.yashswi.dilpay.bus.My_bookings;
 import com.yashswi.dilpay.models.userDetails;
 
 public class Profile extends AppCompatActivity {
     ImageView back;
-    LinearLayout logout,my_bookings;
+    LinearLayout logout,my_bookings,withdraw;
     AppCompatButton upgrade;
+    AppCompatButton membership;
     RelativeLayout my_wallet,bank_accounts;
     TextView customer_name,customer_mobile,amountWallet;
     com.yashswi.dilpay.models.userDetails userDetails;
@@ -38,6 +38,8 @@ public class Profile extends AppCompatActivity {
         customer_name=findViewById(R.id.customer_name);
         customer_mobile=findViewById(R.id.customer_mobile);
         upgrade=findViewById(R.id.membership);
+        withdraw=findViewById(R.id.withdraw);
+        membership=findViewById(R.id.membership);
 //        amountWallet=findViewById(R.id.amount);
 
 
@@ -47,6 +49,17 @@ public class Profile extends AppCompatActivity {
 //        amountWallet.setText(userDetails.getWallet());
 //        Toast.makeText(Profile.this,userDetails.getName()+" "+userDetails.getNumber()+" "+" "+userDetails.getWallet(),Toast.LENGTH_SHORT).show();
 
+        if(userDetails.getMembership().equalsIgnoreCase("Paid")){
+            membership.setVisibility(View.GONE);
+        }
+        withdraw.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(Profile.this, BankAccounts.class);
+                i.putExtra("title","Select Bank");
+                startActivity(i);
+            }
+        });
         upgrade.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +97,8 @@ public class Profile extends AppCompatActivity {
         bank_accounts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Profile.this, Add_account_details.class);
+                Intent i = new Intent(Profile.this, BankAccounts.class);
+                i.putExtra("title","My Accounts");
                 startActivity(i);
             }
         });

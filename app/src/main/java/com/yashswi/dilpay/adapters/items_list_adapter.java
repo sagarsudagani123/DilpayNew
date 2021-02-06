@@ -12,8 +12,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.yashswi.dilpay.Datacard_screen;
+import com.yashswi.dilpay.bank.BankAccounts;
 import com.yashswi.dilpay.gas.Gas_screen;
-import com.yashswi.dilpay.Postpaid_screen;
+import com.yashswi.dilpay.postpaid.Postpaid_screen;
 import com.yashswi.dilpay.dth.Dth_screen;
 import com.yashswi.dilpay.bus.Bus;
 import com.yashswi.dilpay.electricity.Electricity_screen;
@@ -74,6 +75,11 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                     }else if (name_value.equalsIgnoreCase("gas")){
                         Intent i = new Intent(context, Gas_screen.class);
                         context.startActivity(i);
+                    }
+                    else if(name_value.equalsIgnoreCase("Money Transfer")){
+                        Intent intent =new Intent(context, BankAccounts.class);
+                        intent.putExtra("title","Select Bank");
+                        context.startActivity(intent);
                     }
                 }
                 if(fromCategory.equalsIgnoreCase("Bus")){
