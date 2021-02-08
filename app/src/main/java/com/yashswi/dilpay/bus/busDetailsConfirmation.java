@@ -243,8 +243,8 @@ public class busDetailsConfirmation extends AppCompatActivity {
         //SETTING DATA TO VIEW'S
         pickup_location.setText(sourceName);
         drop_location.setText(destinationName);
-        pickup_time.setText(arrivalTime);
-        drop_time.setText(departureTime);
+        pickup_time.setText(departureTime);
+        drop_time.setText(arrivalTime);
         duration1.setText(duration);
         journey_date.setText(date);
         travels.setText(travelsName);

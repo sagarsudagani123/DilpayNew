@@ -3,11 +3,17 @@ package com.yashswi.dilpay;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.telephony.TelephonyManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
@@ -29,6 +35,7 @@ public class Home_screen extends AppCompatActivity {
     TextView view_more;
     RecyclerView rv;
     ImageView menu,profile;
+    private static final int REQUEST_CODE = 101;
 //    String fromCategory="Main";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,11 +43,14 @@ public class Home_screen extends AppCompatActivity {
         setContentView(R.layout.activity_home_screen);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        Toast.makeText(Home_screen.this,""+ Pattern.compile(Pattern.quote("Hello world"), Pattern.CASE_INSENSITIVE).matcher("hello world").find(),Toast.LENGTH_LONG).show();
         //====================
-        String android_id = Settings.Secure.getString(this.getContentResolver(),
-                Settings.Secure.ANDROID_ID);
-        Toast.makeText(Home_screen.this,android_id,Toast.LENGTH_LONG).show();
+//        TelephonyManager telephonyManager = (TelephonyManager)getSystemService(Context.TELEPHONY_SERVICE);
+//        if (ActivityCompat.checkSelfPermission(Home_screen.this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+//            ActivityCompat.requestPermissions(Home_screen.this, new String[]{Manifest.permission.READ_PHONE_STATE}, REQUEST_CODE);
+//            return;
+//        }
+//        String IMEINumber = telephonyManager.getDeviceId();
+//        Toast.makeText(Home_screen.this,IMEINumber,Toast.LENGTH_LONG).show();
         //====================
         sliderviewWork();
         rv=findViewById(R.id.recyclerview_dashboard);
@@ -138,4 +148,17 @@ public class Home_screen extends AppCompatActivity {
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM);
         sliderView.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION);
     }
+
+//    @Override
+//    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
+//        switch (requestCode) {
+//            case REQUEST_CODE: {
+//                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+//                    Toast.makeText(this, "Permission granted.", Toast.LENGTH_SHORT).show();
+//                } else {
+//                    Toast.makeText(this, "Permission denied.", Toast.LENGTH_SHORT).show();
+//                }
+//            }
+//        }
+//    }
 }
