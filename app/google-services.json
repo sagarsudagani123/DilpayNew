@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "576502399524",
+    "project_id": "dilpay-3958e",
+    "storage_bucket": "dilpay-3958e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:576502399524:android:682b716ed42ddf976e8eb1",
+        "android_client_info": {
+          "package_name": "com.yashswi.dilpay"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "576502399524-25rone3relefn7ss9i561mfsjqkh9t20.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD783A7CfaIfTfM4PTeFtOakfZvKouiJjw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "576502399524-25rone3relefn7ss9i561mfsjqkh9t20.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
