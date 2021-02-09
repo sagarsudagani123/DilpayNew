@@ -127,8 +127,8 @@ public class Bus extends AppCompatActivity {
         });
 
         // BUS RELATED MENU IN BUS ACTIVITY
-        itemImg.add(R.drawable.bus);
-        itemImg.add(R.drawable.datacard1);
+        itemImg.add(R.drawable.my_bookings_new);
+        itemImg.add(R.drawable.offers_new);
         itemName.add("My Bookings");//
         itemName.add("Offers");
 

@@ -101,14 +101,14 @@ public class Home_screen extends AppCompatActivity {
             }
         });
 
-        buton_img.add(R.drawable.bus_icon);
-        buton_img.add(R.drawable.mobile1);
-        buton_img.add(R.drawable.dth1);
-        buton_img.add(R.drawable.datacard1);
-        buton_img.add(R.drawable.post1);
-        buton_img.add(R.drawable.ele);
-        buton_img.add(R.drawable.gas);
-        buton_img.add(R.drawable.mobile1);
+        buton_img.add(R.drawable.bus_new);
+        buton_img.add(R.drawable.mobile_new);
+        buton_img.add(R.drawable.dth_new);
+        buton_img.add(R.drawable.datacard_new);
+        buton_img.add(R.drawable.postpaid_new);
+        buton_img.add(R.drawable.elc_new);
+        buton_img.add(R.drawable.gas_new);
+        buton_img.add(R.drawable.money_trans_new);
 
         buton_names.add("Bus");
         buton_names.add("Mobile");

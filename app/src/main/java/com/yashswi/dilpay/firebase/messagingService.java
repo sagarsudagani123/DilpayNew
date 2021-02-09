@@ -16,6 +16,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 
+
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.yashswi.dilpay.Home_screen;
@@ -51,8 +52,6 @@ public class messagingService extends FirebaseMessagingService {
         if (remoteMessage.getNotification() != null) {
             Log.d("messagehandle", "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
-
-
     }
     private void sendNotification(@NotNull RemoteMessage remoteMessage) {
         Map<String,String> data=remoteMessage.getData();

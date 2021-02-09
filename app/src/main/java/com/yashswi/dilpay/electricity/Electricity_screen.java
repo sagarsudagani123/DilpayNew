@@ -269,8 +269,8 @@ public class Electricity_screen extends AppCompatActivity {
         circle_spin.setAdapter(adapter1);
 
 
-        itemImg.add(R.drawable.bus);
-        itemImg.add(R.drawable.mobile1);
+        itemImg.add(R.drawable.history_new);
+        itemImg.add(R.drawable.offers_new);
 //        itemImg.add(R.drawable.dth1);
 //        itemImg.add(R.drawable.datacard1);
 
