@@ -37,17 +37,8 @@ public class FilterActivity extends AppCompatActivity {
         travelsName=findViewById(R.id.travelsName);
         busTypeRadio=findViewById(R.id.radioGroupBusType);
         back=findViewById(R.id.back);
-//        rangeSlider.addOnSliderTouchListener(new RangeSlider.OnSliderTouchListener() {
-//            @Override
-//            public void onStartTrackingTouch(@NonNull RangeSlider slider) {
-//                Toast.makeText(FilterActivity.this,"started  "+slider,Toast.LENGTH_LONG).show();
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(@NonNull RangeSlider slider) {
-//                Toast.makeText(FilterActivity.this,"stopped   "+slider,Toast.LENGTH_LONG).show();
-//            }
-//        });
+
+        travelsName.setText(getIntent().getStringExtra("name"));
 
         rangeSlider.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override

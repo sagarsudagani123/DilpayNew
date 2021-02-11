@@ -64,6 +64,19 @@
         android:elevation="2dp"
         app:civ_border_color="#fff"
         app:civ_border_width="2dp" />
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/cam"
+        android:id="@+id/uploadPic"
+        android:background="@drawable/button_bg"
+        android:layout_below="@+id/customer_profilepic"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="-25dp"
+        android:layout_marginEnd="25dp"
+        android:padding="5dp"
+        android:elevation="6dp"
+        />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -299,7 +312,35 @@
         <!--            android:textSize="16sp"-->
         <!--            android:textStyle="bold" />-->
     </RelativeLayout>
+<!--    <RelativeLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:id="@+id/lin6"-->
+<!--        android:padding="10dp"-->
+<!--        android:layout_below="@id/lin5"-->
+<!--        android:orientation="horizontal">-->
 
+<!--        <ImageView-->
+<!--            android:layout_width="35dp"-->
+<!--            android:id="@+id/editIcon"-->
+<!--            android:layout_height="35dp"-->
+<!--            android:layout_marginStart="15dp"-->
+<!--            android:src="@drawable/edit"-->
+<!--            />-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:id="@+id/editSettings"-->
+<!--            android:text="Edit Settings"-->
+<!--            android:layout_toRightOf="@id/editIcon"-->
+<!--            android:textStyle="bold"-->
+<!--            android:textColor="#000"-->
+<!--            android:transitionName="trans3"-->
+<!--            android:layout_marginStart="30dp"-->
+<!--            android:textSize="14sp"-->
+<!--            android:layout_marginTop="6dp"-->
+<!--            />-->
+<!--    </RelativeLayout>-->
 
     <LinearLayout
         android:id="@+id/btmll"

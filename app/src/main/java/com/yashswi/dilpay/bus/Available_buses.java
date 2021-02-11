@@ -47,6 +47,7 @@ public class Available_buses extends AppCompatActivity {
     available_buses_model dataNoFilter=null;
     available_buses_model dataWithFilter=null;
     boolean isFiltered=false;
+    String filterName="";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,6 +103,7 @@ public class Available_buses extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent=new Intent(Available_buses.this,FilterActivity.class);
+                intent.putExtra("name",filterName);
                 startActivityForResult(intent,101);
             }
         });
@@ -109,6 +111,7 @@ public class Available_buses extends AppCompatActivity {
         clearFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                filterName="";
                 clearAllFilter(BusesListNoFilter);
             }
         });
@@ -149,8 +152,8 @@ public class Available_buses extends AppCompatActivity {
                     String BusType = bundle.getString("BusType");
                     String AmountFrom = bundle.getString("AmountFrom");
                     String AmountTo = bundle.getString("AmountTo");
+                    filterName=TravelsName;
                     filterData(TravelsName,BusType,AmountFrom,AmountTo,BusesListNoFilter);
-                    Toast.makeText(Available_buses.this,"TravelsName="+TravelsName+" BusType="+BusType+" AmountFrom="+AmountFrom+" AmountTo="+AmountTo,Toast.LENGTH_LONG).show();
                 }
             }
         }

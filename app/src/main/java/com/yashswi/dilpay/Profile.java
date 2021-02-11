@@ -17,7 +17,7 @@ import com.yashswi.dilpay.bus.My_bookings;
 import com.yashswi.dilpay.models.userDetails;
 
 public class Profile extends AppCompatActivity {
-    ImageView back;
+    ImageView back,uploadPic;
     LinearLayout logout,my_bookings,withdraw;
     AppCompatButton upgrade;
     AppCompatButton membership;
@@ -40,6 +40,13 @@ public class Profile extends AppCompatActivity {
         upgrade=findViewById(R.id.membership);
         withdraw=findViewById(R.id.withdraw);
         membership=findViewById(R.id.membership);
+        uploadPic=findViewById(R.id.uploadPic);
+        uploadPic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
 //        amountWallet=findViewById(R.id.amount);
 
 
@@ -73,6 +80,7 @@ public class Profile extends AppCompatActivity {
                 Intent i = new Intent(Profile.this,Login_screen.class);
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 userDetails.setLoged(false);
+                userDetails.clearData();
                 startActivity(i);
                 finish();
             }

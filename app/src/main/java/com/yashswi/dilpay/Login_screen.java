@@ -20,10 +20,15 @@ import com.android.volley.ParseError;
 import com.android.volley.ServerError;
 import com.google.android.gms.auth.api.phone.SmsRetriever;
 import com.google.android.gms.auth.api.phone.SmsRetrieverClient;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.mobsandgeeks.saripaar.Validator;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Broadcast.SmsBroadcastReceiver;
@@ -52,6 +57,7 @@ public class Login_screen extends AppCompatActivity {
     TextInputEditText password;
     RelativeLayout progress_layout;
     String number;
+    String token;
     com.yashswi.dilpay.models.userDetails userDetails;
     SmsBroadcastReceiver smsBroadcastReceiver;
     private static final int REQ_USER_CONSENT = 200;
@@ -92,7 +98,8 @@ public class Login_screen extends AppCompatActivity {
                 if(enteredOTP.equalsIgnoreCase("")){
                     Toast.makeText(Login_screen.this,"Enter your OTP",Toast.LENGTH_SHORT).show();
                 }else{
-                    verifyOTP(number,enteredOTP);
+                    verifyOTP(number,enteredOTP,"0");
+
                 }
 
             }
@@ -110,21 +117,45 @@ public class Login_screen extends AppCompatActivity {
                     Toast.makeText(Login_screen.this,"Enter valid mobile number",Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    sendOtp(number,password);
+                    FirebaseInstanceId.getInstance().getInstanceId()
+                            .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<InstanceIdResult> task) {
+                                    if (!task.isSuccessful()) {
+                                        return;
+                                    }
+                                    // Get new Instance ID token
+                                    token = task.getResult().getToken();
+                                    if(token!=null){
+                                        sendOtp(number,password,token);
+                                    }
+                                }
+                            });
+                    FirebaseMessaging.getInstance().subscribeToTopic("Offers")
+                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    String msg = "Subscribed";
+                                    if (!task.isSuccessful()) {
+                                        msg = "Failed to subscribe";
+                                    }
+                                    Toast.makeText(Login_screen.this, msg, Toast.LENGTH_SHORT).show();
+                                }
+                            });
                 }
-
             }
         });
     }
     //VERIFY USER ENTERED OTP
-    private void verifyOTP(String number,String otp) {
+    private void verifyOTP(String number,String otp,String token) {
+
         progress_layout.setVisibility(View.VISIBLE);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-        Call<String> call = api.login(number,otp);
+        Call<String> call = api.login(number,otp,token);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -176,31 +207,23 @@ public class Login_screen extends AppCompatActivity {
                     message = "Cannot connect to Internet...Please check your connection!";
                     Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                 }
-                else if(t instanceof ServerError)
-                {
-                    message = "The server could not be found. Please try again after some time!!";
-                    Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
-                }
-                else if (t instanceof ParseError) {
-                    message = "Parsing error! Please try again after some time!!";
-                    Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
-                }
                 else{
-                    message = "Somethiing went wrong! Please try again after some time!!"+t.toString();
+                    message = "Something went wrong! Please try again after some time!!";
                     Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
     //SEND OTP
-    private void sendOtp(String user,String pass) {
+    private void sendOtp(String user,String pass,String token) {
+        Log.e("TokenGenerated",""+token);
         progress_layout.setVisibility(View.VISIBLE);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-        Call<String> call = api.login(user,pass);
+        Call<String> call = api.login(user,pass,token);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, @NotNull Response<String> response) {
@@ -262,7 +285,6 @@ public class Login_screen extends AppCompatActivity {
                 new SmsBroadcastReceiver.SmsBroadcastReceiverListener() {
                     @Override
                     public void onSuccess(Intent intent) {
-                        Toast.makeText(Login_screen.this,"message recieved",Toast.LENGTH_SHORT).show();
                         startActivityForResult(intent, REQ_USER_CONSENT);
                     }
                     @Override
@@ -282,19 +304,16 @@ public class Login_screen extends AppCompatActivity {
 
     //STARTING SMSM BROADCAST REGISTER PROCESS
     private void startSmsUserConsent() {
-//        Toast.makeText(getApplicationContext(), "Called user consent", Toast.LENGTH_LONG).show();
         SmsRetrieverClient client = SmsRetriever.getClient(this);
         //We can add sender phone number or leave it blank
         // I'm adding null here
         client.startSmsUserConsent(null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-//                Toast.makeText(getApplicationContext(), "On Success", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(getApplicationContext(), "On OnFailure", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -308,7 +327,6 @@ public class Login_screen extends AppCompatActivity {
                 //That gives all message to us.
                 // We need to get the code from inside with regex
                 String message = data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 //                textViewMessage.setText(
 //                        String.format("%s - %s", getString(R.string.received_message), message));
                 getOtpFromMessage(message);
@@ -328,6 +346,7 @@ public class Login_screen extends AppCompatActivity {
         if (matcher.find()) {
 //            otpText.setText(matcher.group(0));
             password.setText(matcher.group(0));
+            verifyOTP(number,matcher.group(0),"0");
         }
     }
 }

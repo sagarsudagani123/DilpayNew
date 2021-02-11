@@ -117,13 +117,15 @@
           android:layout_below="@id/filterLayout"
           app:cardCornerRadius="6dp"
           android:id="@+id/card"
-          android:elevation="3dp"
+          android:elevation="5dp"
+
           android:layout_margin="7dp">
           <RelativeLayout
               android:layout_width="match_parent"
-              android:layout_height="wrap_content"
+              android:layout_height="match_parent"
               android:paddingStart="8dp"
               android:paddingEnd="8dp"
+              android:background="#6D2AFAE7"
               android:layout_gravity="center">
               <TextView
                   android:layout_width="wrap_content"
@@ -131,6 +133,7 @@
                   android:text="Hyderabad"
                   android:textSize="16sp"
                   android:gravity="center"
+                  android:layout_centerVertical="true"
                   android:id="@+id/from"
                   android:textStyle="bold"/>
              <TextView
@@ -142,6 +145,7 @@
                  android:layout_toEndOf="@id/from"
                  android:layout_marginStart="8dp"
                  android:layout_marginEnd="8dp"
+                 android:layout_centerVertical="true"
                  />
               <TextView
                   android:layout_width="wrap_content"
@@ -151,6 +155,7 @@
                   android:layout_marginEnd="10dp"
                   android:layout_toEndOf="@id/to1"
                   android:id="@+id/to"
+                  android:layout_centerVertical="true"
                   android:textStyle="bold"/>
               <TextView
                   android:layout_width="wrap_content"
@@ -160,6 +165,7 @@
                   android:id="@+id/date1"
                   android:layout_marginEnd="10dp"
                   android:layout_alignParentEnd="true"
+                  android:layout_centerVertical="true"
                   android:textStyle="bold" />
           </RelativeLayout>
       </com.google.android.material.card.MaterialCardView>
@@ -179,8 +185,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/avai"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="8dp" />
+        android:layout_marginBottom="8dp"
+        />
 </RelativeLayout>
