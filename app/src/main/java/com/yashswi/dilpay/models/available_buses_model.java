@@ -7,8 +7,6 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class available_buses_model implements Serializable {
 
-    //"partner fare details"
-
     String DisplayName,AvailableSeats,IsRtc,IdProofRequired,isOpTicketTemplateRequired,isOpLogoRequired,ArrivalTime,Amenities,
             BusType,SeatLayoutType,CancellationPolicy,MaxSeatsPerTicket,DepartureTime,DestinationId,Duration,
             Fares,ServiceTax,OperatorServiceCharge,ConvenienceFee,ConvenienceFeeType,AffiliateId,NetFares,PartnerFee,

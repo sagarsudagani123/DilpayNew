@@ -16,10 +16,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.NetworkError;
 import com.cashfree.pg.CFPaymentService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.yashswi.dilpay.Api_interface.Api_interface;
+import com.yashswi.dilpay.Home_screen;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.passDetailsAdapter;
 import com.yashswi.dilpay.models.userDetails;
@@ -29,6 +31,7 @@ import com.yashswi.dilpay.payment.paymentStart;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.UnknownHostException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -317,7 +320,10 @@ public class busDetailsConfirmation extends AppCompatActivity {
                             intent.putExtra("Number",number);
                             startActivity(intent);
                         }else{
-                            Toast.makeText(busDetailsConfirmation.this, "Seat is no longer available"+response.body(), Toast.LENGTH_SHORT).show();
+                            Intent intent=new Intent(busDetailsConfirmation.this, Bus.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
+                            Toast.makeText(busDetailsConfirmation.this, "Seat is no longer available", Toast.LENGTH_SHORT).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -325,14 +331,22 @@ public class busDetailsConfirmation extends AppCompatActivity {
                     }
                 }
                 else{
-                    Toast.makeText(busDetailsConfirmation.this,"Something went wrong! Try again",Toast.LENGTH_LONG).show();
+                    Toast.makeText(busDetailsConfirmation.this,"Something went wrong! Try again  NULL",Toast.LENGTH_LONG).show();
                 }
             }
-
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(busDetailsConfirmation.this,"failed to send data!!"+t.toString(),Toast.LENGTH_SHORT).show();
                 progress.setVisibility(View.GONE);
+                String message="";
+                if(t instanceof UnknownHostException)
+                {
+                    message = "No internet connection";
+                }
+                else{
+                    message = "Something went wrong! Please try again!!";
+
+                }
+                Toast.makeText(busDetailsConfirmation.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }

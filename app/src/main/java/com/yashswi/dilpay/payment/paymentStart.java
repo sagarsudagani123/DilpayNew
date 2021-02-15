@@ -21,6 +21,8 @@ import com.yashswi.dilpay.R;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.UnknownHostException;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -163,8 +165,16 @@ String jsonData=null;
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(paymentStart.this,t.toString(),Toast.LENGTH_SHORT).show();
-                Log.e("confirmTest",t.toString());
+                String message="";
+                if(t instanceof UnknownHostException)
+                {
+                    message = "No internet connection";
+                }
+                else{
+                    message = "Something went wrong! Please try again";
+
+                }
+                Toast.makeText(paymentStart.this,message,Toast.LENGTH_SHORT).show();
                 progress.setVisibility(View.GONE);
                 mainLayout.setVisibility(View.VISIBLE);
             }

@@ -13,10 +13,13 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.cashFree;
 import com.yashswi.dilpay.R;
+import com.yashswi.dilpay.bus.Bus;
 import com.yashswi.dilpay.models.Add_account_model;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.net.UnknownHostException;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -149,7 +152,6 @@ public class Add_account_details extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Toast.makeText(Add_account_details.this,response.body(),Toast.LENGTH_SHORT).show();
                 try {
                     JSONObject data=new JSONObject(response.body());
                     if (data.getString("status").equalsIgnoreCase("SUCCESS")) {
@@ -169,8 +171,15 @@ public class Add_account_details extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(Add_account_details.this,"Failed to connect..."+t.toString(),Toast.LENGTH_SHORT).show();
-
+                String message="";
+                if(t instanceof UnknownHostException)
+                {
+                    message = "No internet connection";
+                }
+                else{
+                    message = "Something went wrong! try again";
+                }
+                Toast.makeText(Add_account_details.this, message+"", Toast.LENGTH_SHORT).show();
             }
         });
 

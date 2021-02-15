@@ -100,11 +100,14 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
                 ArrayList<String> dropingLandmark= retroModelArray_list.get(i).getLandmarkDrop();
                 ArrayList<String> bordingLocation= retroModelArray_list.get(i).getLocationBoard();
                 ArrayList<String> dropingLocation= retroModelArray_list.get(i).getLocationDrop();
-
+                bordingPoints.clear();
+                dropingPoints.clear();
                 for(int i=0;i<bordingTime.size();i++){
+
                     bordingPoints.add(bordingTime.get(i)+" @"+bordingLocation.get(i)+","+bordingLandmark.get(i));
                 }
                 for(int j=0;j<dropingTime.size();j++){
+
                     dropingPoints.add(dropingTime.get(j)+" @"+dropingLocation.get(j)+","+dropingLandmark.get(j));
                 }
                 ArrayList<String> bordingID= retroModelArray_list.get(i).getPointIdboard();
@@ -143,7 +146,8 @@ public class buses_list_adapter extends RecyclerView.Adapter<buses_list_adapter.
                 intent.putStringArrayListExtra("bordingPoints",bordingPoints);
                 intent.putStringArrayListExtra("dropingID",dropingID);
                 intent.putStringArrayListExtra("bordingID",bordingID);
-//                Toast.makeText(context,dropingPoints.toString(),Toast.LENGTH_SHORT).show();
+                Log.e("testDetails",bordingPoints.toString());
+                Log.e("testDetails",bordingID.toString());
                 context.startActivity(intent);
             }
         });

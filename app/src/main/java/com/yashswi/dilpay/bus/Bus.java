@@ -11,31 +11,23 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
-import android.widget.AutoCompleteTextView;
-import android.widget.DatePicker;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
-import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textview.MaterialTextView;
 
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.items_list_adapter;
+import com.yashswi.dilpay.models.cityNames;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
-import java.text.DecimalFormat;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -58,11 +50,15 @@ public class Bus extends AppCompatActivity {
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
     MaterialAutoCompleteTextView from,to;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bus);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        //CREATING INSTANCE FOR SINGLE TONE CLASS
+        cityNames obj=cityNames.getInstance();
 
         //FINDING VIEWS
         date1 = findViewById(R.id.date1);
@@ -77,10 +73,8 @@ public class Bus extends AppCompatActivity {
         progress_layout = findViewById(R.id.progress_layout);
         bus_items=findViewById(R.id.bus_items);
 
-        progress_layout.setVisibility(View.VISIBLE);
-
-        //SETTING SOURCE AND DESTINATIONS LIST TO SPINNERS
-        ArrayAdapter<String> adapter1=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,getPlaceNames());
+        //SETTING CITIES NAMES FROM HOME ACTIVITY LIST TO SPINNERS
+        ArrayAdapter<String> adapter1=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,obj.getNames());
         from.setAdapter(adapter1);
         to.setAdapter(adapter1);
 
@@ -168,7 +162,16 @@ public class Bus extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Toast.makeText(Bus.this,"Failed to connect! Try again",Toast.LENGTH_SHORT).show();
+                progress_layout.setVisibility(View.GONE);
+                String message="";
+                if(t instanceof UnknownHostException)
+                {
+                    message = "No internet connection";
+                }
+                else{
+                    message = "Something went wrong! try again";
+                }
+                Toast.makeText(Bus.this, message+"", Toast.LENGTH_SHORT).show();
             }
         });
         return names;

@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -76,7 +77,6 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     RequestQueue mqueue;
     RecyclerView upper,seater;
 
-    //MAIN METHOD
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -140,6 +140,9 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         }if((type.contains("semi sleeper")||type.contains("Semi sleeper")||type.contains("semi Sleeper")||type.contains("Semi Sleeper"))) {
             selectIndex.setVisibility(View.GONE);
         }
+//        if(type.contains("sleeper")||type.contains("Sleeper")  && (!type.contains("semi sleeper")||!type.contains("Semi sleeper")||!type.contains("semi Sleeper")||!type.contains("Semi Sleeper"))){
+//            selectIndex.setVisibility(View.VISIBLE);
+//        }
 
         //UPPER BUTTON ACTION
         upperText.setOnClickListener(new View.OnClickListener() {
@@ -235,6 +238,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
             @Override
             public void onResponse(String response) {
                 mainLayout.setVisibility(View.VISIBLE);
+                Log.e("testAgain",response);
                 progress.setVisibility(View.GONE);
                 try {
                     JSONObject jsonObject = new JSONObject(response);
@@ -363,7 +367,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
 
                     setRecycler(isAvailable,seatType,isLadies,NetFare,Servicetax,OperatorServiceCharge,isSelected,seatNumber,zindexIsAvailable,zindexSeatType,zindexIsLadies,zindexNetFare,zindexServicetax,zindexOperatorServiceCharge,zindexisSelected,zindexseatNumber);
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(),"No Data Available"+e.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Something went wrong try again!",Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                     finish();
                 }
@@ -375,14 +379,14 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                 String message="";
                 if(error instanceof NetworkError)
                 {
-                    message = "Cannot connect to Internet...Please check your connection!";
-                    Toast.makeText(Bus_seating.this, message, Toast.LENGTH_SHORT).show();
+                    message = "No internet connection";
                 }
                 else{
                     message = "Something went wrong! Please try again!!";
-                    Toast.makeText(Bus_seating.this, message, Toast.LENGTH_SHORT).show();
-                    finish();
+
                 }
+                Toast.makeText(Bus_seating.this, message, Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
         mqueue.add(stringRequest);
@@ -406,6 +410,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     @Override
     public void seatSelected(float position,String seatNumber,Float amount,Float seatAmount,Float serviceTax,Float serviceCharge) {
         seatsSelected.setText("");
+        Toast.makeText(Bus_seating.this,"Price : "+String.valueOf(amount),Toast.LENGTH_SHORT).show();
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         selectedSeats.add(seatNumber);
         amountsList.add(String.valueOf(decimalFormat.format(seatAmount)));

@@ -158,7 +158,7 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
                 String txMsg = bundle.getString("txMsg");
                 String signature = bundle.getString("signature");
                 String orderAmount = bundle.getString("orderAmount");
-//                if (status.equalsIgnoreCase("success")) {
+                if (status.equalsIgnoreCase("success")) {
                 Intent intent = new Intent(SelectPayment.this, paymentStart.class);
                 intent.putExtra("status", status);
                 intent.putExtra("paymentMode", paymentMode);
@@ -171,7 +171,7 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
 //                    Log.e("sendingData",status+""+);
                 startActivity(intent);
 
-//                }
+                }
             }
         }
     }

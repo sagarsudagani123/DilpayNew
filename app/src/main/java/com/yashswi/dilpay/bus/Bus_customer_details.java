@@ -92,7 +92,6 @@ public class Bus_customer_details extends AppCompatActivity {
         drop_spin.setAdapter(adapter1);
 
         back.setOnClickListener(v -> finish());
-
         //GOING TO ACTIVITY TO ENTER PASSENEGR DETAILS
         proceed.setOnClickListener(view -> {
             boardingPoint=board_spin.getText().toString();
@@ -100,6 +99,7 @@ public class Bus_customer_details extends AppCompatActivity {
             email=e_email.getText().toString();
             number=e_number.getText().toString();
             String bordingPointID="",dropingPointID="";
+
             for(int i=0;i<bordingPoints.size();i++){
                 if(boardingPoint.equalsIgnoreCase(bordingPoints.get(i))){
                     bordingPointID=bordingID.get(i);

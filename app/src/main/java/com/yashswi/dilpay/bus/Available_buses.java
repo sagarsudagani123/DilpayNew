@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.accounts.NetworkErrorException;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -21,6 +22,8 @@ import com.yashswi.dilpay.adapters.buses_list_adapter;
 import com.yashswi.dilpay.models.available_buses_model;
 import org.json.JSONArray;
 import org.json.JSONObject;
+
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -90,15 +93,11 @@ public class Available_buses extends AppCompatActivity {
         sort.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                if(isFiltered){
-//                    sortData(BusesListWithFilter);
-//                }
-//                else {
-//                    sortData(BusesListNoFilter);
-//                }
-
+                //SORTING ALGO
             }
         });
+
+        //STARTING FILTER ACTIVITY FOR RESULT
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,6 +107,7 @@ public class Available_buses extends AppCompatActivity {
             }
         });
 
+        //CLEARING ALL FILTERED LIST
         clearFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -115,6 +115,8 @@ public class Available_buses extends AppCompatActivity {
                 clearAllFilter(BusesListNoFilter);
             }
         });
+
+        //BACK ARROW BUTTON PRESSED
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -122,7 +124,8 @@ public class Available_buses extends AppCompatActivity {
             }
         });
 
-        getAvailableBusses();
+        //RUNNING THREAD FOR GETTING CITIES LIST FROM API IN BACKGROUND USING THREAD
+        new Thread(runnable).start();
     }
 
 //    private void sortData(ArrayList<available_buses_model> busesList) {
@@ -133,6 +136,7 @@ public class Available_buses extends AppCompatActivity {
 //        rv.setLayoutManager(manager);
 //    }
 
+    //CLEARING FILTER
     private void clearAllFilter(ArrayList<available_buses_model> busesListNoFilter) {
         buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id,journey_date, busesListNoFilter, Available_buses.this);
         rv.setAdapter(adapter);
@@ -140,6 +144,7 @@ public class Available_buses extends AppCompatActivity {
         rv.setLayoutManager(manager);
     }
 
+    //FILTGER RESULT METHOD
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -164,22 +169,26 @@ public class Available_buses extends AppCompatActivity {
         BusesListWithFilter.clear();
         isFiltered=true;
         for(int x=0;x<busesListNoFilter.size();x++) {
-            Float fromAmt=Float.parseFloat(amountFrom);
-            Float toAmt=Float.parseFloat(amountTo);
+
+            //USERT SELECTED PRICE RANGES
+            float fromAmt=Float.parseFloat(amountFrom);
+            float toAmt=Float.parseFloat(amountTo);
+
+            //CONVERTING LIST OF AMOUNTS TO SINGLE AMOUNT
             String string = busesListNoFilter.get(x).getFares();
             String[] parts = string.split("/");
             double min=Double.parseDouble(parts[0]);
             double max=Double.parseDouble(parts[0]);
-            for(int y=0;y<parts.length;y++){
-                if(Double.parseDouble(parts[y])<=min){
-                    min=Double.parseDouble(parts[y]);
-                }
-                else if(Double.parseDouble(parts[y])>=max){
-                    max=Double.parseDouble(parts[y]);
+            for (String part : parts) {
+                if (Double.parseDouble(part) <= min) {
+                    min = Double.parseDouble(part);
+                } else if (Double.parseDouble(part) >= max) {
+                    max = Double.parseDouble(part);
                 }
             }
+
+            //GETTING DATA FROM NON FILTERED DATA WHICH SATISFIES USER WANT TO FILTER
             if(busesListNoFilter.get(x).getBusType().toUpperCase().contains(busType.toUpperCase()) &&  busesListNoFilter.get(x).getDisplayName().toUpperCase().contains(travelsName.toUpperCase()) && min>=fromAmt && min<=toAmt){
-//            if(busesListNoFilter.get(x).getDisplayName().contains(travelsName)){
                 dataWithFilter = new available_buses_model();
                 dataWithFilter.setDisplayName(busesListNoFilter.get(x).getDisplayName());
                 dataWithFilter.setAvailableSeats(busesListNoFilter.get(x).getAvailableSeats());
@@ -206,8 +215,6 @@ public class Available_buses extends AppCompatActivity {
                 dataWithFilter.setLocationDrop(busesListNoFilter.get(x).getLocationDrop());
                 dataWithFilter.setNameDrop(busesListNoFilter.get(x).getNameDrop());
                 dataWithFilter.setTimeDrop(busesListNoFilter.get(x).getTimeDrop());
-                //CONVERTING LIST OF AMOUNTS TO SINGLE AMOUNT
-
                 dataWithFilter.setFares(String.valueOf(min));
                 dataWithFilter.setOperatorId(busesListNoFilter.get(x).getOperatorId());
                 dataWithFilter.setId(busesListNoFilter.get(x).getId());
@@ -263,14 +270,14 @@ public class Available_buses extends AppCompatActivity {
                                 dataNoFilter.setLandmarkBoard(dataObject1.getString("Landmark"));
                                 dataNoFilter.setLocationBoard(dataObject1.getString("Location"));
                                 dataNoFilter.setNameBoard(dataObject1.getString("Name"));
-                                //CONVERTING TIME TIME TO 12HRS FORMAT
+                                //CONVERTING TIME( COMING IN MINUTES ) TO 12HRS FORMAT
                                 int hours=Integer.parseInt(dataObject1.getString("Time"))/60;
                                 int min=Integer.parseInt(dataObject1.getString("Time"))%60;
                                 String time;
                                 if(hours>=24){
                                     hours=hours%24;
                                 }
-                                if(hours>=12 && hours <24){
+                                if(hours>=12){
                                     hours=hours%12;
                                     if(hours==0){
                                         time=12+":"+min+" PM";
@@ -283,7 +290,7 @@ public class Available_buses extends AppCompatActivity {
                                     if(hours==0){
                                         time=12+":"+min+" AM";
                                     }else{
-                                        time=hours+"::"+min+" AM";
+                                        time=hours+":"+min+" AM";
                                     }
                                 }
                                 dataNoFilter.setTimeBoard(time);
@@ -303,14 +310,14 @@ public class Available_buses extends AppCompatActivity {
                                 dataNoFilter.setLandmarkDrop(dataObject2.getString("Landmark"));
                                 dataNoFilter.setLocationDrop(dataObject2.getString("Location"));
                                 dataNoFilter.setNameDrop(dataObject2.getString("Name"));
-                                //CONVERTING TIME TIME TO 12HRS FORMAT
+                                //CONVERTING TIME( COMING IN MINUTES ) TO 12HRS FORMAT
                                 int hours=Integer.parseInt(dataObject2.getString("Time"))/60;
                                 int min=Integer.parseInt(dataObject2.getString("Time"))%60;
                                 String time;
                                 if(hours>=24){
                                     hours=hours%24;
                                 }
-                                if(hours>=12 && hours <24){
+                                if(hours>=12){
                                     hours=hours%12;
                                     if(hours==0){
                                         time=12+":"+min+" PM";
@@ -333,12 +340,11 @@ public class Available_buses extends AppCompatActivity {
                             String[] parts = string.split("/");
                             double min=Double.parseDouble(parts[0]);
                             double max=Double.parseDouble(parts[0]);
-                            for(int x=0;x<parts.length;x++){
-                                if(Double.parseDouble(parts[x])<=min){
-                                    min=Double.parseDouble(parts[x]);
-                                }
-                                else if(Double.parseDouble(parts[x])>=max){
-                                    max=Double.parseDouble(parts[x]);
+                            for (String part : parts) {
+                                if (Double.parseDouble(part) <= min) {
+                                    min = Double.parseDouble(part);
+                                } else if (Double.parseDouble(part) >= max) {
+                                    max = Double.parseDouble(part);
                                 }
                             }
                             dataNoFilter.setFares(String.valueOf(min));
@@ -370,16 +376,26 @@ public class Available_buses extends AppCompatActivity {
             public void onFailure(Call<String> call, Throwable t) {
                 progress.setVisibility(View.GONE);
                 String message="";
-                if(t instanceof NetworkError)
+                if(t instanceof UnknownHostException)
                 {
-                    message = "Cannot connect to Internet...Please check your connection!";
+                    message = "No internet connection!";
                 }
                 else{
-                    message = "Something went wrong! Please try again after some time!!"+t.toString();
+                    message = "Something went wrong! try again";
                 }
-                Toast.makeText(Available_buses.this, message, Toast.LENGTH_SHORT).show();
-
+                Toast.makeText(Available_buses.this, message+"", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
+
+    //CREATING THREAD
+    Runnable runnable = new Runnable()
+    {
+        @Override
+        public void run()
+        {
+            getAvailableBusses();
+        }
+    };
 }

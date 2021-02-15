@@ -39,6 +39,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.UnknownHostException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -258,15 +259,14 @@ public class Login_screen extends AppCompatActivity {
             public void onFailure(Call<String> call, Throwable t) {
                 progress_layout.setVisibility(View.GONE);
                 String message;
-                if(t instanceof NetworkError)
+                if(t instanceof UnknownHostException)
                 {
                     message = "Cannot connect to Internet...Please check your connection!";
-                    Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                 }
                 else{
-                    message = "Something went wrong! Please try again after some time!!"+t.toString();
-                    Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
+                    message = "Something went wrong! Please try again after some time!!";
                 }
+                Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -332,7 +332,7 @@ public class Login_screen extends AppCompatActivity {
                 getOtpFromMessage(message);
             }
             if(resultCode==RESULT_CANCELED){
-                Toast.makeText(Login_screen.this,"permission Cancled",Toast.LENGTH_SHORT).show();
+                Toast.makeText(Login_screen.this,"permission Required. Try again",Toast.LENGTH_SHORT).show();
 //                startActivityForResult(data, REQ_USER_CONSENT);
             }
         }

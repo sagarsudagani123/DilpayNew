@@ -399,45 +399,66 @@ next.setOnClickListener(new View.OnClickListener() {
 
     //PROCEEDING TO NEXT ACTIVITY WITH ALL BOOKING DETAILS
     private void nextPage() {
-        Intent intent=new Intent(passengerDetails.this,busDetailsConfirmation.class);
-        intent.putExtra("tripID", tripId);//new
-        intent.putExtra("boardingPoint",boardingPoint);
-        intent.putExtra("dropingPoint",dropingPoint);
-        intent.putExtra("boardingPointID",boardingPointID);
-        intent.putExtra("dropingPointID",dropingPointID);
-        intent.putExtra("sourceid", source_id);//new
-        intent.putExtra("destinationid", destination_id);//new
-        intent.putExtra("email",email);
-        intent.putExtra("number",number);
-        intent.putExtra("sourceName", sourceName);
-        intent.putExtra("journeydate",date);
-        intent.putExtra("type",type);
-        intent.putExtra("destinationName", destinationName);
-        intent.putStringArrayListExtra("selectedSeats",selectedSeats);
-        intent.putExtra("amount",amount);
-        intent.putExtra("arrivalTime", arrivalTime);
-        intent.putExtra("departureTime", departureTime);
-        intent.putExtra("duration",duration);
-        intent.putExtra("travelsName",travelsName);
-        intent.putExtra("operatorID",operatorID);//new
-        intent.putExtra("operatorname", operator_name);//new
-        intent.putExtra("providercode", providerCode);//new
-        intent.putExtra("CancellationPolicy",CancellationPolicy);
-        intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
-        intent.putExtra("IdproofRequried",IdproofRequried);
-        intent.putExtra("convienceFee",convienceFee);
-        intent.putStringArrayListExtra("selectedSeats",selectedSeats);
-        intent.putStringArrayListExtra("passengerNames",passengerNames);
-        intent.putStringArrayListExtra("passengerAges",passengerAge);
-        intent.putStringArrayListExtra("passengerGenders",gender);
-        intent.putStringArrayListExtra("Titles",titlesList);
-        intent.putStringArrayListExtra("amountsList",amountsList);
-        intent.putStringArrayListExtra("serviceTaxList",serviceTaxList);
-        intent.putStringArrayListExtra("serviceChargeList",serviceChargeList);
-        startActivity(intent);
-        passengerNames.clear();
-        passengerAge.clear();
-        gender.clear();
-        titlesList.clear();
+        boolean isAllOk=false;
+        for(int i=0;i<gender.size();i++){
+            if(gender.get(i).equalsIgnoreCase("M") && titlesList.get(i).equalsIgnoreCase("Mr")){
+                isAllOk=true;
+            }
+            else if(gender.get(i).equalsIgnoreCase("F") && (titlesList.get(i).equalsIgnoreCase("Mrs")  ||titlesList.get(i).equalsIgnoreCase("Ms"))){
+                isAllOk=true;
+            }else{
+                isAllOk=false;
+                break;
+            }
+        }
+        if(!isAllOk){
+            passengerNames.clear();
+            passengerAge.clear();
+            gender.clear();
+            titlesList.clear();
+            Toast.makeText(passengerDetails.this,"Please select proper Title",Toast.LENGTH_SHORT).show();
+        }else{
+            Intent intent=new Intent(passengerDetails.this,busDetailsConfirmation.class);
+            intent.putExtra("tripID", tripId);//new
+            intent.putExtra("boardingPoint",boardingPoint);
+            intent.putExtra("dropingPoint",dropingPoint);
+            intent.putExtra("boardingPointID",boardingPointID);
+            intent.putExtra("dropingPointID",dropingPointID);
+            intent.putExtra("sourceid", source_id);//new
+            intent.putExtra("destinationid", destination_id);//new
+            intent.putExtra("email",email);
+            intent.putExtra("number",number);
+            intent.putExtra("sourceName", sourceName);
+            intent.putExtra("journeydate",date);
+            intent.putExtra("type",type);
+            intent.putExtra("destinationName", destinationName);
+            intent.putStringArrayListExtra("selectedSeats",selectedSeats);
+            intent.putExtra("amount",amount);
+            intent.putExtra("arrivalTime", arrivalTime);
+            intent.putExtra("departureTime", departureTime);
+            intent.putExtra("duration",duration);
+            intent.putExtra("travelsName",travelsName);
+            intent.putExtra("operatorID",operatorID);//new
+            intent.putExtra("operatorname", operator_name);//new
+            intent.putExtra("providercode", providerCode);//new
+            intent.putExtra("CancellationPolicy",CancellationPolicy);
+            intent.putExtra("PartialCancellationAllowed",PartialCancellationAllowed);
+            intent.putExtra("IdproofRequried",IdproofRequried);
+            intent.putExtra("convienceFee",convienceFee);
+            intent.putStringArrayListExtra("selectedSeats",selectedSeats);
+            intent.putStringArrayListExtra("passengerNames",passengerNames);
+            intent.putStringArrayListExtra("passengerAges",passengerAge);
+            intent.putStringArrayListExtra("passengerGenders",gender);
+            intent.putStringArrayListExtra("Titles",titlesList);
+            intent.putStringArrayListExtra("amountsList",amountsList);
+            intent.putStringArrayListExtra("serviceTaxList",serviceTaxList);
+            intent.putStringArrayListExtra("serviceChargeList",serviceChargeList);
+            startActivity(intent);
+            passengerNames.clear();
+            passengerAge.clear();
+            gender.clear();
+            titlesList.clear();
+        }
+
     }
 }
