@@ -64,9 +64,10 @@ public class messagingService extends FirebaseMessagingService {
 //        String click_action=data.get("click_action");;
         String content=remoteMessage.getNotification().getBody();
         String title=remoteMessage.getNotification().getTitle();
-//        String click_action=remoteMessage.getNotification().getClickAction();
-//        Intent intent=new Intent(click_action);
-//        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
+        String click_action=remoteMessage.getNotification().getClickAction();
+        Log.e("click action",click_action);
+        Intent intent=new Intent(click_action);
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
 try {
         NotificationManager noti=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL="TESTCHANNEL";
@@ -86,7 +87,7 @@ try {
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.rupee)
                 .setTicker("Hearty365")
-//                .setContentIntent(pendingIntent)
+                .setContentIntent(pendingIntent)
                 .setContentTitle(title)
                 .setContentText(content)
                 .setContentInfo("info");

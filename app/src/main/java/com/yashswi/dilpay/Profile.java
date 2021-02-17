@@ -59,8 +59,6 @@ public class Profile extends AppCompatActivity {
 
         userDetails=new userDetails(Profile.this);
         getWalletAmount(userDetails.getNumber());
-//        walletAmount=userDetails.getWallet();
-//        commissionAmount=userDetails.getComission();
 
         back=findViewById(R.id.back);
         logout=findViewById(R.id.logout);
@@ -95,13 +93,10 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 ImagePicker.Companion.with(Profile.this)
-                        .crop()	    			//Crop image(Optional), Check Customization for more option
-                        .compress(1024)			//Final image size will be less than 1 MB(Optional)
-                        .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
+                        .crop()
+                        .compress(1024)
+                        .maxResultSize(1080, 1080)
                         .start();
-
-//                        .galleryOnly()	//User can only select image from Gallery
-//                        .start();
             }
         });
 
@@ -160,7 +155,6 @@ public class Profile extends AppCompatActivity {
                     i.putExtra("walletAmt",walletAmount);
                     i.putExtra("commissionAmt",commissionAmount);
                     startActivity(i);
-                }else{
                 }
 
             }
@@ -192,7 +186,7 @@ public class Profile extends AppCompatActivity {
             addr=uri.getPath();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(Profile.this.getContentResolver(), uri);
-                customer_profilepic.setImageBitmap(bitmap); //set image from image picker
+                customer_profilepic.setImageBitmap(bitmap);
 //                uploadFile();
 
             } catch (IOException e) {

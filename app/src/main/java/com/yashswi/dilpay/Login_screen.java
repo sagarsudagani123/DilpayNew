@@ -348,6 +348,7 @@ public class Login_screen extends AppCompatActivity {
         Pattern pattern = Pattern.compile("(|^)\\d{6}");
         Matcher matcher = pattern.matcher(message);
         if (matcher.find()) {
+//            if(matcher.group(0).con)
 //            otpText.setText(matcher.group(0));
             password.setText(matcher.group(0));
             verifyOTP(number,matcher.group(0),"0");

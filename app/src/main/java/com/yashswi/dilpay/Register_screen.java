@@ -349,15 +349,7 @@ public class Register_screen extends AppCompatActivity{
         if (matcher.find()) {
 //            otpText.setText(matcher.group(0));
             password.setText(matcher.group(0));
-            JSONObject dataObj=new JSONObject();
-            try {
-                dataObj.put("number",number);
-                dataObj.put("name",name1);
-                dataObj.put("OTP",matcher.group(0));
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            verifyOTP(dataObj.toString());
+
         }
     }
 

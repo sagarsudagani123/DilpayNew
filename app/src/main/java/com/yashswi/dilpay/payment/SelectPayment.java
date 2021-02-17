@@ -44,6 +44,7 @@ RelativeLayout card_layout,upi_layout;
 AppCompatButton cardSubmit;
 TextInputEditText card_number,holder_name,card_month,card_year,cvv;
     String token,orderID,amount,name,number,cardNum,holderName,cardMonth,cardYear,cardCvv;
+    String FromPage,RefCode="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +67,8 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
         amount=getIntent().getStringExtra("Amount");
         name=getIntent().getStringExtra("Name");
         number=getIntent().getStringExtra("Number");
+        FromPage=getIntent().getStringExtra("FromPage");
+        RefCode=getIntent().getStringExtra("RefCode");
 //        token="gz9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.lM9JSOjljZiJDZmJ2YxAjNiojI0xWYz9lIsATN4gDOwUTM2EjOiAHelJCLiIlTJJiOik3YuVmcyV3QyVGZy9mIsAjM6ICduV3btFkclRmcvJCLiAjMwIDMyAjMiojIklkclRmcvJye.ZdL67hdvmK-iH4ASOZ6qvO8NXH-ZeHm37FcHZ0fwiR53WLqpF4JC84dkyJxVwBiLvX";
 //        orderID="20202020";
 //        amount="20";
@@ -160,6 +163,7 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
                 String orderAmount = bundle.getString("orderAmount");
                 if (status.equalsIgnoreCase("success")) {
                 Intent intent = new Intent(SelectPayment.this, paymentStart.class);
+                intent.putExtra("FromPage",FromPage);
                 intent.putExtra("status", status);
                 intent.putExtra("paymentMode", paymentMode);
                 intent.putExtra("orderId", orderId);
@@ -168,8 +172,10 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
                 intent.putExtra("txMsg", txMsg);
                 intent.putExtra("signature", signature);
                 intent.putExtra("orderAmount",orderAmount);
+                intent.putExtra("RefCode",RefCode);
 //                    Log.e("sendingData",status+""+);
                 startActivity(intent);
+                finish();
 
                 }
             }

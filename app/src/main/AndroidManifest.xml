@@ -36,7 +36,6 @@
         <activity android:name=".Notification">
             <intent-filter>
                 <action android:name="com.yashswi.dilpay.notification_action" />
-
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

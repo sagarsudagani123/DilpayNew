@@ -16,7 +16,10 @@ import android.widget.Toast;
 
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Home_screen;
+import com.yashswi.dilpay.Profile;
 import com.yashswi.dilpay.R;
+import com.yashswi.dilpay.Upgrade_membership;
+import com.yashswi.dilpay.models.userDetails;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -39,6 +42,8 @@ public class paymentStart extends AppCompatActivity {
     LinearLayout detailsLayout;
     RelativeLayout progress,mainLayout;
     com.yashswi.dilpay.models.userDetails userDetails;
+    String FromPage,RefCode;
+    JSONObject finalData;
 
 String jsonData=null;
 
@@ -71,44 +76,73 @@ String jsonData=null;
          txMsg1 = getIntent().getStringExtra("txMsg");
          signature1 = getIntent().getStringExtra("signature");
          orderAmount1 = getIntent().getStringExtra("orderAmount");
+        FromPage=getIntent().getStringExtra("FromPage");
+        RefCode=getIntent().getStringExtra("RefCode");
 
-        JSONObject finalData=new JSONObject();
+        finalData=new JSONObject();
 
+        if(FromPage.equalsIgnoreCase("BusConfirm")){
+            if(status1.equalsIgnoreCase("SUCCESS")){
 
-        if(status1.equalsIgnoreCase("SUCCESS")){
+                try {
+                    finalData.put("Status", status1);
+                    finalData.put("Mode",paymentMode1);
+                    finalData.put("Amount",orderAmount1);
+                    finalData.put("OrderID",orderId1);
+                    finalData.put("RefID",referenceId1);
+                    finalData.put("TxTime",txTime1);
+                    finalData.put("Message",txMsg1);
+                    finalData.put("Signature",signature1);
+                }
+                catch (Exception e){
+                }
+                confirmTicket(finalData.toString());
+            }else if(status1.equalsIgnoreCase("FAILED")){
+                try{
+                    finalData.put("Status", status1);
+                    finalData.put("Message",txMsg1);
+                }
+                catch (Exception e){
+                }
+                confirmTicket(finalData.toString());
+            }
+            else{
+                try{
+                    finalData.put("Status", status1);
+                    finalData.put("Message",txMsg1);
+                }
+                catch (Exception e){
 
-            try {
-                finalData.put("Status", status1);
-                finalData.put("Mode",paymentMode1);
-                finalData.put("Amount",orderAmount1);
-                finalData.put("OrderID",orderId1);
-                finalData.put("RefID",referenceId1);
-                finalData.put("TxTime",txTime1);
-                finalData.put("Message",txMsg1);
-                finalData.put("Signature",signature1);
+                }
+                confirmTicket(finalData.toString());
             }
-            catch (Exception e){
+        }else{
+            if(status1.equalsIgnoreCase("SUCCESS")){
+                try {
+
+                    finalData.put("Status", status1);
+                    finalData.put("PaymentFor","Upgrade Membership");
+                    finalData.put("Mode",paymentMode1);
+                    finalData.put("Amount",orderAmount1);
+                    finalData.put("OrderID",orderId1);
+                    finalData.put("RefID",referenceId1);
+                    finalData.put("TxTime",txTime1);
+                    finalData.put("Message",txMsg1);
+                    finalData.put("Signature",signature1);
+                    String number=new userDetails(paymentStart.this).getNumber();
+                    upgradeMember(number,RefCode);
+                }
+                catch (Exception e){
+                }
             }
-            confirmTicket(finalData.toString());
-        }else if(status1.equalsIgnoreCase("FAILED")){
-            try{
-                finalData.put("Status", status1);
-                finalData.put("Message",txMsg1);
+            else{
+                Toast.makeText(paymentStart.this,"Payment Failed!",Toast.LENGTH_SHORT).show();
+                finish();
             }
-            catch (Exception e){
-            }
-            confirmTicket(finalData.toString());
         }
-        else{
-            try{
-                finalData.put("Status", status1);
-                finalData.put("Message",txMsg1);
-            }
-            catch (Exception e){
 
-            }
-            confirmTicket(finalData.toString());
-        }
+
+
         Log.e("finalDetails",finalData.toString());
     }
 
@@ -181,6 +215,46 @@ String jsonData=null;
         });
     }
 
+    private void upgradeMember(String userNumber, String refCode) {
+        Log.e("upgradePAyment",finalData.toString());
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api_interface.JSONURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        Api_interface api = retrofit.create(Api_interface.class);
+
+        Call<String> call = api.upgradeUser(userNumber,refCode);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                progress.setVisibility(View.GONE);
+                String message="";
+                try {
+                    Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_SHORT).show();
+                    JSONObject object=new JSONObject(response.body());
+                    message=object.getString("Message");
+                    if(object.getString("Status").equalsIgnoreCase("True")){
+                        userDetails=new userDetails(paymentStart.this);
+                        userDetails.setMembership("Paid");
+                        Intent intent=new Intent(paymentStart.this, Profile.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    Toast.makeText(paymentStart.this,message,Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(paymentStart.this,e.toString(),Toast.LENGTH_SHORT).show();
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                progress.setVisibility(View.GONE);
+                Toast.makeText(paymentStart.this,t.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
     @Override
     public void onBackPressed() {

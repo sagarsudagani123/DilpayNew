@@ -104,7 +104,7 @@ public class Home_screen extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                            Intent i = new Intent(Home_screen.this, Home_screen.class);
+                            Intent i = new Intent(Home_screen.this, Notification.class);
                             startActivity(i);
                             finish();
                         break;

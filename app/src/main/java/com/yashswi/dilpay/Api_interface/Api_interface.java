@@ -56,6 +56,16 @@ public interface Api_interface {
     @FormUrlEncoded
     Call<String> upgradeUser(@Field("username") String username, @Field("Refferal_User") String refCode);
 
+    @POST("CashfreeToken.php")
+    @FormUrlEncoded
+    Call<String> generateToken(@Field("MyOrderId") String orderID, @Field("MyorderAmount") String amount);
+
+    @POST("NotificationsReport.php")
+    @FormUrlEncoded
+    Call<String> getNotifications(@Field("username") String userNumber);
+
+
+    //test upload image
     @Multipart
     @POST("test2.php")
     Call<String> uploadPic(@Part MultipartBody.Part file, @Part("file") RequestBody name);

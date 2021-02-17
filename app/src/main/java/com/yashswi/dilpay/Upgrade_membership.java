@@ -15,7 +15,9 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Api_interface;
+import com.yashswi.dilpay.bus.busDetailsConfirmation;
 import com.yashswi.dilpay.models.userDetails;
+import com.yashswi.dilpay.payment.SelectPayment;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -35,6 +37,7 @@ public class Upgrade_membership extends AppCompatActivity {
     String userNumber;
     RelativeLayout progress;
     com.yashswi.dilpay.models.userDetails userDetails;
+    String orderID="",token="";
     public static final Pattern numberPattern=Pattern.compile("\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}", Pattern.CASE_INSENSITIVE);
 
 
@@ -73,12 +76,14 @@ public class Upgrade_membership extends AppCompatActivity {
         upgrade.setOnClickListener(v -> {
             String refCode=e_refferalcode.getText().toString();
             if(refCode.equalsIgnoreCase("")){
-                upgradeMember(userNumber,"NOREFFRAL");
+//                upgradeMember(userNumber,"NOREFFRAL");
                 progress.setVisibility(View.VISIBLE);
+                generateToken("NOREFFRAL");
+
             }
             else{
                 if(numberValidate(refCode) && !refCode.equalsIgnoreCase("0000000000")){
-                    upgradeMember(userNumber,refCode);
+                    generateToken(refCode);
                     progress.setVisibility(View.VISIBLE);
                 }
                 else{
@@ -89,46 +94,54 @@ public class Upgrade_membership extends AppCompatActivity {
         skip.setOnClickListener(v -> finish());
     }
 
-    private void upgradeMember(String userNumber, String refCode) {
+    private void generateToken(String code) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-
-        Call<String> call = api.upgradeUser(userNumber,refCode);
+        orderID="UPGRADE"+userNumber;
+        Call<String> call = api.generateToken(orderID,"500");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                progress.setVisibility(View.GONE);
-                String message="";
-                try {
-                    Toast.makeText(Upgrade_membership.this, response.body(), Toast.LENGTH_SHORT).show();
-                    JSONObject object=new JSONObject(response.body());
-                    message=object.getString("Message");
-                    if(object.getString("Status").equalsIgnoreCase("True")){
-                        userDetails=new userDetails(Upgrade_membership.this);
-                        userDetails.setMembership("Paid");
-                        Intent intent=new Intent(Upgrade_membership.this,Profile.class);
-                        startActivity(intent);
-                        finish();
+                if(response.body()!=null){
+                    try {
+                        JSONObject jsonObject=new JSONObject(response.body());
+                        if(jsonObject.getString("status").equalsIgnoreCase("OK")){
+                            token=jsonObject.getString("cftoken");
+                            Intent intent=new Intent(Upgrade_membership.this, SelectPayment.class);
+                            intent.putExtra("FromPage","Upgrade");
+                            intent.putExtra("orderID",orderID);
+                            intent.putExtra("Token",token);
+                            intent.putExtra("Amount","500");
+                            intent.putExtra("Name","Upgrade Membership[");
+                            intent.putExtra("Number",userNumber);
+                            intent.putExtra("RefCode",code);
+                            startActivity(intent);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(Upgrade_membership.this,e.toString(),Toast.LENGTH_SHORT).show();
                 }
-                Toast.makeText(Upgrade_membership.this,message,Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                progress.setVisibility(View.GONE);
-                Toast.makeText(Upgrade_membership.this,t.toString(),Toast.LENGTH_SHORT).show();
+
             }
         });
     }
+
+
     public static boolean numberValidate(String mobileNumber) {
         Matcher matcher = numberPattern.matcher(mobileNumber);
         return matcher.find();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
     }
 }

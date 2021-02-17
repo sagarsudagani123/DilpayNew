@@ -318,6 +318,7 @@ public class busDetailsConfirmation extends AppCompatActivity {
                             intent.putExtra("Amount",amount);
                             intent.putExtra("Name",name);
                             intent.putExtra("Number",number);
+                            intent.putExtra("FromPage","BusConfirm");
                             startActivity(intent);
                         }else{
                             Intent intent=new Intent(busDetailsConfirmation.this, Bus.class);
