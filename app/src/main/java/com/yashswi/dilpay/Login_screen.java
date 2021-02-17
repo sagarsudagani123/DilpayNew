@@ -128,6 +128,7 @@ public class Login_screen extends AppCompatActivity {
                                     // Get new Instance ID token
                                     token = task.getResult().getToken();
                                     if(token!=null){
+                                        Log.e("testToken",token);
                                         sendOtp(number,password,token);
                                     }
                                 }
@@ -140,7 +141,7 @@ public class Login_screen extends AppCompatActivity {
                                     if (!task.isSuccessful()) {
                                         msg = "Failed to subscribe";
                                     }
-                                    Toast.makeText(Login_screen.this, msg, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(Login_screen.this, msg, Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }
@@ -168,6 +169,7 @@ public class Login_screen extends AppCompatActivity {
                         String status=obj.optString("Status");
                         String message=obj.optString("Message");
                         JSONArray dataArray=obj.getJSONArray("Data");
+                        Log.e("userDetails",dataArray.toString());
                         JSONObject details=dataArray.getJSONObject(0);
                         Log.e("userDetails",details.toString());
                         if (status.equalsIgnoreCase("true")) {
@@ -180,6 +182,8 @@ public class Login_screen extends AppCompatActivity {
                             userDetails.setNumber(details.getString("MobileNo"));
                             userDetails.setWallet(details.getString("Wallet"));
                             userDetails.setMembership(details.getString("userstatus"));
+                            userDetails.setComission(details.getString("Comission"));
+
                             startActivity(i);
                             finish();
 

@@ -42,7 +42,6 @@ import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
 public class Home_screen extends AppCompatActivity {
     ArrayList<Integer> buton_img = new ArrayList<>();
     ArrayList<String> buton_names = new ArrayList<>();
-    TextView view_more;
     RecyclerView rv;
     ImageView menu,profile;
     private static final int REQUEST_CODE = 101;
@@ -56,7 +55,6 @@ public class Home_screen extends AppCompatActivity {
         sliderviewWork();
         rv=findViewById(R.id.recyclerview_dashboard);
         rv.setHasFixedSize(true);
-        view_more=findViewById(R.id.view_more);
         menu=findViewById(R.id.menu);
         profile=findViewById(R.id.profile_buton_dashboard);
 
@@ -71,18 +69,11 @@ public class Home_screen extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Home_screen.this,View_more.class);
+                Intent i = new Intent(Home_screen.this,More.class);
                 startActivity(i);
             }
         });
 
-        view_more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Home_screen.this,View_more.class);
-                startActivity(i);
-            }
-        });
 
         buton_img.add(R.drawable.bus_new);
         buton_img.add(R.drawable.mobile_new);

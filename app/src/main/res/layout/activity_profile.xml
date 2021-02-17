@@ -68,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/cam"
-        android:id="@+id/uploadPic"
+        android:id="@+id/profilePic"
         android:background="@drawable/button_bg"
         android:layout_below="@+id/customer_profilepic"
         android:layout_alignParentEnd="true"
@@ -116,6 +116,20 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="15dp"
             android:text="Upgrade"
+            android:visibility="gone"
+            android:textColor="@color/gradientStart"
+            android:textStyle="bold" />
+        <TextView
+            android:id="@+id/membershipText"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:layout_gravity="bottom"
+            android:background="@drawable/button_bg"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="15dp"
+            android:text="Paid"
+            android:visibility="gone"
+            android:gravity="center"
             android:textColor="@color/gradientStart"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -236,24 +250,24 @@
             android:textSize="14sp"
             android:layout_marginTop="6dp"
             />
-<!--        <androidx.appcompat.widget.AppCompatImageView-->
-<!--            android:id="@+id/rupee"-->
-<!--            android:layout_width="20dp"-->
-<!--            android:layout_height="15dp"-->
-<!--            android:layout_marginTop="5dp"-->
-<!--            android:layout_toStartOf="@id/amount"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:src="@drawable/rupee" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/amount"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:text="250"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:textColor="@color/gradientStart"-->
-<!--            android:textSize="16sp"-->
-<!--            android:textStyle="bold" />-->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/rupee"
+            android:layout_width="20dp"
+            android:layout_height="15dp"
+            android:layout_marginTop="5dp"
+            android:layout_toStartOf="@id/amount"
+            android:layout_gravity="center"
+            android:src="@drawable/rupee" />
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="250"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="20dp"
+            android:textColor="@color/gradientStart"
+            android:textSize="16sp"
+            android:textStyle="bold" />
     </RelativeLayout>
     <View
         android:id="@+id/v4"
@@ -312,35 +326,7 @@
         <!--            android:textSize="16sp"-->
         <!--            android:textStyle="bold" />-->
     </RelativeLayout>
-<!--    <RelativeLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:id="@+id/lin6"-->
-<!--        android:padding="10dp"-->
-<!--        android:layout_below="@id/lin5"-->
-<!--        android:orientation="horizontal">-->
 
-<!--        <ImageView-->
-<!--            android:layout_width="35dp"-->
-<!--            android:id="@+id/editIcon"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:layout_marginStart="15dp"-->
-<!--            android:src="@drawable/edit"-->
-<!--            />-->
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:id="@+id/editSettings"-->
-<!--            android:text="Edit Settings"-->
-<!--            android:layout_toRightOf="@id/editIcon"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textColor="#000"-->
-<!--            android:transitionName="trans3"-->
-<!--            android:layout_marginStart="30dp"-->
-<!--            android:textSize="14sp"-->
-<!--            android:layout_marginTop="6dp"-->
-<!--            />-->
-<!--    </RelativeLayout>-->
 
     <LinearLayout
         android:id="@+id/btmll"
@@ -350,31 +336,31 @@
         android:background="@color/gradientEnd"
         android:orientation="horizontal">
 
-<!--    <LinearLayout-->
-<!--        android:id="@+id/add_post_ll"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_alignParentLeft="true"-->
-<!--        android:layout_weight="1"-->
-<!--        android:orientation="vertical"-->
-<!--        android:paddingBottom="2dp"-->
-<!--        android:visibility="visible">-->
+    <LinearLayout
+        android:id="@+id/editProfLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:paddingBottom="2dp"
+        android:visibility="visible">
 
-<!--        <ImageView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="35dp"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:padding="6dp"-->
-<!--            android:src="@drawable/ic_baseline_edit_24" />-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:padding="6dp"
+            android:src="@drawable/ic_baseline_edit_24" />
 
-<!--        <TextView-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="center"-->
-<!--            android:textColor="#fff"-->
-<!--            android:layout_marginBottom="3dp"-->
-<!--            android:text="Change Password" />-->
-<!--    </LinearLayout>-->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:layout_marginBottom="3dp"
+            android:text="Edit Profile" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/logout"
@@ -399,6 +385,20 @@
             android:text="Logout" />
     </LinearLayout>
     </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/progressBGColor"
+        android:elevation="10dp"
+        android:visibility="gone"
+        android:id="@+id/progress"
+        >
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            />
+    </RelativeLayout>
 
 
 </RelativeLayout>

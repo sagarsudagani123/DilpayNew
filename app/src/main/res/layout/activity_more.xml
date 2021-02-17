@@ -34,15 +34,6 @@
             android:textSize="18sp"
             android:layout_marginTop="25dp" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:id="@+id/logout"
-            android:layout_alignParentRight="true"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_baseline_power_settings_new_24"
-            android:layout_centerVertical="true"
-            android:layout_marginRight="10dp"
-            android:padding="7dp" />
     </RelativeLayout>
 
     <LinearLayout
@@ -50,6 +41,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:id="@+id/li1"
+        android:paddingBottom="20dp"
         android:layout_below="@id/re1">
 
         <androidx.cardview.widget.CardView

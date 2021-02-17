@@ -61,7 +61,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Referral Code(optional)"
+                    android:hint="Referral User Number(optional)"
                     app:boxStrokeColor="@color/gradientStart">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -70,20 +70,22 @@
                         android:layout_height="wrap_content"
                         android:imeOptions="actionDone"
                         android:inputType="number"
-                        android:maxLength="10" />
+                        android:maxLength="10"
+                        android:longClickable="false"
+                        />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
 
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/submit"
+                    android:id="@+id/upgrade"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
                     android:background="@drawable/button_main"
-                    android:text="Submit"
+                    android:text="Upgrade"
                     android:textColor="#fff"
                     android:textStyle="bold" />
 

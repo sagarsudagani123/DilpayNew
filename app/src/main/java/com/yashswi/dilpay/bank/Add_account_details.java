@@ -5,16 +5,19 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.cashFree;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.bus.Bus;
 import com.yashswi.dilpay.models.Add_account_model;
+import com.yashswi.dilpay.models.userDetails;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,10 +33,11 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class Add_account_details extends AppCompatActivity {
     ImageView back;
     TextInputEditText name,email,phone,bank_account,ifsc,vpa,address;
-    String name1,email1,phone1,bank_account1,ifsc1,vpa1,address1;
+    String beneficiaryID,name1,email1,phone1,bank_account1,ifsc1,vpa1,address1;
     AppCompatButton submit;
     String tokenFinal="";
     RelativeLayout progress;
+    com.yashswi.dilpay.models.userDetails userDetails;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -93,17 +97,10 @@ public class Add_account_details extends AppCompatActivity {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         cashFree api = retrofit.create(cashFree.class);
-        Add_account_model add_account_model=new Add_account_model();
-        add_account_model.setBeneId("20213234"+phone1);
-        add_account_model.setName(name1);
-        add_account_model.setEmail(email1);
-        add_account_model.setPhone(phone1);
-        add_account_model.setPhone(bank_account1);
-        add_account_model.setIfsc(ifsc1);
-        add_account_model.setAddress1(address1);
+        beneficiaryID="DILPAY"+bank_account1;
         JSONObject test=new JSONObject();
         try {
-            test.put("beneId", "2021" + phone1);
+            test.put("beneId", beneficiaryID);
             test.put("name", name1);
             test.put("email", email1);
             test.put("phone", phone1);
@@ -121,8 +118,20 @@ public class Add_account_details extends AppCompatActivity {
                 progress.setVisibility(View.GONE);
                 try {
                     JSONObject data=new JSONObject(response.body());
+                    Log.e("bankAdd",data.toString());
                     if(data.getString("status").equalsIgnoreCase("SUCCESS")){
                         //add bank details to database
+                        userDetails=new userDetails(Add_account_details.this);
+                        JSONObject createData=new JSONObject();
+                        createData.put("beneficiaryID",beneficiaryID);
+                        createData.put("username",userDetails.getNumber());
+                        createData.put("Name",name1);
+                        createData.put("emial",email1);
+                        createData.put("phone",phone1);
+                        createData.put("accountNumber",bank_account1);
+                        createData.put("IFSC",ifsc1);
+                        createData.put("address",address1);
+                        addUserBankAccount(createData.toString());
                         Toast.makeText(Add_account_details.this,data.getString("message"),Toast.LENGTH_SHORT).show();
                         finish();
                     }
@@ -141,6 +150,28 @@ public class Add_account_details extends AppCompatActivity {
             }
         });
     }
+
+    private void addUserBankAccount(String data) {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://payout-gamma.cashfree.com/")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        Log.e("bankDetails",data);
+        Api_interface api=retrofit.create(Api_interface.class);
+//        Call<String> call=api.addBankDetails(data);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//
+//            }
+//        });
+    }
+
     void getToken(){
 
         Retrofit retrofit = new Retrofit.Builder()

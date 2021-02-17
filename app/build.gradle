@@ -93,4 +93,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-auth:19.0.0'
     implementation 'com.google.android.gms:play-services-auth-api-phone:17.5.0'
 
+//    implementation 'com.github.dhaval2404:imagepicker:1.8'
+    implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
+
+    implementation 'com.github.thelumiereguy:NeumorphismView-Android:1.5'
+
+
 }

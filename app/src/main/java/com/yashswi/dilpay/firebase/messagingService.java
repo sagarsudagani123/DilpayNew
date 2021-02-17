@@ -61,8 +61,12 @@ public class messagingService extends FirebaseMessagingService {
         Log.e("sendNoti", data.get("title")+"  "+data.get("content"));
 //        String title=data.get("title");
 //        String content=data.get("content");
+//        String click_action=data.get("click_action");;
         String content=remoteMessage.getNotification().getBody();
         String title=remoteMessage.getNotification().getTitle();
+//        String click_action=remoteMessage.getNotification().getClickAction();
+//        Intent intent=new Intent(click_action);
+//        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
 try {
         NotificationManager noti=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
         String NOTIFICATION_CHANNEL="TESTCHANNEL";
@@ -71,7 +75,7 @@ try {
             notificationChannel.setDescription("TEST channel for dilpay");
             notificationChannel.enableLights(true);
             notificationChannel.setLightColor(Color.BLUE);
-            notificationChannel.setVibrationPattern(new long[]{0,1000,500,1000});
+            notificationChannel.setVibrationPattern(new long[]{0,100,500,100});
             notificationChannel.enableVibration(true);
             noti.createNotificationChannel(notificationChannel);
         }
@@ -82,6 +86,7 @@ try {
                 .setWhen(System.currentTimeMillis())
                 .setSmallIcon(R.drawable.rupee)
                 .setTicker("Hearty365")
+//                .setContentIntent(pendingIntent)
                 .setContentTitle(title)
                 .setContentText(content)
                 .setContentInfo("info");

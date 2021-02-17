@@ -8,7 +8,7 @@ public class userDetails {
     String name1,number1,wallet1;
     Boolean isLoged;
     Context context;
-    String nameKey="name",numberKey="number",walletKey="wallet",logedKey="isLoged",membershipKey="membership";
+    String nameKey="name",numberKey="number",walletKey="wallet",logedKey="isLoged",membershipKey="membership",comissionKey="Comission";
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -51,6 +51,15 @@ public class userDetails {
 
     public void setWallet(String wallet) {
         editor.putString(walletKey,wallet);
+        editor.commit();
+    }
+
+    public String getComission() {
+        return sharedPreferences.getString(comissionKey,"");
+    }
+
+    public void setComission(String wallet) {
+        editor.putString(comissionKey,wallet);
         editor.commit();
     }
 

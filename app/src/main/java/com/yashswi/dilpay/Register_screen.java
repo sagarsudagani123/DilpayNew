@@ -55,6 +55,7 @@ public class Register_screen extends AppCompatActivity{
     RelativeLayout progress_layout;
     Validator validator;
     String number;
+    String name1;
     public static final Pattern mailPattern=Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
     public static final Pattern numberPattern=Pattern.compile("\\d{10}|(?:\\d{3}-){2}\\d{4}|\\(\\d{3}\\)\\d{3}-?\\d{4}", Pattern.CASE_INSENSITIVE);
 
@@ -88,7 +89,7 @@ public class Register_screen extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 String enteredOTP=password.getText().toString();
-                String name1=name.getText().toString();
+                name1=name.getText().toString();
                 if(enteredOTP.equalsIgnoreCase("") || name1.equalsIgnoreCase("")){
                     Toast.makeText(Register_screen.this,"Fill in all details",Toast.LENGTH_SHORT).show();
                 }else{
@@ -144,6 +145,7 @@ public class Register_screen extends AppCompatActivity{
                             Toast.makeText(Register_screen.this, message, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(Register_screen.this, Login_screen.class);
                             startActivity(i);
+                            finish();
 
                         } else if (status.equalsIgnoreCase("false")) {
                             progress_layout.setVisibility(View.GONE);
@@ -207,6 +209,7 @@ public class Register_screen extends AppCompatActivity{
 
                         if (status.equalsIgnoreCase("true")) {
                             mobile_number.setEnabled(false);
+                            password.setEnabled(false);
                             progress_layout.setVisibility(View.GONE);
                             passLayout.setVisibility(View.VISIBLE);
                             nameLayout.setVisibility(View.VISIBLE);
@@ -262,8 +265,8 @@ public class Register_screen extends AppCompatActivity{
         Matcher matcher = mailPattern.matcher(emailStr);
         return matcher.find();
     }
-    public static boolean numberValidate(String emailStr) {
-        Matcher matcher = numberPattern.matcher(emailStr);
+    public static boolean numberValidate(String mobileNumber) {
+        Matcher matcher = numberPattern.matcher(mobileNumber);
         return matcher.find();
     }
     //REGISTERING BROADCAST RECIEVER IN onStart METHOD
@@ -346,6 +349,15 @@ public class Register_screen extends AppCompatActivity{
         if (matcher.find()) {
 //            otpText.setText(matcher.group(0));
             password.setText(matcher.group(0));
+            JSONObject dataObj=new JSONObject();
+            try {
+                dataObj.put("number",number);
+                dataObj.put("name",name1);
+                dataObj.put("OTP",matcher.group(0));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            verifyOTP(dataObj.toString());
         }
     }
 

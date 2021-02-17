@@ -118,7 +118,6 @@
                 android:textSize="16sp"
                 android:layout_below="@id/gst"
                 android:textStyle="bold"
-                android:layout_marginBottom="10dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"/>
             <LinearLayout
@@ -140,7 +139,7 @@
                     android:id="@+id/total_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="..."
                     android:textColor="#0071cc"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -162,7 +161,7 @@
                 android:id="@+id/li_commision"
                 android:layout_below="@id/li2_amount"
                 android:layout_marginEnd="10dp"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/commision_rupee"
@@ -174,7 +173,7 @@
                     android:id="@+id/commision_amount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="..."
                     android:textColor="#0071cc"
                     android:textSize="16sp"
                     android:textStyle="bold" />
