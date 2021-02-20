@@ -1,7 +1,7 @@
 package com.yashswi.dilpay.models;
 
 public class Mobile_recharge_model {
-    String status,opid,number,amount,orderid;
+    String status, opid, number, amount, orderid;
     Integer txid;
 
     public Integer getTxid() {

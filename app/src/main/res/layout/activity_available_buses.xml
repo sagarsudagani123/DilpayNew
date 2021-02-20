@@ -6,186 +6,194 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".bus.Available_buses">
+
     <RelativeLayout
+        android:id="@+id/progress"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/progress">
+        android:layout_height="match_parent">
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:lottie_rawRes="@raw/bus"
-            app:lottie_autoPlay="true"
             android:layout_centerInParent="true"
-            app:lottie_loop="true"/>
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/bus" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/animationView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
             android:text="Loading..."
             android:textColor="#8E8D8D"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:layout_marginBottom="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/animationView"/>
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <RelativeLayout
+        android:id="@+id/re1"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/gradientEnd"
-        android:id="@+id/re1">
+        android:background="@color/gradientEnd">
 
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="7dp"
             android:src="@drawable/ic_baseline_chevron_left_24" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Available Buses"
-            android:id="@+id/te1"
-            android:textStyle="bold"
-            android:textColor="#fff"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:text="Available Buses"
+            android:textColor="#fff"
             android:textSize="18sp"
-            android:layout_marginTop="25dp" />
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <LinearLayout
+        android:id="@+id/filterLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/filterLayout"
         android:layout_below="@+id/re1"
         android:orientation="horizontal"
-       android:padding="5dp"
-        >
+        android:padding="5dp">
+
         <TextView
+            android:id="@+id/filter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/filter"
-            android:text="Filter"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_bg"
             android:drawableStart="@drawable/filter"
             android:drawablePadding="5dp"
             android:gravity="start"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_weight="1"
             android:padding="5dp"
-            android:layout_margin="4dp"
-            android:background="@drawable/button_bg"
-            />
+            android:text="Filter"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/sort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:id="@+id/sort"
-            android:text="Sort"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_bg"
             android:drawableStart="@drawable/sort"
             android:drawablePadding="5dp"
             android:gravity="start"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_weight="1"
             android:padding="5dp"
-            android:layout_margin="4dp"
-            android:background="@drawable/button_bg"
-            />
+            android:text="Sort"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/clearFilter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Clear"
-            android:id="@+id/clearFilter"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:background="@drawable/button_bg"
             android:drawableStart="@drawable/clear_filter"
             android:drawablePadding="5dp"
             android:gravity="start"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_weight="1"
             android:padding="5dp"
-            android:layout_margin="4dp"
-            android:background="@drawable/button_bg"
-            />
+            android:text="Clear"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
     </LinearLayout>
-      <com.google.android.material.card.MaterialCardView
-          android:layout_width="match_parent"
-          android:layout_height="70dp"
-          android:layout_below="@id/filterLayout"
-          app:cardCornerRadius="6dp"
-          android:id="@+id/card"
-          android:elevation="5dp"
 
-          android:layout_margin="7dp">
-          <RelativeLayout
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:paddingStart="8dp"
-              android:paddingEnd="8dp"
-              android:background="#6D2AFAE7"
-              android:layout_gravity="center">
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="Hyderabad"
-                  android:textSize="16sp"
-                  android:gravity="center"
-                  android:layout_centerVertical="true"
-                  android:id="@+id/from"
-                  android:textStyle="bold"/>
-             <TextView
-                 android:layout_width="wrap_content"
-                 android:layout_height="wrap_content"
-                 android:text="To"
-                 android:id="@+id/to1"
-                 android:layout_marginTop="3dp"
-                 android:layout_toEndOf="@id/from"
-                 android:layout_marginStart="8dp"
-                 android:layout_marginEnd="8dp"
-                 android:layout_centerVertical="true"
-                 />
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="Bangalore"
-                  android:textSize="16sp"
-                  android:layout_marginEnd="10dp"
-                  android:layout_toEndOf="@id/to1"
-                  android:id="@+id/to"
-                  android:layout_centerVertical="true"
-                  android:textStyle="bold"/>
-              <TextView
-                  android:layout_width="wrap_content"
-                  android:layout_height="wrap_content"
-                  android:text="26/11/2020"
-                  android:textSize="16sp"
-                  android:id="@+id/date1"
-                  android:layout_marginEnd="10dp"
-                  android:layout_alignParentEnd="true"
-                  android:layout_centerVertical="true"
-                  android:textStyle="bold" />
-          </RelativeLayout>
-      </com.google.android.material.card.MaterialCardView>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_below="@id/filterLayout"
+        android:layout_margin="7dp"
+        android:elevation="5dp"
+
+        app:cardCornerRadius="6dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="#6D2AFAE7"
+            android:paddingStart="8dp"
+            android:paddingEnd="8dp">
+
+            <TextView
+                android:id="@+id/from"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:text="Hyderabad"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/to1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginEnd="8dp"
+                android:layout_toEndOf="@id/from"
+                android:text="To" />
+
+            <TextView
+                android:id="@+id/to"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:layout_toEndOf="@id/to1"
+                android:text="Bangalore"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/date1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="10dp"
+                android:text="26/11/2020"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+
     <TextView
+        android:id="@+id/avai"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Available Buses"
         android:layout_below="@id/card"
-        android:textStyle="bold"
-        android:id="@+id/avai"
         android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
+        android:text="Available Buses"
         android:textColor="#000"
-        />
+        android:textStyle="bold" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/buses_list_recyclerview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/avai"
         android:layout_marginTop="10dp"
-        android:layout_marginBottom="8dp"
-        />
+        android:layout_marginBottom="8dp" />
 </RelativeLayout>

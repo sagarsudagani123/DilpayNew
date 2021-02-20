@@ -1,56 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_below="@id/dummy"
+    android:layout_margin="10dp"
+    android:background="@color/white"
     android:padding="5dp"
-    android:layout_margin="5dp"
-    android:background="@color/white">
-    <TextView
-        android:layout_width="wrap_content"
+    android:visibility="visible"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="12dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Account No:"
-        android:id="@+id/acntText"
-        android:textStyle="bold"
-        android:textColor="@color/textColor"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/acntNum"
-        android:text="98347984797487"
-        android:layout_toEndOf="@+id/acntText"
-        android:layout_marginStart="2dp"
-        android:textStyle="bold"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="IFSC Code:"
-        android:id="@+id/ifscText"
-        android:textStyle="bold"
-        android:layout_below="@+id/acntText"
-        android:textColor="@color/textColor"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ifscNum"
-        android:text="SBIN0000168"
-        android:layout_toEndOf="@+id/ifscText"
-        android:layout_marginStart="2dp"
-        android:layout_below="@+id/acntText"
-        android:textStyle="bold"
-        />
+        android:background="@color/cardBG"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/acntText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Account Number:"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/acntNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_toEndOf="@+id/acntText"
+            android:text="98347984797487"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ifscText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/acntText"
+            android:text="IFSC Code:"
+            android:textColor="@color/textColor"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/ifscNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/acntText"
+            android:layout_marginStart="2dp"
+            android:layout_toEndOf="@+id/ifscText"
+            android:text="SBIN0000168"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="26dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/delete"
+            android:textStyle="bold" />
+
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/edit"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:id="@+id/remove"
-            android:background="@drawable/button_bg"
-            android:text="remove"
             android:layout_below="@+id/ifscText"
             android:layout_margin="10dp"
-            />
+            android:background="@drawable/button_bg"
+            android:text="Edit"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
-
-</RelativeLayout>
+</androidx.cardview.widget.CardView>

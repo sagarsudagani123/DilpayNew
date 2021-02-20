@@ -21,33 +21,63 @@
             android:padding="10dp"
             android:src="@drawable/ic_baseline_chevron_left_24" />
 
-        <TextView
-            android:id="@+id/customer_name"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#fff"
-            android:text="test"
-            android:paddingTop="20dp"
-            android:layout_marginStart="15dp"
-            android:textSize="18sp"
-            android:textStyle="bold" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="Mr/Ms."
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/customer_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:paddingTop="20dp"
+                android:text="test"
+                android:textColor="#fff"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:text="A/c :"
+                android:textColor="@color/white"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/customer_mobile"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:text="1234567890"
+                android:textColor="#fff" />
+        </LinearLayout>
 
 
         <TextView
-            android:id="@+id/customer_mobile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
-            android:text="1234567890"
-            android:textColor="#fff" />
-
-        <TextView
-            android:id="@+id/employee_email"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
             android:gravity="center"
             android:text=""
-            android:layout_marginStart="10dp"
             android:textColor="#fff" />
 
     </LinearLayout>
@@ -56,82 +86,81 @@
         android:id="@+id/customer_profilepic"
         android:layout_width="90dp"
         android:layout_height="90dp"
-        android:layout_marginTop="80dp"
         android:layout_alignParentEnd="true"
-        android:scaleType="fitCenter"
-        android:src="@drawable/profile_pic"
+        android:layout_marginTop="80dp"
         android:layout_marginEnd="25dp"
         android:elevation="2dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/profile_pic"
         app:civ_border_color="#fff"
         app:civ_border_width="2dp" />
+
     <ImageView
+        android:id="@+id/profilePic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/cam"
-        android:id="@+id/profilePic"
-        android:background="@drawable/button_bg"
         android:layout_below="@+id/customer_profilepic"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="-25dp"
         android:layout_marginEnd="25dp"
-        android:padding="5dp"
+        android:background="@drawable/button_bg"
         android:elevation="6dp"
-        />
+        android:padding="5dp"
+        android:src="@drawable/cam" />
 
     <RelativeLayout
+        android:id="@+id/lin1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lin1"
-        android:layout_marginTop="30dp"
-        android:padding="10dp"
         android:layout_below="@id/customer_profilepic"
-        >
+        android:layout_marginTop="30dp"
+        android:padding="10dp">
+
         <ImageView
-            android:layout_width="30dp"
             android:id="@+id/airtel"
+            android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/member"
-            />
+            android:src="@drawable/member" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/airtel1"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="6dp"
             android:layout_toRightOf="@id/airtel"
             android:text="Membership"
-            android:textStyle="bold"
-            android:transitionName="trans1"
             android:textColor="#000"
-            android:layout_marginStart="30dp"
             android:textSize="14sp"
-            android:layout_marginTop="6dp"
-            />
+            android:textStyle="bold"
+            android:transitionName="trans1" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/membership"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/button_bg"
             android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom"
             android:layout_marginEnd="15dp"
+            android:background="@drawable/button_bg"
             android:text="Upgrade"
-            android:visibility="gone"
             android:textColor="@color/gradientStart"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/membershipText"
             android:layout_width="100dp"
             android:layout_height="30dp"
-            android:layout_gravity="bottom"
-            android:background="@drawable/button_bg"
             android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom"
             android:layout_marginEnd="15dp"
-            android:text="Paid"
-            android:visibility="gone"
+            android:background="@drawable/button_bg"
             android:gravity="center"
+            android:text="Paid"
             android:textColor="@color/gradientStart"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="gone" />
     </RelativeLayout>
 
 
@@ -139,174 +168,173 @@
         android:id="@+id/v1"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#33000000"
         android:layout_below="@id/lin1"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
 
         android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="3dp" />
+        android:layout_marginBottom="3dp"
+        android:background="#33000000" />
+
     <LinearLayout
+        android:id="@+id/withdraw"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/withdraw"
-        android:padding="10dp"
         android:layout_below="@id/v1"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
+
         <ImageView
             android:layout_width="35dp"
-            android:id="@+id/dish"
             android:layout_height="35dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/ic_baseline_account_balance_24"
-            />
+            android:src="@drawable/ic_baseline_account_balance_24" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/dish1"
-            android:text="Withdraw Amount"
-            android:textStyle="bold"
-            android:transitionName="trans2"
-            android:textColor="#000"
             android:layout_marginStart="30dp"
-            android:textSize="14sp"
             android:layout_marginTop="6dp"
-            />
+            android:text="Withdraw Amount"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:transitionName="trans2" />
     </LinearLayout>
+
     <View
         android:id="@+id/v2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#33000000"
         android:layout_below="@id/withdraw"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="3dp" />
+        android:layout_marginBottom="3dp"
+        android:background="#33000000" />
+
     <LinearLayout
+        android:id="@+id/lin3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lin3"
-        android:padding="10dp"
         android:layout_below="@id/v2"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <ImageView
             android:layout_width="35dp"
-            android:id="@+id/bookings_img"
             android:layout_height="35dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/bookings"
-            />
+            android:src="@drawable/bookings" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/bookings"
-            android:text="My Bookings"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:transitionName="trans3"
             android:layout_marginStart="30dp"
-            android:textSize="14sp"
             android:layout_marginTop="6dp"
-            />
+            android:text="My Bookings"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:transitionName="trans3" />
     </LinearLayout>
+
     <View
         android:id="@+id/v3"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#33000000"
         android:layout_below="@id/lin3"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="3dp" />
+        android:layout_marginBottom="3dp"
+        android:background="#33000000" />
 
     <RelativeLayout
+        android:id="@+id/lin4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lin4"
-        android:padding="10dp"
         android:layout_below="@id/v3"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <ImageView
-            android:layout_width="35dp"
             android:id="@+id/wallet"
+            android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/wallet"
-            />
+            android:src="@drawable/wallet" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/wallet1"
-            android:text="My Wallet"
-            android:layout_toRightOf="@id/wallet"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:transitionName="trans3"
             android:layout_marginStart="30dp"
-            android:textSize="14sp"
             android:layout_marginTop="6dp"
-            />
+            android:layout_toRightOf="@id/wallet"
+            android:text="My Wallet"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:transitionName="trans3" />
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/rupee"
             android:layout_width="20dp"
             android:layout_height="15dp"
+            android:layout_gravity="center"
             android:layout_marginTop="5dp"
             android:layout_toStartOf="@id/amount"
-            android:layout_gravity="center"
             android:src="@drawable/rupee" />
+
         <TextView
             android:id="@+id/amount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="250"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="20dp"
+            android:text="250"
             android:textColor="@color/gradientStart"
             android:textSize="16sp"
             android:textStyle="bold" />
     </RelativeLayout>
+
     <View
         android:id="@+id/v4"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#33000000"
         android:layout_below="@id/lin4"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="3dp" />
+        android:layout_marginBottom="3dp"
+        android:background="#33000000" />
+
     <RelativeLayout
+        android:id="@+id/lin5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lin5"
-        android:padding="10dp"
         android:layout_below="@id/v4"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="10dp">
 
         <ImageView
-            android:layout_width="35dp"
             android:id="@+id/account"
+            android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_marginStart="15dp"
-            android:src="@drawable/ic_baseline_account_balance_24"
-            />
+            android:src="@drawable/ic_baseline_account_balance_24" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/account1"
-            android:text="My Bank Accounts"
-            android:layout_toRightOf="@id/account"
-            android:textStyle="bold"
-            android:textColor="#000"
-            android:transitionName="trans3"
             android:layout_marginStart="30dp"
-            android:textSize="14sp"
             android:layout_marginTop="6dp"
-            />
+            android:layout_toRightOf="@id/account"
+            android:text="My Bank Accounts"
+            android:textColor="#000"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:transitionName="trans3" />
         <!--        <androidx.appcompat.widget.AppCompatImageView-->
         <!--            android:id="@+id/rupee"-->
         <!--            android:layout_width="20dp"-->
@@ -329,75 +357,74 @@
 
 
     <LinearLayout
-        android:id="@+id/btmll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/gradientEnd"
         android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/editProfLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:paddingBottom="2dp"
-        android:visibility="visible">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:padding="6dp"
-            android:src="@drawable/ic_baseline_edit_24" />
-
-        <TextView
+        <LinearLayout
+            android:id="@+id/editProfLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="#fff"
-            android:layout_marginBottom="3dp"
-            android:text="Edit Profile" />
-    </LinearLayout>
+            android:layout_alignParentLeft="true"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="2dp"
+            android:visibility="visible">
 
-    <LinearLayout
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:padding="2dp">
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                android:src="@drawable/ic_baseline_edit_24" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_gravity="center"
-            android:padding="6dp"
-            android:src="@drawable/ic_baseline_power_settings_new_24" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="3dp"
+                android:text="Edit Profile"
+                android:textColor="#fff" />
+        </LinearLayout>
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/logout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:textColor="#fff"
-            android:text="Logout" />
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:padding="2dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:padding="6dp"
+                android:src="@drawable/ic_baseline_power_settings_new_24" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Logout"
+                android:textColor="#fff" />
+        </LinearLayout>
     </LinearLayout>
-    </LinearLayout>
+
     <RelativeLayout
+        android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/progressBGColor"
         android:elevation="10dp"
-        android:visibility="gone"
-        android:id="@+id/progress"
-        >
+        android:visibility="gone">
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            />
+            android:layout_centerInParent="true" />
     </RelativeLayout>
 
 

@@ -15,6 +15,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.cashFree;
 import com.yashswi.dilpay.R;
+import com.yashswi.dilpay.TransactionsHistory;
 import com.yashswi.dilpay.bus.Bus;
 import com.yashswi.dilpay.models.Add_account_model;
 import com.yashswi.dilpay.models.userDetails;
@@ -32,12 +33,13 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Add_account_details extends AppCompatActivity {
     ImageView back;
-    TextInputEditText name,email,phone,bank_account,ifsc,vpa,address;
-    String beneficiaryID,name1,email1,phone1,bank_account1,ifsc1,vpa1,address1;
+    TextInputEditText name, email, phone, bank_account, ifsc, vpa, address;
+    String beneficiaryID, name1, email1, phone1, bank_account1, ifsc1, vpa1, address1;
     AppCompatButton submit;
-    String tokenFinal="";
+    String tokenFinal = "";
     RelativeLayout progress;
     com.yashswi.dilpay.models.userDetails userDetails;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,17 +47,19 @@ public class Add_account_details extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         //FINDING VIEWS
-        back=findViewById(R.id.back);
-        name=findViewById(R.id.e_name1);
-        email=findViewById(R.id.e_email1);
-        phone=findViewById(R.id.e_phone1);
-        bank_account=findViewById(R.id.e_bankaccount1);
-        ifsc=findViewById(R.id.e_ifsc1);
-        vpa=findViewById(R.id.e_vpa1);
-        address=findViewById(R.id.e_address1);
-        submit=findViewById(R.id.submit);
-        progress=findViewById(R.id.progress);
-
+        back = findViewById(R.id.back);
+        name = findViewById(R.id.e_name1);
+        email = findViewById(R.id.e_email1);
+        phone = findViewById(R.id.e_phone1);
+        bank_account = findViewById(R.id.e_bankaccount1);
+        ifsc = findViewById(R.id.e_ifsc1);
+        vpa = findViewById(R.id.e_vpa1);
+        address = findViewById(R.id.e_address1);
+        submit = findViewById(R.id.submit);
+        progress = findViewById(R.id.progress);
+        userDetails = new userDetails(Add_account_details.this);
+        phone.setText(userDetails.getNumber());
+        name.setText(userDetails.getName());
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,20 +70,19 @@ public class Add_account_details extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                name1=name.getText().toString();
-                email1=email.getText().toString();
-                phone1=phone.getText().toString();
-                bank_account1=bank_account.getText().toString();
-                ifsc1=ifsc.getText().toString();
-                vpa1=vpa.getText().toString();
-                address1=address.getText().toString();
-                if(phone1.equalsIgnoreCase("")||bank_account1.equalsIgnoreCase("")||ifsc1.equalsIgnoreCase("")||address1.equalsIgnoreCase("")||name1.equalsIgnoreCase("")||email1.equalsIgnoreCase("")){
+                name1 = name.getText().toString();
+                email1 = email.getText().toString();
+                phone1 = phone.getText().toString();
+                bank_account1 = bank_account.getText().toString();
+                ifsc1 = ifsc.getText().toString();
+                vpa1 = vpa.getText().toString();
+                address1 = address.getText().toString();
+                if (phone1.equalsIgnoreCase("") || bank_account1.equalsIgnoreCase("") || ifsc1.equalsIgnoreCase("") || address1.equalsIgnoreCase("") || name1.equalsIgnoreCase("") || email1.equalsIgnoreCase("")) {
 
-                    Toast.makeText(Add_account_details.this,"fill in all details",Toast.LENGTH_LONG).show();
+                    Toast.makeText(Add_account_details.this, "fill in all details", Toast.LENGTH_LONG).show();
 
 //                    Toast.makeText(Add_account_details.this,token,Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     progress.setVisibility(View.VISIBLE);
 //                    Toast.makeText(Add_account_details.this,""+name1+"/"+email1+"/"+phone1+"/"+bank_account1+"/"+ifsc1+"/"+address1,Toast.LENGTH_LONG).show();
                     getToken();
@@ -91,14 +94,14 @@ public class Add_account_details extends AppCompatActivity {
     }
 
     //ADD BENEFICIARY TO CASHFREE
-    private void addBeneficiary(String token,String name1, String email1, String phone1, String bank_account1, String ifsc1, String vpa1, String address1) {
+    private void addBeneficiary(String token, String name1, String email1, String phone1, String bank_account1, String ifsc1, String vpa1, String address1) {
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://payout-gamma.cashfree.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         cashFree api = retrofit.create(cashFree.class);
-        beneficiaryID="DILPAY"+bank_account1;
-        JSONObject test=new JSONObject();
+        beneficiaryID = "DILPAY" + bank_account1;
+        JSONObject test = new JSONObject();
         try {
             test.put("beneId", beneficiaryID);
             test.put("name", name1);
@@ -107,36 +110,37 @@ public class Add_account_details extends AppCompatActivity {
             test.put("bankAccount", bank_account1);
             test.put("ifsc", ifsc1);
             test.put("address1", address1);
-        }catch (Exception e){
+
+        } catch (Exception e) {
 
         }
 
-        Call<String> call = api.addBeneficiary("Bearer "+token,test.toString());
+        Call<String> call = api.addBeneficiary("Bearer " + token, test.toString());
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 progress.setVisibility(View.GONE);
                 try {
-                    JSONObject data=new JSONObject(response.body());
-                    Log.e("bankAdd",data.toString());
-                    if(data.getString("status").equalsIgnoreCase("SUCCESS")){
+                    JSONObject data = new JSONObject(response.body());
+                    Log.e("bankAdd", data.toString());
+                    if (data.getString("status").equalsIgnoreCase("SUCCESS")) {
                         //add bank details to database
-                        userDetails=new userDetails(Add_account_details.this);
-                        JSONObject createData=new JSONObject();
-                        createData.put("beneficiaryID",beneficiaryID);
-                        createData.put("username",userDetails.getNumber());
-                        createData.put("Name",name1);
-                        createData.put("emial",email1);
-                        createData.put("phone",phone1);
-                        createData.put("accountNumber",bank_account1);
-                        createData.put("IFSC",ifsc1);
-                        createData.put("address",address1);
+
+                        JSONObject createData = new JSONObject();
+                        createData.put("beneficiaryID", beneficiaryID);
+                        createData.put("username", userDetails.getNumber());
+                        createData.put("Name", name1);
+                        createData.put("emial", email1);
+                        createData.put("phone", phone1);
+                        createData.put("accountNumber", bank_account1);
+                        createData.put("IFSC", ifsc1);
+                        createData.put("address", address1);
+                        createData.put("Method", "Add");
                         addUserBankAccount(createData.toString());
-                        Toast.makeText(Add_account_details.this,data.getString("message"),Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(Add_account_details.this,data.getString("message"),Toast.LENGTH_SHORT).show();
                         finish();
-                    }
-                    else{
-                        Toast.makeText(Add_account_details.this,data.getString("message"),Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(Add_account_details.this, data.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -146,71 +150,88 @@ public class Add_account_details extends AppCompatActivity {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 progress.setVisibility(View.GONE);
-                Toast.makeText(Add_account_details.this,"Failed to connect..."+t.toString(),Toast.LENGTH_SHORT).show();
+                String message = "";
+                if (t instanceof UnknownHostException) {
+                    message = "No internet connection!";
+                } else {
+                    message = "Something went wrong! try again";
+                }
+                Toast.makeText(Add_account_details.this, message + "", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
     private void addUserBankAccount(String data) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://payout-gamma.cashfree.com/")
+                .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
-        Log.e("bankDetails",data);
-        Api_interface api=retrofit.create(Api_interface.class);
-//        Call<String> call=api.addBankDetails(data);
-//        call.enqueue(new Callback<String>() {
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//
-//            }
-//        });
+        Log.e("bankDetails", data);
+        Api_interface api = retrofit.create(Api_interface.class);
+        Call<String> call = api.addBankDetails(data);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.e("bankDetails", response.body());
+                if (response.body() != null) {
+                    try {
+                        JSONObject data = new JSONObject(response.body());
+                        String status = data.getString("Status");
+                        String message = data.getString("Message");
+                        if (status.equalsIgnoreCase("True")) {
+                            Toast.makeText(Add_account_details.this, message, Toast.LENGTH_SHORT).show();
+                            finish();
+                        } else {
+                            Toast.makeText(Add_account_details.this, message, Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                Toast.makeText(Add_account_details.this, t.toString(), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
-    void getToken(){
+    void getToken() {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("https://payout-gamma.cashfree.com/")
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         cashFree api = retrofit.create(cashFree.class);
-        Call<String> call = api.getToken("CF4207C0D8VIUK9404JSBD00DG","51207f8c3ee789bc77cf7d3c54c0bd59d106b9fa");
+        Call<String> call = api.getToken("CF4207C0D8VIUK9404JSBD00DG", "51207f8c3ee789bc77cf7d3c54c0bd59d106b9fa");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 try {
-                    JSONObject data=new JSONObject(response.body());
+                    JSONObject data = new JSONObject(response.body());
                     if (data.getString("status").equalsIgnoreCase("SUCCESS")) {
-                        JSONObject tokenObj=data.getJSONObject("data");
-                        tokenFinal=tokenObj.getString("token");
-                        addBeneficiary(tokenFinal,name1,email1,phone1,bank_account1,ifsc1,vpa1,address1);
+                        JSONObject tokenObj = data.getJSONObject("data");
+                        tokenFinal = tokenObj.getString("token");
+                        addBeneficiary(tokenFinal, name1, email1, phone1, bank_account1, ifsc1, vpa1, address1);
 //                        Toast.makeText(Add_account_details.this,tokenFinal,Toast.LENGTH_SHORT).show();
+                    } else {
+                        tokenFinal = "";
                     }
-                    else{
-                        tokenFinal="";
-                    }
-                }
-                catch (Exception e){
-                    Toast.makeText(Add_account_details.this,e.toString(),Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(Add_account_details.this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                String message="";
-                if(t instanceof UnknownHostException)
-                {
+                String message = "";
+                if (t instanceof UnknownHostException) {
                     message = "No internet connection";
-                }
-                else{
+                } else {
                     message = "Something went wrong! try again";
                 }
-                Toast.makeText(Add_account_details.this, message+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Add_account_details.this, message + "", Toast.LENGTH_SHORT).show();
             }
         });
 

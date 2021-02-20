@@ -3,9 +3,8 @@
     android:shape="rectangle">
     <corners
         android:bottomRightRadius="8dp"
-        android:topRightRadius="8dp"
-        />
-    <solid android:color="@color/gradientStart"/>
+        android:topRightRadius="8dp" />
+    <solid android:color="@color/gradientStart" />
     <stroke
         android:width="2dp"
         android:color="@color/gradientStart" />

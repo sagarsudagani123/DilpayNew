@@ -1,131 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/card"
+    android:id="@+id/card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="7dp"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardElevation="18dp"
+
+    >
+
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardElevation="18dp"
-        android:layout_margin="7dp"
+        android:layout_marginTop="10dp">
 
-        >
-        <RelativeLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/depart_time"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+            android:layout_marginStart="10dp"
+            android:text="03:30"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/line"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/depart_time"
+            android:text="-" />
+
+        <TextView
+            android:id="@+id/arrival_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_toEndOf="@id/line"
+            android:text="08:00"
+            android:textColor="#000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:id="@+id/li_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/rupee"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:src="@drawable/rupee" />
 
             <TextView
-                android:id="@+id/depart_time"
+                android:id="@+id/amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:text="03:30"
-                android:textColor="#000"
+                android:text="250"
+                android:textColor="#0071cc"
                 android:textSize="16sp"
                 android:textStyle="bold" />
+        </LinearLayout>
 
-            <TextView
-                android:id="@+id/line"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/depart_time"
-                android:text="-" />
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/depart_time"
+            android:layout_marginStart="10dp"
+            android:text="10:00 hrs" />
 
-            <TextView
-                android:id="@+id/arrival_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:layout_toEndOf="@id/line"
-                android:text="08:00"
-                android:textColor="#000"
-                android:textSize="16sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/ts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/duration"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="8dp"
+            android:text="TSRTC"
+            android:textColor="#0071cc"
+            android:textStyle="bold" />
 
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/li_amount"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/li_amount"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/rupee"
-                    android:layout_width="20dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/rupee" />
-
-                <TextView
-                    android:id="@+id/amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="250"
-                    android:textColor="#0071cc"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/duration"
-                android:layout_below="@id/depart_time"
+            <ImageView
+                android:layout_width="15dp"
+                android:layout_height="15dp"
                 android:layout_marginStart="10dp"
-                android:text="10:00 hrs"/>
-
-            <TextView
-                android:id="@+id/ts"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/duration"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:text="TSRTC"
-                android:textStyle="bold"
-                android:textColor="#0071cc" />
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentEnd="true"
                 android:layout_marginTop="3dp"
-                android:layout_marginEnd="10dp"
-                android:layout_below="@id/li_amount">
-                <ImageView
-                    android:layout_width="15dp"
-                    android:layout_height="15dp"
-                    android:layout_marginTop="3dp"
-                    android:layout_marginStart="10dp"
-                    android:src="@drawable/bus_seat"/>
-                <TextView
-                    android:id="@+id/seats"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="5dp"
-                    android:text="45" />
-            </LinearLayout>
+                android:src="@drawable/bus_seat" />
 
             <TextView
-                android:id="@+id/bus_type"
+                android:id="@+id/seats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/ts"
-                android:layout_marginStart="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="Deluxe" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/ts"
-                android:id="@+id/trip_id"
-                android:layout_marginStart="15dp"
-                android:visibility="gone"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="10dp"
-                android:layout_toEndOf="@id/bus_type"/>
-        </RelativeLayout>
-    </com.google.android.material.card.MaterialCardView>
+                android:layout_marginStart="5dp"
+                android:text="45" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/bus_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ts"
+            android:layout_marginStart="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Deluxe" />
+
+        <TextView
+            android:id="@+id/trip_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ts"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toEndOf="@id/bus_type"
+            android:visibility="gone" />
+    </RelativeLayout>
+</com.google.android.material.card.MaterialCardView>

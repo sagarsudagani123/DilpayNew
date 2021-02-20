@@ -11,34 +11,34 @@
         android:id="@+id/icon1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="80dp"
-        android:textColor="#fff"
         android:scaleType="fitCenter"
-        android:layout_centerInParent="true"
         android:text="DilPay"
+        android:textColor="#fff"
         android:textSize="30sp"
         android:textStyle="bold" />
+
     <TextView
-        android:id="@+id/icon2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/icon1"
         android:layout_centerHorizontal="true"
         android:scaleType="fitCenter"
         android:text="DilPay services Pvt Ltd"
+        android:textColor="#fff"
         android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="#fff"/>
+        android:textStyle="bold" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="20dp"
         app:lottie_autoPlay="true"
-        app:lottie_rawRes="@raw/splash_load1"/>
+        app:lottie_rawRes="@raw/splash_load1" />
 
 </RelativeLayout>

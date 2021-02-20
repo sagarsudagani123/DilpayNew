@@ -29,12 +29,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/icon2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:layout_below="@id/icon1"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
             android:text="DilPay services Pvt Ltd"
             android:textColor="#fff"
             android:textSize="20sp"
@@ -70,12 +69,10 @@
                         android:layout_height="wrap_content"
                         android:imeOptions="actionDone"
                         android:inputType="number"
-                        android:maxLength="10"
                         android:longClickable="false"
-                        />
+                        android:maxLength="10" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
 
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -92,11 +89,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="OR"
+                    android:layout_gravity="center"
                     android:layout_marginTop="5dp"
-                    android:textStyle="bold"
+                    android:text="OR"
                     android:textSize="16sp"
-                    android:layout_gravity="center"/>
+                    android:textStyle="bold" />
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/sign_up"
                     android:layout_width="150dp"

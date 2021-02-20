@@ -13,6 +13,7 @@ import com.google.android.material.button.MaterialButton;
 public class Welcome_screen extends AppCompatActivity {
     KenBurnsView kenBurnsView;
     MaterialButton login, signUp;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,22 +22,22 @@ public class Welcome_screen extends AppCompatActivity {
 
         //FINDING VIEW'S
         kenBurnsView = findViewById(R.id.kenburnsview);
-        login=findViewById(R.id.login_btn);
-        signUp =findViewById(R.id.sign_up);
+        login = findViewById(R.id.login_btn);
+        signUp = findViewById(R.id.sign_up);
 
         //SETTING BACKGROUND IMAGE TO KENBURNS VIEW
         Glide.with(this).load(R.drawable.welcome).into(kenBurnsView);
 
         //LOGIN BUTTON ACTION
         login.setOnClickListener(v -> {
-            Intent i= new Intent(Welcome_screen.this,Login_screen.class);
+            Intent i = new Intent(Welcome_screen.this, Login_screen.class);
             startActivity(i);
             finish();
         });
 
         //SIGNUP BUTTON ACTION
         signUp.setOnClickListener(v -> {
-            Intent i = new Intent(Welcome_screen.this,Register_screen.class);
+            Intent i = new Intent(Welcome_screen.this, Register_screen.class);
             startActivity(i);
             finish();
         });

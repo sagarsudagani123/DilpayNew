@@ -9,17 +9,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.accounts.NetworkErrorException;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.android.volley.NetworkError;
 import com.google.android.material.card.MaterialCardView;
 import com.yashswi.dilpay.Api_interface.Api_interface;
+import com.yashswi.dilpay.Profile;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.buses_list_adapter;
 import com.yashswi.dilpay.models.available_buses_model;
+import com.yashswi.dilpay.utils.CheckNetworkStatus;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -46,17 +51,22 @@ public class Available_buses extends AppCompatActivity {
     RelativeLayout progress_layout;
     MaterialCardView card;
     TextView t1, depart, arrive, amount, travel, avail_seats, bus_type;
-    TextView filter,sort,clearFilter;
-    available_buses_model dataNoFilter=null;
-    available_buses_model dataWithFilter=null;
-    boolean isFiltered=false;
-    String filterName="";
+    TextView filter, sort, clearFilter;
+    available_buses_model dataNoFilter = null;
+    available_buses_model dataWithFilter = null;
+    boolean isFiltered = false;
+    String filterName = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_available_buses);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
+        if (!CheckNetworkStatus.getConnectivityStatusString(Available_buses.this)) {
+            Toast.makeText(Available_buses.this, "No internet connection", Toast.LENGTH_SHORT).show();
+            finish();
+        }
 
         //FINDING VIEWS
         progress = findViewById(R.id.progress);
@@ -76,9 +86,9 @@ public class Available_buses extends AppCompatActivity {
         to = findViewById(R.id.to);
         date = findViewById(R.id.date1);
         progress_layout = findViewById(R.id.progress_layout);
-        filter=findViewById(R.id.filter);
-        sort=findViewById(R.id.sort);
-        clearFilter=findViewById(R.id.clearFilter);
+        filter = findViewById(R.id.filter);
+        sort = findViewById(R.id.sort);
+        clearFilter = findViewById(R.id.clearFilter);
 
         //GETTING INTENTS DATA
         source_id = this.getIntent().getStringExtra("from");
@@ -101,9 +111,9 @@ public class Available_buses extends AppCompatActivity {
         filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(Available_buses.this,FilterActivity.class);
-                intent.putExtra("name",filterName);
-                startActivityForResult(intent,101);
+                Intent intent = new Intent(Available_buses.this, FilterActivity.class);
+                intent.putExtra("name", filterName);
+                startActivityForResult(intent, 101);
             }
         });
 
@@ -111,7 +121,7 @@ public class Available_buses extends AppCompatActivity {
         clearFilter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                filterName="";
+                filterName = "";
                 clearAllFilter(BusesListNoFilter);
             }
         });
@@ -138,7 +148,7 @@ public class Available_buses extends AppCompatActivity {
 
     //CLEARING FILTER
     private void clearAllFilter(ArrayList<available_buses_model> busesListNoFilter) {
-        buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id,journey_date, busesListNoFilter, Available_buses.this);
+        buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id, journey_date, busesListNoFilter, Available_buses.this);
         rv.setAdapter(adapter);
         LinearLayoutManager manager = new LinearLayoutManager(Available_buses.this, RecyclerView.VERTICAL, false);
         rv.setLayoutManager(manager);
@@ -148,7 +158,7 @@ public class Available_buses extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==101){
+        if (requestCode == 101) {
 
             if (data != null) {
                 Bundle bundle = data.getExtras();
@@ -157,28 +167,28 @@ public class Available_buses extends AppCompatActivity {
                     String BusType = bundle.getString("BusType");
                     String AmountFrom = bundle.getString("AmountFrom");
                     String AmountTo = bundle.getString("AmountTo");
-                    filterName=TravelsName;
-                    filterData(TravelsName,BusType,AmountFrom,AmountTo,BusesListNoFilter);
+                    filterName = TravelsName;
+                    filterData(TravelsName, BusType, AmountFrom, AmountTo, BusesListNoFilter);
                 }
             }
         }
     }
 
     //FILTERING DATA FOR USER NEED
-    private void filterData(String travelsName, String busType, String amountFrom, String amountTo,ArrayList<available_buses_model> busesListNoFilter) {
+    private void filterData(String travelsName, String busType, String amountFrom, String amountTo, ArrayList<available_buses_model> busesListNoFilter) {
         BusesListWithFilter.clear();
-        isFiltered=true;
-        for(int x=0;x<busesListNoFilter.size();x++) {
+        isFiltered = true;
+        for (int x = 0; x < busesListNoFilter.size(); x++) {
 
             //USERT SELECTED PRICE RANGES
-            float fromAmt=Float.parseFloat(amountFrom);
-            float toAmt=Float.parseFloat(amountTo);
+            float fromAmt = Float.parseFloat(amountFrom);
+            float toAmt = Float.parseFloat(amountTo);
 
             //CONVERTING LIST OF AMOUNTS TO SINGLE AMOUNT
             String string = busesListNoFilter.get(x).getFares();
             String[] parts = string.split("/");
-            double min=Double.parseDouble(parts[0]);
-            double max=Double.parseDouble(parts[0]);
+            double min = Double.parseDouble(parts[0]);
+            double max = Double.parseDouble(parts[0]);
             for (String part : parts) {
                 if (Double.parseDouble(part) <= min) {
                     min = Double.parseDouble(part);
@@ -188,7 +198,7 @@ public class Available_buses extends AppCompatActivity {
             }
 
             //GETTING DATA FROM NON FILTERED DATA WHICH SATISFIES USER WANT TO FILTER
-            if(busesListNoFilter.get(x).getBusType().toUpperCase().contains(busType.toUpperCase()) &&  busesListNoFilter.get(x).getDisplayName().toUpperCase().contains(travelsName.toUpperCase()) && min>=fromAmt && min<=toAmt){
+            if (busesListNoFilter.get(x).getBusType().toUpperCase().contains(busType.toUpperCase()) && busesListNoFilter.get(x).getDisplayName().toUpperCase().contains(travelsName.toUpperCase()) && min >= fromAmt && min <= toAmt) {
                 dataWithFilter = new available_buses_model();
                 dataWithFilter.setDisplayName(busesListNoFilter.get(x).getDisplayName());
                 dataWithFilter.setAvailableSeats(busesListNoFilter.get(x).getAvailableSeats());
@@ -228,7 +238,7 @@ public class Available_buses extends AppCompatActivity {
                 BusesListWithFilter.add(dataWithFilter);
             }
         }
-        buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id,journey_date, BusesListWithFilter, Available_buses.this);
+        buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id, journey_date, BusesListWithFilter, Available_buses.this);
         rv.setAdapter(adapter);
         LinearLayoutManager manager = new LinearLayoutManager(Available_buses.this, RecyclerView.VERTICAL, false);
         rv.setLayoutManager(manager);
@@ -245,14 +255,19 @@ public class Available_buses extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body()==null){
-                    Toast.makeText(Available_buses.this,"No Data Available! Try again", Toast.LENGTH_SHORT).show();
-                }else {
+                Log.e("bysDetaild", response.body());
+                if (response.body() == null) {
+                    Toast.makeText(Available_buses.this, "No Data Available! Try again", Toast.LENGTH_SHORT).show();
+                } else {
                     progress.setVisibility(View.GONE);
                     try {
                         JSONObject obj = new JSONObject(response.body());
                         //GETTING DATA FROM API
                         JSONArray jsonArray = obj.getJSONArray("AvailableTrips");
+                        if (jsonArray.length() <= 0) {
+                            Toast.makeText(Available_buses.this, "No buses available on this route", Toast.LENGTH_SHORT).show();
+                            finish();
+                        }
                         for (int i = 0; i < jsonArray.length(); i++) {
                             JSONObject dataObject = jsonArray.getJSONObject(i);
                             dataNoFilter = new available_buses_model();
@@ -261,7 +276,7 @@ public class Available_buses extends AppCompatActivity {
                             dataNoFilter.setArrivalTime(dataObject.getString("ArrivalTime"));
                             dataNoFilter.setIdProofRequired(String.valueOf(dataObject.getBoolean("IdProofRequired")));//new
                             JSONArray jsonArray1 = dataObject.getJSONArray("BoardingTimes");
-                            for (int  j= 0; j < jsonArray1.length(); j++) {
+                            for (int j = 0; j < jsonArray1.length(); j++) {
                                 JSONObject dataObject1 = jsonArray1.getJSONObject(j);
                                 dataNoFilter.setAddressBoard(dataObject1.getString("Address"));
                                 dataNoFilter.setContactNumbersBoard(dataObject1.getString("ContactNumbers"));
@@ -271,26 +286,24 @@ public class Available_buses extends AppCompatActivity {
                                 dataNoFilter.setLocationBoard(dataObject1.getString("Location"));
                                 dataNoFilter.setNameBoard(dataObject1.getString("Name"));
                                 //CONVERTING TIME( COMING IN MINUTES ) TO 12HRS FORMAT
-                                int hours=Integer.parseInt(dataObject1.getString("Time"))/60;
-                                int min=Integer.parseInt(dataObject1.getString("Time"))%60;
+                                int hours = Integer.parseInt(dataObject1.getString("Time")) / 60;
+                                int min = Integer.parseInt(dataObject1.getString("Time")) % 60;
                                 String time;
-                                if(hours>=24){
-                                    hours=hours%24;
+                                if (hours >= 24) {
+                                    hours = hours % 24;
                                 }
-                                if(hours>=12){
-                                    hours=hours%12;
-                                    if(hours==0){
-                                        time=12+":"+min+" PM";
+                                if (hours >= 12) {
+                                    hours = hours % 12;
+                                    if (hours == 0) {
+                                        time = 12 + ":" + min + " PM";
+                                    } else {
+                                        time = hours % 12 + ":" + min + " PM";
                                     }
-                                    else{
-                                        time=hours%12+":"+min+" PM";
-                                    }
-                                }
-                                else{
-                                    if(hours==0){
-                                        time=12+":"+min+" AM";
-                                    }else{
-                                        time=hours+":"+min+" AM";
+                                } else {
+                                    if (hours == 0) {
+                                        time = 12 + ":" + min + " AM";
+                                    } else {
+                                        time = hours + ":" + min + " AM";
                                     }
                                 }
                                 dataNoFilter.setTimeBoard(time);
@@ -301,7 +314,7 @@ public class Available_buses extends AppCompatActivity {
                             dataNoFilter.setDepartureTime(dataObject.getString("DepartureTime"));
                             dataNoFilter.setDestinationId(dataObject.getString("DestinationId"));
                             JSONArray jsonArray2 = dataObject.getJSONArray("DroppingTimes");
-                            for (int  k= 0; k < jsonArray2.length(); k++) {
+                            for (int k = 0; k < jsonArray2.length(); k++) {
                                 JSONObject dataObject2 = jsonArray2.getJSONObject(k);
                                 dataNoFilter.setAddressDrop(dataObject2.getString("Address"));
                                 dataNoFilter.setContactNumbersDrop(dataObject2.getString("ContactNumbers"));
@@ -311,26 +324,24 @@ public class Available_buses extends AppCompatActivity {
                                 dataNoFilter.setLocationDrop(dataObject2.getString("Location"));
                                 dataNoFilter.setNameDrop(dataObject2.getString("Name"));
                                 //CONVERTING TIME( COMING IN MINUTES ) TO 12HRS FORMAT
-                                int hours=Integer.parseInt(dataObject2.getString("Time"))/60;
-                                int min=Integer.parseInt(dataObject2.getString("Time"))%60;
+                                int hours = Integer.parseInt(dataObject2.getString("Time")) / 60;
+                                int min = Integer.parseInt(dataObject2.getString("Time")) % 60;
                                 String time;
-                                if(hours>=24){
-                                    hours=hours%24;
+                                if (hours >= 24) {
+                                    hours = hours % 24;
                                 }
-                                if(hours>=12){
-                                    hours=hours%12;
-                                    if(hours==0){
-                                        time=12+":"+min+" PM";
+                                if (hours >= 12) {
+                                    hours = hours % 12;
+                                    if (hours == 0) {
+                                        time = 12 + ":" + min + " PM";
+                                    } else {
+                                        time = hours % 12 + ":" + min + " PM";
                                     }
-                                    else{
-                                        time=hours%12+":"+min+" PM";
-                                    }
-                                }
-                                else{
-                                    if(hours==0){
-                                        time=12+":"+min+" AM";
-                                    }else{
-                                        time=hours+":"+min+" AM";
+                                } else {
+                                    if (hours == 0) {
+                                        time = 12 + ":" + min + " AM";
+                                    } else {
+                                        time = hours + ":" + min + " AM";
                                     }
                                 }
                                 dataNoFilter.setTimeDrop(time);
@@ -338,8 +349,8 @@ public class Available_buses extends AppCompatActivity {
 
                             String string = dataObject.getString("Fares");
                             String[] parts = string.split("/");
-                            double min=Double.parseDouble(parts[0]);
-                            double max=Double.parseDouble(parts[0]);
+                            double min = Double.parseDouble(parts[0]);
+                            double max = Double.parseDouble(parts[0]);
                             for (String part : parts) {
                                 if (Double.parseDouble(part) <= min) {
                                     min = Double.parseDouble(part);
@@ -362,39 +373,36 @@ public class Available_buses extends AppCompatActivity {
                         }
 
                         //SETTING AVAILABLE BUSSES DATA TO RECYCLERVIEW
-                        buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id,journey_date, BusesListNoFilter, Available_buses.this);
+                        buses_list_adapter adapter = new buses_list_adapter(source_id, destination_id, journey_date, BusesListNoFilter, Available_buses.this);
                         rv.setAdapter(adapter);
                         LinearLayoutManager manager = new LinearLayoutManager(Available_buses.this, RecyclerView.VERTICAL, false);
                         rv.setLayoutManager(manager);
-                    }catch (Exception e){
-                        Toast.makeText(Available_buses.this,"No Data Available", Toast.LENGTH_SHORT).show();
+                    } catch (Exception e) {
+                        Toast.makeText(Available_buses.this, "No Data Available", Toast.LENGTH_SHORT).show();
                         finish();
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 progress.setVisibility(View.GONE);
-                String message="";
-                if(t instanceof UnknownHostException)
-                {
+                String message = "";
+                if (t instanceof UnknownHostException) {
                     message = "No internet connection!";
-                }
-                else{
+                } else {
                     message = "Something went wrong! try again";
                 }
-                Toast.makeText(Available_buses.this, message+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Available_buses.this, message + "", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
     }
 
     //CREATING THREAD
-    Runnable runnable = new Runnable()
-    {
+    Runnable runnable = new Runnable() {
         @Override
-        public void run()
-        {
+        public void run() {
             getAvailableBusses();
         }
     };

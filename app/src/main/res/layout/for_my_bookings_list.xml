@@ -1,117 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/bookings_card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="10dp"
-    android:id="@+id/bookings_card"
     app:cardElevation="3dp">
+
     <RelativeLayout
+        android:id="@+id/re3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/re3"
         android:layout_margin="10dp">
+
         <TextView
+            android:id="@+id/dateText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Journey date :"
-            android:textStyle="bold"
             android:textColor="@color/textColor"
             android:textSize="16sp"
-            android:id="@+id/dateText"
-            />
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/journey_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/journey_date"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:layout_marginStart="2dp"
             android:layout_toEndOf="@+id/dateText"
-            android:text="25-01-2021" />
+            android:text="25-01-2021"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
+            android:id="@+id/pickup"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="from"
-            android:id="@+id/pickup"
-            android:textSize="16sp"
-            android:textStyle="bold"
             android:layout_below="@+id/dateText"
-            android:textColor="@color/textHeading" />
+            android:text="from"
+            android:textColor="@color/textHeading"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <ImageView
+            android:id="@+id/to"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right_arrow"
+            android:layout_below="@id/journey_date"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/pickup"
-            android:layout_below="@id/journey_date"
-            android:id="@+id/to" />
+            android:src="@drawable/right_arrow" />
 
         <TextView
+            android:id="@+id/drop"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="to"
-            android:id="@+id/drop"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:layout_below="@+id/dateText"
             android:layout_marginStart="10dp"
             android:layout_toEndOf="@id/to"
-            android:textColor="@color/textHeading" />
+            android:text="to"
+            android:textColor="@color/textHeading"
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/pickup"
             android:id="@+id/pickup_time"
-            android:textStyle="bold"
-            android:textSize="14sp"
-            android:layout_marginTop="10dp"
-            android:text="06:30AM" />
-        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/right_arrow"
-            android:layout_marginStart="10dp"
-            android:layout_toEndOf="@id/pickup_time"
-            android:layout_marginTop="10dp"
             android:layout_below="@id/pickup"
-            android:id="@+id/to1" />
+            android:layout_marginTop="10dp"
+            android:text="06:30AM"
+            android:textSize="14sp"
+            android:textStyle="bold" />
+
+        <ImageView
+            android:id="@+id/to1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/pickup"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_toEndOf="@id/pickup_time"
+            android:src="@drawable/right_arrow" />
 
         <TextView
+            android:id="@+id/drop_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/drop"
-            android:id="@+id/drop_time"
             android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
             android:layout_toEndOf="@id/to1"
+            android:text="07:30PM"
             android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginTop="10dp"
-            android:text="07:30PM" />
+            android:textStyle="bold" />
 
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Travels"
-            android:textSize="16sp"
             android:id="@+id/travels"
-            android:layout_below="@id/drop_time"/>
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:textSize="16sp"
-            android:id="@+id/status"
-            android:textColor="#0071cc"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:text="Completed"/>
-    </RelativeLayout>
+            android:layout_below="@id/drop_time"
+            android:text="Travels"
+            android:textSize="16sp" />
 
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="10dp"
+            android:text="Completed"
+            android:textColor="#0071cc"
+            android:textSize="16sp" />
+    </RelativeLayout>
 
 
 </androidx.cardview.widget.CardView>

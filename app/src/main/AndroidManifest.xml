@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.RECEIVE_SMS" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.VIBRATE" />
 
     <queries>
@@ -25,17 +25,20 @@
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Dilbus"
         android:usesCleartextTraffic="true"
         tools:node="merge"
-        android:requestLegacyExternalStorage="true"
         tools:targetApi="m">
-        <activity android:name=".EditProfile"></activity>
+        <activity android:name=".WithdrawAmount"></activity>
+        <activity android:name=".TransactionsHistory" />
+        <activity android:name=".EditProfile" />
         <activity android:name=".Notification">
             <intent-filter>
                 <action android:name="com.yashswi.dilpay.notification_action" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

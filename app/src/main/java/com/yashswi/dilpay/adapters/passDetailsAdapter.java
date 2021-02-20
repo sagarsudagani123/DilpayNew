@@ -51,13 +51,14 @@ public class passDetailsAdapter extends RecyclerView.Adapter<passDetailsAdapter.
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView name,age,gender,seatNum;
+        TextView name, age, gender, seatNum;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            name=itemView.findViewById(R.id.name);
-            gender=itemView.findViewById(R.id.gender);
-            seatNum=itemView.findViewById(R.id.seat_num);
-            age=itemView.findViewById(R.id.age);
+            name = itemView.findViewById(R.id.name);
+            gender = itemView.findViewById(R.id.gender);
+            seatNum = itemView.findViewById(R.id.seat_num);
+            age = itemView.findViewById(R.id.age);
         }
     }
 }

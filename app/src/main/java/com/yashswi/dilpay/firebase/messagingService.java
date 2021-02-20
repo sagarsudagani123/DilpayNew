@@ -53,48 +53,49 @@ public class messagingService extends FirebaseMessagingService {
             Log.d("messagehandle", "Message Notification Body: " + remoteMessage.getNotification().getBody());
         }
     }
+
     private void sendNotification(@NotNull RemoteMessage remoteMessage) {
-        Map<String,String> data=remoteMessage.getData();
+        Map<String, String> data = remoteMessage.getData();
 
 //        String title=remoteMessage.getData().get("user");
 //        String content=remoteMessage.getData().get("icon");
-        Log.e("sendNoti", data.get("title")+"  "+data.get("content"));
+        Log.e("sendNoti", data.get("title") + "  " + data.get("content"));
 //        String title=data.get("title");
 //        String content=data.get("content");
 //        String click_action=data.get("click_action");;
-        String content=remoteMessage.getNotification().getBody();
-        String title=remoteMessage.getNotification().getTitle();
-        String click_action=remoteMessage.getNotification().getClickAction();
-        Log.e("click action",click_action);
-        Intent intent=new Intent(click_action);
-        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,PendingIntent.FLAG_ONE_SHOT);
-try {
-        NotificationManager noti=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
-        String NOTIFICATION_CHANNEL="TESTCHANNEL";
-        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.O){
-            NotificationChannel notificationChannel=new NotificationChannel(NOTIFICATION_CHANNEL,"Dilpay notification",NotificationManager.IMPORTANCE_HIGH);
-            notificationChannel.setDescription("TEST channel for dilpay");
-            notificationChannel.enableLights(true);
-            notificationChannel.setLightColor(Color.BLUE);
-            notificationChannel.setVibrationPattern(new long[]{0,100,500,100});
-            notificationChannel.enableVibration(true);
-            noti.createNotificationChannel(notificationChannel);
-        }
+        String content = remoteMessage.getNotification().getBody();
+        String title = remoteMessage.getNotification().getTitle();
+        String click_action = remoteMessage.getNotification().getClickAction();
+        Log.e("click action", click_action);
+        Intent intent = new Intent(click_action);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        try {
+            NotificationManager noti = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+            String NOTIFICATION_CHANNEL = "TESTCHANNEL";
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL, "Dilpay notification", NotificationManager.IMPORTANCE_HIGH);
+                notificationChannel.setDescription("TEST channel for dilpay");
+                notificationChannel.enableLights(true);
+                notificationChannel.setLightColor(Color.BLUE);
+                notificationChannel.setVibrationPattern(new long[]{0, 100, 500, 100});
+                notificationChannel.enableVibration(true);
+                noti.createNotificationChannel(notificationChannel);
+            }
 
-        NotificationCompat.Builder notificationBuilder=new NotificationCompat.Builder(this,NOTIFICATION_CHANNEL);
-        notificationBuilder.setAutoCancel(true)
-                .setDefaults(Notification.DEFAULT_ALL)
-                .setWhen(System.currentTimeMillis())
-                .setSmallIcon(R.drawable.rupee)
-                .setTicker("Hearty365")
-                .setContentIntent(pendingIntent)
-                .setContentTitle(title)
-                .setContentText(content)
-                .setContentInfo("info");
-        noti.notify(1,notificationBuilder.build());
-}catch (Exception e){
-    Log.e("sendNoti",e.toString());
-}
+            NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL);
+            notificationBuilder.setAutoCancel(true)
+                    .setDefaults(Notification.DEFAULT_ALL)
+                    .setWhen(System.currentTimeMillis())
+                    .setSmallIcon(R.drawable.rupee)
+                    .setTicker("Hearty365")
+                    .setContentIntent(pendingIntent)
+                    .setContentTitle(title)
+                    .setContentText(content)
+                    .setContentInfo("info");
+            noti.notify(1, notificationBuilder.build());
+        } catch (Exception e) {
+            Log.e("sendNoti", e.toString());
+        }
 
     }
 }

@@ -13,6 +13,7 @@ import com.google.android.gms.common.api.Status;
 
 public class SmsBroadcastReceiver extends BroadcastReceiver {
     public SmsBroadcastReceiverListener smsBroadcastReceiverListener;
+
     @Override
     public void onReceive(Context context, Intent intent) {
 //        Toast.makeText(this,"message recieved",Toast.LENGTH_SHORT).show();
@@ -30,8 +31,10 @@ public class SmsBroadcastReceiver extends BroadcastReceiver {
             }
         }
     }
-     public interface SmsBroadcastReceiverListener {
+
+    public interface SmsBroadcastReceiverListener {
         void onSuccess(Intent intent);
+
         void onFailure();
     }
 }

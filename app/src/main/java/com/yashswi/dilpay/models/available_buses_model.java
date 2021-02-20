@@ -7,31 +7,31 @@ import java.util.ArrayList;
 @SuppressWarnings("serial")
 public class available_buses_model implements Serializable {
 
-    String DisplayName,AvailableSeats,IsRtc,IdProofRequired,isOpTicketTemplateRequired,isOpLogoRequired,ArrivalTime,Amenities,
-            BusType,SeatLayoutType,CancellationPolicy,MaxSeatsPerTicket,DepartureTime,DestinationId,Duration,
-            Fares,ServiceTax,OperatorServiceCharge,ConvenienceFee,ConvenienceFeeType,AffiliateId,NetFares,PartnerFee,
-            OperatorId,BpDpSeatLayout,Id,Provider,PartialCancellationAllowed,SeatType,SourceId,Travels,Mticket,InventoryType,Journeydate;
+    String DisplayName, AvailableSeats, IsRtc, IdProofRequired, isOpTicketTemplateRequired, isOpLogoRequired, ArrivalTime, Amenities,
+            BusType, SeatLayoutType, CancellationPolicy, MaxSeatsPerTicket, DepartureTime, DestinationId, Duration,
+            Fares, ServiceTax, OperatorServiceCharge, ConvenienceFee, ConvenienceFeeType, AffiliateId, NetFares, PartnerFee,
+            OperatorId, BpDpSeatLayout, Id, Provider, PartialCancellationAllowed, SeatType, SourceId, Travels, Mticket, InventoryType, Journeydate;
 
 
     //bording details
-    ArrayList<String> addressBoard=new ArrayList<>();
-    ArrayList<String> contactPersonsBoard=new ArrayList<>();
-    ArrayList<String> contactNumbersBoard=new ArrayList<>();
-    ArrayList<String> pointIdboard=new ArrayList<>();
-    ArrayList<String> landmarkBoard=new ArrayList<>();
-    ArrayList<String> locationBoard=new ArrayList<>();
-    ArrayList<String> nameBoard=new ArrayList<>();
-    ArrayList<String> timeBoard=new ArrayList<>();
+    ArrayList<String> addressBoard = new ArrayList<>();
+    ArrayList<String> contactPersonsBoard = new ArrayList<>();
+    ArrayList<String> contactNumbersBoard = new ArrayList<>();
+    ArrayList<String> pointIdboard = new ArrayList<>();
+    ArrayList<String> landmarkBoard = new ArrayList<>();
+    ArrayList<String> locationBoard = new ArrayList<>();
+    ArrayList<String> nameBoard = new ArrayList<>();
+    ArrayList<String> timeBoard = new ArrayList<>();
 
     //droping details
-    ArrayList<String> addressDrop=new ArrayList<>();
-    ArrayList<String> contactPersonsDrop=new ArrayList<>();
-    ArrayList<String> contactNumbersDrop=new ArrayList<>();
-    ArrayList<String> pointIdDrop=new ArrayList<>();
-    ArrayList<String> landmarkDrop=new ArrayList<>();
-    ArrayList<String> locationDrop=new ArrayList<>();
-    ArrayList<String> nameDrop=new ArrayList<>();
-    ArrayList<String> timeDrop=new ArrayList<>();
+    ArrayList<String> addressDrop = new ArrayList<>();
+    ArrayList<String> contactPersonsDrop = new ArrayList<>();
+    ArrayList<String> contactNumbersDrop = new ArrayList<>();
+    ArrayList<String> pointIdDrop = new ArrayList<>();
+    ArrayList<String> landmarkDrop = new ArrayList<>();
+    ArrayList<String> locationDrop = new ArrayList<>();
+    ArrayList<String> nameDrop = new ArrayList<>();
+    ArrayList<String> timeDrop = new ArrayList<>();
 
     public String getDisplayName() {
         return DisplayName;
@@ -56,7 +56,6 @@ public class available_buses_model implements Serializable {
     public void setIsRtc(String isRtc) {
         IsRtc = isRtc;
     }
-
 
 
     public String getIsOpTicketTemplateRequired() {

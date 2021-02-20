@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
+
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
@@ -50,7 +51,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class Login_screen extends AppCompatActivity {
-    AppCompatButton getOTP,login;
+    AppCompatButton getOTP, login;
     Button signup;
     TextView readOtp;
     TextInputLayout passLayout;
@@ -71,14 +72,14 @@ public class Login_screen extends AppCompatActivity {
         // FOR AUTO SMS READER
         startSmsUserConsent();
         //FINDING VIEW'S
-        passLayout=findViewById(R.id.passLayout);
+        passLayout = findViewById(R.id.passLayout);
         getOTP = findViewById(R.id.getOTP);
-        login=findViewById(R.id.login);
+        login = findViewById(R.id.login);
         signup = findViewById(R.id.signup_btn);
-        mobile_number=findViewById(R.id.e_mobile);
-        password=findViewById(R.id.e_password);
-        progress_layout=findViewById(R.id.progress_layout);
-        readOtp=findViewById(R.id.readOtp);
+        mobile_number = findViewById(R.id.e_mobile);
+        password = findViewById(R.id.e_password);
+        progress_layout = findViewById(R.id.progress_layout);
+        readOtp = findViewById(R.id.readOtp);
         readOtp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -91,15 +92,16 @@ public class Login_screen extends AppCompatActivity {
             startActivity(i);
             finish();
         });
+
         //LOGIN ACTION
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String enteredOTP=password.getText().toString();
-                if(enteredOTP.equalsIgnoreCase("")){
-                    Toast.makeText(Login_screen.this,"Enter your OTP",Toast.LENGTH_SHORT).show();
-                }else{
-                    verifyOTP(number,enteredOTP,"0");
+                String enteredOTP = password.getText().toString();
+                if (enteredOTP.equalsIgnoreCase("")) {
+                    Toast.makeText(Login_screen.this, "Enter your OTP", Toast.LENGTH_SHORT).show();
+                } else {
+                    verifyOTP(number, enteredOTP, "0");
 
                 }
 
@@ -110,14 +112,13 @@ public class Login_screen extends AppCompatActivity {
         getOTP.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                number=mobile_number.getText().toString();
-                String password="0";
-                if(number.equalsIgnoreCase("")){
-                    Toast.makeText(Login_screen.this,"Enter your mobile number",Toast.LENGTH_SHORT).show();
-                }else if(number.length()<10){
-                    Toast.makeText(Login_screen.this,"Enter valid mobile number",Toast.LENGTH_SHORT).show();
-                }
-                else{
+                number = mobile_number.getText().toString();
+                String password = "0";
+                if (number.equalsIgnoreCase("")) {
+                    Toast.makeText(Login_screen.this, "Enter your mobile number", Toast.LENGTH_SHORT).show();
+                } else if (number.length() < 10) {
+                    Toast.makeText(Login_screen.this, "Enter valid mobile number", Toast.LENGTH_SHORT).show();
+                } else {
                     FirebaseInstanceId.getInstance().getInstanceId()
                             .addOnCompleteListener(new OnCompleteListener<InstanceIdResult>() {
                                 @Override
@@ -127,9 +128,9 @@ public class Login_screen extends AppCompatActivity {
                                     }
                                     // Get new Instance ID token
                                     token = task.getResult().getToken();
-                                    if(token!=null){
-                                        Log.e("testToken",token);
-                                        sendOtp(number,password,token);
+                                    if (token != null) {
+                                        Log.e("testToken", token);
+                                        sendOtp(number, password, token);
                                     }
                                 }
                             });
@@ -148,8 +149,9 @@ public class Login_screen extends AppCompatActivity {
             }
         });
     }
+
     //VERIFY USER ENTERED OTP
-    private void verifyOTP(String number,String otp,String token) {
+    private void verifyOTP(String number, String otp, String token) {
 
         progress_layout.setVisibility(View.VISIBLE);
         Retrofit retrofit = new Retrofit.Builder()
@@ -157,33 +159,32 @@ public class Login_screen extends AppCompatActivity {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-        Call<String> call = api.login(number,otp,token);
+        Call<String> call = api.login(number, otp, token);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body()!=null){
+                if (response.body() != null) {
                     progress_layout.setVisibility(View.GONE);
 
                     try {
                         JSONObject obj = new JSONObject(response.body());
-                        String status=obj.optString("Status");
-                        String message=obj.optString("Message");
-                        JSONArray dataArray=obj.getJSONArray("Data");
-                        Log.e("userDetails",dataArray.toString());
-                        JSONObject details=dataArray.getJSONObject(0);
-                        Log.e("userDetails",details.toString());
+                        String status = obj.optString("Status");
+                        String message = obj.optString("Message");
+                        JSONArray dataArray = obj.getJSONArray("Data");
+                        Log.e("userDetails", dataArray.toString());
+                        JSONObject details = dataArray.getJSONObject(0);
+                        Log.e("userDetails", details.toString());
                         if (status.equalsIgnoreCase("true")) {
                             progress_layout.setVisibility(View.GONE);
                             Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(Login_screen.this, Home_screen.class);
-                            userDetails=new userDetails(Login_screen.this);
+                            userDetails = new userDetails(Login_screen.this);
                             userDetails.setLoged(true);
                             userDetails.setName(details.getString("fname1"));
                             userDetails.setNumber(details.getString("MobileNo"));
                             userDetails.setWallet(details.getString("Wallet"));
                             userDetails.setMembership(details.getString("userstatus"));
                             userDetails.setComission(details.getString("Comission"));
-
                             startActivity(i);
                             finish();
 
@@ -203,41 +204,41 @@ public class Login_screen extends AppCompatActivity {
 
                 }
             }
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 progress_layout.setVisibility(View.GONE);
                 String message;
-                if(t instanceof NetworkError)
-                {
-                    message = "Cannot connect to Internet...Please check your connection!";
+                if (t instanceof NetworkError) {
+                    message = "Nointernet connection!";
                     Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
-                }
-                else{
+                } else {
                     message = "Something went wrong! Please try again after some time!!";
                     Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                 }
             }
         });
     }
+
     //SEND OTP
-    private void sendOtp(String user,String pass,String token) {
-        Log.e("TokenGenerated",""+token);
+    private void sendOtp(String user, String pass, String token) {
+        Log.e("TokenGenerated", "" + token);
         progress_layout.setVisibility(View.VISIBLE);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-        Call<String> call = api.login(user,pass,token);
+        Call<String> call = api.login(user, pass, token);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, @NotNull Response<String> response) {
-                if(response.body()!=null){
+                if (response.body() != null) {
                     try {
                         JSONObject obj = new JSONObject(response.body());
-                        String status=obj.optString("Status");
-                        String message=obj.optString("Message");
-                        String number=obj.optString("MobileNo");
+                        String status = obj.optString("Status");
+                        String message = obj.optString("Message");
+                        String number = obj.optString("MobileNo");
 
                         if (status.equalsIgnoreCase("true")) {
                             mobile_number.setEnabled(false);
@@ -245,8 +246,8 @@ public class Login_screen extends AppCompatActivity {
                             passLayout.setVisibility(View.VISIBLE);
                             login.setVisibility(View.VISIBLE);
                             getOTP.setVisibility(View.GONE);
-                            Toast.makeText(Login_screen.this,"OTP sent to "+number,Toast.LENGTH_SHORT).show();
-                        }else if (status.equalsIgnoreCase("false")) {
+                            Toast.makeText(Login_screen.this, "OTP sent to " + number, Toast.LENGTH_SHORT).show();
+                        } else if (status.equalsIgnoreCase("false")) {
                             progress_layout.setVisibility(View.GONE);
                             Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                         } else {
@@ -254,20 +255,19 @@ public class Login_screen extends AppCompatActivity {
                             Toast.makeText(Login_screen.this, "Error in server", Toast.LENGTH_SHORT).show();
                         }
 
-                    }catch (Exception e){
+                    } catch (Exception e) {
                         Toast.makeText(Login_screen.this, "Something went wrong! please try again", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
+
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 progress_layout.setVisibility(View.GONE);
                 String message;
-                if(t instanceof UnknownHostException)
-                {
+                if (t instanceof UnknownHostException) {
                     message = "Cannot connect to Internet...Please check your connection!";
-                }
-                else{
+                } else {
                     message = "Something went wrong! Please try again after some time!!";
                 }
                 Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
@@ -291,6 +291,7 @@ public class Login_screen extends AppCompatActivity {
                     public void onSuccess(Intent intent) {
                         startActivityForResult(intent, REQ_USER_CONSENT);
                     }
+
                     @Override
                     public void onFailure() {
                     }
@@ -335,8 +336,8 @@ public class Login_screen extends AppCompatActivity {
 //                        String.format("%s - %s", getString(R.string.received_message), message));
                 getOtpFromMessage(message);
             }
-            if(resultCode==RESULT_CANCELED){
-                Toast.makeText(Login_screen.this,"permission Required. Try again",Toast.LENGTH_SHORT).show();
+            if (resultCode == RESULT_CANCELED) {
+                Toast.makeText(Login_screen.this, "permission Required. Try again", Toast.LENGTH_SHORT).show();
 //                startActivityForResult(data, REQ_USER_CONSENT);
             }
         }
@@ -351,7 +352,7 @@ public class Login_screen extends AppCompatActivity {
 //            if(matcher.group(0).con)
 //            otpText.setText(matcher.group(0));
             password.setText(matcher.group(0));
-            verifyOTP(number,matcher.group(0),"0");
+            verifyOTP(number, matcher.group(0), "0");
         }
     }
 }

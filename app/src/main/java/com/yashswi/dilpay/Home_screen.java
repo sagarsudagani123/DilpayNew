@@ -17,6 +17,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
+import com.nightonke.boommenu.BoomMenuButton;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -25,6 +27,7 @@ import com.yashswi.dilpay.adapters.SliderAdapter;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.bus.Bus;
 import com.yashswi.dilpay.models.cityNames;
+import com.yashswi.dilpay.utils.CheckNetworkStatus;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,36 +46,104 @@ public class Home_screen extends AppCompatActivity {
     ArrayList<Integer> buton_img = new ArrayList<>();
     ArrayList<String> buton_names = new ArrayList<>();
     RecyclerView rv;
-    ImageView menu,profile;
+    ImageView menu, profile;
     private static final int REQUEST_CODE = 101;
+    BoomMenuButton boomMenuButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-        new Thread(runnable).start();
+
         sliderviewWork();
-        rv=findViewById(R.id.recyclerview_dashboard);
+
+        if (!CheckNetworkStatus.getConnectivityStatusString(Home_screen.this)) {
+            Toast.makeText(Home_screen.this, "No internet connection", Toast.LENGTH_SHORT).show();
+        } else {
+            new Thread(runnable).start();
+        }
+
+        rv = findViewById(R.id.recyclerview_dashboard);
         rv.setHasFixedSize(true);
-        menu=findViewById(R.id.menu);
-        profile=findViewById(R.id.profile_buton_dashboard);
+//        menu=findViewById(R.id.menu);
+        profile = findViewById(R.id.profile_buton_dashboard);
 
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(Home_screen.this,Profile.class);
+                Intent i = new Intent(Home_screen.this, Profile.class);
+                i.putExtra("toProfile", "fromLogin");
                 startActivity(i);
 
             }
         });
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(Home_screen.this,More.class);
-                startActivity(i);
-            }
-        });
+
+//        menu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(Home_screen.this,More.class);
+//                startActivity(i);
+//            }
+//        });
+        ArrayList<String> headings = new ArrayList<>();
+        ArrayList<Integer> imagesnew = new ArrayList<>();
+        headings.add("About Us");
+        headings.add("Contact Us");
+        headings.add("Privacy Polocy");
+        headings.add("Terms and Conditions");
+        headings.add("FAQ");
+        headings.add("Support");
+
+        imagesnew.add(R.drawable.profile_pic);
+        imagesnew.add(R.drawable.rupee);
+        imagesnew.add(R.drawable.edit);
+        imagesnew.add(R.drawable.profile_pic);
+        imagesnew.add(R.drawable.rupee);
+        imagesnew.add(R.drawable.edit);
+
+
+        boomMenuButton = findViewById(R.id.bmb);
+        for (int i = 0; i < boomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
+            TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
+                    .normalImageRes(imagesnew.get(i))//use array list
+
+                    .textSize(14)
+                    .listener(index -> {
+                                Intent intent = null;
+                                switch (index) {
+                                    case 0:
+                                        intent = new Intent(Home_screen.this, About_us.class);
+                                        startActivity(intent);
+                                        break;
+                                    case 1:
+                                        intent = new Intent(Home_screen.this, Contact_us.class);
+                                        startActivity(intent);
+                                        break;
+                                    case 2:
+                                        intent = new Intent(Home_screen.this, Privacy_policy.class);
+                                        startActivity(intent);
+                                        break;
+                                    case 3:
+                                        intent = new Intent(Home_screen.this, Terms_conditions.class);
+                                        startActivity(intent);
+                                        break;
+                                    case 4:
+                                        intent = new Intent(Home_screen.this, Faq.class);
+                                        startActivity(intent);
+                                        break;
+                                    case 5:
+                                        intent = new Intent(Home_screen.this, Support_screen.class);
+                                        startActivity(intent);
+                                        break;
+                                }
+                            }
+                    )
+                    .rotateText(true)
+                    .normalText(headings.get(i));//use array list
+            boomMenuButton.addBuilder(builder);
+        }
 
 
         buton_img.add(R.drawable.bus_new);
@@ -93,36 +164,41 @@ public class Home_screen extends AppCompatActivity {
         buton_names.add("Gas");
         buton_names.add("Money Transfer");
 
-        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names,"Main", this);
+        items_list_adapter adapter = new items_list_adapter(buton_img, buton_names, "Main", this);
         rv.setAdapter(adapter);
-        GridLayoutManager manager = new GridLayoutManager(this,3);
+        GridLayoutManager manager = new GridLayoutManager(this, 3);
         rv.setLayoutManager(manager);
 
         BottomNavigationView bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Intent intent = null;
                 switch (item.getItemId()) {
                     case R.id.action_home:
-                            Intent i = new Intent(Home_screen.this, Notification.class);
-                            startActivity(i);
-                            finish();
+                        intent = new Intent(Home_screen.this, Home_screen.class);
+                        startActivity(intent);
+                        finish();
                         break;
-                    case R.id.action_more:
-                            Intent j = new Intent(Home_screen.this, More.class);
-                            startActivity(j);
+                    case R.id.notification:
+                        intent = new Intent(Home_screen.this, Notification.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                    case R.id.action_transaction:
+                        intent = new Intent(Home_screen.this, TransactionsHistory.class);
+                        startActivity(intent);
+                        finish();
                         break;
                     case R.id.action_share:
-                        Intent sendIntent = new Intent();
-                        sendIntent.setAction(Intent.ACTION_SEND);
-                        sendIntent.putExtra(Intent.EXTRA_TEXT,
+                        intent = new Intent();
+                        intent.setAction(Intent.ACTION_SEND);
+                        intent.putExtra(Intent.EXTRA_TEXT,
                                 "Hey check out the Best Payments app at:" + "\n" + " https://play.google.com/store/apps/details?id=" + getApplicationContext().getPackageName());
-                        sendIntent.setType("text/plain");
-                        startActivity(sendIntent);
-//                                Intent j = new Intent(Home.this, Payment_details.class);
-//                                startActivity(j)
+                        intent.setType("text/plain");
+                        startActivity(intent);
                         break;
-                   }
+                }
                 return true;
             }
         });
@@ -154,23 +230,24 @@ public class Home_screen extends AppCompatActivity {
             }
         }
     }
-    public ArrayList<String> getPlaceNames(){
-        ArrayList<String> names=new ArrayList<>();
+
+    public ArrayList<String> getPlaceNames() {
+        ArrayList<String> names = new ArrayList<>();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-        Call<String> call=api.getPlaces();
+        Call<String> call = api.getPlaces();
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body()!=null){
-                    Log.e("check",response.body());
-                    cityNames obj=cityNames.getInstance();
+                if (response.body() != null) {
+                    Log.e("check", response.body());
+                    cityNames obj = cityNames.getInstance();
                     try {
-                        JSONArray data=new JSONArray(response.body());
-                        for(int i=0;i<data.length();i++){
+                        JSONArray data = new JSONArray(response.body());
+                        for (int i = 0; i < data.length(); i++) {
                             names.add(data.get(i).toString());
                             obj.setNames(data.get(i).toString());
                         }
@@ -183,26 +260,17 @@ public class Home_screen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                String message="";
-                if(t instanceof UnknownHostException)
-                {
-                    message = "No internet connection";
-                }
-                else{
-                    message = "Something went wrong! try again";
-                }
-                Toast.makeText(Home_screen.this, message+"", Toast.LENGTH_SHORT).show();
+                getPlaceNames();
             }
         });
         return names;
     }
-    Runnable runnable = new Runnable()
-    {
+
+    Runnable runnable = new Runnable() {
         @Override
-        public void run()
-        {
-//            Toast.makeText(Available_buses.this,"Running in background",Toast.LENGTH_SHORT).show();
+        public void run() {
             getPlaceNames();
         }
     };
+
 }

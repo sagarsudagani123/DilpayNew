@@ -1,4 +1,5 @@
 package com.yashswi.dilpay.adapters;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -10,9 +11,11 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.yashswi.dilpay.Datacard_screen;
 import com.yashswi.dilpay.bank.BankAccounts;
+import com.yashswi.dilpay.bus.My_bookings;
 import com.yashswi.dilpay.gas.Gas_screen;
 import com.yashswi.dilpay.postpaid.Postpaid_screen;
 import com.yashswi.dilpay.dth.Dth_screen;
@@ -29,11 +32,11 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
     Context context;
     String fromCategory;
 
-    public items_list_adapter(ArrayList image, ArrayList name,String fromCategory, Context context) {
+    public items_list_adapter(ArrayList image, ArrayList name, String fromCategory, Context context) {
         this.image = image;
         this.name = name;
         this.context = context;
-        this.fromCategory=fromCategory;
+        this.fromCategory = fromCategory;
     }
 
     @NonNull
@@ -53,89 +56,83 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
         holder.image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(fromCategory.equalsIgnoreCase("Main")){
-                    if (name_value.equalsIgnoreCase("bus")){
+                if (fromCategory.equalsIgnoreCase("Main")) {
+                    if (name_value.equalsIgnoreCase("bus")) {
                         Intent i = new Intent(context, Bus.class);
                         context.startActivity(i);
-                    } else if (name_value.equalsIgnoreCase("Mobile")){
+                    } else if (name_value.equalsIgnoreCase("Mobile")) {
                         Intent i = new Intent(context, Mobile.class);
                         context.startActivity(i);
-                    }else if (name_value.equalsIgnoreCase("dth")){
+                    } else if (name_value.equalsIgnoreCase("dth")) {
                         Intent i = new Intent(context, Dth_screen.class);
                         context.startActivity(i);
-                    }else if (name_value.equalsIgnoreCase("datacard")){
+                    } else if (name_value.equalsIgnoreCase("datacard")) {
                         Intent i = new Intent(context, Datacard_screen.class);
                         context.startActivity(i);
-                    }else if (name_value.equalsIgnoreCase("postpaid")){
+                    } else if (name_value.equalsIgnoreCase("postpaid")) {
                         Intent i = new Intent(context, Postpaid_screen.class);
                         context.startActivity(i);
-                    }else if (name_value.equalsIgnoreCase("electricity")){
+                    } else if (name_value.equalsIgnoreCase("electricity")) {
                         Intent i = new Intent(context, Electricity_screen.class);
                         context.startActivity(i);
-                    }else if (name_value.equalsIgnoreCase("gas")){
+                    } else if (name_value.equalsIgnoreCase("gas")) {
                         Intent i = new Intent(context, Gas_screen.class);
                         context.startActivity(i);
-                    }
-                    else if(name_value.equalsIgnoreCase("Money Transfer")){
-                        Intent intent =new Intent(context, BankAccounts.class);
-                        intent.putExtra("title","Select Bank");
+                    } else if (name_value.equalsIgnoreCase("Money Transfer")) {
+                        Intent intent = new Intent(context, BankAccounts.class);
+                        intent.putExtra("title", "Select Bank");
                         context.startActivity(intent);
                     }
                 }
-                if(fromCategory.equalsIgnoreCase("Bus")){
-                    if(name_value.equalsIgnoreCase("My Bookings")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                    else if(name_value.equalsIgnoreCase("Offers")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                }
-                if(fromCategory.equalsIgnoreCase("Mobile")){
-                    if(name_value.equalsIgnoreCase("Recharge History")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                    else if(name_value.equalsIgnoreCase("Offers")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
+                if (fromCategory.equalsIgnoreCase("Bus")) {
+                    if (name_value.equalsIgnoreCase("My Bookings")) {
+                        Intent i = new Intent(context, My_bookings.class);
+                        context.startActivity(i);
+//                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
+                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
-                if(fromCategory.equalsIgnoreCase("DTH")){
-                    if(name_value.equalsIgnoreCase("Recharge History")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                    else if(name_value.equalsIgnoreCase("Offers")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                }
-                if(fromCategory.equalsIgnoreCase("Datacard")){
-                    if(name_value.equalsIgnoreCase("Recharge History")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                    else if(name_value.equalsIgnoreCase("Offers")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
+                if (fromCategory.equalsIgnoreCase("Mobile")) {
+                    if (name_value.equalsIgnoreCase("Recharge History")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
-                if(fromCategory.equalsIgnoreCase("postpaid")){
-                    if(name_value.equalsIgnoreCase("Recharge History")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                    else if(name_value.equalsIgnoreCase("Offers")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                }
-                if(fromCategory.equalsIgnoreCase("electricity")){
-                    if(name_value.equalsIgnoreCase("Payments History")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    }
-                    else if(name_value.equalsIgnoreCase("Offers")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
+                if (fromCategory.equalsIgnoreCase("DTH")) {
+                    if (name_value.equalsIgnoreCase("Recharge History")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
-                if(fromCategory.equalsIgnoreCase("gas")){
-                    if(name_value.equalsIgnoreCase("My Bookings")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
+                if (fromCategory.equalsIgnoreCase("Datacard")) {
+                    if (name_value.equalsIgnoreCase("Recharge History")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
-                    else if(name_value.equalsIgnoreCase("Offers")){
-                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
+                }
+                if (fromCategory.equalsIgnoreCase("postpaid")) {
+                    if (name_value.equalsIgnoreCase("Recharge History")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (fromCategory.equalsIgnoreCase("electricity")) {
+                    if (name_value.equalsIgnoreCase("Payments History")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                    }
+                }
+                if (fromCategory.equalsIgnoreCase("gas")) {
+                    if (name_value.equalsIgnoreCase("My Bookings")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -150,10 +147,11 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
     public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView name;
+
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-            image=itemView.findViewById(R.id.buton_img);
-            name=itemView.findViewById(R.id.buton_name);
+            image = itemView.findViewById(R.id.buton_img);
+            name = itemView.findViewById(R.id.buton_name);
         }
     }
 }

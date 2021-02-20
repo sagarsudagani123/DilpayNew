@@ -1,7 +1,7 @@
 package com.yashswi.dilpay.models;
 
 public class Add_account_model {
-    String beneId,name,email,phone,bankAccount,ifsc,address1;
+    String beneId, name, email, phone, bankAccount, ifsc, address1;
 
     public String getBeneId() {
         return beneId;

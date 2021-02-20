@@ -1,33 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:id="@+id/card"
-    android:elevation="10dp"
-    android:layout_margin="7dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginEnd="12dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="13dp">
+
     <RelativeLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/re1"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:id="@+id/re1">
+        android:background="@color/cardBG"
+        android:padding="10dp">
 
         <TextView
+            android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="Title"
-            android:layout_marginStart="15dp"
             android:textSize="16sp"
-            android:id="@+id/title"
-            android:textStyle="bold"
-            />
+            android:textStyle="bold" />
+
         <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:text="date"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/title"
-            android:layout_marginStart="15dp"
-            android:id="@+id/body"
-            android:text="body"/>
+            android:layout_marginStart="5dp"
+            android:text="body" />
     </RelativeLayout>
 
 </com.google.android.material.card.MaterialCardView>

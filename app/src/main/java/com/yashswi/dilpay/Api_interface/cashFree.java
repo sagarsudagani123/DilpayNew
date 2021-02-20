@@ -10,13 +10,13 @@ public interface cashFree {
 
     @Headers({"Accept: application/json"})
     @POST("payout/v1/authorize")
-    Call<String> getToken(@Header("X-Client-Id")String id, @Header("X-Client-Secret")String secret);
+    Call<String> getToken(@Header("X-Client-Id") String id, @Header("X-Client-Secret") String secret);
 
     @Headers({"Accept: application/json"})
     @POST("payout/v1/addBeneficiary")
-    Call<String> addBeneficiary(@Header("Authorization")String token,@Body String body);
+    Call<String> addBeneficiary(@Header("Authorization") String token, @Body String body);
 
     @Headers({"Accept: application/json"})
     @POST("payout/v1/requestAsyncTransfer")
-    Call<String> walletWithdraw(@Header("Authorization")String token,@Body String body);
+    Call<String> walletWithdraw(@Header("Authorization") String token, @Body String body);
 }

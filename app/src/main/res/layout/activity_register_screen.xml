@@ -30,12 +30,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/icon2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:layout_below="@id/icon1"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
             android:text="DilPay services Pvt Ltd"
             android:textColor="#fff"
             android:textSize="20sp"
@@ -57,16 +56,17 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="15dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginBottom="10dp"
                     android:text="Register"
                     android:textColor="@color/gradientStart"
                     android:textSize="22sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="10dp"
-                    android:layout_gravity="start"
-                    />
+                    android:textStyle="bold" />
+
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
@@ -113,8 +113,7 @@
                     android:layout_marginTop="5dp"
                     android:hint="Full name"
                     android:visibility="gone"
-                    app:boxStrokeColor="@color/gradientStart"
-                    >
+                    app:boxStrokeColor="@color/gradientStart">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/name"

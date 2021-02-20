@@ -1,4 +1,5 @@
 package com.yashswi.dilpay.bus;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
@@ -40,8 +41,8 @@ import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
 
 public class Bus extends AppCompatActivity {
     MaterialTextView date1;
-    boolean dateChecked=false;
-    TextView fetch, depart, arrival,error;
+    boolean dateChecked = false;
+    TextView fetch, depart, arrival, error;
     AppCompatButton search;
     ImageView back;
     String source_id, destination_id, journey_date;
@@ -49,7 +50,7 @@ public class Bus extends AppCompatActivity {
     RecyclerView bus_items;
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
-    MaterialAutoCompleteTextView from,to;
+    MaterialAutoCompleteTextView from, to;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +59,7 @@ public class Bus extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         //CREATING INSTANCE FOR SINGLE TONE CLASS
-        cityNames obj=cityNames.getInstance();
+        cityNames obj = cityNames.getInstance();
 
         //FINDING VIEWS
         date1 = findViewById(R.id.date1);
@@ -68,13 +69,13 @@ public class Bus extends AppCompatActivity {
         from = findViewById(R.id.e_from);
         depart = findViewById(R.id.depart_time);
         arrival = findViewById(R.id.arrival_time);
-        error=findViewById(R.id.error);
+        error = findViewById(R.id.error);
         to = findViewById(R.id.e_to);
         progress_layout = findViewById(R.id.progress_layout);
-        bus_items=findViewById(R.id.bus_items);
+        bus_items = findViewById(R.id.bus_items);
 
         //SETTING CITIES NAMES FROM HOME ACTIVITY LIST TO SPINNERS
-        ArrayAdapter<String> adapter1=new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,obj.getNames());
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, obj.getNames());
         from.setAdapter(adapter1);
         to.setAdapter(adapter1);
 
@@ -91,14 +92,14 @@ public class Bus extends AppCompatActivity {
                 String formattedMonth = "" + month1;
                 String formattedDayOfMonth = "" + day1;
                 String date = day1 + "-" + month1 + "-" + year1;
-                if(month1 < 10){
+                if (month1 < 10) {
                     formattedMonth = "0" + month1;
                 }
-                if(day1 < 10){
+                if (day1 < 10) {
                     formattedDayOfMonth = "0" + day1;
                 }
                 date1.setText(formattedDayOfMonth + "-" + formattedMonth + "-" + year1);
-                dateChecked=true;
+                dateChecked = true;
             }, year, month, day);
             datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
             datePickerDialog.show();
@@ -108,14 +109,14 @@ public class Bus extends AppCompatActivity {
         search.setOnClickListener(v -> {
             source_id = from.getText().toString();
             destination_id = to.getText().toString();
-            journey_date=date1.getText().toString();
-            if(source_id.equals("") ||source_id==null || destination_id.equals("") ||destination_id==null || !dateChecked){
+            journey_date = date1.getText().toString();
+            if (source_id.equals("") || source_id == null || destination_id.equals("") || destination_id == null || !dateChecked) {
                 error.setText("Please fill in all details");
-            }else{
-                Intent intent = new Intent(Bus.this,Available_buses.class);
-                intent.putExtra("from",source_id);
-                intent.putExtra("to",destination_id);
-                intent.putExtra("date",journey_date);
+            } else {
+                Intent intent = new Intent(Bus.this, Available_buses.class);
+                intent.putExtra("from", source_id);
+                intent.putExtra("to", destination_id);
+                intent.putExtra("date", journey_date);
                 startActivity(intent);
             }
         });
@@ -127,29 +128,29 @@ public class Bus extends AppCompatActivity {
         itemName.add("Offers");
 
         //ITEMS ADAPTER
-        items_list_adapter adapter = new items_list_adapter(itemImg, itemName,"Bus", this);
+        items_list_adapter adapter = new items_list_adapter(itemImg, itemName, "Bus", this);
         bus_items.setAdapter(adapter);
-        GridLayoutManager manager = new GridLayoutManager(this,3);
+        GridLayoutManager manager = new GridLayoutManager(this, 3);
         bus_items.setLayoutManager(manager);
     }
 
     //GETTING CITY NAMES SUGGESTIONS
-    public ArrayList<String> getPlaceNames(){
-        ArrayList<String> names=new ArrayList<>();
+    public ArrayList<String> getPlaceNames() {
+        ArrayList<String> names = new ArrayList<>();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-        Call<String> call=api.getPlaces();
+        Call<String> call = api.getPlaces();
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                if(response.body()!=null){
-                    Log.e("check",response.body());
+                if (response.body() != null) {
+                    Log.e("check", response.body());
                     try {
-                        JSONArray data=new JSONArray(response.body());
-                        for(int i=0;i<data.length();i++){
+                        JSONArray data = new JSONArray(response.body());
+                        for (int i = 0; i < data.length(); i++) {
                             names.add(data.get(i).toString());
                         }
                         progress_layout.setVisibility(View.GONE);
@@ -163,15 +164,13 @@ public class Bus extends AppCompatActivity {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 progress_layout.setVisibility(View.GONE);
-                String message="";
-                if(t instanceof UnknownHostException)
-                {
+                String message = "";
+                if (t instanceof UnknownHostException) {
                     message = "No internet connection";
-                }
-                else{
+                } else {
                     message = "Something went wrong! try again";
                 }
-                Toast.makeText(Bus.this, message+"", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Bus.this, message + "", Toast.LENGTH_SHORT).show();
             }
         });
         return names;

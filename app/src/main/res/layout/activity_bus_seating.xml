@@ -6,107 +6,115 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".bus.Bus_seating">
+
     <RelativeLayout
+        android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone"
-        android:id="@+id/progress">
+        android:visibility="gone">
+
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:lottie_rawRes="@raw/bus"
-            app:lottie_autoPlay="true"
             android:layout_centerInParent="true"
-            app:lottie_loop="true"/>
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/bus" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/animationView"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="100dp"
             android:text="Loading..."
             android:textColor="#8E8D8D"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:layout_marginBottom="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_below="@id/animationView"/>
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <RelativeLayout
+        android:id="@+id/re1"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/gradientEnd"
-        android:id="@+id/re1">
+        android:background="@color/gradientEnd">
+
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:padding="7dp"
             android:src="@drawable/ic_baseline_chevron_left_24" />
+
         <TextView
+            android:id="@+id/travel_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bus Seating"
-            android:id="@+id/travel_name"
-            android:textStyle="bold"
-            android:textColor="#fff"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:text="Bus Seating"
+            android:textColor="#fff"
             android:textSize="18sp"
-            android:layout_marginTop="25dp" />
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <RelativeLayout
+        android:id="@+id/mainLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/mainLayout"
         android:layout_below="@id/re1">
+
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/details"
-            >
+            android:layout_above="@+id/details">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
 
                 <LinearLayout
+                    android:id="@+id/selectIndex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:layout_gravity="center"
-                    android:id="@+id/selectIndex"
                     android:layout_marginTop="10dp"
-                    android:visibility="gone"
-                    android:padding="0dp"
                     android:background="@drawable/border"
-                    android:gravity="center">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="0dp"
+                    android:visibility="gone">
 
                     <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lower"
-                        android:textSize="18sp"
-                        android:padding="8dp"
-                        android:textColor="#fff"
-                        android:background="@drawable/btn_left_active"
                         android:id="@+id/lowerText"
-                        android:paddingStart="15dp"
-                        android:paddingEnd="15dp"
-                        android:textStyle="bold"
-                        />
-                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
+                        android:background="@drawable/btn_left_active"
                         android:padding="8dp"
-                        android:background="@drawable/btn_right"
-                        android:textColor="@color/gradientStart"
                         android:paddingStart="15dp"
                         android:paddingEnd="15dp"
+                        android:text="Lower"
+                        android:textColor="#fff"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <TextView
                         android:id="@+id/upperText"
-                        android:text="Upper"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_right"
+                        android:padding="8dp"
+                        android:paddingStart="15dp"
+                        android:paddingEnd="15dp"
+                        android:text="Upper"
+                        android:textColor="@color/gradientStart"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -114,102 +122,110 @@
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
                     android:padding="25dp">
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="5dp"
                         android:layout_weight="2"
                         android:background="@drawable/border"
-                        >
+                        android:orientation="vertical"
+                        android:padding="5dp">
+
                         <ImageView
                             android:layout_width="50dp"
                             android:layout_height="50dp"
                             android:layout_gravity="end"
                             android:layout_marginEnd="10dp"
-                            android:src="@drawable/bus_steering"
-                            />
+                            android:src="@drawable/bus_steering" />
+
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:background="@color/gray"
                             android:layout_marginTop="10dp"
-                            android:layout_marginBottom="10dp"/>
+                            android:layout_marginBottom="10dp"
+                            android:background="@color/gray" />
 
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/seater"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/seater"/>
+                            android:layout_height="wrap_content" />
+
                         <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/upper"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/upper"/>
+                            android:layout_height="wrap_content" />
 
 
                     </LinearLayout>
+
                     <LinearLayout
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:id="@+id/li2"
-                        android:gravity="center"
                         android:layout_weight="1"
-                        android:padding="10dp"
-                        android:orientation="vertical">
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="10dp">
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
                             android:layout_gravity="center"
-                            android:gravity="center"
                             android:layout_marginTop="20dp"
-                            android:text="Available"/>
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="Available" />
+
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:src="@drawable/available_seat"
-                            />
+                            android:src="@drawable/available_seat" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
                             android:layout_gravity="center"
-                            android:gravity="center"
                             android:layout_marginTop="20dp"
-                            android:text="Selected"/>
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="Selected" />
+
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
 
-                            android:src="@drawable/seat_select"/>
+                            android:src="@drawable/seat_select" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
                             android:layout_gravity="center"
-                            android:gravity="center"
                             android:layout_marginTop="20dp"
-                            android:text="Booked"/>
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="Booked" />
+
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:src="@drawable/seat_booked"/>
+                            android:src="@drawable/seat_booked" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="2"
                             android:layout_gravity="center"
-                            android:gravity="center"
                             android:layout_marginTop="20dp"
-                            android:text="Ladies"/>
+                            android:layout_weight="2"
+                            android:gravity="center"
+                            android:text="Ladies" />
+
                         <ImageView
                             android:layout_width="40dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:src="@drawable/seatbooked"
-                            />
+                            android:src="@drawable/seatbooked" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -217,77 +233,77 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/trip"
-                    android:text=""/>
+                    android:text="" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
+
         <RelativeLayout
+            android:id="@+id/details"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/details"
-            android:layout_marginTop="10dp"
             android:layout_alignParentBottom="true"
-            android:background="@color/gradientEnd"
-            >
+            android:layout_marginTop="10dp"
+            android:background="@color/gradientEnd">
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Selected seats:"
                 android:id="@+id/seat_num"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:layout_marginStart="25dp"
-                />
-            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="10dp"
+                android:text="Selected seats:"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/seatsSelected"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
+                android:layout_toRightOf="@id/seat_num"
                 android:text=""
                 android:textSize="16sp"
-                android:layout_marginTop="10dp"
-                android:layout_marginStart="8dp"
-                android:id="@+id/seatsSelected"
-                android:textStyle="bold"
-                android:layout_toRightOf="@id/seat_num" />
+                android:textStyle="bold" />
+
             <TextView
+                android:id="@+id/amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Amount : "
-                android:id="@+id/amount"
-                android:textSize="16sp"
-                android:textColor="@color/white"
-                android:layout_marginTop="10dp"
-                android:textStyle="bold"
+                android:layout_below="@id/seat_num"
                 android:layout_marginStart="25dp"
-                android:layout_below="@id/seat_num" />
+                android:layout_marginTop="10dp"
+                android:text="Amount : "
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/amount1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_below="@id/seatsSelected"
                 android:layout_marginStart="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_toRightOf="@id/amount"
                 android:text=""
                 android:textSize="16sp"
-                android:layout_below="@id/seatsSelected"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/selectDrop"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginBottom="20dp"
                 android:layout_below="@id/amount"
-                android:text="Done"
-                android:textStyle="bold"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
                 android:background="@drawable/button_bg"
-                android:textColor="@color/gradientStart" />
+                android:text="Done"
+                android:textColor="@color/gradientStart"
+                android:textStyle="bold" />
         </RelativeLayout>
     </RelativeLayout>
 

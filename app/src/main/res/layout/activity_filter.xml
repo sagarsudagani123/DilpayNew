@@ -4,84 +4,86 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bus.FilterActivity"
-    android:background="@color/white">
+    android:background="@color/white"
+    tools:context=".bus.FilterActivity">
+
     <RelativeLayout
+        android:id="@+id/re1"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/gradientEnd"
-        android:id="@+id/re1">
+        android:background="@color/gradientEnd">
 
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
+            android:layout_marginLeft="10dp"
+            android:padding="7dp"
             android:src="@drawable/ic_baseline_chevron_left_24" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Apply Filter"
-            android:id="@+id/te1"
-            android:textStyle="bold"
-            android:textColor="#fff"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:text="Apply Filter"
+            android:textColor="#fff"
             android:textSize="18sp"
-            android:layout_marginTop="25dp" />
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp"
         android:layout_below="@+id/re1"
-        >
+        android:padding="8dp">
+
         <com.google.android.material.textfield.TextInputLayout
 
+            android:id="@+id/travelsEdit"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Travels Name"
-            app:boxStrokeColor="@color/gradientStart"
-            android:id="@+id/travelsEdit"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+            app:boxStrokeColor="@color/gradientStart">
 
             <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/travelsName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
-                android:id="@+id/travelsName"
                 android:imeOptions="actionNext"
-                />
+                android:inputType="text" />
 
         </com.google.android.material.textfield.TextInputLayout>
+
         <RelativeLayout
+            android:id="@+id/typeLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/typeLayout"
-            android:layout_below="@+id/travelsEdit"
-            >
+            android:layout_below="@+id/travelsEdit">
+
             <TextView
+                android:id="@+id/bustypeText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="20dp"
                 android:text="Bus Type :"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:layout_centerVertical="true"
-                android:id="@+id/bustypeText"
-                android:layout_marginTop="20dp"
-                />
+                android:textStyle="bold" />
+
             <RadioGroup
                 android:id="@+id/radioGroupBusType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/bustypeText"
+                android:layout_centerVertical="true"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
-                android:layout_centerVertical="true"
+                android:layout_toEndOf="@+id/bustypeText"
                 android:orientation="horizontal">
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/seater"
                     android:layout_width="wrap_content"
@@ -93,6 +95,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Sleeper" />
+
                 <com.google.android.material.radiobutton.MaterialRadioButton
                     android:id="@+id/semiSleeper"
                     android:layout_width="wrap_content"
@@ -100,64 +103,65 @@
                     android:text="Semi-Sleeper" />
             </RadioGroup>
         </RelativeLayout>
+
         <TextView
+            android:id="@+id/amountText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/typeLayout"
             android:text="Amount :"
             android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_below="@+id/typeLayout"
-            android:id="@+id/amountText"
-            />
+            android:textStyle="bold" />
+
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="200.0"
             android:id="@+id/amountFrom"
-            android:textColor="@color/textColor"
-            android:layout_below="@+id/typeLayout"
-            android:layout_toEndOf="@+id/amountText"
-            android:layout_marginStart="10dp"
-            />
-        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/amountFrom"
             android:layout_below="@+id/typeLayout"
-            android:text="-"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/amountText"
+            android:text="200.0"
+            android:textColor="@color/textColor"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/dash"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/typeLayout"
+            android:layout_toEndOf="@+id/amountFrom"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
-            android:id="@+id/dash"
-            />
+            android:text="-" />
+
         <TextView
+            android:id="@+id/amountTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="5000.0"
-            android:id="@+id/amountTo"
-            android:textColor="@color/textColor"
             android:layout_below="@+id/typeLayout"
             android:layout_toEndOf="@+id/dash"
-            />
+            android:text="5000.0"
+            android:textColor="@color/textColor"
+            android:textSize="16sp" />
+
         <com.google.android.material.slider.RangeSlider
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
             android:id="@+id/amountSlider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/amountText"
+            android:stepSize="10.0"
             android:valueFrom="0.0"
             android:valueTo="10000.0"
-            app:values="@array/initial_slider_values"
-            android:stepSize="10.0"  />
+            app:values="@array/initial_slider_values" />
+
         <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/applyFilter"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:text="Apply Filter"
             android:layout_below="@+id/amountSlider"
-            android:background="@drawable/button_bg"
-            android:id="@+id/applyFilter"
             android:layout_centerHorizontal="true"
-            />
+            android:background="@drawable/button_bg"
+            android:text="Apply Filter" />
     </RelativeLayout>
 
 

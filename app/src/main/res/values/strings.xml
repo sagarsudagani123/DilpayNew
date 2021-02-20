@@ -291,9 +291,5 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <string name="terms166">Losses</string>
     <string name="terms167">Dilbus will not be responsible for any loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill or wasted expenditure) and any other indirect or consequential loss to You when You commenced using the app.</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="errorName">erroe in name</string>
-    <string name="errorNumber">enter valid number</string>
-    <string name="errorEmail">enter valid mail id</string>
 
 </resources>

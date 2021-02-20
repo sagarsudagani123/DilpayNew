@@ -29,12 +29,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/icon2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:layout_below="@id/icon1"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
             android:text="DilPay services Pvt Ltd"
             android:textColor="#fff"
             android:textSize="20sp"
@@ -56,16 +55,16 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:padding="15dp">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Edit Profile"
-                    android:textSize="18sp"
                     android:textColor="@color/black"
-                    android:textStyle="bold"/>
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/address"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -77,18 +76,17 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:imeOptions="actionNext"
-                        android:lines="1"
                         android:inputType="text"
-                        />
+                        android:lines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/city"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="City"
                     android:layout_marginTop="3dp"
+                    android:hint="City"
                     app:boxStrokeColor="@color/gradientStart">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -100,13 +98,13 @@
                         android:lines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/state"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="State"
                     android:layout_marginTop="3dp"
+                    android:hint="State"
                     app:boxStrokeColor="@color/gradientStart">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -120,12 +118,11 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/pin_code"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Pin code"
                     android:layout_marginTop="3dp"
+                    android:hint="Pin code"
                     app:boxStrokeColor="@color/gradientStart">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -137,13 +134,13 @@
                         android:lines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/country"
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Country"
                     android:layout_marginTop="3dp"
+                    android:hint="Country"
                     app:boxStrokeColor="@color/gradientStart">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -155,15 +152,16 @@
                         android:lines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/submit"
                     android:layout_width="200dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="20dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/button_main"
                     android:text="Submit"
-                    android:layout_marginBottom="5dp"
                     android:textColor="#fff"
                     android:textStyle="bold" />
 

@@ -12,11 +12,11 @@
         android:layout_height="match_parent"
         android:background="#0DFFFFFF">
 
-<!--        <ImageView-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:scaleType="centerCrop"-->
-<!--            android:src="" />-->
+        <!--        <ImageView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:scaleType="centerCrop"-->
+        <!--            android:src="" />-->
 
         <TextView
             android:id="@+id/icon1"
@@ -31,12 +31,11 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/icon2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="30dp"
             android:layout_below="@id/icon1"
             android:layout_centerHorizontal="true"
+            android:layout_marginBottom="30dp"
             android:text="DilPay services Pvt Ltd"
             android:textColor="#fff"
             android:textSize="20sp"
@@ -104,24 +103,25 @@
                         android:id="@+id/e_password"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:imeOptions="actionDone"
                         android:enabled="false"
+                        android:imeOptions="actionDone"
                         android:inputType="number" />
 
                 </com.google.android.material.textfield.TextInputLayout>
+
                 <TextView
+                    android:id="@+id/readOtp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="start"
-                    android:id="@+id/readOtp"
+                    android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
+                    android:gravity="center"
                     android:text="READ OTP"
                     android:textColor="@color/gradientStart"
                     android:textSize="18sp"
-                    android:gravity="center"
-                    android:visibility="gone"
-                    android:layout_marginTop="5dp"
-                    android:textStyle="normal"/>
+                    android:textStyle="normal"
+                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/getOTP"

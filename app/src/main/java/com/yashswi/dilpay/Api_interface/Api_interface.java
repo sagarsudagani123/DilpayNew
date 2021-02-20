@@ -32,7 +32,7 @@ public interface Api_interface {
 
     @POST("routines.php")
     @FormUrlEncoded
-    Call<String> login(@Field("username") String username, @Field("password") String password,@Field("Token") String Token);
+    Call<String> login(@Field("username") String username, @Field("password") String password, @Field("Token") String Token);
 
     @GET("TicketBlock.php")
     Call<String> bookingDetails(@Query("TicketBlock") String data);
@@ -65,8 +65,36 @@ public interface Api_interface {
     Call<String> getNotifications(@Field("username") String userNumber);
 
 
+    @POST("StatementReport.php")
+    @FormUrlEncoded
+    Call<String> getTransactions(@Field("username") String userNumber);
+
+
+    @POST("BankDetailsPost.php")
+    @FormUrlEncoded
+    Call<String> addBankDetails(@Field("data") String data);
+
+
+    @POST("GetUserBankDetails.php")
+    @FormUrlEncoded
+    Call<String> getBanks(@Field("username") String userNumber);
+
+    @GET("MyBusBookingInfo.php")
+    Call<String> myBookings(@Query("username") String number);
+
+    @POST("ProfilEdit.php")
+    @FormUrlEncoded
+    Call<String> updateDetails(@Field("data") String data);
+
+    @GET("GetImage.php")
+    Call<String> getImage();
+
+    @POST("")
+    @FormUrlEncoded
+    Call<String> verifyAmount(@Field("username") String username, @Field("amount") String amount);
+
     //test upload image
-    @Multipart
-    @POST("test2.php")
-    Call<String> uploadPic(@Part MultipartBody.Part file, @Part("file") RequestBody name);
+    @POST("ImageUpload.php")
+    @FormUrlEncoded
+    Call<String> uploadPic(@Field("ImageUpload") String data);
 }

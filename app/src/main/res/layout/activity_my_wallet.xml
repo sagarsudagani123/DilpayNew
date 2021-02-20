@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MyWallet">
+
     <RelativeLayout
         android:id="@+id/re1"
         android:layout_width="match_parent"
@@ -21,7 +22,6 @@
             android:src="@drawable/ic_baseline_chevron_left_24" />
 
         <TextView
-            android:id="@+id/te1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
@@ -32,40 +32,45 @@
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
+
     <com.google.android.material.card.MaterialCardView
+        android:id="@+id/card_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/re1"
-        app:cardCornerRadius="6dp"
-        android:id="@+id/card_details"
+        android:layout_margin="5dp"
         android:elevation="6dp"
-        android:layout_margin="5dp">
+        app:cardCornerRadius="6dp">
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="TDS"
-            android:id="@+id/tds"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/tds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="20dp"
+                android:text="TDS"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <LinearLayout
+                android:id="@+id/li_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
-                android:id="@+id/li_amount"
-                android:layout_marginEnd="10dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
+
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/tds_rupee"
                     android:layout_width="20dp"
                     android:layout_height="15dp"
                     android:layout_gravity="center"
                     android:src="@drawable/rupee" />
+
                 <TextView
                     android:id="@+id/tds_amount"
                     android:layout_width="wrap_content"
@@ -77,30 +82,32 @@
             </LinearLayout>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="GST"
                 android:id="@+id/gst"
-                android:textSize="16sp"
-                android:layout_below="@id/tds"
-                android:textStyle="bold"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"/>
-            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/li1_amount"
-                android:layout_marginEnd="10dp"
-                android:layout_below="@id/li_amount"
+                android:layout_below="@id/tds"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
+                android:text="GST"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/li1_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/li_amount"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
+
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/gst_rupee"
                     android:layout_width="20dp"
                     android:layout_height="15dp"
                     android:layout_gravity="center"
                     android:src="@drawable/rupee" />
+
                 <TextView
                     android:id="@+id/gst_amount"
                     android:layout_width="wrap_content"
@@ -110,31 +117,34 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
+
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Total Amount"
                 android:id="@+id/total"
-                android:textSize="16sp"
-                android:layout_below="@id/gst"
-                android:textStyle="bold"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"/>
-            <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/li2_amount"
-                android:layout_marginEnd="10dp"
-                android:layout_below="@id/li1_amount"
+                android:layout_below="@id/gst"
+                android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
+                android:text="Total Amount"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/li2_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/li1_amount"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
+
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/total_rupee"
                     android:layout_width="20dp"
                     android:layout_height="15dp"
                     android:layout_gravity="center"
                     android:src="@drawable/rupee" />
+
                 <TextView
                     android:id="@+id/total_amount"
                     android:layout_width="wrap_content"
@@ -144,31 +154,32 @@
                     android:textSize="16sp"
                     android:textStyle="bold" />
             </LinearLayout>
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="COMISSION"
-                android:id="@+id/commision"
-                android:textSize="16sp"
-                android:textStyle="bold"
                 android:layout_below="@id/total"
                 android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:text="COMISSION"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:id="@+id/li_commision"
                 android:layout_below="@id/li2_amount"
-                android:layout_marginEnd="10dp"
+                android:layout_alignParentEnd="true"
                 android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
+
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/commision_rupee"
                     android:layout_width="20dp"
                     android:layout_height="15dp"
                     android:layout_gravity="center"
                     android:src="@drawable/rupee" />
+
                 <TextView
                     android:id="@+id/commision_amount"
                     android:layout_width="wrap_content"
@@ -181,22 +192,22 @@
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
+
     <RelativeLayout
+        android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/progress"
         android:background="@color/progressBGColor"
-        android:visibility="gone"
         android:elevation="3dp"
+        android:visibility="gone"
 
         >
+
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            />
+            android:layout_centerInParent="true" />
     </RelativeLayout>
-
 
 
 </RelativeLayout>

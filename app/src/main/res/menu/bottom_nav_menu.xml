@@ -7,23 +7,27 @@
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
         android:title="Home"
+        android:orderInCategory="0"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_share"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_share_24"
         android:title="Share"
+        android:orderInCategory="3"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_transaction"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_history_24"
         android:title="Transactions"
+        android:orderInCategory="2"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_more"
+        android:id="@+id/notification"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_more_24"
-        android:title="More"
+        android:icon="@drawable/notification"
+        android:title="Notifications"
+        android:orderInCategory="1"
         app:showAsAction="ifRoom" />
 </menu>

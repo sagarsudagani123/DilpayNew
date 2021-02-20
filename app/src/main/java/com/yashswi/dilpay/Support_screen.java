@@ -11,14 +11,15 @@ import android.widget.ImageView;
 
 public class Support_screen extends AppCompatActivity {
     ImageView back;
-    String[] operators = new String[] {"Booking","Cancel","Payment","Other"};
+    String[] operators = new String[]{"Booking", "Cancel", "Payment", "Other"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_support_screen);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        back=findViewById(R.id.back);
+        back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

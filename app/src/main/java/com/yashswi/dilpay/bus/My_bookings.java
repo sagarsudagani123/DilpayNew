@@ -6,15 +6,33 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
+import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.R;
+import com.yashswi.dilpay.TransactionsHistory;
 import com.yashswi.dilpay.adapters.Bookings_list_adapter;
+import com.yashswi.dilpay.adapters.TransactionHistoryAdapter;
 import com.yashswi.dilpay.adapters.buses_list_adapter;
 import com.yashswi.dilpay.bus.Available_buses;
+import com.yashswi.dilpay.models.MyBookingsModel;
+import com.yashswi.dilpay.models.userDetails;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class My_bookings extends AppCompatActivity {
     RecyclerView rv;
@@ -26,64 +44,20 @@ public class My_bookings extends AppCompatActivity {
     ArrayList<String> status = new ArrayList<>();
     ArrayList<String> journey_date = new ArrayList<>();
     ArrayList<String> travels = new ArrayList<>();
+    ArrayList<MyBookingsModel> model = new ArrayList<>();
+    com.yashswi.dilpay.models.userDetails userDetails;
+
+    String number;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_bookings);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
+        userDetails = new userDetails(My_bookings.this);
         rv = findViewById(R.id.bookings_list__recyclerview);
         rv.setHasFixedSize(true);
         back = findViewById(R.id.back);
-
-        from.add("Hyderabad");
-        to.add("Bangalore");
-        from_time.add("06:30AM");
-        to_time.add("09:30PM");
-        status.add("Completed");
-        journey_date.add("15-01-2021");
-        travels.add("Sagar Tavels");
-
-        from.add("Vijayawada");
-        to.add("Hyderabad");
-        from_time.add("07:30PM");
-        to_time.add("05:00AM");
-        status.add("Upcoming");
-        journey_date.add("26-01-2021");
-        travels.add("Aditya Tavels");
-
-        from.add("Hyderabad");
-        to.add("Chennai");
-        from_time.add("09:30PM");
-        to_time.add("04:30AM");
-        status.add("Cancelled");
-        journey_date.add("20-01-2021");
-        travels.add("Sai Tavels");
-
-        from.add("Hyderabad");
-        to.add("Bangalore");
-        from_time.add("06:30AM");
-        to_time.add("09:30PM");
-        status.add("Completed");
-        journey_date.add("15-01-2021");
-        travels.add("Jay Tavels");
-
-        from.add("Vijayawada");
-        to.add("Hyderabad");
-        from_time.add("07:30PM");
-        to_time.add("05:00AM");
-        status.add("Upcoming");
-        journey_date.add("26-01-2021");
-        travels.add("Ajay Tavels");
-
-        from.add("Hyderabad");
-        to.add("Chennai");
-        from_time.add("09:30PM");
-        to_time.add("04:30AM");
-        status.add("Completed");
-        journey_date.add("20-01-2021");
-        travels.add("Sushant Tavels");
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -92,11 +66,63 @@ public class My_bookings extends AppCompatActivity {
             }
         });
 
-        Bookings_list_adapter adapter = new Bookings_list_adapter(from, to, status, from_time, to_time, journey_date, travels, My_bookings.this);
-        rv.setAdapter(adapter);
-        LinearLayoutManager manager = new LinearLayoutManager(My_bookings.this, RecyclerView.VERTICAL, false);
-        rv.setLayoutManager(manager);
+        myBookings();
+    }
 
+    private void myBookings() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api_interface.JSONURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        Api_interface api = retrofit.create(Api_interface.class);
+        Call<String> call = api.myBookings("9121382727");
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if (response.body() != null) {
+                    try {
+                        JSONObject obj = new JSONObject(response.body());
 
+                        if (obj.getString("Status").equalsIgnoreCase("True")) {
+                            JSONArray jsonArray = obj.getJSONArray("Data");
+                            for (int i = 0; i < jsonArray.length(); i++) {
+                                JSONObject dataObject = jsonArray.getJSONObject(i);
+                                from.add(dataObject.getString("SourceName"));
+                                to.add(dataObject.getString("DestinationName"));
+                                from_time.add(dataObject.getString("DepartureTime"));
+                                to_time.add(dataObject.getString("ArrivalTime"));
+                                status.add(dataObject.getString("Message"));
+                                journey_date.add(dataObject.getString("JourneyDate"));
+                                travels.add(dataObject.getString("Operator"));
+                            }
+                            Toast.makeText(My_bookings.this, from.size() + "/" + to.size() + "/" + from_time.size() + "/" + to_time.size() + "/" + status.size()
+                                    + "/" + journey_date.size() + "/" + travels.size(), Toast.LENGTH_SHORT).show();
+                            Bookings_list_adapter adapter = new Bookings_list_adapter(from, to, status, from_time, to_time, journey_date, travels, model, response.body(), My_bookings.this);
+                            rv.setAdapter(adapter);
+                            LinearLayoutManager manager = new LinearLayoutManager(My_bookings.this, RecyclerView.VERTICAL, false);
+                            rv.setLayoutManager(manager);
+                        } else {
+                            if (obj.getString("Status").equalsIgnoreCase("Error")) {
+                                Toast.makeText(My_bookings.this, "No Details Availble", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                String message = "";
+                if (t instanceof UnknownHostException) {
+                    message = "No internet connection!";
+                } else {
+                    message = "Something went wrong! try again";
+                }
+                Toast.makeText(My_bookings.this, message, Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 }

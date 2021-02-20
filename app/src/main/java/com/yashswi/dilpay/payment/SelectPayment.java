@@ -38,37 +38,38 @@ import static com.cashfree.pg.CFPaymentService.PARAM_ORDER_NOTE;
 import static com.cashfree.pg.CFPaymentService.PARAM_PAYMENT_OPTION;
 
 public class SelectPayment extends AppCompatActivity {
-ImageView back;
-MaterialCardView credit_card,upi_card;
-RelativeLayout card_layout,upi_layout;
-AppCompatButton cardSubmit;
-TextInputEditText card_number,holder_name,card_month,card_year,cvv;
-    String token,orderID,amount,name,number,cardNum,holderName,cardMonth,cardYear,cardCvv;
-    String FromPage,RefCode="";
+    ImageView back;
+    MaterialCardView credit_card, upi_card;
+    RelativeLayout card_layout, upi_layout;
+    AppCompatButton cardSubmit;
+    TextInputEditText card_number, holder_name, card_month, card_year, cvv;
+    String token, orderID, amount, name, number, cardNum, holderName, cardMonth, cardYear, cardCvv;
+    String FromPage, RefCode = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_payment);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        back=findViewById(R.id.back);
-        credit_card=findViewById(R.id.card_details);
-        upi_card=findViewById(R.id.upi_details_card);
-        card_number=findViewById(R.id.e_number);
-        holder_name=findViewById(R.id.e_name);
-        card_month=findViewById(R.id.e_month);
-        card_year=findViewById(R.id.e_year);
-        cvv=findViewById(R.id.cvv);
-        card_layout=findViewById(R.id.card_layout);
-        cardSubmit=findViewById(R.id.cardSubmit);
+        back = findViewById(R.id.back);
+        credit_card = findViewById(R.id.card_details);
+        upi_card = findViewById(R.id.upi_details_card);
+        card_number = findViewById(R.id.e_number);
+        holder_name = findViewById(R.id.e_name);
+        card_month = findViewById(R.id.e_month);
+        card_year = findViewById(R.id.e_year);
+        cvv = findViewById(R.id.cvv);
+        card_layout = findViewById(R.id.card_layout);
+        cardSubmit = findViewById(R.id.cardSubmit);
 
-        token=getIntent().getStringExtra("Token");
-        orderID=getIntent().getStringExtra("orderID");
-        amount=getIntent().getStringExtra("Amount");
-        name=getIntent().getStringExtra("Name");
-        number=getIntent().getStringExtra("Number");
-        FromPage=getIntent().getStringExtra("FromPage");
-        RefCode=getIntent().getStringExtra("RefCode");
+        token = getIntent().getStringExtra("Token");
+        orderID = getIntent().getStringExtra("orderID");
+        amount = getIntent().getStringExtra("Amount");
+        name = getIntent().getStringExtra("Name");
+        number = getIntent().getStringExtra("Number");
+        FromPage = getIntent().getStringExtra("FromPage");
+        RefCode = getIntent().getStringExtra("RefCode");
 //        token="gz9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.lM9JSOjljZiJDZmJ2YxAjNiojI0xWYz9lIsATN4gDOwUTM2EjOiAHelJCLiIlTJJiOik3YuVmcyV3QyVGZy9mIsAjM6ICduV3btFkclRmcvJCLiAjMwIDMyAjMiojIklkclRmcvJye.ZdL67hdvmK-iH4ASOZ6qvO8NXH-ZeHm37FcHZ0fwiR53WLqpF4JC84dkyJxVwBiLvX";
 //        orderID="20202020";
 //        amount="20";
@@ -78,14 +79,14 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
         cardSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cardNum=card_number.getText().toString();
-                holderName=holder_name.getText().toString();
-                cardMonth=card_month.getText().toString();
-                cardYear=card_year.getText().toString();
-                cardCvv=cvv.getText().toString();
-                if(cardNum.length()<16||cardCvv.length()<3||cardNum.equalsIgnoreCase("")||holderName.equalsIgnoreCase("")||cardMonth.equalsIgnoreCase("")||cardYear.equalsIgnoreCase("")||cardCvv.equalsIgnoreCase("")){
-                    Toast.makeText(SelectPayment.this,"Invalid card details",Toast.LENGTH_SHORT).show();
-                }else {
+                cardNum = card_number.getText().toString();
+                holderName = holder_name.getText().toString();
+                cardMonth = card_month.getText().toString();
+                cardYear = card_year.getText().toString();
+                cardCvv = cvv.getText().toString();
+                if (cardNum.length() < 16 || cardCvv.length() < 3 || cardNum.equalsIgnoreCase("") || holderName.equalsIgnoreCase("") || cardMonth.equalsIgnoreCase("") || cardYear.equalsIgnoreCase("") || cardCvv.equalsIgnoreCase("")) {
+                    Toast.makeText(SelectPayment.this, "Invalid card details", Toast.LENGTH_SHORT).show();
+                } else {
                     payment(token, orderID, amount, name, number, "card");
                 }
             }
@@ -93,19 +94,19 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
         upi_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                payment(token,orderID,amount,name,number,"upi");
+                payment(token, orderID, amount, name, number, "upi");
             }
         });
     }
-    void payment(String token,String orderID,String amount,String name,String number,String type)
-    {
-        String token1="9c9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.t5QfiIzMxImM2YzNykTMwYjI6ICdsF2cfJCLyIjMzUDO0EjNxojIwhXZiwiIS5USiojI5NmblJnc1NkclRmcvJCLwIjOiQnb19WbBJXZkJ3biwiI2UjN1YTNiojIklkclRmcvJye.Kt51e7bb3KJ5JmU39WfPhVmoYPIGbHNcj_m_lSbLqaQdcyFBud0qkXLNEclduZDno_";
-        Map<String,String> params=new HashMap<>();
+
+    void payment(String token, String orderID, String amount, String name, String number, String type) {
+        String token1 = "9c9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.t5QfiIzMxImM2YzNykTMwYjI6ICdsF2cfJCLyIjMzUDO0EjNxojIwhXZiwiIS5USiojI5NmblJnc1NkclRmcvJCLwIjOiQnb19WbBJXZkJ3biwiI2UjN1YTNiojIklkclRmcvJye.Kt51e7bb3KJ5JmU39WfPhVmoYPIGbHNcj_m_lSbLqaQdcyFBud0qkXLNEclduZDno_";
+        Map<String, String> params = new HashMap<>();
         params.put(PARAM_APP_ID, "4207d3b63a1ecc9a5d79a8687024");
         params.put(PARAM_ORDER_ID, orderID);
         params.put(PARAM_ORDER_AMOUNT, amount);
         params.put(PARAM_ORDER_NOTE, "Bus Ticket booking");
-        params.put(PARAM_CUSTOMER_NAME,name);
+        params.put(PARAM_CUSTOMER_NAME, name);
         params.put(PARAM_CUSTOMER_PHONE, number);
         params.put(PARAM_CUSTOMER_EMAIL, "thottempudi22@gmail.com");
         params.put(PARAM_ORDER_CURRENCY, "INR");
@@ -123,7 +124,7 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
         try {
             CFPaymentService cfPaymentService = CFPaymentService.getCFPaymentServiceInstance();
             cfPaymentService.setOrientation(0);
-            if(type.equalsIgnoreCase("card")) {
+            if (type.equalsIgnoreCase("card")) {
                 params.put(PARAM_PAYMENT_OPTION, "card");
                 params.put(PARAM_CARD_NUMBER, "4111111111111111");//Replace Card number
                 params.put(PARAM_CARD_MM, "07"); // Card Expiry Month in MM
@@ -132,22 +133,22 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
                 params.put(PARAM_CARD_CVV, "123");
                 cfPaymentService.doPayment(SelectPayment.this, params, token, "TEST", "#6dd5ed", "#FAFAFA", false);
             }
-            if(type.equalsIgnoreCase("upi")) {
-            cfPaymentService.upiPayment(SelectPayment.this,params,token,"TEST");
+            if (type.equalsIgnoreCase("upi")) {
+                cfPaymentService.upiPayment(SelectPayment.this, params, token, "TEST");
             }
-        }
-        catch (Exception e){
-            Toast.makeText(SelectPayment.this,"payment"+e.toString(),Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Toast.makeText(SelectPayment.this, "payment" + e.toString(), Toast.LENGTH_SHORT).show();
         }
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         Log.d("paymentcheck", "ReqCode : " + CFPaymentService.REQ_CODE);
         if (data != null) {
-            Bundle  bundle = data.getExtras();
+            Bundle bundle = data.getExtras();
             if (bundle != null) {
-                for (String  key  :  bundle.keySet()) {
+                for (String key : bundle.keySet()) {
                     if (bundle.getString(key) != null) {
                         Log.d("paymentcheck", key + " : " + bundle.getString(key));
 //
@@ -162,20 +163,20 @@ TextInputEditText card_number,holder_name,card_month,card_year,cvv;
                 String signature = bundle.getString("signature");
                 String orderAmount = bundle.getString("orderAmount");
                 if (status.equalsIgnoreCase("success")) {
-                Intent intent = new Intent(SelectPayment.this, paymentStart.class);
-                intent.putExtra("FromPage",FromPage);
-                intent.putExtra("status", status);
-                intent.putExtra("paymentMode", paymentMode);
-                intent.putExtra("orderId", orderId);
-                intent.putExtra("txTime", txTime);
-                intent.putExtra("referenceId", referenceId);
-                intent.putExtra("txMsg", txMsg);
-                intent.putExtra("signature", signature);
-                intent.putExtra("orderAmount",orderAmount);
-                intent.putExtra("RefCode",RefCode);
+                    Intent intent = new Intent(SelectPayment.this, paymentStart.class);
+                    intent.putExtra("FromPage", FromPage);
+                    intent.putExtra("status", status);
+                    intent.putExtra("paymentMode", paymentMode);
+                    intent.putExtra("orderId", orderId);
+                    intent.putExtra("txTime", txTime);
+                    intent.putExtra("referenceId", referenceId);
+                    intent.putExtra("txMsg", txMsg);
+                    intent.putExtra("signature", signature);
+                    intent.putExtra("orderAmount", orderAmount);
+                    intent.putExtra("RefCode", RefCode);
 //                    Log.e("sendingData",status+""+);
-                startActivity(intent);
-                finish();
+                    startActivity(intent);
+                    finish();
 
                 }
             }

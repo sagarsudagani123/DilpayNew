@@ -6,32 +6,32 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".bus.Booking_details">
+
     <RelativeLayout
+        android:id="@+id/re1"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/gradientEnd"
-        android:id="@+id/re1">
+        android:background="@color/gradientEnd">
 
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:padding="7dp"
             android:src="@drawable/ic_baseline_chevron_left_24" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Booking Details"
-            android:id="@+id/te1"
-            android:textStyle="bold"
-            android:textColor="#fff"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:text="Booking Details"
+            android:textColor="#fff"
             android:textSize="18sp"
-            android:layout_marginTop="25dp" />
+            android:textStyle="bold" />
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -45,108 +45,90 @@
             android:orientation="vertical">
 
             <RelativeLayout
+                android:id="@+id/re3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/re3"
                 android:layout_margin="20dp">
 
                 <TextView
+                    android:id="@+id/pickup"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="from"
-                    android:id="@+id/pickup"
+                    android:textColor="@color/black"
                     android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    android:textStyle="bold" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="To"
-                    android:textSize="16sp"
                     android:id="@+id/to"
-                    android:layout_centerHorizontal="true" />
-
-                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="to"
-                    android:id="@+id/drop"
-                    android:textStyle="bold"
-                    android:layout_alignParentEnd="true"
-                    android:textSize="16sp"
-                    android:textColor="@color/black" />
+                    android:layout_centerHorizontal="true"
+                    android:text="To"
+                    android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/drop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="to"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/pickup_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/pickup"
-                    android:id="@+id/pickup_time"
                     android:layout_marginStart="5dp"
-                    android:textStyle="bold"
-                    android:textSize="16sp"
                     android:layout_marginTop="10dp"
-                    android:text="06:30AM" />
+                    android:text="06:30AM"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="duration"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
-                    android:id="@+id/duration"
-                    android:layout_marginTop="10dp"
-                    android:layout_below="@id/to"
-                    android:layout_centerHorizontal="true" />
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="duration"
-                    android:textSize="14sp"
-                    android:layout_below="@id/duration"
-                    android:layout_centerHorizontal="true" />
-
-                <TextView
+                    android:id="@+id/drop_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/drop"
-                    android:id="@+id/drop_time"
                     android:layout_alignParentEnd="true"
                     android:layout_marginStart="5dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:text="07:30PM" />
+                    android:text="07:30PM"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/journey_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/pickup_time"
-                    android:id="@+id/journey_date"
                     android:layout_marginStart="5dp"
                     android:layout_marginTop="10dp"
                     android:text="25-01-2021" />
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/re3"
+                android:layout_marginStart="15dp"
                 android:text="View Details"
                 android:textSize="16sp"
-                android:textStyle="bold"
-                android:id="@+id/view"
-                android:layout_marginStart="15dp"
-                android:layout_below="@id/re3" />
+                android:textStyle="bold" />
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/view"
                 android:layout_margin="10dp"
-                app:cardElevation="3dp"
-                android:layout_below="@id/view">
+                app:cardElevation="3dp">
 
                 <RelativeLayout
-                    android:id="@+id/re4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp">
@@ -228,18 +210,55 @@
                         android:layout_marginTop="10dp"
                         android:background="@color/gray" />
 
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/passDetails"
+                    <!--                    <androidx.recyclerview.widget.RecyclerView-->
+                    <!--                        android:id="@+id/passDetails"-->
+                    <!--                        android:layout_width="match_parent"-->
+                    <!--                        android:layout_height="wrap_content"-->
+                    <!--                        android:layout_below="@+id/v1" />-->
+                    <RelativeLayout
+                        android:id="@+id/passengerDetails"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/v1" />
+                        android:layout_below="@id/v1"
+                        android:layout_marginTop="5dp">
+
+                        <TextView
+                            android:id="@+id/passengerName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="name" />
+
+                        <TextView
+                            android:id="@+id/passengerAge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/passengerName"
+                            android:text="Age" />
+
+                        <TextView
+                            android:id="@+id/passengerGender"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/passengerName"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@id/passengerAge"
+                            android:text="Gender" />
+
+                        <TextView
+                            android:id="@+id/seatNumber"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginEnd="5dp"
+                            android:text="Seat Number" />
+                    </RelativeLayout>
 
                     <TextView
                         android:id="@+id/fare"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/passDetails"
-                        android:layout_marginTop="5dp"
+                        android:layout_below="@id/passengerDetails"
+                        android:layout_marginTop="15dp"
                         android:text="Fare Details"
                         android:textColor="@color/black"
                         android:textSize="16sp"
@@ -310,7 +329,6 @@
                         android:orientation="horizontal">
 
                         <androidx.appcompat.widget.AppCompatImageView
-                            android:id="@+id/rupee1"
                             android:layout_width="20dp"
                             android:layout_height="15dp"
                             android:layout_gravity="center"
@@ -332,16 +350,26 @@
                 android:id="@+id/proceed_payment"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginEnd="15dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/background_gradiant"
-                android:text="Proceed To Cancel"
+                android:text="Print or Take Screenshot"
+                android:textColor="@color/white" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/background_gradiant"
+                android:text="Proceed to cancel"
                 android:textColor="@color/white" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
 
 
 </RelativeLayout>

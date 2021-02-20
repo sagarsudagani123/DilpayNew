@@ -18,11 +18,13 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Mobile_interface;
 import com.yashswi.dilpay.adapters.items_list_adapter;
+import com.yashswi.dilpay.bus.Available_buses;
 import com.yashswi.dilpay.electricity.Electricity_screen;
 import com.yashswi.dilpay.mobile.Mobile_recharge_successfull;
 
 import org.json.JSONObject;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
@@ -37,37 +39,38 @@ import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
 public class Datacard_screen extends AppCompatActivity {
     AppCompatButton next;
     ImageView back;
-    TextInputEditText e_mobile,e_amount;
-    AutoCompleteTextView operator_spin,circle_spin;
+    TextInputEditText e_mobile, e_amount;
+    AutoCompleteTextView operator_spin, circle_spin;
 
-    ArrayList<String> operatorName=new ArrayList<>();
-    ArrayList<String> operatorCode=new ArrayList<>();
+    ArrayList<String> operatorName = new ArrayList<>();
+    ArrayList<String> operatorCode = new ArrayList<>();
 
-    ArrayList<String> circleCode=new ArrayList<>();
-    ArrayList<String> circleName=new ArrayList<>();
+    ArrayList<String> circleCode = new ArrayList<>();
+    ArrayList<String> circleName = new ArrayList<>();
 
     RecyclerView datacard_items;
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
 
-    String username,password,circle_code,operator_code,number,amount,order_id,format="json",operator_name,circle_name,status,txid,orderid;
+    String username, password, circle_code, operator_code, number, amount, order_id, format = "json", operator_name, circle_name, status, txid, orderid;
     RelativeLayout progress;
     String fromCategory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datacard_screen);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        fromCategory=getIntent().getStringExtra("FromCategory");
+        fromCategory = getIntent().getStringExtra("FromCategory");
 
-        operator_spin=findViewById(R.id.operator_spin);
-        circle_spin=findViewById(R.id.circle_spin);
-        e_mobile=findViewById(R.id.datacard_number);
-        e_amount=findViewById(R.id.amount);
-        next=findViewById(R.id.next);
-        datacard_items=findViewById(R.id.datacard_items);
-        progress=findViewById(R.id.progress);
+        operator_spin = findViewById(R.id.operator_spin);
+        circle_spin = findViewById(R.id.circle_spin);
+        e_mobile = findViewById(R.id.datacard_number);
+        e_amount = findViewById(R.id.amount);
+        next = findViewById(R.id.next);
+        datacard_items = findViewById(R.id.datacard_items);
+        progress = findViewById(R.id.progress);
 
         operatorName.add("Reliance NetConnect 3G");
         operatorName.add("Reliance NetConnect+");
@@ -185,40 +188,40 @@ public class Datacard_screen extends AppCompatActivity {
 //        itemName.add("cancelled Tickets");
 //        itemName.add("Offers");
 
-        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName,"Datacard", this);
+        items_list_adapter adapter2 = new items_list_adapter(itemImg, itemName, "Datacard", this);
         datacard_items.setAdapter(adapter2);
-        GridLayoutManager manager = new GridLayoutManager(this,3);
+        GridLayoutManager manager = new GridLayoutManager(this, 3);
         datacard_items.setLayoutManager(manager);
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                username="500594";
-                password="5jfbpbe5";
-                amount=e_amount.getText().toString();
-                operator_name=operator_spin.getText().toString();
-                for(int i=0;i<operatorName.size();i++){
-                    if(operator_name.equalsIgnoreCase(operatorName.get(i))){
-                        operator_code=operatorCode.get(i);
+                username = "500594";
+                password = "5jfbpbe5";
+                amount = e_amount.getText().toString();
+                operator_name = operator_spin.getText().toString();
+                for (int i = 0; i < operatorName.size(); i++) {
+                    if (operator_name.equalsIgnoreCase(operatorName.get(i))) {
+                        operator_code = operatorCode.get(i);
                     }
                 }
-                circle_name=circle_spin.getText().toString();
-                for(int i=0;i<circleName.size();i++){
-                    if(circle_name.equalsIgnoreCase(circleName.get(i))){
-                        circle_code=circleCode.get(i);
+                circle_name = circle_spin.getText().toString();
+                for (int i = 0; i < circleName.size(); i++) {
+                    if (circle_name.equalsIgnoreCase(circleName.get(i))) {
+                        circle_code = circleCode.get(i);
                     }
                 }
-                String number=e_mobile.getText().toString();
+                String number = e_mobile.getText().toString();
                 Random rand = new Random();
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
                 progress.setVisibility(View.VISIBLE);
-                getResponse(number,year+""+rand_int1,username,password,amount,operator_code,circle_code);
+                getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
             }
         });
 
-        back=findViewById(R.id.back);
+        back = findViewById(R.id.back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -233,7 +236,7 @@ public class Datacard_screen extends AppCompatActivity {
                 .addConverterFactory(create())
                 .build();
         Mobile_interface api = retrofit.create(Mobile_interface.class);
-        Call<String> call = api.mobile_recharge(username,password,circle_code,operator_code,number,amount,"2021"+orderid,format);
+        Call<String> call = api.mobile_recharge(username, password, circle_code, operator_code, number, amount, "2021" + orderid, format);
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -241,14 +244,14 @@ public class Datacard_screen extends AppCompatActivity {
                 try {
                     JSONObject obj = new JSONObject(response.body());
                     Intent i = new Intent(Datacard_screen.this, Mobile_recharge_successfull.class);
-                    i.putExtra("status",obj.getString("status"));
-                    i.putExtra("txid",obj.getInt("txid"));
-                    i.putExtra("number",obj.getString("number"));
-                    i.putExtra("amount",obj.getString("amount"));
-                    i.putExtra("orderid",obj.getString("orderid"));
+                    i.putExtra("status", obj.getString("status"));
+                    i.putExtra("txid", obj.getInt("txid"));
+                    i.putExtra("number", obj.getString("number"));
+                    i.putExtra("amount", obj.getString("amount"));
+                    i.putExtra("orderid", obj.getString("orderid"));
                     startActivity(i);
                 } catch (Exception e) {
-                    Toast.makeText(Datacard_screen.this,e.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Datacard_screen.this, e.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
@@ -256,7 +259,14 @@ public class Datacard_screen extends AppCompatActivity {
             @Override
             public void onFailure(Call<String> call, Throwable t) {
                 progress.setVisibility(View.GONE);
-                Toast.makeText(Datacard_screen.this,"Somethong went wrong! try again",Toast.LENGTH_SHORT).show();
+                String message = "";
+                if (t instanceof UnknownHostException) {
+                    message = "No internet connection!";
+                } else {
+                    message = "Something went wrong! try again";
+                }
+                Toast.makeText(Datacard_screen.this, message + "", Toast.LENGTH_SHORT).show();
+                finish();
             }
         });
     }
