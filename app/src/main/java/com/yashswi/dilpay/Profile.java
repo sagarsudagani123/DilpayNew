@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.bumptech.glide.signature.ObjectKey;
 import com.github.dhaval2404.imagepicker.ImagePicker;
 import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
@@ -99,11 +100,11 @@ public class Profile extends AppCompatActivity {
         amount = findViewById(R.id.amount);
         paidText = findViewById(R.id.membershipText);
 
+//        String updateTime = String.valueOf(System.currentTimeMillis());
         Glide.with(Profile.this)
                 .load(userDetails.getProfilePic())
                 .fitCenter()
-                .skipMemoryCache(true) // Do not use memory cache
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .signature(new ObjectKey(System.currentTimeMillis()))
                 .placeholder(R.drawable.profile_pic)
                 .error(R.drawable.profile_pic)
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
@@ -397,6 +398,7 @@ public class Profile extends AppCompatActivity {
                         userDetails.setProfilePic(imgUrl);
                         Glide.with(Profile.this)
                                 .load(obj.get(imgUrl))
+                                .signature(new ObjectKey(System.currentTimeMillis()))
                                 .error(R.drawable.profile_pic)
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .into(customer_profilepic);

@@ -17,6 +17,10 @@ public interface cashFree {
     Call<String> addBeneficiary(@Header("Authorization") String token, @Body String body);
 
     @Headers({"Accept: application/json"})
+    @POST("/payout/v1/removeBeneficiary")
+    Call<String> removeBeneficiary(@Header("Authorization") String token, @Body String body);
+
+    @Headers({"Accept: application/json"})
     @POST("payout/v1/requestAsyncTransfer")
     Call<String> walletWithdraw(@Header("Authorization") String token, @Body String body);
 }

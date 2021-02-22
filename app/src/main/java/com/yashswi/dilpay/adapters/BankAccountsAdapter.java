@@ -1,38 +1,57 @@
 package com.yashswi.dilpay.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yashswi.dilpay.Api_interface.cashFree;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.WithdrawAmount;
+import com.yashswi.dilpay.bank.Add_account_details;
 import com.yashswi.dilpay.bank.BankAccounts;
 import com.yashswi.dilpay.models.bankDetails;
 import com.yashswi.dilpay.models.userDetails;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.zip.Inflater;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapter.MyViewHolder> {
     ArrayList<bankDetails> bankDetails;
     ArrayList<String> IFSC;
     String title;
     Context context;
+    static String tokenFinal;
+    RelativeLayout progress;
+    JSONObject test=null;
 
-    public BankAccountsAdapter(String title, ArrayList<bankDetails> bankDetails, Context context) {
+    public BankAccountsAdapter(String title, ArrayList<bankDetails> bankDetails, RelativeLayout progress, Context context) {
         this.bankDetails = bankDetails;
         this.title = title;
         this.context = context;
+        this.progress=progress;
     }
 
     @NonNull
@@ -50,7 +69,7 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
         holder.IFSC.setText(bankDetails.get(position).getIfscCode());
         if (title.equalsIgnoreCase("Select Bank")) {
             holder.delete.setVisibility(View.GONE);
-            holder.edit.setVisibility(View.GONE);
+//            holder.edit.setVisibility(View.GONE);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -67,7 +86,13 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
         holder.delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                JSONObject test = new JSONObject();
+                progress.setVisibility(View.VISIBLE);
+
+
+                getToken(bankDetails.get(position).getBeneficiaryID());
+//                deleted=((BankAccounts)context).removeBeneficiary(tokenFinal,bankDetails.get(position).getBeneficiaryID());
+
+                test = new JSONObject();
                 try {
                     test.put("beneficiaryID", bankDetails.get(position).getBeneficiaryID());
                     test.put("username", new userDetails(context).getNumber());
@@ -80,7 +105,8 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
                     test.put("Method", "Delete");
                 } catch (Exception e) {
                 }
-                ((BankAccounts) context).deleteAccount(test.toString());
+
+
 //                deleteAccount(test.toString());
             }
         });
@@ -92,17 +118,70 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
     }
 
 
+
+
+    void getToken(String benId){
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://payout-gamma.cashfree.com/")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        cashFree api = retrofit.create(cashFree.class);
+        Call<String> call = api.getToken("CF4207C0D8VIUK9404JSBD00DG", "51207f8c3ee789bc77cf7d3c54c0bd59d106b9fa");
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                try {
+                    JSONObject data = new JSONObject(response.body());
+                    if (data.getString("status").equalsIgnoreCase("SUCCESS")) {
+                        JSONObject tokenObj = data.getJSONObject("data");
+                        tokenFinal = tokenObj.getString("token");
+                        ((BankAccounts)context).removeBeneficiary(tokenFinal,benId,test.toString());
+//                        deleteAccount(deleted);
+//                        Toast.makeText(context,"deleted="+deleted,Toast.LENGTH_SHORT).show();
+                    } else {
+                        tokenFinal = "";
+                        Toast.makeText(context,data.toString(),Toast.LENGTH_SHORT).show();
+
+                    }
+                } catch (Exception e) {
+                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                String message = "";
+                if (t instanceof UnknownHostException) {
+                    message = "No internet connection";
+                } else {
+                    message = "Something went wrong! try again";
+                }
+                Toast.makeText(context, message + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+//    void deleteAccount(boolean deleted){
+//        Log.e("bankDetails==delete",test.toString());
+//        if(deleted){
+//            ((BankAccounts) context).deleteAccount(test.toString());
+//        }
+//        else{
+//            Toast.makeText(context,"Account can't be deleted",Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
+
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView acntNumber, IFSC;
         ImageView delete;
-        AppCompatButton edit;
+//        AppCompatButton edit;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             acntNumber = itemView.findViewById(R.id.acntNum);
             IFSC = itemView.findViewById(R.id.ifscNum);
             delete = itemView.findViewById(R.id.delete);
-            edit = itemView.findViewById(R.id.edit);
+//            edit = itemView.findViewById(R.id.edit);
         }
     }
 }

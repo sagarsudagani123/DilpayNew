@@ -42,7 +42,7 @@
         android:paddingBottom="20dp" />
 
     <RelativeLayout
-        android:id="@+id/progress_layout"
+        android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/progressBGColor"

@@ -65,15 +65,15 @@
             android:src="@drawable/delete"
             android:textStyle="bold" />
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/edit"
-            android:layout_width="100dp"
-            android:layout_height="30dp"
-            android:layout_below="@+id/ifscText"
-            android:layout_margin="10dp"
-            android:background="@drawable/button_bg"
-            android:text="Edit"
-            android:textStyle="bold" />
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/edit"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_below="@+id/ifscText"-->
+<!--            android:layout_margin="10dp"-->
+<!--            android:background="@drawable/button_bg"-->
+<!--            android:text="Edit"-->
+<!--            android:textStyle="bold" />-->
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

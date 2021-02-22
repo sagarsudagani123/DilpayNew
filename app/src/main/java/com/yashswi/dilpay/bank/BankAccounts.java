@@ -135,7 +135,7 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
                                 available.setVisibility(View.GONE);
                                 LinearLayoutManager manager = new LinearLayoutManager(BankAccounts.this, RecyclerView.VERTICAL, false);
                                 accountsList.setLayoutManager(manager);
-                                BankAccountsAdapter adapter = new BankAccountsAdapter(title, bankAccountsData, BankAccounts.this);
+                                BankAccountsAdapter adapter = new BankAccountsAdapter(title, bankAccountsData,progress, BankAccounts.this);
                                 accountsList.setAdapter(adapter);
                             }
                         } else {
@@ -170,7 +170,7 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
     @Override
     public void deleteAccount(String data) {
         Log.e("bankDetails", data);
-        progress.setVisibility(View.VISIBLE);
+//        progress.setVisibility(View.VISIBLE);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
@@ -196,6 +196,61 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                progress.setVisibility(View.GONE);
+                String message = "";
+                if (t instanceof UnknownHostException) {
+                    message = "No internet connection!";
+                } else {
+                    message = "Something went wrong! try again";
+                }
+                Toast.makeText(BankAccounts.this, message + "", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    @Override
+    public void removeBeneficiary(String token, String benId,String acntDetails) {
+        progress.setVisibility(View.VISIBLE);
+        try {
+            Log.e("bankAdd", token);
+        }catch (Exception e){
+            Toast.makeText(BankAccounts.this,e.toString(),Toast.LENGTH_SHORT).show();
+        }
+        JSONObject data=new JSONObject();
+        try {
+            data.put("beneId",benId);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://payout-gamma.cashfree.com/")
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        cashFree api = retrofit.create(cashFree.class);
+
+        Call<String> call = api.removeBeneficiary("Bearer " + token, data.toString());
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                progress.setVisibility(View.GONE);
+                try {
+                    JSONObject data = new JSONObject(response.body());
+                    Log.e("bankAdd", data.toString());
+                    if (data.getString("status").equalsIgnoreCase("SUCCESS")) {
+                        //add bank details to database
+                        deleteAccount(acntDetails);
+//                        Toast.makeText(BankAccounts.this,deleted+"====",Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(BankAccounts.this, data.getString("message"), Toast.LENGTH_SHORT).show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(BankAccounts.this,e.toString(),Toast.LENGTH_SHORT).show();
                 }
             }
 
