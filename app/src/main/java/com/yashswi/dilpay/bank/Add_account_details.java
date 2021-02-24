@@ -7,6 +7,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -83,6 +84,8 @@ public class Add_account_details extends AppCompatActivity {
 
 //                    Toast.makeText(Add_account_details.this,token,Toast.LENGTH_SHORT).show();
                 } else {
+                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                     progress.setVisibility(View.VISIBLE);
 //                    Toast.makeText(Add_account_details.this,""+name1+"/"+email1+"/"+phone1+"/"+bank_account1+"/"+ifsc1+"/"+address1,Toast.LENGTH_LONG).show();
                     getToken();
@@ -119,7 +122,6 @@ public class Add_account_details extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                progress.setVisibility(View.GONE);
                 try {
                     JSONObject data = new JSONObject(response.body());
                     Log.e("bankAdd", data.toString());
@@ -137,13 +139,15 @@ public class Add_account_details extends AppCompatActivity {
                         createData.put("address", address1);
                         createData.put("Method", "Add");
                         addUserBankAccount(createData.toString());
-//                        Toast.makeText(Add_account_details.this,data.getString("message"),Toast.LENGTH_SHORT).show();
-                        finish();
                     } else {
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        progress.setVisibility(View.GONE);
                         Toast.makeText(Add_account_details.this, data.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                    progress.setVisibility(View.GONE);
                 }
             }
 
@@ -172,6 +176,8 @@ public class Add_account_details extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                progress.setVisibility(View.GONE);
                 Log.e("bankDetails", response.body());
                 if (response.body() != null) {
                     try {
@@ -192,6 +198,8 @@ public class Add_account_details extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                progress.setVisibility(View.GONE);
                 Toast.makeText(Add_account_details.this, t.toString(), Toast.LENGTH_SHORT).show();
             }
         });

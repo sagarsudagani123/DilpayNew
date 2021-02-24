@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -58,6 +59,8 @@ public class EditProfile extends AppCompatActivity {
                     Toast.makeText(EditProfile.this, "Fill in all details", Toast.LENGTH_SHORT).show();
                 } else {
                     updateDetails(address, city, state, country, pinCode);
+                    getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                            WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                     progress.setVisibility(View.VISIBLE);
                 }
             }
@@ -88,6 +91,7 @@ public class EditProfile extends AppCompatActivity {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.e("EditProfile", response.body());
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 progress.setVisibility(View.GONE);
                 try {
                     JSONObject data = new JSONObject(response.body());
@@ -106,6 +110,7 @@ public class EditProfile extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 progress.setVisibility(View.GONE);
                 String message = "";
                 if (t instanceof UnknownHostException) {

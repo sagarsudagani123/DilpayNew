@@ -27,7 +27,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
-            android:text="Bus Booking Details"
+            android:text="Withdraw amount"
             android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -78,4 +78,17 @@
         android:layout_toEndOf="@+id/buttonSubmit"
         android:background="@drawable/button_bg"
         android:text="cancle" />
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/progressBGColor"
+        android:elevation="15dp"
+        android:visibility="gone"
+        android:id="@+id/progress">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+           />
+    </RelativeLayout>
 </RelativeLayout>

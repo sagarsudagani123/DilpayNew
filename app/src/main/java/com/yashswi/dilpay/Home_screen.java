@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -96,15 +97,16 @@ public class Home_screen extends AppCompatActivity {
         headings.add("FAQ");
         headings.add("Support");
 
-        imagesnew.add(R.drawable.profile_pic);
-        imagesnew.add(R.drawable.rupee);
-        imagesnew.add(R.drawable.edit);
-        imagesnew.add(R.drawable.profile_pic);
-        imagesnew.add(R.drawable.rupee);
-        imagesnew.add(R.drawable.edit);
+        imagesnew.add(R.drawable.about);
+        imagesnew.add(R.drawable.contact);
+        imagesnew.add(R.drawable.privacy);
+        imagesnew.add(R.drawable.terms);
+        imagesnew.add(R.drawable.faq);
+        imagesnew.add(R.drawable.customer);
 
 
         boomMenuButton = findViewById(R.id.bmb);
+        boomMenuButton.setDimColor(Color.parseColor("#90000000"));
         for (int i = 0; i < boomMenuButton.getPiecePlaceEnum().pieceNumber(); i++) {
             TextOutsideCircleButton.Builder builder = new TextOutsideCircleButton.Builder()
                     .normalImageRes(imagesnew.get(i))//use array list
@@ -183,12 +185,10 @@ public class Home_screen extends AppCompatActivity {
                     case R.id.notification:
                         intent = new Intent(Home_screen.this, Notification.class);
                         startActivity(intent);
-                        finish();
                         break;
                     case R.id.action_transaction:
                         intent = new Intent(Home_screen.this, TransactionsHistory.class);
                         startActivity(intent);
-                        finish();
                         break;
                     case R.id.action_share:
                         intent = new Intent();

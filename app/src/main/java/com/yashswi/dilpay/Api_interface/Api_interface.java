@@ -56,6 +56,7 @@ public interface Api_interface {
     @FormUrlEncoded
     Call<String> upgradeUser(@Field("username") String username, @Field("Refferal_User") String refCode);
 
+    //payment gateway token generation
     @POST("CashfreeToken.php")
     @FormUrlEncoded
     Call<String> generateToken(@Field("MyOrderId") String orderID, @Field("MyorderAmount") String amount);
@@ -86,15 +87,20 @@ public interface Api_interface {
     @FormUrlEncoded
     Call<String> updateDetails(@Field("data") String data);
 
-    @GET("GetImage.php")
-    Call<String> getImage();
+    //payout token generation
+    @GET("getTokenPayout.php")
+    Call<String> generatePayoutToken();
 
-    @POST("")
+    @POST("VerifyAmountEligibility.php")
     @FormUrlEncoded
     Call<String> verifyAmount(@Field("username") String username, @Field("amount") String amount);
 
-    //test upload image
     @POST("ImageUpload.php")
     @FormUrlEncoded
     Call<String> uploadPic(@Field("ImageUpload") String data);
+
+    //payout token generation
+    @POST("")
+    @FormUrlEncoded
+    Call<String> updateTransaction(@Field("data") String data);
 }

@@ -122,7 +122,7 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
 
     void getToken(String benId){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://payout-gamma.cashfree.com/")
+                .baseUrl(cashFree.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         cashFree api = retrofit.create(cashFree.class);

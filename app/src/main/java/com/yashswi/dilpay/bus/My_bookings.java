@@ -75,7 +75,7 @@ public class My_bookings extends AppCompatActivity {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-        Call<String> call = api.myBookings("9121382727");
+        Call<String> call = api.myBookings("6302840341");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -102,9 +102,8 @@ public class My_bookings extends AppCompatActivity {
                             LinearLayoutManager manager = new LinearLayoutManager(My_bookings.this, RecyclerView.VERTICAL, false);
                             rv.setLayoutManager(manager);
                         } else {
-                            if (obj.getString("Status").equalsIgnoreCase("Error")) {
                                 Toast.makeText(My_bookings.this, "No Details Availble", Toast.LENGTH_SHORT).show();
-                            }
+                                finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

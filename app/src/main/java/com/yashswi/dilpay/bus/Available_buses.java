@@ -87,7 +87,7 @@ public class Available_buses extends AppCompatActivity {
         date = findViewById(R.id.date1);
         progress_layout = findViewById(R.id.progress_layout);
         filter = findViewById(R.id.filter);
-        sort = findViewById(R.id.sort);
+//        sort = findViewById(R.id.sort);
         clearFilter = findViewById(R.id.clearFilter);
 
         //GETTING INTENTS DATA
@@ -100,12 +100,12 @@ public class Available_buses extends AppCompatActivity {
         to.setText(destination_id);
         date.setText(journey_date);
 
-        sort.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //SORTING ALGO
-            }
-        });
+//        sort.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                //SORTING ALGO
+//            }
+//        });
 
         //STARTING FILTER ACTIVITY FOR RESULT
         filter.setOnClickListener(new View.OnClickListener() {

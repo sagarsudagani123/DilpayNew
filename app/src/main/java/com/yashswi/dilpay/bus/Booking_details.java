@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.yashswi.dilpay.R;
 
@@ -68,6 +69,9 @@ public class Booking_details extends AppCompatActivity {
         passengerGender = findViewById(R.id.passengerGender);
         seatNumber = findViewById(R.id.seatNumber);
         back = findViewById(R.id.back);
+
+        String tata=getIntent().getStringExtra("JSONDATA");
+        Toast.makeText(Booking_details.this,tata,Toast.LENGTH_SHORT).show();
 
         sourceName = getIntent().getStringExtra("SourceName");
         destinationName = getIntent().getStringExtra("DestinationName");

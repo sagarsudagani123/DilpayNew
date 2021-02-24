@@ -65,8 +65,9 @@ public class TransactionsHistory extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(TransactionsHistory.this, Home_screen.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
-                finish();
+//                finish();
             }
         });
 
@@ -91,15 +92,21 @@ public class TransactionsHistory extends AppCompatActivity {
                         JSONObject obj = new JSONObject(response.body());
                         if (obj.getString("Status").equalsIgnoreCase("True")) {
                             JSONArray jsonArray = obj.getJSONArray("Data");
-                            for (int i = 0; i < jsonArray.length(); i++) {
-                                JSONObject dataObject = jsonArray.getJSONObject(i);
-                                transactionId.add(dataObject.getString("Trid"));
-                                creditAmount.add(dataObject.getString("Credit"));
-                                debitAmount.add(dataObject.getString("Debit"));
-                                dateTime.add(dataObject.getString("DateTime"));
-                                message.add(dataObject.getString("Message"));
-
+                            if(jsonArray.length()<=0){
+                                Toast.makeText(TransactionsHistory.this,"No Details Available",Toast.LENGTH_SHORT).show();
                             }
+                            else{
+                                for (int i = 0; i < jsonArray.length(); i++) {
+                                    JSONObject dataObject = jsonArray.getJSONObject(i);
+                                    transactionId.add(dataObject.getString("Trid"));
+                                    creditAmount.add(dataObject.getString("Credit"));
+                                    debitAmount.add(dataObject.getString("Debit"));
+                                    dateTime.add(dataObject.getString("DateTime"));
+                                    message.add(dataObject.getString("Message"));
+
+                                }
+                            }
+
                             TransactionHistoryAdapter adapter = new TransactionHistoryAdapter(transactionId, creditAmount, debitAmount, dateTime, message, TransactionsHistory.this);
                             transactionsList.setAdapter(adapter);
                             LinearLayoutManager manager = new LinearLayoutManager(TransactionsHistory.this, RecyclerView.VERTICAL, false);
@@ -132,7 +139,7 @@ public class TransactionsHistory extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(TransactionsHistory.this, Home_screen.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
-        finish();
     }
 }

@@ -114,7 +114,7 @@ public class paymentStart extends AppCompatActivity {
                     finalData.put("Message", txMsg1);
                     finalData.put("Signature", signature1);
                 } catch (Exception e) {
-                    Toast.makeText(paymentStart.this, "PENDIN PAYMENT" + finalData.toString(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(paymentStart.this, "PENDING PAYMENT" + finalData.toString(), Toast.LENGTH_LONG).show();
                 }
                 confirmTicket(finalData.toString());
             }

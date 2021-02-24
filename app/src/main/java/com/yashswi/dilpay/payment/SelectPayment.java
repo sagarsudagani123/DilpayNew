@@ -70,11 +70,6 @@ public class SelectPayment extends AppCompatActivity {
         number = getIntent().getStringExtra("Number");
         FromPage = getIntent().getStringExtra("FromPage");
         RefCode = getIntent().getStringExtra("RefCode");
-//        token="gz9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.lM9JSOjljZiJDZmJ2YxAjNiojI0xWYz9lIsATN4gDOwUTM2EjOiAHelJCLiIlTJJiOik3YuVmcyV3QyVGZy9mIsAjM6ICduV3btFkclRmcvJCLiAjMwIDMyAjMiojIklkclRmcvJye.ZdL67hdvmK-iH4ASOZ6qvO8NXH-ZeHm37FcHZ0fwiR53WLqpF4JC84dkyJxVwBiLvX";
-//        orderID="20202020";
-//        amount="20";
-//        name="jay";
-//        number="9059547672";
 
         cardSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,7 +95,6 @@ public class SelectPayment extends AppCompatActivity {
     }
 
     void payment(String token, String orderID, String amount, String name, String number, String type) {
-        String token1 = "9c9JCN4MzUIJiOicGbhJCLiQ1VKJiOiAXe0Jye.t5QfiIzMxImM2YzNykTMwYjI6ICdsF2cfJCLyIjMzUDO0EjNxojIwhXZiwiIS5USiojI5NmblJnc1NkclRmcvJCLwIjOiQnb19WbBJXZkJ3biwiI2UjN1YTNiojIklkclRmcvJye.Kt51e7bb3KJ5JmU39WfPhVmoYPIGbHNcj_m_lSbLqaQdcyFBud0qkXLNEclduZDno_";
         Map<String, String> params = new HashMap<>();
         params.put(PARAM_APP_ID, "4207d3b63a1ecc9a5d79a8687024");
         params.put(PARAM_ORDER_ID, orderID);
@@ -110,28 +104,18 @@ public class SelectPayment extends AppCompatActivity {
         params.put(PARAM_CUSTOMER_PHONE, number);
         params.put(PARAM_CUSTOMER_EMAIL, "thottempudi22@gmail.com");
         params.put(PARAM_ORDER_CURRENCY, "INR");
-        //////////////////////
-//        params.put(PARAM_PAYMENT_OPTION, "card");
-//        params.put(PARAM_CARD_NUMBER, "4111111111111111");//Replace Card number
-//        params.put(PARAM_CARD_MM, "07"); // Card Expiry Month in MM
-//        params.put(PARAM_CARD_YYYY, "2023"); // Card Expiry Year in YYYY
-//        params.put(PARAM_CARD_HOLDER, "Test"); // Card Holder name
-//        params.put(PARAM_CARD_CVV, "123"); // Card CVV
-        //////////////////////
 
-//        params.put(PARAM_PAYMENT_OPTION, "userVPA");
-//        params.put(PARAM_UPI_VPA, "testtpv@gocash");
         try {
             CFPaymentService cfPaymentService = CFPaymentService.getCFPaymentServiceInstance();
             cfPaymentService.setOrientation(0);
             if (type.equalsIgnoreCase("card")) {
                 params.put(PARAM_PAYMENT_OPTION, "card");
-                params.put(PARAM_CARD_NUMBER, "4111111111111111");//Replace Card number
-                params.put(PARAM_CARD_MM, "07"); // Card Expiry Month in MM
-                params.put(PARAM_CARD_YYYY, "2023"); // Card Expiry Year in YYYY
-                params.put(PARAM_CARD_HOLDER, "Test"); // Card Holder name
-                params.put(PARAM_CARD_CVV, "123");
-                cfPaymentService.doPayment(SelectPayment.this, params, token, "TEST", "#6dd5ed", "#FAFAFA", false);
+                params.put(PARAM_CARD_NUMBER, cardNum);//Replace Card number
+                params.put(PARAM_CARD_MM, cardMonth); // Card Expiry Month in MM
+                params.put(PARAM_CARD_YYYY, cardYear); // Card Expiry Year in YYYY
+                params.put(PARAM_CARD_HOLDER, holderName); // Card Holder name
+                params.put(PARAM_CARD_CVV, cardCvv);
+                cfPaymentService.doPayment(SelectPayment.this, params, token, "TEST", "#a82069", "#FAFAFA", false);
             }
             if (type.equalsIgnoreCase("upi")) {
                 cfPaymentService.upiPayment(SelectPayment.this, params, token, "TEST");

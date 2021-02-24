@@ -21,6 +21,7 @@ import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textview.MaterialTextView;
 
 import com.yashswi.dilpay.Api_interface.Api_interface;
+import com.yashswi.dilpay.Home_screen;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.models.cityNames;
@@ -174,6 +175,14 @@ public class Bus extends AppCompatActivity {
             }
         });
         return names;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        Intent intent=new Intent(Bus.this, Home_screen.class);
+//        startActivity(intent);
+//        finish();
     }
 }
 

@@ -370,7 +370,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
 
                     setRecycler(isAvailable, seatType, isLadies, NetFare, Servicetax, OperatorServiceCharge, isSelected, seatNumber, zindexIsAvailable, zindexSeatType, zindexIsLadies, zindexNetFare, zindexServicetax, zindexOperatorServiceCharge, zindexisSelected, zindexseatNumber);
                 } catch (Exception e) {
-                    Toast.makeText(getApplicationContext(), "Something went wrong try again!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Something went wrong try again!"+e.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                     finish();
                 }
@@ -396,13 +396,15 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     private void setRecycler(List<Boolean> isAvailable, List<String> seatType, List<Boolean> isLadies, List<Float> NetFare, List<Float> Servicetax, List<Float> OperatorServiceCharge, List<Boolean> isSelected, List<String> seatNumber, List<Boolean> zindexIsAvailable, List<String> zindexSeatType, List<Boolean> zindexIsLadies, List<Float> zindexNetFare, List<Float> zindexServicetax, List<Float> zindexOperatorServiceCharge, List<Boolean> zindexisSelected, List<String> zindexseatNumber) {
         //lower or seater
         GridLayoutManager layoutManager = new GridLayoutManager(Bus_seating.this, 5);
+//        layoutManager.setStackFromEnd(true);
         seater.setLayoutManager(layoutManager);
+
         seat_image_adapter adapter = new seat_image_adapter(Bus_seating.this, isAvailable, isLadies, seatType, NetFare, Servicetax, OperatorServiceCharge, isSelected, seatNumber);
         seater.setAdapter(adapter);
 
         //upper
         GridLayoutManager layoutManager1 = new GridLayoutManager(Bus_seating.this, 5);
-        upper.setLayoutManager(layoutManager1);
+//        layoutManager1.setStackFromEnd(true);
         seat_image_adapter adapter1 = new seat_image_adapter(Bus_seating.this, zindexIsAvailable, zindexIsLadies, zindexSeatType, zindexNetFare, zindexServicetax, zindexOperatorServiceCharge, zindexisSelected, zindexseatNumber);
         upper.setAdapter(adapter1);
     }

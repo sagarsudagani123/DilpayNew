@@ -148,12 +148,14 @@
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/seater"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layoutDirection="rtl"/>
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/upper"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:layoutDirection="rtl"/>
 
 
                     </LinearLayout>
@@ -176,10 +178,10 @@
                             android:text="Available" />
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:layout_weight="1"
-                            android:src="@drawable/available_seat" />
+                            android:src="@drawable/seat_sitting_economy_class" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -191,11 +193,11 @@
                             android:text="Selected" />
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:layout_weight="1"
 
-                            android:src="@drawable/seat_select" />
+                            android:src="@drawable/seat_sitting_choose" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -207,10 +209,10 @@
                             android:text="Booked" />
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:layout_weight="1"
-                            android:src="@drawable/seat_booked" />
+                            android:src="@drawable/seat_sitting_first_class" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -222,10 +224,10 @@
                             android:text="Ladies" />
 
                         <ImageView
-                            android:layout_width="40dp"
-                            android:layout_height="wrap_content"
+                            android:layout_width="60dp"
+                            android:layout_height="60dp"
                             android:layout_weight="1"
-                            android:src="@drawable/seatbooked" />
+                            android:src="@drawable/seat_sitting_ladies" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -243,7 +245,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="10dp"
-            android:background="@color/gradientEnd">
+            android:background="@drawable/layout_bg"
+            >
 
 
             <TextView
@@ -253,7 +256,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:text="Selected seats:"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -276,7 +279,7 @@
                 android:layout_marginStart="25dp"
                 android:layout_marginTop="10dp"
                 android:text="Amount : "
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -294,11 +297,11 @@
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/selectDrop"
-                android:layout_width="200dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/amount"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_bg"
                 android:text="Done"

@@ -380,7 +380,7 @@ public class Profile extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-
+                Log.e("imageUpload", response.body());
                 if (response.body() == null) {
                     Toast.makeText(Profile.this, "null response", Toast.LENGTH_SHORT).show();
                 }
@@ -390,7 +390,7 @@ public class Profile extends AppCompatActivity {
                 }
                 progress.setVisibility(View.GONE);
                 try {
-                    Toast.makeText(Profile.this, response.body(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Profile.this, "/"+response.body(), Toast.LENGTH_SHORT).show();
                     JSONObject obj = new JSONObject(response.body());
                     if (obj.getBoolean("success")) {
                         String imgUrl = "http://www.dilbus.in/api/uploads/" + obj.getString("UserImage");

@@ -124,7 +124,7 @@ public class seat_image_adapter extends RecyclerView.Adapter<seat_image_adapter.
                         ((Bus_seating) context).deleteSeatSelected(count - 1, seatNumber.get(position), amt);
                         if (seatType.get(position).equalsIgnoreCase("seater")) {
                             if (isLadies.get(position)) {
-                                holder.image1.setImageResource(R.drawable.seat_sitting_ladies);
+                                holder.image1.setImageResource(R.drawable.seat_sitting_economy_class);
                             } else {
                                 holder.image1.setImageResource(R.drawable.seat_sitting_economy_class);
                             }

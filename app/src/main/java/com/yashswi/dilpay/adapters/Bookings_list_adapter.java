@@ -2,6 +2,7 @@ package com.yashswi.dilpay.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,6 +43,7 @@ public class Bookings_list_adapter extends RecyclerView.Adapter<Bookings_list_ad
             smsMessage, emailMessage, PaymentStatus, Ticketstatus, PaymentID, paymentMode, Invoice_No, Payment_Date, CancelTicketStatus, Cancel_Message, DayofCancellation,
             TimeofCancellation, DayOfBooking, TimeOfBooking, Names, Ages, Genders, SeatNos;
 
+    JSONObject dataObj=null;
     //    ArrayList<String> Names=new ArrayList<>();
 //    ArrayList<String> Ages=new ArrayList<>();
 //    ArrayList<String> Genders=new ArrayList<>();
@@ -82,7 +84,7 @@ public class Bookings_list_adapter extends RecyclerView.Adapter<Bookings_list_ad
         try {
             JSONObject obj = new JSONObject(data);
             JSONArray jsonArray = obj.getJSONArray("Data");
-            JSONObject dataObj = jsonArray.getJSONObject(position);
+            dataObj = jsonArray.getJSONObject(position);
             BusSnos = dataObj.getString("BusSnos");
             username = dataObj.getString("username");
             TripId = dataObj.getString("TripId");
@@ -227,8 +229,8 @@ public class Bookings_list_adapter extends RecyclerView.Adapter<Bookings_list_ad
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, BusSnos, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(context, Booking_details.class);
+                intent.putExtra("JSONDATA", dataObj.toString());
                 intent.putExtra("BusSnos", BusSnos);
                 intent.putExtra("username", username);
                 intent.putExtra("TripId", TripId);

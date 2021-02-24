@@ -8,6 +8,8 @@ import retrofit2.http.POST;
 
 public interface cashFree {
 
+    String JSONURL="https://payout-gamma.cashfree.com/";
+
     @Headers({"Accept: application/json"})
     @POST("payout/v1/authorize")
     Call<String> getToken(@Header("X-Client-Id") String id, @Header("X-Client-Secret") String secret);
@@ -20,7 +22,11 @@ public interface cashFree {
     @POST("/payout/v1/removeBeneficiary")
     Call<String> removeBeneficiary(@Header("Authorization") String token, @Body String body);
 
+//    @Headers({"Accept: application/json"})
+//    @POST("/payout/v1/requestTransfer")
+//    Call<String> walletWithdraw(@Header("Authorization") String token, @Body String body);
+
     @Headers({"Accept: application/json"})
-    @POST("payout/v1/requestAsyncTransfer")
+    @POST("/payout/v1/requestAsyncTransfer")
     Call<String> walletWithdraw(@Header("Authorization") String token, @Body String body);
 }
