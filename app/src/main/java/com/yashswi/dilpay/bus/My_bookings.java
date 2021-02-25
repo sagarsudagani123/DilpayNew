@@ -95,8 +95,6 @@ public class My_bookings extends AppCompatActivity {
                                 journey_date.add(dataObject.getString("JourneyDate"));
                                 travels.add(dataObject.getString("Operator"));
                             }
-                            Toast.makeText(My_bookings.this, from.size() + "/" + to.size() + "/" + from_time.size() + "/" + to_time.size() + "/" + status.size()
-                                    + "/" + journey_date.size() + "/" + travels.size(), Toast.LENGTH_SHORT).show();
                             Bookings_list_adapter adapter = new Bookings_list_adapter(from, to, status, from_time, to_time, journey_date, travels, model, response.body(), My_bookings.this);
                             rv.setAdapter(adapter);
                             LinearLayoutManager manager = new LinearLayoutManager(My_bookings.this, RecyclerView.VERTICAL, false);

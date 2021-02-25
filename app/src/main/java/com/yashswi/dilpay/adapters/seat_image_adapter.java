@@ -130,13 +130,13 @@ public class seat_image_adapter extends RecyclerView.Adapter<seat_image_adapter.
                             }
                         } else if (seatType.get(position).equalsIgnoreCase("verticalSleeper")) {
                             if (isLadies.get(position)) {
-                                holder.image1.setImageResource(R.drawable.h_ladies);
+                                holder.image1.setImageResource(R.drawable.h_emty);
                             } else {
                                 holder.image1.setImageResource(R.drawable.h_emty);
                             }
                         } else if (seatType.get(position).equalsIgnoreCase("horizontalSleeper")) {
                             if (isLadies.get(position)) {
-                                holder.image1.setImageResource(R.drawable.v_ladies_sleeper);
+                                holder.image1.setImageResource(R.drawable.v_emty_sleeper);
                             } else {
                                 holder.image1.setImageResource(R.drawable.v_emty_sleeper);
                             }

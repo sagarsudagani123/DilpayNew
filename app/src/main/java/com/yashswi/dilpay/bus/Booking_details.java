@@ -71,7 +71,7 @@ public class Booking_details extends AppCompatActivity {
         back = findViewById(R.id.back);
 
         String tata=getIntent().getStringExtra("JSONDATA");
-        Toast.makeText(Booking_details.this,tata,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Booking_details.this,tata,Toast.LENGTH_SHORT).show();
 
         sourceName = getIntent().getStringExtra("SourceName");
         destinationName = getIntent().getStringExtra("DestinationName");

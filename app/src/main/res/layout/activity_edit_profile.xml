@@ -21,8 +21,9 @@
             android:layout_height="wrap_content"
             android:layout_margin="50dp"
             app:cardCornerRadius="10dp"
+            android:layout_above="@id/card"
             app:cardElevation="0dp"
-            app:cardBackgroundColor="#80DAC3AA"
+            app:cardBackgroundColor="#57DFDADC"
             >
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -31,25 +32,22 @@
                 >
                 <ImageView
                     android:id="@+id/icon1"
-                    android:layout_width="250dp"
-                    android:layout_height="140dp"
+                    android:layout_width="300dp"
+                    android:layout_height="240dp"
                     android:layout_centerHorizontal="true"
                     android:src="@drawable/logo"
                     android:scaleType="centerCrop"
-                    android:text="DilPay"
-                    android:textColor="#000"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                     />
 
-<!--                <TextView-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginTop="130dp"-->
-<!--                    android:layout_centerHorizontal="true"-->
-<!--                    android:text="DilPay services Pvt Ltd"-->
-<!--                    android:textColor="#000"-->
-<!--                    android:textSize="20sp"-->
-<!--                    android:textStyle="bold" />-->
+                <!--                <TextView-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginTop="130dp"-->
+                <!--                    android:layout_centerHorizontal="true"-->
+                <!--                    android:text="DilPay services Pvt Ltd"-->
+                <!--                    android:textColor="#000"-->
+                <!--                    android:textSize="20sp"-->
+                <!--                    android:textStyle="bold" />-->
             </RelativeLayout>
 
 
@@ -65,6 +63,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="-8dp"
+            android:layout_marginTop="20dp"
             android:padding="8dp"
             app:cardCornerRadius="8dp">
 

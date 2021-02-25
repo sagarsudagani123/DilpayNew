@@ -185,7 +185,7 @@ public class Login_screen extends AppCompatActivity {
                             userDetails.setWallet(details.getString("Wallet"));
                             userDetails.setMembership(details.getString("userstatus"));
                             userDetails.setComission(details.getString("Comission"));
-                            userDetails.setProfilePic(details.getString("UserImage"));
+                            userDetails.setProfilePic("http://www.dilbus.in/api/uploads/"+details.getString("UserImage"));
                             startActivity(i);
                             finish();
 

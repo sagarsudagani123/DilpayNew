@@ -178,8 +178,8 @@
                             android:text="Available" />
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_weight="1"
                             android:src="@drawable/seat_sitting_economy_class" />
 
@@ -193,8 +193,8 @@
                             android:text="Selected" />
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_weight="1"
 
                             android:src="@drawable/seat_sitting_choose" />
@@ -209,8 +209,8 @@
                             android:text="Booked" />
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_weight="1"
                             android:src="@drawable/seat_sitting_first_class" />
 
@@ -224,8 +224,8 @@
                             android:text="Ladies" />
 
                         <ImageView
-                            android:layout_width="60dp"
-                            android:layout_height="60dp"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
                             android:layout_weight="1"
                             android:src="@drawable/seat_sitting_ladies" />
                     </LinearLayout>

@@ -464,9 +464,9 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         total_amount = total_amount + amount;
         for (int i = 0; i < selectedSeats.size(); i++) {
             if (i == 0) {
-                seatsSelected.append("" + selectedSeats.get(i)+"("+amount+")");
+                seatsSelected.append("" + selectedSeats.get(i)+"("+amountsList.get(i)+")");
             } else {
-                seatsSelected.append("," + selectedSeats.get(i)+"("+amount+")");
+                seatsSelected.append("," + selectedSeats.get(i)+"("+amountsList.get(i)+")");
             }
         }
 //        amountText.setText("" + decimalFormat.format(total_amount));
@@ -487,15 +487,18 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
             for (int j = 0; j < selectedSeats.size(); j++) {
                 if (seatNumber.equalsIgnoreCase(selectedSeats.get(j))) {
                     selectedSeats.remove(j);
+                    amountsList.remove(j);
+                    serviceTaxList.remove(j);
+                    serviceChargeList.remove(j);
                     break;
                 }
             }
             seatsSelected.setText("");
             for (int i = 0; i < selectedSeats.size(); i++) {
                 if (i == 0) {
-                    seatsSelected.append("" + selectedSeats.get(i)+" ("+amount+")");
+                    seatsSelected.append("" + selectedSeats.get(i)+" ("+amountsList.get(i)+")");
                 } else {
-                    seatsSelected.append(", " + selectedSeats.get(i)+"  ("+amount+")");
+                    seatsSelected.append(", " + selectedSeats.get(i)+"  ("+amountsList.get(i)+")");
                 }
             }
 //            amountText.setText("" + df.format(total_amount));

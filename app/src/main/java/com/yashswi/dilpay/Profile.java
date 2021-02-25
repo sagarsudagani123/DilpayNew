@@ -397,7 +397,7 @@ public class Profile extends AppCompatActivity {
                         Log.e("urlImage", imgUrl);
                         userDetails.setProfilePic(imgUrl);
                         Glide.with(Profile.this)
-                                .load(obj.get(imgUrl))
+                                .load(imgUrl)
                                 .signature(new ObjectKey(System.currentTimeMillis()))
                                 .error(R.drawable.profile_pic)
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)

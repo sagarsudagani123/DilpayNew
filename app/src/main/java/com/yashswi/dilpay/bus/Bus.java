@@ -99,8 +99,21 @@ public class Bus extends AppCompatActivity {
                 if (day1 < 10) {
                     formattedDayOfMonth = "0" + day1;
                 }
+
                 date1.setText(formattedDayOfMonth + "-" + formattedMonth + "-" + year1);
                 dateChecked = true;
+                source_id = from.getText().toString();
+                destination_id = to.getText().toString();
+                journey_date = date1.getText().toString();
+                if (source_id.equals("") || source_id == null || destination_id.equals("") || destination_id == null || !dateChecked) {
+                    error.setText("Please fill in all details");
+                } else {
+                    Intent intent = new Intent(Bus.this, Available_buses.class);
+                    intent.putExtra("from", source_id);
+                    intent.putExtra("to", destination_id);
+                    intent.putExtra("date", journey_date);
+                    startActivity(intent);
+                }
             }, year, month, day);
             datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
             datePickerDialog.show();
