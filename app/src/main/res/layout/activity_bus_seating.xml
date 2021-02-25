@@ -266,6 +266,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="10dp"
+                android:paddingEnd="10dp"
                 android:layout_toRightOf="@id/seat_num"
                 android:text=""
                 android:textSize="16sp"
@@ -281,6 +282,7 @@
                 android:text="Amount : "
                 android:textColor="@color/black"
                 android:textSize="16sp"
+                android:visibility="gone"
                 android:textStyle="bold" />
 
             <TextView
@@ -299,9 +301,10 @@
                 android:id="@+id/selectDrop"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/amount"
+                android:layout_below="@id/seatsSelected"
                 android:layout_centerHorizontal="true"
                 android:layout_marginEnd="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/button_bg"
                 android:text="Done"

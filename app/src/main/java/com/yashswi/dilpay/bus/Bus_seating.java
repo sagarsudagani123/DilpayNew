@@ -178,35 +178,39 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Bus_seating.this, Bus_customer_details.class);
-                intent.putExtra("tripID", tripId);
-                intent.putExtra("providercode", providerCode);
-                intent.putExtra("operatorname", operator_name);
-                intent.putExtra("sourceid", source_id);
-                intent.putExtra("destinationid", destination_id);
-                intent.putExtra("journeydate", date);
-                intent.putExtra("type", type);
-                intent.putExtra("sourceName", sourceName);
-                intent.putExtra("destinationName", destinationName);
-                intent.putStringArrayListExtra("dropingPints", dropingPoints);
-                intent.putStringArrayListExtra("bordingPoints", bordingPoints);
-                intent.putStringArrayListExtra("dropingID", dropingID);
-                intent.putStringArrayListExtra("bordingID", bordingID);
-                intent.putStringArrayListExtra("selectedSeats", selectedSeats);
-                intent.putStringArrayListExtra("amountsList", amountsList);
-                intent.putStringArrayListExtra("serviceTaxList", serviceTaxList);
-                intent.putStringArrayListExtra("serviceChargeList", serviceChargeList);
-                intent.putExtra("totalAmt", total_amount);//with out taxes
-                intent.putExtra("arrivalTime", arrivalTime);
-                intent.putExtra("departureTime", departureTime);
-                intent.putExtra("duration", duration);
-                intent.putExtra("travelsName", travelsName);
-                intent.putExtra("operatorID", operatorID);//new
-                intent.putExtra("CancellationPolicy", CancellationPolicy);
-                intent.putExtra("PartialCancellationAllowed", PartialCancellationAllowed);
-                intent.putExtra("IdproofRequried", IdproofRequried);
-                intent.putExtra("convienceFee", convienceFee);
-                startActivity(intent);
+                if(selectedSeats.size()<=0){
+                    Toast.makeText(Bus_seating.this,"Please select seat",Toast.LENGTH_SHORT).show();
+                }else {
+                    Intent intent = new Intent(Bus_seating.this, Bus_customer_details.class);
+                    intent.putExtra("tripID", tripId);
+                    intent.putExtra("providercode", providerCode);
+                    intent.putExtra("operatorname", operator_name);
+                    intent.putExtra("sourceid", source_id);
+                    intent.putExtra("destinationid", destination_id);
+                    intent.putExtra("journeydate", date);
+                    intent.putExtra("type", type);
+                    intent.putExtra("sourceName", sourceName);
+                    intent.putExtra("destinationName", destinationName);
+                    intent.putStringArrayListExtra("dropingPints", dropingPoints);
+                    intent.putStringArrayListExtra("bordingPoints", bordingPoints);
+                    intent.putStringArrayListExtra("dropingID", dropingID);
+                    intent.putStringArrayListExtra("bordingID", bordingID);
+                    intent.putStringArrayListExtra("selectedSeats", selectedSeats);
+                    intent.putStringArrayListExtra("amountsList", amountsList);
+                    intent.putStringArrayListExtra("serviceTaxList", serviceTaxList);
+                    intent.putStringArrayListExtra("serviceChargeList", serviceChargeList);
+                    intent.putExtra("totalAmt", total_amount);//with out taxes
+                    intent.putExtra("arrivalTime", arrivalTime);
+                    intent.putExtra("departureTime", departureTime);
+                    intent.putExtra("duration", duration);
+                    intent.putExtra("travelsName", travelsName);
+                    intent.putExtra("operatorID", operatorID);//new
+                    intent.putExtra("CancellationPolicy", CancellationPolicy);
+                    intent.putExtra("PartialCancellationAllowed", PartialCancellationAllowed);
+                    intent.putExtra("IdproofRequried", IdproofRequried);
+                    intent.putExtra("convienceFee", convienceFee);
+                    startActivity(intent);
+                }
             }
         });
 
@@ -231,6 +235,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
             url = new URL(url1);
             URI uri = new URI(url.getProtocol(), url.getUserInfo(), IDN.toASCII(url.getHost()), url.getPort(), url.getPath(), url.getQuery(), url.getRef());
             finalURL = uri.toASCIIString();
+            Log.e("testAgain",finalURL);
         } catch (MalformedURLException e) {
         } catch (URISyntaxException e) {
             e.printStackTrace();
@@ -248,20 +253,37 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                     JSONObject jsonObject = new JSONObject(response);
                     JSONArray jsonArray = jsonObject.getJSONArray("Seats");
                     int maxColumn = 0;
+                    int maxRow=0;
                     //to get no of columns present
                     for (int k = 0; k < jsonArray.length(); k++) {
                         JSONObject jsonObject1 = jsonArray.getJSONObject(k);
-                        int num = Integer.parseInt(jsonObject1.getString("Column"));
-                        if (num > maxColumn) {
-                            maxColumn = num;
-                        }
+
                     }
+                    for (int k = 0; k < jsonArray.length(); k++) {
+
+                        JSONObject jsonObject1 = jsonArray.getJSONObject(k);
+                        int index = Integer.parseInt(jsonObject1.getString("Zindex"));
+                        int num1=0,num2=0;
+                        if(index==0){
+                            num1 = Integer.parseInt(jsonObject1.getString("Row"));
+                            if (num1 > maxRow) {
+                                maxRow = num1;
+                            }
+                            num2 = Integer.parseInt(jsonObject1.getString("Column"));
+                            if (num2 > maxColumn) {
+                                maxColumn = num2;
+                            }
+                        }
+
+//                        Log.e("seatSetting","column="+num2+" row="+num1);
+                    }
+//                    Toast.makeText(Bus_seating.this,"column="+maxColumn+" row="+maxRow,Toast.LENGTH_SHORT).show();
                     //checking column from 0 to max column
                     for (int l = 0; l <= maxColumn; l++) {
                         //check rows from 0 to 5 for every column
                         for (int m = 0; m <= 4; m++) {
-                            int counterLower = 10;
-                            int counterUpper = 10;
+                            int counterLower = 50;
+                            int counterUpper = 50;
                             //checking eah and every json object weather currrent row and column element is present r not
                             for (int n = 0; n < jsonArray.length(); n++) {
                                 JSONObject jsonObject1 = jsonArray.getJSONObject(n);
@@ -278,37 +300,58 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                                 float operatorServiceCharge = Float.parseFloat(jsonObject1.getString("OperatorServiceCharge"));
                                 String seatNum = jsonObject1.getString("Number");
                                 if (index == 0) {
-                                    if (column == l && row == m) {
-                                        NetFare.add(fare);
-                                        Servicetax.add(serviceTax);
-                                        OperatorServiceCharge.add(operatorServiceCharge);
-                                        isSelected.add(false);
-                                        seatNumber.add(seatNum);
-                                        counterLower = m;
-                                        if (isaval) {
-                                            isAvailable.add(true);
-                                        } else {
-                                            isAvailable.add(false);
+                                    if (row == m) {
+                                        if(column ==l){
+                                            Log.e("seatSetting",index+" "+column+" "+row);
+                                            NetFare.add(fare);
+                                            Servicetax.add(serviceTax);
+                                            OperatorServiceCharge.add(operatorServiceCharge);
+                                            isSelected.add(false);
+                                            seatNumber.add(seatNum);
+                                            counterLower = m;
+                                            if (isaval) {
+                                                isAvailable.add(true);
+                                            } else {
+                                                isAvailable.add(false);
+                                            }
+                                            if (idLads) {
+                                                isLadies.add(true);
+                                            } else {
+                                                isLadies.add(false);
+                                            }
+                                            if (length.equalsIgnoreCase("1") && width.equalsIgnoreCase("1")) {
+                                                //seater
+                                                seatType.add("seater");
+                                            } else if (length.equalsIgnoreCase("2") && width.equalsIgnoreCase("1")) {
+                                                //Horizontial sleeper
+                                                seatType.add("horizontalSleeper");
+                                            } else if (length.equalsIgnoreCase("1") && width.equalsIgnoreCase("2")) {
+                                                //vertical sleeper
+                                                seatType.add("verticalSleeper");
+                                            }
+                                            break;
                                         }
-                                        if (idLads) {
-                                            isLadies.add(true);
-                                        } else {
-                                            isLadies.add(false);
-                                        }
-                                        if (length.equalsIgnoreCase("1") && width.equalsIgnoreCase("1")) {
-                                            //seater
-                                            seatType.add("seater");
-                                        } else if (length.equalsIgnoreCase("2") && width.equalsIgnoreCase("1")) {
-                                            //Horizontial sleeper
-                                            seatType.add("horizontalSleeper");
-                                        } else if (length.equalsIgnoreCase("1") && width.equalsIgnoreCase("2")) {
-                                            //vertical sleeper
-                                            seatType.add("verticalSleeper");
-                                        }
-                                        break;
                                     }
-                                } else if (index == 1) {
+                                }
+                            }
+                            //index 1
+                            for (int x = 0; x < jsonArray.length(); x++) {
+                                JSONObject jsonObject1 = jsonArray.getJSONObject(x);
+                                String length, width;
+                                length = jsonObject1.getString("Length");
+                                width = jsonObject1.getString("Width");
+                                int column = Integer.parseInt(jsonObject1.getString("Column"));
+                                int row = Integer.parseInt(jsonObject1.getString("Row"));
+                                boolean isaval = Boolean.parseBoolean(jsonObject1.getString("IsAvailableSeat"));
+                                boolean idLads = Boolean.parseBoolean(jsonObject1.getString("IsLadiesSeat"));
+                                int index = Integer.parseInt(jsonObject1.getString("Zindex"));
+                                float fare = Float.parseFloat(jsonObject1.getString("NetFare"));
+                                float serviceTax = Float.parseFloat(jsonObject1.getString("Servicetax"));
+                                float operatorServiceCharge = Float.parseFloat(jsonObject1.getString("OperatorServiceCharge"));
+                                String seatNum = jsonObject1.getString("Number");
+                                if (index == 1) {
                                     if (column == l && row == m) {
+                                        Log.e("seatSetting",index+" "+column+" "+row);
                                         zindexNetFare.add(fare);
                                         zindexServicetax.add(serviceTax);
                                         zindexOperatorServiceCharge.add(operatorServiceCharge);
@@ -340,7 +383,6 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                                         break;
                                     }
                                 }
-
                             }
                             if (counterLower == m) {
                             } else {
@@ -394,17 +436,17 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     }
 
     private void setRecycler(List<Boolean> isAvailable, List<String> seatType, List<Boolean> isLadies, List<Float> NetFare, List<Float> Servicetax, List<Float> OperatorServiceCharge, List<Boolean> isSelected, List<String> seatNumber, List<Boolean> zindexIsAvailable, List<String> zindexSeatType, List<Boolean> zindexIsLadies, List<Float> zindexNetFare, List<Float> zindexServicetax, List<Float> zindexOperatorServiceCharge, List<Boolean> zindexisSelected, List<String> zindexseatNumber) {
+//        Toast.makeText(Bus_seating.this,isAvailable.size())
         //lower or seater
-        GridLayoutManager layoutManager = new GridLayoutManager(Bus_seating.this, 5);
-//        layoutManager.setStackFromEnd(true);
-        seater.setLayoutManager(layoutManager);
 
+        GridLayoutManager layoutManager = new GridLayoutManager(Bus_seating.this, 5);
+        seater.setLayoutManager(layoutManager);
         seat_image_adapter adapter = new seat_image_adapter(Bus_seating.this, isAvailable, isLadies, seatType, NetFare, Servicetax, OperatorServiceCharge, isSelected, seatNumber);
         seater.setAdapter(adapter);
 
         //upper
         GridLayoutManager layoutManager1 = new GridLayoutManager(Bus_seating.this, 5);
-//        layoutManager1.setStackFromEnd(true);
+        upper.setLayoutManager(layoutManager1);
         seat_image_adapter adapter1 = new seat_image_adapter(Bus_seating.this, zindexIsAvailable, zindexIsLadies, zindexSeatType, zindexNetFare, zindexServicetax, zindexOperatorServiceCharge, zindexisSelected, zindexseatNumber);
         upper.setAdapter(adapter1);
     }
@@ -413,7 +455,7 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
     @Override
     public void seatSelected(float position, String seatNumber, Float amount, Float seatAmount, Float serviceTax, Float serviceCharge) {
         seatsSelected.setText("");
-        Toast.makeText(Bus_seating.this, "Price : " + String.valueOf(amount), Toast.LENGTH_SHORT).show();
+//        Toast.makeText(Bus_seating.this, "Price : " + String.valueOf(amount), Toast.LENGTH_SHORT).show();
         DecimalFormat decimalFormat = new DecimalFormat("#.##");
         selectedSeats.add(seatNumber);
         amountsList.add(String.valueOf(decimalFormat.format(seatAmount)));
@@ -422,12 +464,12 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
         total_amount = total_amount + amount;
         for (int i = 0; i < selectedSeats.size(); i++) {
             if (i == 0) {
-                seatsSelected.append("" + selectedSeats.get(i));
+                seatsSelected.append("" + selectedSeats.get(i)+"("+amount+")");
             } else {
-                seatsSelected.append("," + selectedSeats.get(i));
+                seatsSelected.append("," + selectedSeats.get(i)+"("+amount+")");
             }
         }
-        amountText.setText("" + decimalFormat.format(total_amount));
+//        amountText.setText("" + decimalFormat.format(total_amount));
     }
 
     //RUNS WHEN EVER SEAT IS CLICKED TO GET NUM OF SEATS SELECTED
@@ -451,12 +493,12 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
             seatsSelected.setText("");
             for (int i = 0; i < selectedSeats.size(); i++) {
                 if (i == 0) {
-                    seatsSelected.append("" + selectedSeats.get(i));
+                    seatsSelected.append("" + selectedSeats.get(i)+" ("+amount+")");
                 } else {
-                    seatsSelected.append("," + selectedSeats.get(i));
+                    seatsSelected.append(", " + selectedSeats.get(i)+"  ("+amount+")");
                 }
             }
-            amountText.setText("" + df.format(total_amount));
+//            amountText.setText("" + df.format(total_amount));
 
         } catch (Exception e) {
             Toast.makeText(Bus_seating.this, e.toString(), Toast.LENGTH_SHORT).show();
