@@ -18,7 +18,7 @@ import retrofit2.http.Query;
 
 public interface Api_interface {
 
-    String JSONURL = " http://dilbus.in/api/";
+    String JSONURL = "http://dilbus.in/api/";
 
     @GET("bustickets.php")
     Call<String> available_buses(
@@ -87,20 +87,21 @@ public interface Api_interface {
     @FormUrlEncoded
     Call<String> updateDetails(@Field("data") String data);
 
-    //payout token generation
-    @GET("getTokenPayout.php")
+    @GET("PayoutToken.php")
     Call<String> generatePayoutToken();
+
+    @GET("PayoutToken.php")
+    Call<String> generatePayoutWithdrawToken(@Query("data") String data);
 
     @POST("VerifyAmountEligibility.php")
     @FormUrlEncoded
-    Call<String> verifyAmount(@Field("username") String username, @Field("amount") String amount);
+    Call<String> verifyAmount(@Field("Data") String data);
 
     @POST("ImageUpload.php")
     @FormUrlEncoded
     Call<String> uploadPic(@Field("ImageUpload") String data);
 
-    //payout token generation
-    @POST("")
+    @POST("PayoutCompleted.php")
     @FormUrlEncoded
     Call<String> updateTransaction(@Field("data") String data);
 }

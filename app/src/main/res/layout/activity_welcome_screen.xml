@@ -18,7 +18,7 @@
         android:layout_height="match_parent"
         android:background="#80000000" />
 
-    <TextView
+    <ImageView
         android:id="@+id/icon1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,20 +27,19 @@
         android:layout_marginTop="80dp"
         android:scaleType="fitCenter"
         android:text="DilPay"
-        android:textColor="#fff"
-        android:textSize="30sp"
-        android:textStyle="bold" />
+        android:src="@drawable/logo"
+         />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/icon1"
-        android:layout_centerHorizontal="true"
-        android:scaleType="fitCenter"
-        android:text="DilPay services Pvt Ltd"
-        android:textColor="#fff"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+<!--    <TextView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_below="@id/icon1"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:scaleType="fitCenter"-->
+<!--        android:text="DilPay services Pvt Ltd"-->
+<!--        android:textColor="#fff"-->
+<!--        android:textSize="20sp"-->
+<!--        android:textStyle="bold" />-->
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/login_btn"

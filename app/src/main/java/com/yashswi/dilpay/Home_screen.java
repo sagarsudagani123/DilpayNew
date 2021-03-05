@@ -14,7 +14,6 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -26,15 +25,16 @@ import com.smarteist.autoimageslider.SliderView;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.adapters.SliderAdapter;
 import com.yashswi.dilpay.adapters.items_list_adapter;
-import com.yashswi.dilpay.bus.Bus;
 import com.yashswi.dilpay.models.cityNames;
 import com.yashswi.dilpay.utils.CheckNetworkStatus;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.net.UnknownHostException;
+import java.sql.Timestamp;
+import java.time.YearMonth;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -207,10 +207,11 @@ public class Home_screen extends AppCompatActivity {
     public void sliderviewWork() {
         SliderView sliderView = findViewById(R.id.imageSlider);
         SliderAdapter sliderAdapter = new SliderAdapter(this);
-        sliderAdapter.addItem(R.drawable.slider1);  // slide1,slide2,slide3,slide4
-        sliderAdapter.addItem(R.drawable.slider2);
-        sliderAdapter.addItem(R.drawable.slider3);
-        sliderAdapter.addItem(R.drawable.slider4);
+        sliderAdapter.addItem(R.drawable.banner1);  // slide1,slide2,slide3,slide4
+        sliderAdapter.addItem(R.drawable.banner2);
+        sliderAdapter.addItem(R.drawable.banner3);
+        sliderAdapter.addItem(R.drawable.banner4);
+        sliderAdapter.addItem(R.drawable.pin);
         sliderView.setSliderAdapter(sliderAdapter);
 
         sliderView.startAutoCycle();

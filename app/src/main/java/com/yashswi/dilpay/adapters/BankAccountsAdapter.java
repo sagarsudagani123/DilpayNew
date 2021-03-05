@@ -1,36 +1,29 @@
 package com.yashswi.dilpay.adapters;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yashswi.dilpay.Api_interface.cashFree;
 import com.yashswi.dilpay.R;
-import com.yashswi.dilpay.WithdrawAmount;
-import com.yashswi.dilpay.bank.Add_account_details;
+import com.yashswi.dilpay.bank.WithdrawAmount;
 import com.yashswi.dilpay.bank.BankAccounts;
 import com.yashswi.dilpay.models.bankDetails;
 import com.yashswi.dilpay.models.userDetails;
 
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -126,7 +119,7 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         cashFree api = retrofit.create(cashFree.class);
-        Call<String> call = api.getToken("CF4207C0D8VIUK9404JSBD00DG", "51207f8c3ee789bc77cf7d3c54c0bd59d106b9fa");
+        Call<String> call = api.getToken("CF4207C0VN927A55OA211PLK80", "4eac8173d6023b23482d984c298b2cd69c7672cc");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

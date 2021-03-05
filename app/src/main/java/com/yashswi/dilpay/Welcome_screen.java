@@ -26,7 +26,7 @@ public class Welcome_screen extends AppCompatActivity {
         signUp = findViewById(R.id.sign_up);
 
         //SETTING BACKGROUND IMAGE TO KENBURNS VIEW
-        Glide.with(this).load(R.drawable.welcome).into(kenBurnsView);
+        Glide.with(this).load(R.drawable.bannerimg).into(kenBurnsView);
 
         //LOGIN BUTTON ACTION
         login.setOnClickListener(v -> {

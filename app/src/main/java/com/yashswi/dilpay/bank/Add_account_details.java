@@ -89,8 +89,6 @@ public class Add_account_details extends AppCompatActivity {
                     progress.setVisibility(View.VISIBLE);
 //                    Toast.makeText(Add_account_details.this,""+name1+"/"+email1+"/"+phone1+"/"+bank_account1+"/"+ifsc1+"/"+address1,Toast.LENGTH_LONG).show();
                     getToken();
-
-
                 }
             }
         });
@@ -99,11 +97,11 @@ public class Add_account_details extends AppCompatActivity {
     //ADD BENEFICIARY TO CASHFREE
     private void addBeneficiary(String token, String name1, String email1, String phone1, String bank_account1, String ifsc1, String vpa1, String address1) {
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://payout-gamma.cashfree.com/")
+                .baseUrl(cashFree.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         cashFree api = retrofit.create(cashFree.class);
-        beneficiaryID = "DILPAY" + bank_account1;
+        beneficiaryID = "DILPAY" + bank_account1+ifsc1;
         JSONObject test = new JSONObject();
         try {
             test.put("beneId", beneficiaryID);
@@ -122,6 +120,7 @@ public class Add_account_details extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+//                Toast.makeText(Add_account_details.this,"got response from cashfree"+response.body(),Toast.LENGTH_SHORT).show();
                 try {
                     JSONObject data = new JSONObject(response.body());
                     Log.e("bankAdd", data.toString());
@@ -160,7 +159,7 @@ public class Add_account_details extends AppCompatActivity {
                 } else {
                     message = "Something went wrong! try again";
                 }
-                Toast.makeText(Add_account_details.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Add_account_details.this, message + ""+t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -208,11 +207,11 @@ public class Add_account_details extends AppCompatActivity {
     void getToken() {
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://payout-gamma.cashfree.com/")
+                .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
-        cashFree api = retrofit.create(cashFree.class);
-        Call<String> call = api.getToken("CF4207C0D8VIUK9404JSBD00DG", "51207f8c3ee789bc77cf7d3c54c0bd59d106b9fa");
+        Api_interface api = retrofit.create(Api_interface.class);
+        Call<String> call = api.generatePayoutToken();
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

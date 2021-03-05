@@ -28,6 +28,7 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
+            android:fontFamily="@font/therhog_regular"
             android:text="Bus Ticket Booking"
             android:textColor="#fff"
             android:textSize="18sp"

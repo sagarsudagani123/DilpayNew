@@ -26,11 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Dilpay services Pvt Ltd"
-        android:textColor="#fff"
+        android:text="Dilpay Services"
+        android:textColor="#0EE3F6"
+        android:fontFamily="@font/akronim_regular"
         android:layout_margin="20dp"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:textSize="45sp"
+        android:textStyle="normal" />
 
     <com.airbnb.lottie.LottieAnimationView
         android:layout_width="match_parent"

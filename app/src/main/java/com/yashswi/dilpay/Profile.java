@@ -141,6 +141,7 @@ public class Profile extends AppCompatActivity {
                 Intent i = new Intent(Profile.this, BankAccounts.class);
                 i.putExtra("title", "Select Bank");
                 startActivity(i);
+                finish();
             }
         });
 

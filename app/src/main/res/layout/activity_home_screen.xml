@@ -71,9 +71,10 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="20dp"
                         android:background="@drawable/ripple_effect"
-                        android:padding="12dp"
+                        android:backgroundTint="#090909"
                         android:src="@drawable/ic_account_circle_black_24dp" />
                 </RelativeLayout>
 
@@ -146,6 +147,11 @@
                                 android:layout_height="match_parent"
                                 android:orientation="horizontal"
                                 >
+<!--                                <ImageView-->
+<!--                                    android:layout_width="220dp"-->
+<!--                                    android:layout_height="match_parent"-->
+<!--                                    android:src="@drawable/cardtest"-->
+<!--                                    />-->
 
                                 <com.google.android.material.card.MaterialCardView
                                     android:id="@+id/card1"
@@ -158,10 +164,10 @@
                                     app:cardElevation="5dp">
 
                                     <LinearLayout
-                                        android:layout_width="230dp"
-                                        android:layout_height="wrap_content"
-                                        android:padding="2dp"
-                                        android:orientation="vertical">
+                                        android:layout_width="220dp"
+                                        android:layout_height="match_parent"
+                                        android:orientation="vertical"
+                                        android:padding="2dp">
 
                                         <TextView
                                             android:layout_width="wrap_content"

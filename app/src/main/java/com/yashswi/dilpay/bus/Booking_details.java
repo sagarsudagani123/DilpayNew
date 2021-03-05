@@ -1,11 +1,19 @@
 package com.yashswi.dilpay.bus;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.graphics.pdf.PdfDocument;
+import android.os.Build;
 import android.os.Bundle;
+import android.print.PrintAttributes;
+import android.print.PrintDocumentAdapter;
+import android.print.PrintJob;
+import android.print.PrintManager;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,6 +29,7 @@ import java.util.ArrayList;
 public class Booking_details extends AppCompatActivity {
     ImageView back;
     String status;
+    AppCompatButton ticketDownload;
     TextView pickup_location, drop_location, pickup_time, drop_time, duration1, journey_date, travels,
             bus_type, boarding_point, drop_point, base_fare, taxes, passengerName, passengerAge, passengerGender, seatNumber;
     AppCompatButton proceed_payment;
@@ -69,6 +78,7 @@ public class Booking_details extends AppCompatActivity {
         passengerGender = findViewById(R.id.passengerGender);
         seatNumber = findViewById(R.id.seatNumber);
         back = findViewById(R.id.back);
+        ticketDownload=findViewById(R.id.ticketDownload);
 
         String tata=getIntent().getStringExtra("JSONDATA");
 //        Toast.makeText(Booking_details.this,tata,Toast.LENGTH_SHORT).show();
@@ -116,6 +126,17 @@ public class Booking_details extends AppCompatActivity {
                 finish();
             }
         });
+
+        ticketDownload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PdfDocument document = new PdfDocument();
+            }
+        });
         status = getIntent().getStringExtra("status");
+    }
+
+    public void CreatePdf(View view){
+
     }
 }
