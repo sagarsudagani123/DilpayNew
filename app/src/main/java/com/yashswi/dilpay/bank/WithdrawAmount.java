@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class WithdrawAmount extends AppCompatActivity {
     TextInputEditText amount;
     AppCompatButton submit, cancle;
     RelativeLayout progress;
+    ImageView back;
     String transferId;
     String tokenFinal, beneficiaryID, email, acntNumber, ifse, address;
     userDetails userDetails;
@@ -48,12 +50,20 @@ public class WithdrawAmount extends AppCompatActivity {
         submit = findViewById(R.id.buttonSubmit);
         cancle = findViewById(R.id.buttonCancel);
         progress=findViewById(R.id.progress);
+        back=findViewById(R.id.back);
 
         beneficiaryID = getIntent().getStringExtra("beneficiaryID");
         email = getIntent().getStringExtra("emial");
         acntNumber = getIntent().getStringExtra("accountNumber");
         ifse = getIntent().getStringExtra("IFSC");
         address = getIntent().getStringExtra("address");
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -76,6 +86,8 @@ public class WithdrawAmount extends AppCompatActivity {
         cancle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(WithdrawAmount.this,Profile.class);
+                startActivity(intent);
                 finish();
             }
         });

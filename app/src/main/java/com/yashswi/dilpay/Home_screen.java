@@ -207,10 +207,10 @@ public class Home_screen extends AppCompatActivity {
     public void sliderviewWork() {
         SliderView sliderView = findViewById(R.id.imageSlider);
         SliderAdapter sliderAdapter = new SliderAdapter(this);
-        sliderAdapter.addItem(R.drawable.banner1);  // slide1,slide2,slide3,slide4
-        sliderAdapter.addItem(R.drawable.banner2);
         sliderAdapter.addItem(R.drawable.banner3);
         sliderAdapter.addItem(R.drawable.banner4);
+        sliderAdapter.addItem(R.drawable.banner5);
+        sliderAdapter.addItem(R.drawable.banner1);  // slide1,slide2,slide3,slide4
         sliderAdapter.addItem(R.drawable.pin);
         sliderView.setSliderAdapter(sliderAdapter);
 

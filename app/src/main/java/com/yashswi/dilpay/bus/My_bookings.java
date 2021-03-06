@@ -75,7 +75,8 @@ public class My_bookings extends AppCompatActivity {
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
-        Call<String> call = api.myBookings("6302840341");
+//        Call<String> call = api.myBookings("6302840341");
+        Call<String> call = api.myBookings(userDetails.getNumber());
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

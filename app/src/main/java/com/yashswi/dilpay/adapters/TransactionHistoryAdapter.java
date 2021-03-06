@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -47,11 +48,12 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
     public void onBindViewHolder(@NonNull MyViewHolder holder, int i) {
         holder.transactionId.setText(transactionId.get(i));
         holder.creditAmount.setText(creditAmount.get(i));
+        holder.debitAmount.setText(debitAmount.get(i));
         if (debitAmount.get(i).equalsIgnoreCase("null")) {
-            holder.debitAmount.setText("  ---");
-            holder.rupeeSym.setVisibility(View.GONE);
-        } else {
-            holder.debitAmount.setText(debitAmount.get(i));
+            holder.debitLayout.setVisibility(View.GONE);
+        }
+        else if(creditAmount.get(i).equalsIgnoreCase("null")){
+            holder.creditLayout.setVisibility(View.GONE);
         }
         holder.dateTime.setText(dateTime.get(i));
         holder.message.setText(message.get(i));
@@ -66,6 +68,7 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
         TextView transactionId, creditAmount, debitAmount, dateTime, message;
         ImageView rupeeSym;
         CardView cardView;
+        LinearLayout creditLayout,debitLayout;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -76,6 +79,8 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
             message = itemView.findViewById(R.id.message);
             cardView = itemView.findViewById(R.id.transaction_card);
             rupeeSym = itemView.findViewById(R.id.rupee_debit);
+            creditLayout=itemView.findViewById(R.id.creditLayout);
+            debitLayout=itemView.findViewById(R.id.debitLayout);
         }
     }
 }

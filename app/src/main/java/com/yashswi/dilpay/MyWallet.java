@@ -38,7 +38,7 @@ public class MyWallet extends AppCompatActivity {
         gst_amount = findViewById(R.id.gst_amount);
         total_amount = findViewById(R.id.total_amount);
         commision_amt = findViewById(R.id.commision_amount);
-         convert=findViewById(R.id.buttonConvert);
+        convert=findViewById(R.id.buttonConvert);
         walletAmount = getIntent().getStringExtra("walletAmt");
         commissionAmount = getIntent().getStringExtra("commissionAmt");
 

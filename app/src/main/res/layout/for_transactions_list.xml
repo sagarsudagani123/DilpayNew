@@ -27,76 +27,90 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/credit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toStartOf="@id/rupee_credit"
-            android:paddingEnd="10dp"
-            android:text="Credit :"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/rupee_credit"
-            android:layout_width="20dp"
-            android:layout_height="15dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_toStartOf="@id/credit_amount"
-            android:src="@drawable/rupee" />
-
-        <TextView
-            android:id="@+id/credit_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:gravity="center"
-            android:text="250"
-            android:textColor="@color/textColor" />
-
-        <TextView
-            android:id="@+id/debit"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/credit"
-            android:layout_toStartOf="@id/rupee_debit"
-            android:paddingEnd="10dp"
-            android:text="Debit :"
-            android:textStyle="bold" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/rupee_debit"
-            android:layout_width="20dp"
-            android:layout_height="15dp"
-            android:layout_below="@id/rupee_credit"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_toStartOf="@id/credit_amount"
-            android:src="@drawable/rupee" />
-
-        <TextView
-            android:id="@+id/debit_amount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/credit_amount"
-            android:layout_alignParentEnd="true"
-            android:layout_marginEnd="20dp"
-            android:gravity="center"
-            android:text="250"
-            android:textColor="@color/textColor" />
-
-        <TextView
             android:id="@+id/date_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/trans_id"
+            android:layout_marginTop="0dp"
             android:text="Date and Time" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            android:paddingEnd="10dp"
+            android:id="@+id/amountsLayout"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:id="@+id/creditLayout">
+                <TextView
+                    android:id="@+id/credit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Credit :"
+                    android:textStyle="bold" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/rupee_credit"
+                    android:layout_width="20dp"
+                    android:layout_height="15dp"
+                    android:layout_marginTop="5dp"
+                    android:src="@drawable/rupee" />
+
+                <TextView
+                    android:id="@+id/credit_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp"
+                    android:gravity="center"
+                    android:text="250"
+                    android:textColor="@color/textColor" />
+            </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/debitLayout">
+            <TextView
+                android:id="@+id/debit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingEnd="10dp"
+                android:paddingStart="2dp"
+                android:text="Debit :"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/rupee_debit"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:layout_marginTop="5dp"
+                android:src="@drawable/rupee" />
+
+            <TextView
+                android:id="@+id/debit_amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:gravity="center"
+                android:text="250"
+                android:textColor="@color/textColor" />
+        </LinearLayout>
+
+        </LinearLayout>
+
+
 
         <TextView
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/debit"
+            android:layout_below="@id/date_time"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="15dp"

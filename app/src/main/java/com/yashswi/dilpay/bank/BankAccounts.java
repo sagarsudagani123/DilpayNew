@@ -22,6 +22,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.bankAddDelete;
 import com.yashswi.dilpay.Api_interface.cashFree;
+import com.yashswi.dilpay.Profile;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.TransactionsHistory;
 import com.yashswi.dilpay.adapters.BankAccountsAdapter;
@@ -83,6 +84,8 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(BankAccounts.this, Profile.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -228,7 +231,7 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
             e.printStackTrace();
         }
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://payout-gamma.cashfree.com/")
+                .baseUrl(cashFree.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         cashFree api = retrofit.create(cashFree.class);
@@ -266,5 +269,13 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
                 Toast.makeText(BankAccounts.this, message + "", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(BankAccounts.this, Profile.class);
+        startActivity(intent);
+        finish();
     }
 }

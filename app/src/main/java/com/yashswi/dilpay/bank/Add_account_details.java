@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.cashFree;
+import com.yashswi.dilpay.Profile;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.TransactionsHistory;
 import com.yashswi.dilpay.bus.Bus;
@@ -64,6 +66,8 @@ public class Add_account_details extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(Add_account_details.this, Profile.class);
+                startActivity(intent);
                 finish();
             }
         });
@@ -242,5 +246,12 @@ public class Add_account_details extends AppCompatActivity {
             }
         });
 
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(Add_account_details.this, Profile.class);
+        startActivity(intent);
+        finish();
     }
 }

@@ -1,6 +1,7 @@
 package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.Intent;
@@ -32,7 +33,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class ConvertRewards extends AppCompatActivity {
 ImageView back;
 TextView availableRewards,eligibilityPercentage,eligibilityRewards;
-AppCompatButton convert_rewards;
+AppCompatButton convert_rewards,notEligible;
 com.yashswi.dilpay.models.userDetails userDetails;
 RelativeLayout progress;
     String totalPoints;
@@ -42,12 +43,16 @@ RelativeLayout progress;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_convert_rewards);
+
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+
         userDetails=new userDetails(ConvertRewards.this);
         back=findViewById(R.id.back);
         availableRewards=findViewById(R.id.availableRewardsAmount);
         eligibilityPercentage=findViewById(R.id.percentage);
         eligibilityRewards=findViewById(R.id.eligibleRewardsAmount);
         convert_rewards=findViewById(R.id.buttonConvert);
+        notEligible=findViewById(R.id.unableToConvert);
         progress=findViewById(R.id.progress);
         getRewardDetails();
         progress.setVisibility(View.VISIBLE);
@@ -147,6 +152,13 @@ RelativeLayout progress;
                          totalPoints=dataObj.getString("Totalpoints");
                          percentage=dataObj.getString("Percent");
                          eligiblePoints=dataObj.getString("Eligibility");
+
+                         float points= Float.parseFloat(eligiblePoints);
+                         if(points>0){
+                             convert_rewards.setVisibility(View.VISIBLE);
+                         }else{
+                             notEligible.setVisibility(View.VISIBLE);
+                         }
 
                         availableRewards.setText(totalPoints);
                         eligibilityPercentage.setText(percentage+"%");

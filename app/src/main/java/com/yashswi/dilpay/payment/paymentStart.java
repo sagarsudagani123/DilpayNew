@@ -159,7 +159,7 @@ public class paymentStart extends AppCompatActivity {
                 mainLayout.setVisibility(View.VISIBLE);
                 Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_LONG).show();
                 progress.setVisibility(View.GONE);
-                Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_SHORT).show();
                 Log.e("confirmTest", response.body());
                 JSONObject dataObj = new JSONObject();
                 try {

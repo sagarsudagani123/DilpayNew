@@ -13,6 +13,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.cashFree;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.bank.WithdrawAmount;
@@ -73,6 +74,7 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
                     intent.putExtra("IFSC", bankDetails.get(position).getIfscCode());
                     intent.putExtra("address", bankDetails.get(position).getAddress());
                     context.startActivity(intent);
+                    ((BankAccounts)context).finish();
                 }
             });
         }
@@ -115,11 +117,12 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
 
     void getToken(String benId){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(cashFree.JSONURL)
+                .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
-        cashFree api = retrofit.create(cashFree.class);
-        Call<String> call = api.getToken("CF4207C0VN927A55OA211PLK80", "4eac8173d6023b23482d984c298b2cd69c7672cc");
+        Api_interface api = retrofit.create(Api_interface.class);
+        Call<String> call = api.generatePayoutToken();
+//        Call<String> call = api.getToken("CF4207C0VN927A55OA211PLK80", "4eac8173d6023b23482d984c298b2cd69c7672cc");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {

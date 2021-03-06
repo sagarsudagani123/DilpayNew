@@ -30,6 +30,7 @@ import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.bank.BankAccounts;
 import com.yashswi.dilpay.bus.My_bookings;
 import com.yashswi.dilpay.models.userDetails;
+import com.yashswi.dilpay.payment.paymentStart;
 import com.yashswi.dilpay.utils.CheckNetworkStatus;
 
 import org.json.JSONArray;
@@ -203,6 +204,7 @@ public class Profile extends AppCompatActivity {
                 Intent i = new Intent(Profile.this, BankAccounts.class);
                 i.putExtra("title", "My Accounts");
                 startActivity(i);
+                finish();
             }
         });
 
@@ -425,5 +427,12 @@ public class Profile extends AppCompatActivity {
                 Toast.makeText(Profile.this, message + "", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+//        Intent intent = new Intent(Profile.this, Home_screen.class);
+//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//        startActivity(intent);
     }
 }

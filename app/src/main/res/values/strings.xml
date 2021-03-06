@@ -293,7 +293,7 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <!-- TODO: Remove or change this placeholder text -->
 
 
-    <string name="summary">Use Below services &amp; Get % on Mentioned services to claim your Eligibility Reward Points.</string>
+    <string name="summary">Use our services &amp; Get percentage to claim your Eligibile Reward Points.</string>
     <string name="mobileRewards">Mobile recharge - 5%</string>
     <string name="defaultRewards">Default rewards - 10%</string>
     <string name="dthRewards">DTH Recharge    - 5%</string>
@@ -302,5 +302,5 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <string name="MoneyRewards">Money Trancefer	- 10%</string>
     <string name="busticketRewards">BusTicket	- 10%</string>
     <string name="referralsRewards">Refferals	-  (1-5%) (2-10%)(3-20%)</string>
-    <string name="note">Note: Rewards Points will be expired by automatically on 25th of Every Month</string>
+    <string name="note">Note: Reward Points will be expired by automatically on 25th of Every Month</string>
 </resources>
