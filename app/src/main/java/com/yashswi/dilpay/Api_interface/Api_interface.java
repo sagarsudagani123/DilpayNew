@@ -104,4 +104,12 @@ public interface Api_interface {
     @POST("PayoutCompleted.php")
     @FormUrlEncoded
     Call<String> updateTransaction(@Field("data") String data);
+
+    @POST("AvailbilityPoints.php")
+    @FormUrlEncoded
+    Call<String> getRewardDetails(@Field("username") String username);
+
+    @GET("Convertpoints.php")
+    Call<String> convertRewards(@Query("data") String data);
+
 }

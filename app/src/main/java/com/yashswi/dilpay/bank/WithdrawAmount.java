@@ -172,7 +172,6 @@ public class WithdrawAmount extends AppCompatActivity {
                         tokenFinal = tokenObj.getString("token");
 //                        initiateWithdraw(tokenFinal, beneficiaryID, amount, transferId);
                         updateTransaction("");
-
                     } else {
                         Toast.makeText(WithdrawAmount.this,"Token generation failed!"+response.body(),Toast.LENGTH_SHORT).show();
                         tokenFinal = "";
@@ -196,7 +195,6 @@ public class WithdrawAmount extends AppCompatActivity {
                 Toast.makeText(WithdrawAmount.this, message + ""+t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     private void initiateWithdraw(String tokenFinal, String beneficiaryID, String amount, String transfer_id) {

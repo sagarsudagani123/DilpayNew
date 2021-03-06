@@ -2,7 +2,9 @@ package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -24,7 +26,7 @@ public class MyWallet extends AppCompatActivity {
     ImageView back;
     TextView tds_amount, gst_amount, total_amount, commision_amt;
     String walletAmount, commissionAmount;
-
+    AppCompatButton convert;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +38,7 @@ public class MyWallet extends AppCompatActivity {
         gst_amount = findViewById(R.id.gst_amount);
         total_amount = findViewById(R.id.total_amount);
         commision_amt = findViewById(R.id.commision_amount);
-
+         convert=findViewById(R.id.buttonConvert);
         walletAmount = getIntent().getStringExtra("walletAmt");
         commissionAmount = getIntent().getStringExtra("commissionAmt");
 
@@ -46,8 +48,27 @@ public class MyWallet extends AppCompatActivity {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent=new Intent(MyWallet.this,Profile.class);
+                startActivity(intent);
                 finish();
             }
         });
+
+        convert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MyWallet.this,ConvertRewards.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent=new Intent(MyWallet.this,Profile.class);
+        startActivity(intent);
+        finish();
     }
 }

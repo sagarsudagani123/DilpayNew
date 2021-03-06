@@ -292,4 +292,15 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <string name="terms167">Dilbus will not be responsible for any loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill or wasted expenditure) and any other indirect or consequential loss to You when You commenced using the app.</string>
     <!-- TODO: Remove or change this placeholder text -->
 
+
+    <string name="summary">Use Below services &amp; Get % on Mentioned services to claim your Eligibility Reward Points.</string>
+    <string name="mobileRewards">Mobile recharge - 5%</string>
+    <string name="defaultRewards">Default rewards - 10%</string>
+    <string name="dthRewards">DTH Recharge    - 5%</string>
+    <string name="electrictyRewards">Electricity     - 10%</string>
+    <string name="gasRewards">Gas		- 5%</string>
+    <string name="MoneyRewards">Money Trancefer	- 10%</string>
+    <string name="busticketRewards">BusTicket	- 10%</string>
+    <string name="referralsRewards">Refferals	-  (1-5%) (2-10%)(3-20%)</string>
+    <string name="note">Note: Rewards Points will be expired by automatically on 25th of Every Month</string>
 </resources>

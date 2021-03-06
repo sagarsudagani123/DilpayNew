@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MyWallet">
-
+    tools:context=".ConvertRewards">
     <RelativeLayout
         android:id="@+id/re1"
         android:layout_width="match_parent"
@@ -27,32 +26,32 @@
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
-            android:text="My Wallet"
+            android:text="Convert Rewards"
             android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
-
     <com.google.android.material.card.MaterialCardView
         android:id="@+id/card_details"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/re1"
         android:layout_margin="5dp"
-        android:elevation="6dp"
+       app:cardElevation="10dp"
         app:cardCornerRadius="6dp">
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="15dp">
 
             <TextView
-                android:id="@+id/tds"
+                android:id="@+id/availableRewards"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
-                android:text="TDS"
+                android:text="Available Reward Points"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -65,30 +64,26 @@
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/rupee" />
+
 
                 <TextView
-                    android:id="@+id/tds_amount"
+                    android:id="@+id/availableRewardsAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0"
+                    android:text="--"
                     android:textColor="#0071cc"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-            </LinearLayout>
 
+            </LinearLayout>
             <TextView
-                android:id="@+id/gst"
+                android:id="@+id/percentageEligibility"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/tds"
+                android:layout_below="@id/availableRewards"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="GST"
+                android:text="Percentage Of Eligibility "
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -102,30 +97,26 @@
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/rupee" />
+
 
                 <TextView
-                    android:id="@+id/gst_amount"
+                    android:id="@+id/percentage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="0"
                     android:textColor="#0071cc"
                     android:textSize="16sp"
                     android:textStyle="bold" />
-            </LinearLayout>
 
+            </LinearLayout>
             <TextView
-                android:id="@+id/total"
+                android:id="@+id/eligibleRewards"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/gst"
+                android:layout_below="@id/percentageEligibility"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="10dp"
-                android:text="Total Amount"
+                android:text="Eligible Reward Points"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -139,54 +130,18 @@
                 android:layout_marginEnd="10dp"
                 android:orientation="horizontal">
 
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="20dp"
-                    android:layout_height="15dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/rupee" />
-
-                <TextView
-                    android:id="@+id/total_amount"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="..."
-                    android:textColor="#0071cc"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/total"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:text="Reward Points"
-                android:textSize="16sp"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/li2_amount"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                android:orientation="horizontal">
-
 
 
                 <TextView
-                    android:id="@+id/commision_amount"
+                    android:id="@+id/eligibleRewardsAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="..."
+                    android:text="0"
                     android:textColor="#0071cc"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 
             </LinearLayout>
-
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>
@@ -195,47 +150,118 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/card_details"
-        android:layout_marginTop="8dp"
-        android:layout_alignParentEnd="true"
+        android:layout_marginTop="15dp"
         android:paddingLeft="8dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="50dp"
+        android:layout_centerHorizontal="true"
         android:paddingEnd="8dp"
         android:background="@drawable/button_bg"
-        android:text="Convert Rewards" />
+        android:text="Convert Eligible Rewards" />
 
     <LinearLayout
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/buttonConvert"
+        android:paddingEnd="10dp"
+        android:paddingStart="10dp"
+        android:layout_margin="8dp"
+        android:background="@drawable/button_bg"
         android:orientation="vertical">
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text=""/>
 
-
-
-
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/summary"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/textHeading"
+            android:textSize="17sp"
+            android:textStyle="bold" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/defaultRewards"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/green"
+            android:textSize="16sp"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/mobileRewards"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"
+             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/dthRewards"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/electrictyRewards"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/gasRewards"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/MoneyRewards"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/busticketRewards"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/referralsRewards"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/note"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:paddingBottom="10dp"
+            android:textColor="@color/darkGray"
+            android:textSize="16sp"/>
     </LinearLayout>
-
-
-
-
-
     <RelativeLayout
         android:id="@+id/progress"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/progressBGColor"
-        android:elevation="3dp"
+        android:elevation="10dp"
         android:visibility="gone"
-
         >
-
         <ProgressBar
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true" />
     </RelativeLayout>
+
 
 
 </RelativeLayout>

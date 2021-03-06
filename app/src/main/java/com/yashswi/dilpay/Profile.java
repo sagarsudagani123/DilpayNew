@@ -191,6 +191,7 @@ public class Profile extends AppCompatActivity {
                     i.putExtra("walletAmt", walletAmount);
                     i.putExtra("commissionAmt", commissionAmount);
                     startActivity(i);
+                    finish();
                 }
 
             }
