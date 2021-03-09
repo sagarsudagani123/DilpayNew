@@ -118,7 +118,31 @@ public class paymentStart extends AppCompatActivity {
                 }
                 confirmTicket(finalData.toString());
             }
-        } else {
+        }else if(FromPage.equalsIgnoreCase("AddWalletAmount")){
+
+            if (status1.equalsIgnoreCase("SUCCESS")) {
+                try {
+
+                    finalData.put("username",new userDetails(paymentStart.this).getNumber());
+                    finalData.put("Status", status1);
+                    finalData.put("PaymentFor", "Add Wallet Amount");
+                    finalData.put("Mode", paymentMode1);
+                    finalData.put("Amount", orderAmount1);
+                    finalData.put("OrderID", orderId1);
+                    finalData.put("RefID", referenceId1);
+                    finalData.put("TxTime", txTime1);
+                    finalData.put("Message", txMsg1);
+                    finalData.put("Signature", signature1);
+                    updatewalletAmount(finalData.toString());
+                } catch (Exception e) {
+                }
+            } else {
+                Toast.makeText(paymentStart.this, "Payment Failed!", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        }
+
+        else {
             if (status1.equalsIgnoreCase("SUCCESS")) {
                 try {
 
@@ -143,6 +167,37 @@ public class paymentStart extends AppCompatActivity {
 
 
         Log.e("finalDetails", finalData.toString());
+    }
+
+    private void updatewalletAmount(String data) {
+        Log.e("WalletAmount",data);
+//        Retrofit retrofit = new Retrofit.Builder()
+//                .baseUrl(Api_interface.JSONURL)
+//                .addConverterFactory(ScalarsConverterFactory.create())
+//                .build();
+//        Api_interface api = retrofit.create(Api_interface.class);
+//        Call<String> call = api.updateWalletAmount(data);
+//        call.enqueue(new Callback<String>() {
+//            @Override
+//            public void onResponse(Call<String> call, Response<String> response) {
+//                Log.e("WalletAmount",response.body());
+//                Toast.makeText(paymentStart.this,"Message",Toast.LENGTH_SHORT).show();
+//                finish();
+//            }
+//
+//            @Override
+//            public void onFailure(Call<String> call, Throwable t) {
+//                String message = "";
+//                if (t instanceof UnknownHostException) {
+//                    message = "No internet connection";
+//                } else {
+//                    message = "Something went wrong! Please try again";
+//                }
+//                finish();
+//                Toast.makeText(paymentStart.this, message + t.toString(), Toast.LENGTH_SHORT).show();
+//                progress.setVisibility(View.GONE);
+//            }
+//        });
     }
 
     private void confirmTicket(String finalData) {
