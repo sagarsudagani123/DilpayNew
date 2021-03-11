@@ -101,7 +101,7 @@ public class AddWalletAmount extends AppCompatActivity {
                             intent.putExtra("Token", token);
                             intent.putExtra("Amount", amount);
                             intent.putExtra("Name", "Add Wallet Amount");
-//                            intent.putExtra("Number", new userDetails(AddWalletAmount.this).getNumber());
+                            intent.putExtra("Number", new userDetails(AddWalletAmount.this).getNumber());
                             intent.putExtra("Number","9121382727");
                             intent.putExtra("RefCode", "");
                             startActivity(intent);

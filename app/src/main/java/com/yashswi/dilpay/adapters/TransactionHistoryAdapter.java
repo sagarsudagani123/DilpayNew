@@ -49,14 +49,20 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
         holder.transactionId.setText(transactionId.get(i));
         holder.creditAmount.setText(creditAmount.get(i));
         holder.debitAmount.setText(debitAmount.get(i));
-        if (debitAmount.get(i).equalsIgnoreCase("null")) {
-            holder.debitLayout.setVisibility(View.GONE);
+//        if(Integer.parseInt(debitAmount.get(i))>=0 || Integer.parseInt(debitAmount.get(i))<=0){
+//            holder.debitLayout.setVisibility(View.VISIBLE);
+//        }
+//        if(Integer.parseInt(creditAmount.get(i))>=0 || Integer.parseInt(creditAmount.get(i))<=0){
+//            holder.creditLayout.setVisibility(View.VISIBLE);
+//        }
+        if (!debitAmount.get(i).equalsIgnoreCase("null")) {
+            holder.debitLayout.setVisibility(View.VISIBLE);
         }
-        else if(creditAmount.get(i).equalsIgnoreCase("null")){
-            holder.creditLayout.setVisibility(View.GONE);
+        else if(!creditAmount.get(i).equalsIgnoreCase("null")){
+            holder.creditLayout.setVisibility(View.VISIBLE);
         }
         holder.dateTime.setText(dateTime.get(i));
-        holder.message.setText(message.get(i));
+        holder.message.setText(message.get(i)+" CA: "+creditAmount.get(i)+" DA: "+debitAmount.get(i));
     }
 
     @Override

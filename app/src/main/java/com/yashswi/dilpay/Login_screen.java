@@ -130,9 +130,9 @@ public class Login_screen extends AppCompatActivity {
                                     token = task.getResult().getToken();
                                     if (token != null) {
                                         Log.e("testToken", token);
-                                        Intent intent=new Intent(Login_screen.this,Home_screen.class);
-                                        startActivity(intent);
-//                                        sendOtp(number, password, token);
+//                                        Intent intent=new Intent(Login_screen.this,Home_screen.class);
+//                                        startActivity(intent);
+                                        sendOtp(number, password, token);
                                     }
                                 }
                             });

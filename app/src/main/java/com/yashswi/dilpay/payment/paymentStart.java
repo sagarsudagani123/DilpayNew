@@ -133,7 +133,7 @@ public class paymentStart extends AppCompatActivity {
                     finalData.put("TxTime", txTime1);
                     finalData.put("Message", txMsg1);
                     finalData.put("Signature", signature1);
-                    updatewalletAmount(finalData.toString());
+                    updateWalletAmount(finalData.toString());
                 } catch (Exception e) {
                 }
             } else {
@@ -145,7 +145,6 @@ public class paymentStart extends AppCompatActivity {
         else {
             if (status1.equalsIgnoreCase("SUCCESS")) {
                 try {
-
                     finalData.put("Status", status1);
                     finalData.put("PaymentFor", "Upgrade Membership");
                     finalData.put("Mode", paymentMode1);
@@ -164,12 +163,10 @@ public class paymentStart extends AppCompatActivity {
                 finish();
             }
         }
-
-
         Log.e("finalDetails", finalData.toString());
     }
 
-    private void updatewalletAmount(String data) {
+    private void updateWalletAmount(String data) {
         Log.e("WalletAmount",data);
 //        Retrofit retrofit = new Retrofit.Builder()
 //                .baseUrl(Api_interface.JSONURL)

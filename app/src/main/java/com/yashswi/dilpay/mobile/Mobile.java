@@ -23,6 +23,8 @@ import com.yashswi.dilpay.Api_interface.Mobile_interface;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.bus.Available_buses;
+import com.yashswi.dilpay.dth.Dth_screen;
+import com.yashswi.dilpay.models.userDetails;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -257,7 +259,7 @@ public class Mobile extends AppCompatActivity {
     private void getResponse(String number, String orderid, String username, String password, String amount, String operator_code, String circle_code) {
         JSONObject dataObj=new JSONObject();
         try {
-            dataObj.put("username", "9121382727");
+            dataObj.put("username", new userDetails(Mobile.this).getNumber());
             dataObj.put("number", number);
             dataObj.put("operatorCode", operator_code);
             dataObj.put("circleCode", circle_code);
@@ -288,15 +290,19 @@ public class Mobile extends AppCompatActivity {
                         String amount=obj.getString("amount");
                         String orderid=obj.getString("orderid");
 
-                        Intent i = new Intent(Mobile.this, Mobile_recharge_successfull.class);
-                        i.putExtra("status", rechargeStatus);
-                        i.putExtra("txid", txid);
-//                    i.putExtra("opid",obj.getInt("opid"));
-                        i.putExtra("number", rechargeNumber);
-                        i.putExtra("amount", amount);
-                        i.putExtra("orderid", orderid);
-                        startActivity(i);
-                        finish();
+                        if(!(rechargeStatus.equalsIgnoreCase("null"))){
+                            Intent i = new Intent(Mobile.this, Mobile_recharge_successfull.class);
+                            i.putExtra("status", rechargeStatus);
+                            i.putExtra("txid", txid);
+//                          i.putExtra("opid",obj.getInt("opid"));
+                            i.putExtra("number", rechargeNumber);
+                            i.putExtra("amount", amount);
+                            i.putExtra("orderid", orderid);
+                            startActivity(i);
+                            finish();
+                        }else {
+                            Toast.makeText(Mobile.this, "Enter valid details!", Toast.LENGTH_SHORT).show();
+                        }
                     }else{
                         Toast.makeText(Mobile.this, obj.getString("Data"), Toast.LENGTH_SHORT).show();
                         finish();

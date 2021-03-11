@@ -49,15 +49,7 @@ public class Faq extends AppCompatActivity {
         qn8 = findViewById(R.id.qn8);
         qn9 = findViewById(R.id.qn9);
         qn10 = findViewById(R.id.qn10);
-        qn11 = findViewById(R.id.qn11);
-        qn12 = findViewById(R.id.qn12);
-        qn13 = findViewById(R.id.qn13);
-        qn14 = findViewById(R.id.qn14);
-        qn15 = findViewById(R.id.qn15);
-        qn16 = findViewById(R.id.qn16);
-        qn17 = findViewById(R.id.qn17);
-        qn18 = findViewById(R.id.qn18);
-        qn19 = findViewById(R.id.qn19);
+
         ans1 = findViewById(R.id.ans1);
         ans2 = findViewById(R.id.ans2);
         ans3 = findViewById(R.id.ans3);
@@ -68,15 +60,7 @@ public class Faq extends AppCompatActivity {
         ans8 = findViewById(R.id.ans8);
         ans9 = findViewById(R.id.ans9);
         ans10 = findViewById(R.id.ans10);
-        ans11 = findViewById(R.id.ans11);
-        ans12 = findViewById(R.id.ans12);
-        ans13 = findViewById(R.id.ans13);
-        ans14 = findViewById(R.id.ans14);
-        ans15 = findViewById(R.id.ans15);
-        ans16 = findViewById(R.id.ans16);
-        ans17 = findViewById(R.id.ans17);
-        ans18 = findViewById(R.id.ans18);
-        ans19 = findViewById(R.id.ans19);
+
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,114 +185,6 @@ public class Faq extends AppCompatActivity {
                 } else {
                     ans10.setVisibility(View.GONE);
                     click10 = true;
-                }
-            }
-        });
-        qn11.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click11) {
-                    ans11.setVisibility(View.VISIBLE);
-                    click11 = false;
-                } else {
-                    ans11.setVisibility(View.GONE);
-                    click11 = true;
-                }
-            }
-        });
-        qn12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click12) {
-                    ans12.setVisibility(View.VISIBLE);
-                    click12 = false;
-                } else {
-                    ans12.setVisibility(View.GONE);
-                    click12 = true;
-                }
-            }
-        });
-        qn13.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click13) {
-                    ans13.setVisibility(View.VISIBLE);
-                    click13 = false;
-                } else {
-                    ans13.setVisibility(View.GONE);
-                    click13 = true;
-                }
-            }
-        });
-        qn14.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click14) {
-                    ans14.setVisibility(View.VISIBLE);
-                    click14 = false;
-                } else {
-                    ans14.setVisibility(View.GONE);
-                    click14 = true;
-                }
-            }
-        });
-        qn15.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click15) {
-                    ans15.setVisibility(View.VISIBLE);
-                    click15 = false;
-                } else {
-                    ans15.setVisibility(View.GONE);
-                    click15 = true;
-                }
-            }
-        });
-        qn16.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click16) {
-                    ans16.setVisibility(View.VISIBLE);
-                    click16 = false;
-                } else {
-                    ans16.setVisibility(View.GONE);
-                    click16 = true;
-                }
-            }
-        });
-        qn17.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click17) {
-                    ans17.setVisibility(View.VISIBLE);
-                    click17 = false;
-                } else {
-                    ans17.setVisibility(View.GONE);
-                    click17 = true;
-                }
-            }
-        });
-        qn18.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click18) {
-                    ans18.setVisibility(View.VISIBLE);
-                    click18 = false;
-                } else {
-                    ans18.setVisibility(View.GONE);
-                    click18 = true;
-                }
-            }
-        });
-        qn19.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (click19) {
-                    ans19.setVisibility(View.VISIBLE);
-                    click19 = false;
-                } else {
-                    ans19.setVisibility(View.GONE);
-                    click19 = true;
                 }
             }
         });

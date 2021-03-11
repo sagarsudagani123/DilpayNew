@@ -17,7 +17,7 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
     String status1, number1, amount1, order1;
     RelativeLayout details;
     int opID;
-    Integer transaction1;
+    String transaction1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,7 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
         opid = findViewById(R.id.opid);
         details = findViewById(R.id.tran_details);
         status1 = (String) this.getIntent().getSerializableExtra("status");
-        transaction1 = this.getIntent().getIntExtra("txid", 0);
+        transaction1 = this.getIntent().getStringExtra("txid");
         number1 = (String) this.getIntent().getSerializableExtra("number");
         amount1 = (String) this.getIntent().getSerializableExtra("amount");
         order1 = (String) this.getIntent().getSerializableExtra("orderid");

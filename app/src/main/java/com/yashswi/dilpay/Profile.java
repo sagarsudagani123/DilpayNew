@@ -194,8 +194,6 @@ public class Profile extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }
-                Intent i = new Intent(Profile.this, AddWalletAmount.class);
-                startActivity(i);
             }
         });
 

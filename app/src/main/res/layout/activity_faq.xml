@@ -70,7 +70,7 @@
                     android:id="@+id/qn1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn1"
                     android:textStyle="bold" />
 
@@ -78,21 +78,23 @@
                     android:id="@+id/ans1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/ans1"
+                    android:justificationMode="inter_word"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn2"
                     android:textStyle="bold" />
 
@@ -100,21 +102,22 @@
                     android:id="@+id/ans2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/ans2"
+                    android:justificationMode="inter_word"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn3"
                     android:textStyle="bold" />
 
@@ -122,21 +125,22 @@
                     android:id="@+id/ans3"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:justificationMode="inter_word"
+                    android:layout_marginTop="8dp"
                     android:text="@string/ans3"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn4"
                     android:textStyle="bold" />
 
@@ -144,21 +148,22 @@
                     android:id="@+id/ans4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
+                    android:justificationMode="inter_word"
                     android:text="@string/ans4"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn5"
                     android:textStyle="bold" />
 
@@ -166,21 +171,22 @@
                     android:id="@+id/ans5"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
+                    android:justificationMode="inter_word"
                     android:text="@string/ans5"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn6"
                     android:textStyle="bold" />
 
@@ -188,21 +194,22 @@
                     android:id="@+id/ans6"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
+                    android:justificationMode="inter_word"
                     android:text="@string/ans6"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn7"
                     android:textStyle="bold" />
 
@@ -210,21 +217,22 @@
                     android:id="@+id/ans7"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:justificationMode="inter_word"
+                    android:layout_marginTop="8dp"
                     android:text="@string/ans7"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn8"
                     android:textStyle="bold" />
 
@@ -232,21 +240,22 @@
                     android:id="@+id/ans8"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
+                    android:justificationMode="inter_word"
                     android:text="@string/ans8"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn9"
                     android:textStyle="bold" />
 
@@ -254,21 +263,22 @@
                     android:id="@+id/ans9"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
+                    android:justificationMode="inter_word"
                     android:text="@string/ans9"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
                 <TextView
                     android:id="@+id/qn10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
                     android:text="@string/qn10"
                     android:textStyle="bold" />
 
@@ -276,229 +286,17 @@
                     android:id="@+id/ans10"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
+                    android:layout_marginTop="8dp"
+                    android:justificationMode="inter_word"
                     android:text="@string/ans10"
                     android:visibility="gone" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
+                    android:layout_marginTop="4dp"
                     android:background="#33000000" />
 
-                <TextView
-                    android:id="@+id/qn11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn11"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans11"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans11"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/faq3"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/qn12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn12"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans12"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans12"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
-
-                <TextView
-                    android:id="@+id/qn13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn13"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans13"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans13"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
-
-                <TextView
-                    android:id="@+id/qn14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn14"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans14"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans14"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
-
-                <TextView
-                    android:id="@+id/qn15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn15"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans15"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans15"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
-
-                <TextView
-                    android:id="@+id/qn16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn16"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans16"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans16"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="@string/faq4"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/qn17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn17"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans17"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans17"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
-
-                <TextView
-                    android:id="@+id/qn18"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn18"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans18"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans18"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
-
-                <TextView
-                    android:id="@+id/qn19"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/qn19"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/ans19"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/ans19"
-                    android:visibility="gone" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="2dp"
-                    android:background="#33000000" />
 
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>

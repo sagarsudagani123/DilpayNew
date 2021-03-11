@@ -40,18 +40,20 @@
             android:orientation="vertical"
             android:layout_alignParentEnd="true"
             android:paddingEnd="10dp"
+            android:layout_below="@+id/trans_id"
             android:id="@+id/amountsLayout"
             >
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:visibility="gone"
                 android:id="@+id/creditLayout">
                 <TextView
                     android:id="@+id/credit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Credit :"
+                    android:text="Credited :"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -75,6 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:visibility="gone"
             android:id="@+id/debitLayout">
             <TextView
                 android:id="@+id/debit"
@@ -82,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:paddingEnd="10dp"
                 android:paddingStart="2dp"
-                android:text="Debit :"
+                android:text="Debited  :"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -110,7 +113,7 @@
             android:id="@+id/message"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/date_time"
+            android:layout_below="@id/amountsLayout"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="15dp"
