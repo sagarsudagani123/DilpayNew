@@ -27,7 +27,7 @@ public class Splash_screen extends AppCompatActivity {
             Intent intent;
             //IF USER IS ALREADY LOGED TAKE TO HOME SCREEN ELSE TAKE TO LOGIN
             if (userDetails.getLoged()) {
-                intent = new Intent(Splash_screen.this, Home_screen.class);
+                intent = new Intent(Splash_screen.this, KeyGaurd.class);
             } else {
                 intent = new Intent(Splash_screen.this, Welcome_screen.class);
             }

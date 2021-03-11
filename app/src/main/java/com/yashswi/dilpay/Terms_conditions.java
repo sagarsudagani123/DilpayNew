@@ -2,7 +2,6 @@ package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;

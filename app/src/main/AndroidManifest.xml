@@ -32,7 +32,9 @@
         android:usesCleartextTraffic="true"
         tools:node="merge"
         tools:targetApi="m">
-        <activity android:name=".ConvertRewards"></activity>
+        <activity android:name=".KeyGaurd"></activity>
+        <activity android:name=".Recharge_history" />
+        <activity android:name=".ConvertRewards" />
         <activity android:name=".bank.WithdrawAmount" />
         <activity android:name=".TransactionsHistory" />
         <activity android:name=".EditProfile" />

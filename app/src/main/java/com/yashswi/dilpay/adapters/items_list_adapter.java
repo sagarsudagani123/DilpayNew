@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.yashswi.dilpay.Datacard_screen;
+import com.yashswi.dilpay.Recharge_history;
 import com.yashswi.dilpay.bank.BankAccounts;
 import com.yashswi.dilpay.bus.My_bookings;
 import com.yashswi.dilpay.gas.Gas_screen;
@@ -95,42 +96,54 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                 }
                 if (fromCategory.equalsIgnoreCase("Mobile")) {
                     if (name_value.equalsIgnoreCase("Recharge History")) {
-                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context, Recharge_history.class);
+                        intent.putExtra("Service","Mobile");
+                        context.startActivity(intent);
                     } else if (name_value.equalsIgnoreCase("Offers")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
                 if (fromCategory.equalsIgnoreCase("DTH")) {
                     if (name_value.equalsIgnoreCase("Recharge History")) {
-                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context, Recharge_history.class);
+                        intent.putExtra("Service","DTH");
+                        context.startActivity(intent);
                     } else if (name_value.equalsIgnoreCase("Offers")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
                 if (fromCategory.equalsIgnoreCase("Datacard")) {
                     if (name_value.equalsIgnoreCase("Recharge History")) {
-                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context, Recharge_history.class);
+                        intent.putExtra("Service","Data Card");
+                        context.startActivity(intent);
                     } else if (name_value.equalsIgnoreCase("Offers")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
-                if (fromCategory.equalsIgnoreCase("postpaid")) {
-                    if (name_value.equalsIgnoreCase("Recharge History")) {
-                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
-                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                 if (fromCategory.equalsIgnoreCase("postpaid")) {
+                        if (name_value.equalsIgnoreCase("Recharge History")) {
+                            Intent intent=new Intent(context, Recharge_history.class);
+                            intent.putExtra("Service","PostPaid");
+                            context.startActivity(intent);
+                        }else if (name_value.equalsIgnoreCase("Offers")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
                 if (fromCategory.equalsIgnoreCase("electricity")) {
                     if (name_value.equalsIgnoreCase("Payments History")) {
-                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context, Recharge_history.class);
+                        intent.putExtra("Service","Electricity");
+                        context.startActivity(intent);
                     } else if (name_value.equalsIgnoreCase("Offers")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
                 if (fromCategory.equalsIgnoreCase("gas")) {
                     if (name_value.equalsIgnoreCase("My Bookings")) {
-                        Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
+                        Intent intent=new Intent(context, Recharge_history.class);
+                        intent.putExtra("Service","Gas");
+                        context.startActivity(intent);
                     } else if (name_value.equalsIgnoreCase("Offers")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }

@@ -192,6 +192,16 @@
 
     </com.google.android.material.card.MaterialCardView>
     <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Money to Wallet"
+        android:background="@drawable/button_bg"
+        android:paddingLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:paddingRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_below="@id/card_details"/>
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/buttonConvert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -203,23 +213,6 @@
         android:paddingEnd="8dp"
         android:background="@drawable/button_bg"
         android:text="Convert Rewards" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text=""/>
-
-
-
-
-    </LinearLayout>
-
-
-
 
 
     <RelativeLayout

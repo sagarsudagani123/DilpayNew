@@ -18,10 +18,13 @@ import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Mobile_interface;
+import com.yashswi.dilpay.Profile;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.bus.Available_buses;
+import com.yashswi.dilpay.models.userDetails;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.UnknownHostException;
@@ -51,7 +54,7 @@ public class Mobile extends AppCompatActivity {
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
     RelativeLayout progress;
-
+    com.yashswi.dilpay.models.userDetails userDetails;
     String username, password, circle_code, operator_code, number, amount, order_id, format = "json", operator_name, circle_name, status, txid, orderid;
     RelativeLayout progress_layout;
     String fromCategory;
@@ -61,7 +64,7 @@ public class Mobile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mobile);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
+        userDetails = new userDetails(Mobile.this);
         fromCategory = getIntent().getStringExtra("FromCategory");
 
         next = findViewById(R.id.next);
@@ -251,6 +254,14 @@ public class Mobile extends AppCompatActivity {
     }
 
     private void getResponse(String number, String orderid, String username, String password, String amount, String operator_code, String circle_code) {
+        JSONObject createData = new JSONObject();
+        try {
+            createData.put("username", new userDetails(Mobile.this).getNumber());
+            createData.put("Service", "Mobile");
+            Log.e("mobile", createData.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Mobile_interface.BASEURL)
                 .addConverterFactory(create())

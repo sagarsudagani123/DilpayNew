@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/transaction_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="12dp"
+    android:layout_marginTop="12dp"
+    android:layout_marginEnd="12dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="13dp">
+
+    <RelativeLayout
+        android:id="@+id/re3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/cardBG"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/trans_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transaction id"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobile_number"
+            android:layout_marginTop="0dp"
+            android:text="Date and Time" />
+
+        <LinearLayout
+            android:id="@+id/li_amount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/rupee"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:layout_gravity="center"
+                android:src="@drawable/rupee" />
+
+            <TextView
+                android:id="@+id/amount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="250"
+                android:textColor="#0071cc"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:id="@+id/mobile_number"
+             android:layout_below="@id/trans_id"
+             android:text="Mobile number"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/service"
+            android:layout_below="@id/trans_id"
+            android:layout_marginStart="15dp"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            android:layout_toRightOf="@id/mobile_number"
+            android:text="Mobile"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/orderId"
+            android:layout_below="@id/date_time"
+            android:layout_marginStart="15dp"
+            android:text="orderId"/>
+
+
+        <TextView
+            android:id="@+id/status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/date_time"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:text="message"
+            android:textColor="@color/textColor"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+
+</androidx.cardview.widget.CardView>

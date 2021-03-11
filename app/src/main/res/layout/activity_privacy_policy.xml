@@ -52,7 +52,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingBottom="40dp">
+                android:paddingBottom="40dp"
+                android:paddingRight="15dp"
+                android:paddingLeft="15dp"
+                android:paddingTop="15dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -65,13 +68,15 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pol2" />
+                    android:text="@string/pol2"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="@string/pol3" />
+                    android:text="@string/pol3"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -84,7 +89,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/pol4" />
+                    android:text="@string/pol4"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -98,156 +104,181 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol5" />
+                    android:text="@string/pol5"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol6" />
+                    android:text="@string/pol6"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol6" />
+                    android:text="@string/pol6"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol7" />
+                    android:text="@string/pol7"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol8" />
+                    android:text="@string/pol8"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol9" />
+                    android:text="@string/pol000"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol10" />
+                    android:text="@string/pol10"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol11"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol12" />
+                    android:text="@string/pol12"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol13"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol14" />
+                    android:text="@string/pol14"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol15"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol16" />
+                    android:text="@string/pol16"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol17" />
+                    android:text="@string/pol17"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol18" />
+                    android:text="@string/pol18"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol19" />
+                    android:text="@string/pol19"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol20" />
+                    android:text="@string/pol20"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol21" />
+                    android:text="@string/pol21"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol22" />
+                    android:text="@string/pol22"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol23" />
+                    android:text="@string/pol23"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol24" />
+                    android:text="@string/pol24"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol25"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol26" />
+                    android:text="@string/pol26"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol27"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol28" />
+                    android:text="@string/pol28"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -255,6 +286,7 @@
                     android:layout_marginBottom="8dp"
                     android:text="@string/pol29"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
@@ -262,138 +294,160 @@
                     android:layout_height="wrap_content"
                     android:text="@string/pol30"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol31" />
+                    android:text="@string/pol31"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol32" />
+                    android:text="@string/pol32"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol33"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol34" />
+                    android:text="@string/pol34"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol35" />
+                    android:text="@string/pol35"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol36"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol37" />
+                    android:text="@string/pol37"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol38" />
+                    android:text="@string/pol38"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol39" />
+                    android:text="@string/pol39"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol40" />
+                    android:text="@string/pol40"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol41"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol42" />
+                    android:text="@string/pol42"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol43" />
+                    android:text="@string/pol43"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:justificationMode="inter_word"
                     android:text="@string/pol44" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol45" />
+                    android:text="@string/pol45"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
+                    android:justificationMode="inter_word"
                     android:text="@string/pol46" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol47" />
+                    android:text="@string/pol47"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol48"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol49" />
+                    android:text="@string/pol49"
+                    android:justificationMode="inter_word"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/pol50"
                     android:textSize="16sp"
+                    android:justificationMode="inter_word"
                     android:textStyle="bold" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="8dp"
-                    android:text="@string/pol51" />
+                    android:text="@string/pol51"
+                    android:justificationMode="inter_word"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </LinearLayout>

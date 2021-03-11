@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -20,8 +21,11 @@ import com.yashswi.dilpay.Api_interface.Mobile_interface;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.bus.Available_buses;
+import com.yashswi.dilpay.mobile.Mobile;
 import com.yashswi.dilpay.mobile.Mobile_recharge_successfull;
+import com.yashswi.dilpay.models.userDetails;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.UnknownHostException;
@@ -232,6 +236,14 @@ public class Gas_screen extends AppCompatActivity {
     }
 
     private void getResponse(String number, String s, String username, String password, String amount, String operator_code, String circle_code) {
+        JSONObject createData = new JSONObject();
+        try {
+            createData.put("username", new userDetails(Gas_screen.this).getNumber());
+            createData.put("Service", "Gas");
+            Log.e("mobile", createData.toString());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Mobile_interface.BASEURL)
                 .addConverterFactory(create())
