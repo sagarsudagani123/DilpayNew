@@ -194,7 +194,6 @@ public class Profile extends AppCompatActivity {
                     startActivity(i);
                     finish();
                 }
-
             }
         });
 

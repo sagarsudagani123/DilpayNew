@@ -1,4 +1,4 @@
-package com.yashswi.dilpay;
+  package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
@@ -114,7 +114,7 @@ public class Upgrade_membership extends AppCompatActivity {
                             intent.putExtra("orderID", orderID);
                             intent.putExtra("Token", token);
                             intent.putExtra("Amount", "500");
-                            intent.putExtra("Name", "Upgrade Membership[");
+                            intent.putExtra("Name", "Chandra Thottempudi");
                             intent.putExtra("Number", userNumber);
                             intent.putExtra("RefCode", code);
                             startActivity(intent);

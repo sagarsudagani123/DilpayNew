@@ -113,7 +113,7 @@ public class TransactionsHistory extends AppCompatActivity {
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(TransactionsHistory.this, "Something went wrong!!!!!!!!!! Try again" + e.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransactionsHistory.this, "Something went wrong! Try again" + e.toString(), Toast.LENGTH_SHORT).show();
                     }
                     //GETTING DATA FROM API
 

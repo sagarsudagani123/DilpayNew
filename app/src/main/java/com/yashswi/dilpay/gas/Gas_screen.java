@@ -17,10 +17,12 @@ import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
+import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.Mobile_interface;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.bus.Available_buses;
+import com.yashswi.dilpay.dth.Dth_screen;
 import com.yashswi.dilpay.mobile.Mobile;
 import com.yashswi.dilpay.mobile.Mobile_recharge_successfull;
 import com.yashswi.dilpay.models.userDetails;
@@ -37,6 +39,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
 
@@ -235,34 +238,57 @@ public class Gas_screen extends AppCompatActivity {
         });
     }
 
-    private void getResponse(String number, String s, String username, String password, String amount, String operator_code, String circle_code) {
-        JSONObject createData = new JSONObject();
+    private void getResponse(String number, String orderid, String username, String password, String amount, String operator_code, String circle_code) {
+        JSONObject dataObj=new JSONObject();
         try {
-            createData.put("username", new userDetails(Gas_screen.this).getNumber());
-            createData.put("Service", "Gas");
-            Log.e("mobile", createData.toString());
+            dataObj.put("username", new userDetails(Gas_screen.this).getNumber());
+            dataObj.put("number", number);
+            dataObj.put("operatorCode", operator_code);
+            dataObj.put("circleCode", circle_code);
+            dataObj.put("amount", amount);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        Log.e("RechargeTest",dataObj.toString());
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(Mobile_interface.BASEURL)
-                .addConverterFactory(create())
+                .baseUrl(Api_interface.JSONURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
-        Mobile_interface api = retrofit.create(Mobile_interface.class);
-        Call<String> call = api.mobile_recharge(username, password, circle_code, operator_code, number, amount, "2021" + orderid, format);
+        Api_interface api = retrofit.create(Api_interface.class);
+        Call<String> call = api.MobileRecharge(dataObj.toString());
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
+                Log.e("testRecharge","success  "+response.body());
                 progress.setVisibility(View.GONE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
-                    Intent i = new Intent(Gas_screen.this, Mobile_recharge_successfull.class);
-                    i.putExtra("status", obj.getString("status"));
-                    i.putExtra("txid", obj.getInt("txid"));
-//                    i.putExtra("opid",obj.getInt("opid"));                    i.putExtra("number",obj.getString("number"));
-                    i.putExtra("amount", obj.getString("amount"));
-                    i.putExtra("orderid", obj.getString("orderid"));
-                    startActivity(i);
+                    String status=obj.getString("Status");
+                    if(status.equalsIgnoreCase("True")){
+                        String Service=obj.getString("Service");
+                        String txid=obj.getString("txid");
+                        String rechargeStatus=obj.getString("status");
+                        String rechargeNumber=obj.getString("number");
+                        String amount=obj.getString("amount");
+                        String orderid=obj.getString("orderid");
+
+                        if(!(rechargeStatus.equalsIgnoreCase("null"))){
+                            Intent i = new Intent(Gas_screen.this, Mobile_recharge_successfull.class);
+                            i.putExtra("status", rechargeStatus);
+                            i.putExtra("txid", txid);
+//                          i.putExtra("opid",obj.getInt("opid"));
+                            i.putExtra("number", rechargeNumber);
+                            i.putExtra("amount", amount);
+                            i.putExtra("orderid", orderid);
+                            startActivity(i);
+                            finish();
+                        }else {
+                            Toast.makeText(Gas_screen.this, "Enter valid details!", Toast.LENGTH_SHORT).show();
+                        }
+                    }else{
+                        Toast.makeText(Gas_screen.this, obj.getString("Data"), Toast.LENGTH_SHORT).show();
+                        finish();
+                    }
                 } catch (Exception e) {
                     Toast.makeText(Gas_screen.this, e.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
@@ -271,6 +297,7 @@ public class Gas_screen extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
+                Log.e("testRecharge","failed  "+t.toString());
                 progress.setVisibility(View.GONE);
                 String message = "";
                 if (t instanceof UnknownHostException) {

@@ -1,16 +1,16 @@
 <resources>
     <string name="app_name">DilPay</string>
 
-    <string name="about1">About Dilpay</string>
-    <string name="about2">Dilpay is India’s Best online bus ticketing platform that has transformed bus travel in the country by bringing ease and convenience to millions of Indians who travel using buses. Founded in 2019, DilBus is part of India’s leading online travel company . By providing widest choice, superior customer service, lowest prices and unmatched benefits</string>
+    <string name="about1">About DilBus</string>
+    <string name="about2">DilBus is India’s Best online bus ticketing platform that has transformed bus travel in the country by bringing ease and convenience to millions of Indians who travel using buses. Founded in 2019, DilBus is part of India’s leading online travel company . By providing widest choice, superior customer service, lowest prices and unmatched benefits</string>
     <string name="about3">Why Choose Us</string>
     <string name="about4">We provide better service. Give you best offers on trips. We Definitly make you feel happy and satisfy about your trip on our service</string>
     <string name="about5">Our Mission</string>
-    <string name="about6">Make Dilpay, Based on customer view best price and beautiful experience and based on our view best service</string>
+    <string name="about6">Make DilBus, Based on customer view best price and beautiful experience and based on our view best service</string>
 
     <string name="contact1">Get In Touch</string>
     <string name="contact2">For Customer Support and Query, Get in touch with us: Help</string>
-    <string name="contact3">Dilpay India Services Pvt.Ltd.</string>
+    <string name="contact3">DilBus India Services Pvt.Ltd.</string>
     <string name="contact4">H.no : 3-4-104/1,</string>
     <string name="contact5">Narsimha Nagar Colony,</string>
     <string name="contact6">Mallapur X Road,</string>
@@ -20,31 +20,31 @@
     <string name="contact10">Telephone</string>
     <string name="contact11">(+91)9059143346</string>
     <string name="contact12">Business Inquiries</string>
-    <string name="contact13">support@dilpay.com</string>
+    <string name="contact13">support@dilbus.com</string>
 
     <string name="faq1">Get answers to your queries</string>
-    <string name="faq2">Online payments with Dilpay</string>
+    <string name="faq2">Online payments with Dilpay application.</string>
     <string name="qn1">How can I Recharge Mobile and DTH?.</string>
-    <string name="ans1">You can recharge your mobile by opening Dilpay.in then select mobile on displayed options and choose your recharge type like Prepaid or Postpaid then enter your mobile number on the given field and select your operator then enter amount for your recharge or if you want to browse plans, just click on View Plans option and select your plan and click on next button then provide your payment details like card details or UPI details for recharge your mobile after providing required information just click on Payment button so your payment processed. If you want to recharge your DTH Service on the given field select your operator, on next filed enter your card number then enter amount for your recharge or if you want to browse plans, just click on View Plans option and select your plan and click on next button then provide your payment details like card details or UPI details for recharge your DTH service after providing required information just click on Payment button so your payment processed same like this you can do Datacard Recharge, Cable Tv Recharge, LandLine Recharge which is a very simple three step process. We advise you to check all the details you entered once before proceed to payment. </string>
+    <string name="ans1">You can recharge your mobile by opening Dilpay application then select mobile on displayed options and choose your recharge type like Prepaid or Postpaid then enter your mobile number on the given field and select your operator then enter amount for your recharge or if you want to browse plans, just click on View Plans option and select your plan and click on next button then provide your payment details like card details or UPI details for recharge your mobile after providing required information just click on Payment button so your payment processed. If you want to recharge your DTH Service on the given field select your operator, on next filed enter your card number then enter amount for your recharge or if you want to browse plans, just click on View Plans option and select your plan and click on next button then provide your payment details like card details or UPI details for recharge your DTH service after providing required information just click on Payment button so your payment processed same like this you can do Datacard Recharge, Cable Tv Recharge, LandLine Recharge which is a very simple three step process. We advise you to check all the details you entered once before proceed to payment. </string>
     <string name="qn2">What happens when my transaction cancelled?</string>
     <string name="ans2">Dont worry about your transaction cancelled issue. some times the transactions may be cancelled by Server Response Problems, Incorrect Transaction Details, Operator Related Issues.If any money from your account is deducted for failure transactions you dont need to worry as soon as possible we resolve your problem by refunding your deducted amount or else make your transaction successful. We will make every effort to ensure that increase success rate of your transaction.</string>
     <string name="qn3">How can I do Bill Payments?.</string>
-    <string name="ans3">Dilpay providing you the one portal for all transactional services. Using Dilpay You can pay your Electricity Bill, Water Bill, Gas Bill Etc., For EX: If you want to pay your Electricity Bill, open Dilpay.in then select Electricity on displayed options in that select your Operator from given list, on the next filed select your state then enter your service number and on the next field enter amount and click on next button then provide your payment details like card details or UPI details for doing your Bill-Payment after providing required information just click on Payment button so your payment processed like this you can proceed to do all your Bill-Payments by Dilpay with 100% success rate and secure and easy process.</string>
+    <string name="ans3">Dilpay application providing you the one portal for all transactional services. Using Dilpay application You can pay your Electricity Bill, Water Bill, Gas Bill Etc., For EX: If you want to pay your Electricity Bill, open Dilpay application.in then select Electricity on displayed options in that select your Operator from given list, on the next filed select your state then enter your service number and on the next field enter amount and click on next button then provide your payment details like card details or UPI details for doing your Bill-Payment after providing required information just click on Payment button so your payment processed like this you can proceed to do all your Bill-Payments by Dilpay application with 100% success rate and secure and easy process.</string>
     <string name="qn4">What is your Refer and Earn Concept</string>
-    <string name="ans4">Yeah.. its Quite difficult to understand but it works extraordinary. Our Main Concept is Dilpay have to beneficial for all its customers who uses our services so for that we implemented a amazing Algorithm which works on the concept of do transaction on Dilpay and benefit your self as well as your near Dilpay customers, So the reward will be like cash back and shared to you and your surround Dilpay customers
-<br />FOR EX: if you do any successful transaction on Dilpay the cash back will be credited to you and your neighbours who use Dilpay like that if anyone near you do successful payment then the cash back will credits to you also, if you are a Dilpay customer, the number transaction done by near you so the cash back credited to you on every transaction like that every Dilpay customer will get beneficial.</string>
+    <string name="ans4">Yeah.. its Quite difficult to understand but it works extraordinary. Our Main Concept is Dilpay application have to beneficial for all its customers who uses our services so for that we implemented a amazing Algorithm which works on the concept of do transaction on Dilpay application and benefit your self as well as your near Dilpay customers, So the reward will be like cash back and shared to you and your surround Dilpay customers
+        \n  FOR EX: if you do any successful transaction on Dilpay application the cash back will be credited to you and your neighbours who use Dilpay application like that if anyone near you do successful payment then the cash back will credits to you also, if you are a Dilpay customer, the number transaction done by near you so the cash back credited to you on every transaction like that every Dilpay customer will get beneficial.</string>
     <string name="qn5">Is Cash back is Awarded every time?</string>
     <string name="ans5">Yes Obviously! You can get cash back on every transaction you do and also cash back will credited to your account by if someone near you done a transaction.</string>
-    <string name="qn6">Is Dilpay Secure for Online Transactions?</string>
-    <string name="ans6">Dilpay uses very secure payment gateway and with 100% successful transaction ratio. So you don,t need to worry about transactions on Dilpay.</string>
+    <string name="qn6">Is Dilpay application Secure for Online Transactions?</string>
+    <string name="ans6">Dilpay application uses very secure payment gateway and with 100% successful transaction ratio. So you don,t need to worry about transactions on Dilpay application.</string>
     <string name="qn7">Is this Services will applicable to all States in India ?</string>
     <string name="ans7">No. At present we are launching these services to Telangana only. Although we have planed to provide this services to all States in India but it take some time.</string>
-    <string name="qn8">Did all services from Dilpay will give Cash back?.</string>
-    <string name="ans8">Yes. Dilpay will give you Cash back on all the payments services which we provide.</string>
-    <string name="qn9">Is it mandatory to create an account in Dilpay?.</string>
+    <string name="qn8">Did all services from Dilpay application will give Cash back?.</string>
+    <string name="ans8">Yes. Dilpay application will give you Cash back on all the payments services which we provide.</string>
+    <string name="qn9">Is it mandatory to create an account in Dilpay application?.</string>
     <string name="ans9">Yes. Without Account you cant proceed to do any transaction.</string>
-    <string name="qn10">Is My data secure in Dilpay?.</string>
-    <string name="ans10">Dilpay will assure you about safety of your information. Dilpay will not misuse your information. We use your information for your online transactions purpose only.</string>
+    <string name="qn10">Is My data secure in Dilpay application?.</string>
+    <string name="ans10">Dilpay application will assure you about safety of your information. Dilpay application will not misuse your information. We use your information for your online transactions purpose only.</string>
 
 
     <string name="pol1">Type of information we collect and its legal basis</string>
@@ -88,9 +88,9 @@
     <string name="pol37">We may also share certain filtered Personal Information to our corporate affiliates or business partners who may contact the customers to offer certain products or services, which may include free or paid products / services, which will enable the customer to have better travel experience or to avail certain benefits specially made for Dilpay customers. Examples of such partners are entities offering co-branded credit cards, travel insurance, insurance cover against loss of wallet, banking cards or similar sensitive information etc. If you choose to avail any such services offered by our business partners, the services so availed will be governed by the privacy policy of the respective service provider.</string>
     <string name="pol38">Dilpay may share your Personal Information to third party that Dilpay may engage to perform certain tasks on its behalf, including but not limited to payment processing, data hosting, and data processing platforms.</string>
     <string name="pol39">We use non-identifiable Personal Information of Users in aggregate or anonymized form to build higher quality, more useful online services by performing statistical analysis of the collective characteristics and behavior of our customers and visitors, and by measuring demographics and interests regarding specific areas of the Website. We may provide anonymous statistical information based on this data to suppliers, advertisers, affiliates and other current and potential business partners. We may also use such aggregate data to inform these third parties as to the number of people who have seen and clicked on links to their websites. Any Personal Information which we collect and which we may use in an aggregated format is our property. We may use it, in our sole discretion and without any compensation to you, for any legitimate purpose including without limitation the commercial sale thereof to third parties.</string>
-    <string name="pol40">Occasionally, Dilpay will hire a third party for market research, surveys etc. and will provide information to these third parties specifically for use in connection with these projects. The information (including aggregate cookie and tracking information) we provide to such third parties, alliance partners, or vendors are protected by confidentiality agreements and such information is to be used solely for completing the specific project, and in compliance with the applicable regulations.</string>
+    <string name="pol40">Occasionally, Dilpay application will hire a third party for market research, surveys etc. and will provide information to these third parties specifically for use in connection with these projects. The information (including aggregate cookie and tracking information) we provide to such third parties, alliance partners, or vendors are protected by confidentiality agreements and such information is to be used solely for completing the specific project, and in compliance with the applicable regulations.</string>
     <string name="pol41">4.Disclosure of information</string>
-    <string name="pol42">In addition to the circumstances described above, Dilpay may disclose Users Personal Information if required to do so:</string>
+    <string name="pol42">In addition to the circumstances described above, Dilpay application may disclose Users Personal Information if required to do so:</string>
     <string name="pol43">1.by law, required by any enforcement authority for investigation, by court order or in reference to any legal process.</string>
     <string name="pol44">2.to conduct our business;</string>
     <string name="pol45">3.for regulatory, internal compliance and audit exercise(s)</string>
@@ -104,8 +104,9 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <string name="pol52">1.Registration on the Application:</string>
     <string name="pol53">2.Other information:</string>
 
+
     <string name="terms1">General Terms And Conditions.</string>
-    <string name="terms2">1.Dilpay.com (Dilpay Services India Pvt. Ltd.) is an aggregator for online bus ticketing inventory. Dilbus enables travellers to book bus tickets online right from the comfort of their home or office by providing them with choice of bus operators, departure times and prices. DilBus does not own or operate any bus services on its own. Dilbus does not advice any specific bus operator to its customers. The choice of the bus operator is purely the discretion of the customer.</string>
+    <string name="terms2">1.DilBus.com (DilBus Services India Pvt. Ltd.) is an aggregator for online bus ticketing inventory. Dilbus enables travellers to book bus tickets online right from the comfort of their home or office by providing them with choice of bus operators, departure times and prices. DilBus does not own or operate any bus services on its own. Dilbus does not advice any specific bus operator to its customers. The choice of the bus operator is purely the discretion of the customer.</string>
     <string name="terms3">2.The arrival and departure times mentioned on the ticket are only tentative timings. Buses may be delayed due to some unavoidable reasons like traffic jams etc. However, the bus will not leave the source before the time that is mentioned on the ticket. Passengers are advised to call the bus operator contact number mentioned in the ticket and reconfirm the boarding point location and departure time on the day of journey.</string>
     <string name="terms4">3.Passengers are required to furnish the following details at the time of boarding the bus. Failing to do so, they may not be allowed to board the bus.</string>
     <string name="terms5">3.1. SMS of the ticket or Email. (This is widely accepted by most bus operators)</string>
@@ -113,8 +114,8 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <string name="terms7">3.3. Proof of Identity (Driving License or Aadhar Card or Passport or PAN Card or Voter Card)</string>
     <string name="terms8">4.The passengers should reach at the mentioned boarding points 15 minutes prior to the scheduled departure time.</string>
     <string name="terms9">5.A booking is considered confirmed if the booking confirmation page is shown to the customer, even if SMS/Email fails to deliver for any reason.</string>
-    <string name="terms10">6.Dilpay.Com provides a platform to Insurance company to list and Advertise their services on the website and App and allows customers You (Customer/You) to select Insurance Policy, based on your preferences. The listing of an Insurance Policy on the website does not constitute and should not be regarded as a recommendation. Once a reservation is made, and Insurance policy is selected You are agreeing to the terms and conditions of the Insurance Company.</string>
-    <string name="terms11">7.Dilpay Ultimate and Assured classification of Bus Operators is done from time-to-time based on Customers Feedback and Surveys conducted by Dilbus. Dilbus is showing the classification for customers to make an informed decision while choosing a Bus Operator for their journey. The choice of the bus operator is purely at the discretion of the customer. The classification of Bus Operator might change depending on the service performance of bus operator.</string>
+    <string name="terms10">6.Dilbus.Com provides a platform to Insurance company to list and Advertise their services on the website and App and allows customers You (Customer/You) to select Insurance Policy, based on your preferences. The listing of an Insurance Policy on the website does not constitute and should not be regarded as a recommendation. Once a reservation is made, and Insurance policy is selected You are agreeing to the terms and conditions of the Insurance Company.</string>
+    <string name="terms11">7.Dilbus Ultimate and Assured classification of Bus Operators is done from time-to-time based on Customers Feedback and Surveys conducted by Dilbus. Dilbus is showing the classification for customers to make an informed decision while choosing a Bus Operator for their journey. The choice of the bus operator is purely at the discretion of the customer. The classification of Bus Operator might change depending on the service performance of bus operator.</string>
     <string name="terms12">8.If ticket confirmation/cancellation, SMS/Email, is not sent for any reason, if reported it can be resent by our support team. SMS/Email might fail to deliver or get delayed for several reasons which are not in DilBus control.</string>
     <string name="terms13">9.Payment gateway/service charges DilBus will not charge any additional payment gateway charge or service unless otherwise specified in the booking details page.</string>
     <string name="terms14">10.Any complaints/grievances should be reported in a weeks time from date of journey performed.</string>
@@ -273,18 +274,6 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <string name="terms167">Dilbus will not be responsible for any loss (including loss of profits, revenue, contracts, anticipated savings, data, goodwill or wasted expenditure) and any other indirect or consequential loss to You when You commenced using the app.</string>
     <!-- TODO: Remove or change this placeholder text -->
 
-    <string name="newTerms1">This document is an electronic record in terms of Information Technology Act, 2000, amendments thereof from time to time and the rules thereunder as applicable and the amended provisions pertaining to electronic records in various statutes as amended by the Information Technology Act, 2000. This electronic record is generated by a computer system and does not require any physical or digital signatures.</string>
-    <string name="newTerms2">Please read the terms and conditions carefully before registering, accessing or using the Dilpay Services (defined below). The terms and conditions are legal contract ("Agreement") between You and dilpay Private Limited (“Dilpay”) having its registered office at H.no : 3-4-104/1,Narsimha nagar colony,Mallapur X Road,Near Shiva Hotal Hyderabad Rangareddy 500074 Telangana, India. You agree and acknowledge that you have read the terms and conditions set forth below. If you do not agree to these terms and conditions or do not wish to be bound by these terms and conditions, you may not use the Services and/or immediately terminate the Services and/or uninstall the mobile application.</string>
-    <string name="newTerms3">We may amend the terms and conditions at any time by posting an updated version at Dilpay App. The updated version of the Terms of Service shall take effect immediately upon posting. It is Your responsibility to review these Terms of Use periodically for updates / changes. Your continued use of Dilpay App following the posting of changes will mean that You accept and agree to the revisions including additional Terms or removal of portions of these Terms, modifications etc. As long as You comply with these Terms of Use, We grant You a personal, non-exclusive, non-transferable, limited privilege to enter and avail the Services.</string>
-    <string name="newTerms4">using Dilpay app indicates your agreement to all the terms and condtitions under these terms of use, so please read the terms and conditions carefully before proceeding. By impliedly or expressly accepting these Terms of Use, You also accept and agree to be bound by Dilpay and Dilpay Entity Policies (including but not limited to Privacy Policy) available on the Dilpay App as amended from time to time.</string>
-    <string name="newTerms5">Eligibility</string>
-    <string name="newTerms6">By accessing Dilpay Service and Dilpay Platforms, You represent that:</string>
-    <string name="newTerms7">1.You are 18 years of age or older;</string>
-    <string name="newTerms8">2.You have the right, authority and capability to enter into this Agreement abiding by all the provisions of the “terms of use” of Dilpay  Services.</string>
-    <string name="newTerms9">3.You are not impersonating any person or entity, or falsely stating your age or affiliation with any person or entity. Dilpay and Dilpay Entities shall reserve the right to terminate your contract to use Dilpay Platform in case of any incorrect representation of the above-mentioned conditions.</string>
-    <string name="newTerms10"></string>
-    <string name="newTerms11"></string>
-
 
     <string name="summary">Use our services &amp; Get percentage to claim your Eligibile Reward Points.</string>
     <string name="mobileRewards">Mobile recharge - 5%</string>
@@ -296,13 +285,4 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <string name="busticketRewards">BusTicket	- 10%</string>
     <string name="referralsRewards">Refferals	-  (1-5%) (2-10%)(3-20%)</string>
     <string name="note">Note: Reward Points will be expired by automatically on 25th of Every Month</string>
-
-    <string name="unlock">Unlock</string>
-    <string name="confirm_pattern">Confirm your screen lock PIN,Pattern or Password</string>
-    <string name="setting_label"><![CDATA[Please set the screen lock Manually by navigating to : Settings>Security.]]></string>
-    <string name="unlock_success">App is Unlocked successfully.</string>
-    <string name="unlock_failed">Failed to Unlock the app.</string>
-    <string name="device_is_secure">Device is now secure.</string>
-    <string name="security_device_cancelled">Device is not secure or user cancel the request.</string>
-    <string name="authenticate_again">Authenticate Again</string>
 </resources>

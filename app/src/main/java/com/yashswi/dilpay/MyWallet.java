@@ -26,7 +26,7 @@ public class MyWallet extends AppCompatActivity {
     ImageView back;
     TextView tds_amount, gst_amount, total_amount, commision_amt;
     String walletAmount, commissionAmount;
-    AppCompatButton convert;
+    AppCompatButton convert,addWalletamount;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +39,8 @@ public class MyWallet extends AppCompatActivity {
         total_amount = findViewById(R.id.total_amount);
         commision_amt = findViewById(R.id.commision_amount);
         convert=findViewById(R.id.buttonConvert);
+        addWalletamount=findViewById(R.id.addWalletAmount);
+
         walletAmount = getIntent().getStringExtra("walletAmt");
         commissionAmount = getIntent().getStringExtra("commissionAmt");
 
@@ -50,6 +52,15 @@ public class MyWallet extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent=new Intent(MyWallet.this,Profile.class);
                 startActivity(intent);
+                finish();
+            }
+        });
+
+        addWalletamount.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MyWallet.this, AddWalletAmount.class);
+                startActivity(i);
                 finish();
             }
         });

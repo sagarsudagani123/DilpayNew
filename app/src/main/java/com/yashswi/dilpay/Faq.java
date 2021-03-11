@@ -2,6 +2,7 @@ package com.yashswi.dilpay;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +22,15 @@ public class Faq extends AppCompatActivity {
     Boolean click8 = true;
     Boolean click9 = true;
     Boolean click10 = true;
+    Boolean click11 = true;
+    Boolean click12 = true;
+    Boolean click13 = true;
+    Boolean click14 = true;
+    Boolean click15 = true;
+    Boolean click16 = true;
+    Boolean click17 = true;
+    Boolean click18 = true;
+    Boolean click19 = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,7 +68,6 @@ public class Faq extends AppCompatActivity {
                 finish();
             }
         });
-
         qn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -71,7 +80,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -84,7 +92,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -97,7 +104,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,7 +116,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -123,7 +128,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -136,7 +140,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -149,7 +152,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,7 +164,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -175,7 +176,6 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
         qn10.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -188,6 +188,5 @@ public class Faq extends AppCompatActivity {
                 }
             }
         });
-
     }
 }

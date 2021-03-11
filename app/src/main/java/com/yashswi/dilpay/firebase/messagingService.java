@@ -6,11 +6,13 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -20,10 +22,13 @@ import androidx.core.app.NotificationCompat;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.yashswi.dilpay.Home_screen;
+import com.yashswi.dilpay.Profile;
 import com.yashswi.dilpay.R;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.io.IOException;
+import java.net.URI;
 import java.util.Map;
 
 public class messagingService extends FirebaseMessagingService {
@@ -65,6 +70,13 @@ public class messagingService extends FirebaseMessagingService {
 //        String click_action=data.get("click_action");;
         String content = remoteMessage.getNotification().getBody();
         String title = remoteMessage.getNotification().getTitle();
+        Uri uri = remoteMessage.getNotification().getImageUrl();
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(messagingService.this.getContentResolver(), uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         String click_action = remoteMessage.getNotification().getClickAction();
         Log.e("click action", click_action);
         Intent intent = new Intent(click_action);
@@ -91,6 +103,9 @@ public class messagingService extends FirebaseMessagingService {
                     .setContentIntent(pendingIntent)
                     .setContentTitle(title)
                     .setContentText(content)
+                    .setStyle(new NotificationCompat.BigPictureStyle()
+                            .bigPicture(bitmap))
+
                     .setContentInfo("info");
             noti.notify(1, notificationBuilder.build());
         } catch (Exception e) {

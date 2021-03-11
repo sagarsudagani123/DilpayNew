@@ -112,8 +112,8 @@ public interface Api_interface {
     @GET("Convertpoints.php")
     Call<String> convertRewards(@Query("data") String data);
 
-
-    @POST("RechargeReport.php")
+    @POST("MobileRecharge.php")
     @FormUrlEncoded
-    Call<String> rechargeHistory(@Field("data") String data);
+    Call<String> MobileRecharge(@Field("data") String data);
+
 }

@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.google.android.material.textfield.MaterialAutoCompleteTextView;
 import com.google.android.material.textview.MaterialTextView;
 
+import com.mikhaellopez.circularimageview.CircularImageView;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Home_screen;
 import com.yashswi.dilpay.R;
@@ -52,6 +53,7 @@ public class Bus extends AppCompatActivity {
     ArrayList<Integer> itemImg = new ArrayList<>();
     ArrayList<String> itemName = new ArrayList<>();
     MaterialAutoCompleteTextView from, to;
+    CircularImageView swap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +76,7 @@ public class Bus extends AppCompatActivity {
         to = findViewById(R.id.e_to);
         progress_layout = findViewById(R.id.progress_layout);
         bus_items = findViewById(R.id.bus_items);
+        swap=findViewById(R.id.swap);
 
         //SETTING CITIES NAMES FROM HOME ACTIVITY LIST TO SPINNERS
         ArrayAdapter<String> adapter1 = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, obj.getNames());
@@ -105,18 +108,34 @@ public class Bus extends AppCompatActivity {
                 source_id = from.getText().toString();
                 destination_id = to.getText().toString();
                 journey_date = date1.getText().toString();
+
                 if (source_id.equals("") || source_id == null || destination_id.equals("") || destination_id == null || !dateChecked) {
                     error.setText("Please fill in all details");
                 } else {
-                    Intent intent = new Intent(Bus.this, Available_buses.class);
-                    intent.putExtra("from", source_id);
-                    intent.putExtra("to", destination_id);
-                    intent.putExtra("date", journey_date);
-                    startActivity(intent);
+                    if(obj.getNames().contains(source_id)&&obj.getNames().contains(destination_id)){
+                        Intent intent = new Intent(Bus.this, Available_buses.class);
+                        intent.putExtra("from", source_id);
+                        intent.putExtra("to", destination_id);
+                        intent.putExtra("date", journey_date);
+                        startActivity(intent);
+                    }else{
+                        Toast.makeText(Bus.this,"Fill in valid details",Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             }, year, month, day);
             datePickerDialog.getDatePicker().setMinDate(calendar.getTimeInMillis());
             datePickerDialog.show();
+        });
+
+        swap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                source_id = from.getText().toString();
+                destination_id = to.getText().toString();
+                from.setText(destination_id);
+                to.setText(source_id);
+            }
         });
 
         //SEARCH BUTTON
@@ -124,14 +143,19 @@ public class Bus extends AppCompatActivity {
             source_id = from.getText().toString();
             destination_id = to.getText().toString();
             journey_date = date1.getText().toString();
+
             if (source_id.equals("") || source_id == null || destination_id.equals("") || destination_id == null || !dateChecked) {
                 error.setText("Please fill in all details");
             } else {
-                Intent intent = new Intent(Bus.this, Available_buses.class);
-                intent.putExtra("from", source_id);
-                intent.putExtra("to", destination_id);
-                intent.putExtra("date", journey_date);
-                startActivity(intent);
+                if(obj.getNames().contains(source_id)&&obj.getNames().contains(destination_id)){
+                    Intent intent = new Intent(Bus.this, Available_buses.class);
+                    intent.putExtra("from", source_id);
+                    intent.putExtra("to", destination_id);
+                    intent.putExtra("date", journey_date);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(Bus.this,"Fill in valid details",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

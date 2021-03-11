@@ -155,7 +155,7 @@ public class Home_screen extends AppCompatActivity {
         buton_img.add(R.drawable.postpaid_new);
         buton_img.add(R.drawable.elc_new);
         buton_img.add(R.drawable.gas_new);
-        buton_img.add(R.drawable.money_trans_new);
+//        buton_img.add(R.drawable.money_trans_new);
 
         buton_names.add("Bus");
         buton_names.add("Mobile");
@@ -164,7 +164,7 @@ public class Home_screen extends AppCompatActivity {
         buton_names.add("Postpaid");
         buton_names.add("Electricity");
         buton_names.add("Gas");
-        buton_names.add("Money Transfer");
+//        buton_names.add("Money Transfer");
 
         items_list_adapter adapter = new items_list_adapter(buton_img, buton_names, "Main", this);
         rv.setAdapter(adapter);

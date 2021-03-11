@@ -8,176 +8,175 @@
     tools:context=".bus.Bus">
 
     <RelativeLayout
+        android:id="@+id/re1"
         android:layout_width="match_parent"
         android:layout_height="56dp"
-        android:background="@color/gradientEnd"
-        android:id="@+id/re1">
+        android:background="@color/gradientEnd">
+
         <ImageView
             android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="7dp"
-            android:layout_marginLeft="10dp"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_baseline_chevron_left_24"/>
+            android:layout_marginLeft="10dp"
+            android:padding="7dp"
+            android:src="@drawable/ic_baseline_chevron_left_24" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Bus Ticket Booking"
-            android:id="@+id/te1"
-            android:textStyle="bold"
-            android:textColor="#fff"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/therhog_regular"
+            android:text="Bus Ticket Booking"
+            android:textColor="#fff"
             android:textSize="18sp"
-            android:layout_marginTop="25dp"/>
+            android:textStyle="bold" />
     </RelativeLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/re1"
-        >
+        android:layout_below="@+id/re1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/appbg"
             android:orientation="vertical">
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardElevation="15dp"
-                app:cardCornerRadius="6dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:text="Welcome"
-                    android:gravity="center"
-                    android:layout_height="70dp"/>
-            </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/card"
                 app:cardElevation="15dp"
-                app:cardCornerRadius="6dp"
-                android:layout_marginEnd="15dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_gravity="center">
-                <LinearLayout
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="15dp"
+                >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="15dp">
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/animationView"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        android:layout_centerInParent="true"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/bus" />
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/s1"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:enabled="true"
+                    android:hint="From"
+                    app:boxStrokeColor="@color/gradientStart"
+                    app:endIconDrawable="@drawable/ic_baseline_location_on_24">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/e_from"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="From"
-                        android:enabled="true"
-                        app:endIconDrawable="@drawable/ic_baseline_location_on_24"
-                        app:boxStrokeColor="@color/gradientStart">
+                        android:completionThreshold="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoComplete"
+                        android:padding="10dp" />
 
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:completionThreshold="1"
-                            android:imeOptions="actionNext"
-                            android:padding="10dp"
-                            android:id="@+id/e_from"
-                            android:inputType="textAutoComplete" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    </com.google.android.material.textfield.TextInputLayout>
-                    <!--                <AutoCompleteTextView-->
-                    <!--                    android:layout_width="match_parent"-->
-                    <!--                    android:layout_height="wrap_content"-->
-                    <!--                    android:completionThreshold="1"-->
-                    <!--                    android:id="@+id/e_from"-->
-                    <!--                    android:hint="From"-->
-                    <!--                    android:padding="10dp"-->
-                    <!--                    />-->
+                <!--                <AutoCompleteTextView-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:completionThreshold="1"-->
+                <!--                    android:id="@+id/e_from"-->
+                <!--                    android:hint="From"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    />-->
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/swap"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="20dp"
+                    android:elevation="8dp"
+                    android:layout_marginTop="-15dp"
+                    android:src="@drawable/swap" />
+
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="To"
+                    android:layout_marginTop="-15dp"
+                    app:boxStrokeColor="@color/gradientStart"
+                    app:endIconDrawable="@drawable/ic_baseline_location_on_24">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/e_to"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        app:endIconDrawable="@drawable/ic_baseline_location_on_24"
-                        android:hint="To"
-                        app:boxStrokeColor="@color/gradientStart">
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/e_to"
-                            android:completionThreshold="1"
-                            android:padding="10dp"
-                            android:inputType="textAutoComplete"
-                            android:imeOptions="actionDone"/>
-                    </com.google.android.material.textfield.TextInputLayout>
-                    <com.google.android.material.textview.MaterialTextView
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:text="Depart Date"
-                        android:id="@+id/date1"
-                        android:padding="10dp"
-                        android:background="@drawable/date_back"
-                        android:layout_marginTop="15dp"
-                        android:textColor="#000"/>
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/search"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="25dp"
-                        android:background="@drawable/button_bg"
-                        android:text="Search"
-                        android:textStyle="bold"
-                        android:textColor="@color/gradientStart" />
+                        android:completionThreshold="1"
+                        android:imeOptions="actionDone"
+                        android:inputType="textAutoComplete"
+                        android:padding="10dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textSize="16sp"
-                        android:padding="10dp"
-                        android:textColor="@color/error"
-                        android:id="@+id/error"
-                        android:layout_gravity="center_horizontal"
-                        />
-                </LinearLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/date1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/date_back"
+                    android:padding="10dp"
+                    android:text="Depart Date"
+                    android:textColor="#000" />
+
+
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/search"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/button_bg"
+                    android:text="Search"
+                    android:textColor="@color/gradientStart"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textColor="@color/error"
+                    android:textSize="16sp" />
+
+
+            </LinearLayout>
             </androidx.cardview.widget.CardView>
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/bus_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/bus_items"
                 android:clipToPadding="false"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
-                android:paddingBottom="12dp"
-                />
-
-
+                android:paddingBottom="12dp" />
 
         </LinearLayout>
     </ScrollView>
+
     <RelativeLayout
         android:id="@+id/progress_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/progressBGColor"
+        android:elevation="16dp"
         android:visibility="gone">
 
         <ProgressBar

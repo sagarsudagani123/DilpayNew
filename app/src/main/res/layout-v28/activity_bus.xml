@@ -23,12 +23,13 @@
             android:src="@drawable/ic_baseline_chevron_left_24" />
 
         <TextView
-            android:id="@+id/te1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
+            android:fontFamily="@font/modest_regular"
+            android:textFontWeight="800"
             android:text="Bus Ticket Booking"
             android:textColor="#fff"
             android:textSize="18sp"
@@ -44,140 +45,123 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="15dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="15dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="70dp"
-                    android:gravity="center"
-                    android:text="Welcome" />
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
+                android:id="@+id/card"
+                app:cardElevation="15dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginBottom="20dp"
+                app:cardCornerRadius="15dp"
+                >
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="10dp"
-                app:cardCornerRadius="6dp"
-                app:cardElevation="15dp">
+                android:orientation="vertical"
+                android:padding="15dp">
 
-                <LinearLayout
+                <com.google.android.material.textfield.TextInputLayout
+
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="15dp">
+                    android:enabled="true"
+                    android:hint="From"
+                    app:boxStrokeColor="@color/gradientStart"
+                    app:endIconDrawable="@drawable/ic_baseline_location_on_24">
 
-                    <com.airbnb.lottie.LottieAnimationView
-                        android:id="@+id/animationView"
-                        android:layout_width="match_parent"
-                        android:layout_height="80dp"
-                        app:lottie_autoPlay="true"
-                        app:lottie_loop="true"
-                        app:lottie_rawRes="@raw/bus" />
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/s1"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/e_from"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:enabled="true"
-                        android:hint="From"
-                        app:boxStrokeColor="@color/gradientStart"
-                        app:endIconDrawable="@drawable/ic_baseline_location_on_24">
+                        android:completionThreshold="1"
+                        android:imeOptions="actionNext"
+                        android:inputType="textAutoComplete"
+                        android:padding="10dp" />
 
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:id="@+id/e_from"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:completionThreshold="1"
-                            android:imeOptions="actionNext"
-                            android:inputType="textAutoComplete"
-                            android:padding="10dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <com.mikhaellopez.circularimageview.CircularImageView
+                    android:id="@+id/swap"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="20dp"
+                    android:elevation="8dp"
+                    android:layout_marginTop="-15dp"
+                    android:src="@drawable/swap" />
+                <!--                <AutoCompleteTextView-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:completionThreshold="1"-->
+                <!--                    android:id="@+id/e_from"-->
+                <!--                    android:hint="From"-->
+                <!--                    android:padding="10dp"-->
+                <!--                    />-->
 
-                    </com.google.android.material.textfield.TextInputLayout>
-                    <!--                <AutoCompleteTextView-->
-                    <!--                    android:layout_width="match_parent"-->
-                    <!--                    android:layout_height="wrap_content"-->
-                    <!--                    android:completionThreshold="1"-->
-                    <!--                    android:id="@+id/e_from"-->
-                    <!--                    android:hint="From"-->
-                    <!--                    android:padding="10dp"-->
-                    <!--                    />-->
+                <com.google.android.material.textfield.TextInputLayout
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="-15dp"
+                    android:hint="To"
+                    app:boxStrokeColor="@color/gradientStart"
+                    app:endIconDrawable="@drawable/ic_baseline_location_on_24">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/e_to"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="5dp"
-                        android:hint="To"
-                        app:boxStrokeColor="@color/gradientStart"
-                        app:endIconDrawable="@drawable/ic_baseline_location_on_24">
+                        android:completionThreshold="1"
+                        android:imeOptions="actionDone"
+                        android:inputType="textAutoComplete"
+                        android:padding="10dp" />
+                </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:id="@+id/e_to"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:completionThreshold="1"
-                            android:imeOptions="actionDone"
-                            android:inputType="textAutoComplete"
-                            android:padding="10dp" />
-                    </com.google.android.material.textfield.TextInputLayout>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/date1"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/date_back"
+                    android:padding="10dp"
+                    android:text="Depart Date"
+                    android:textColor="#000" />
 
-                    <com.google.android.material.textview.MaterialTextView
-                        android:id="@+id/date1"
-                        android:layout_width="match_parent"
-                        android:layout_height="45dp"
-                        android:layout_marginTop="15dp"
-                        android:background="@drawable/date_back"
-                        android:padding="10dp"
-                        android:text="Depart Date"
-                        android:textColor="#000" />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/search"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="25dp"
+                    android:background="@drawable/button_bg"
+                    android:text="Search"
+                    android:textColor="@color/gradientStart"
+                    android:textStyle="bold" />
 
-                    <androidx.appcompat.widget.AppCompatButton
-                        android:id="@+id/search"
-                        android:layout_width="200dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="25dp"
-                        android:background="@drawable/button_bg"
-                        android:text="Search"
-                        android:textColor="@color/gradientStart"
-                        android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10dp"
+                    android:text=""
+                    android:textColor="@color/error"
+                    android:textSize="16sp" />
 
-                    <TextView
-                        android:id="@+id/error"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:padding="10dp"
-                        android:text=""
-                        android:textColor="@color/error"
-                        android:textSize="16sp" />
-                </LinearLayout>
+
+            </LinearLayout>
             </androidx.cardview.widget.CardView>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/bus_items"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
                 android:clipToPadding="false"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:paddingBottom="12dp" />
-
-
         </LinearLayout>
     </ScrollView>
 
