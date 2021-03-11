@@ -40,7 +40,7 @@ RecyclerView recharge_recyclerview;
     ArrayList<String> amount = new ArrayList<>();
     ArrayList<String> mobileNumber = new ArrayList<>();
     ArrayList<String> service = new ArrayList<>();
-    ArrayList<String> orderId = new ArrayList<>();
+
     ArrayList<String> dateTime = new ArrayList<>();
     ArrayList<String> message = new ArrayList<>();
     String serviceType;
@@ -111,13 +111,12 @@ RecyclerView recharge_recyclerview;
                                     mobileNumber.add(dataObject.getString("Mobilenumber"));
                                     service.add(dataObject.getString("Service"));
                                     dateTime.add(dataObject.getString("Datetime"));
-                                    orderId.add(dataObject.getString("OrderId"));
                                     message.add(dataObject.getString("Status"));
 
                                 }
                             }
 
-                            RechargeHistoryAdapter adapter = new RechargeHistoryAdapter(transactionId, amount, mobileNumber, service,dateTime, orderId, message, Recharge_history.this);
+                            RechargeHistoryAdapter adapter = new RechargeHistoryAdapter(transactionId, amount, mobileNumber, dateTime,  message, Recharge_history.this);
                             recharge_recyclerview.setAdapter(adapter);
                             LinearLayoutManager manager = new LinearLayoutManager(Recharge_history.this, RecyclerView.VERTICAL, false);
                             recharge_recyclerview.setLayoutManager(manager);

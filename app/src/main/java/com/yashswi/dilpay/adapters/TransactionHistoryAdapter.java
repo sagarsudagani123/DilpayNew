@@ -57,12 +57,14 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
 //        }
         if (!debitAmount.get(i).equalsIgnoreCase("null")) {
             holder.debitLayout.setVisibility(View.VISIBLE);
+            holder.creditLayout.setVisibility(View.GONE);
         }
         else if(!creditAmount.get(i).equalsIgnoreCase("null")){
+            holder.debitLayout.setVisibility(View.GONE);
             holder.creditLayout.setVisibility(View.VISIBLE);
         }
         holder.dateTime.setText(dateTime.get(i));
-        holder.message.setText(message.get(i)+" CA: "+creditAmount.get(i)+" DA: "+debitAmount.get(i));
+        holder.message.setText(message.get(i));
     }
 
     @Override

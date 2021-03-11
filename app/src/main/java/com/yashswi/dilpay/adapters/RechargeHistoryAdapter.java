@@ -20,19 +20,15 @@ public class RechargeHistoryAdapter extends RecyclerView.Adapter<RechargeHistory
     ArrayList<String> transactionId;
     ArrayList<String> amount;
     ArrayList<String> mobileNumber;
-    ArrayList<String> service;
     ArrayList<String> dateTime;
-    ArrayList<String> orderId;
     ArrayList<String> message;
     Context context;
 
-    public RechargeHistoryAdapter(ArrayList<String> transactionId, ArrayList<String> amount, ArrayList<String> mobileNumber, ArrayList<String> service, ArrayList<String> dateTime, ArrayList<String> orderId, ArrayList<String> message, Context context) {
+    public RechargeHistoryAdapter(ArrayList<String> transactionId, ArrayList<String> amount, ArrayList<String> mobileNumber,  ArrayList<String> dateTime, ArrayList<String> message, Context context) {
         this.transactionId = transactionId;
         this.amount = amount;
         this.mobileNumber = mobileNumber;
-        this.service = service;
         this.dateTime = dateTime;
-        this.orderId = orderId;
         this.message = message;
         this.context = context;
     }
@@ -50,9 +46,7 @@ public class RechargeHistoryAdapter extends RecyclerView.Adapter<RechargeHistory
         holder.transactionId.setText(transactionId.get(i));
         holder.amount.setText(amount.get(i));
         holder.mobileNumber.setText(mobileNumber.get(i));
-        holder.service.setText(service.get(i));
         holder.dateTime.setText(dateTime.get(i));
-        holder.orderId.setText(orderId.get(i));
         holder.message.setText(message.get(i));
     }
 
@@ -62,7 +56,7 @@ public class RechargeHistoryAdapter extends RecyclerView.Adapter<RechargeHistory
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView transactionId, amount, dateTime, message,mobileNumber,service,orderId;
+        TextView transactionId, amount, dateTime, message,mobileNumber;
         CardView cardView;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -72,8 +66,6 @@ public class RechargeHistoryAdapter extends RecyclerView.Adapter<RechargeHistory
             dateTime = itemView.findViewById(R.id.date_time);
             message = itemView.findViewById(R.id.status);
             mobileNumber = itemView.findViewById(R.id.mobile_number);
-            service = itemView.findViewById(R.id.service);
-            orderId = itemView.findViewById(R.id.orderId);
 
         }
     }

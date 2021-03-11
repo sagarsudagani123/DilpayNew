@@ -285,4 +285,14 @@ Such disclosure and storage may take place without your knowledge. In that case,
     <string name="busticketRewards">BusTicket	- 10%</string>
     <string name="referralsRewards">Refferals	-  (1-5%) (2-10%)(3-20%)</string>
     <string name="note">Note: Reward Points will be expired by automatically on 25th of Every Month</string>
+
+<!--    <string name="app_name">Keyguard</string>-->
+    <string name="unlock">Unlock</string>
+    <string name="confirm_pattern">Confirm your screen lock PIN,Pattern or Password</string>
+    <string name="setting_label"><![CDATA[Please set the screen lock Manually by navigating to : Settings>Security.]]></string>
+    <string name="unlock_success">App is Unlocked successfully.</string>
+    <string name="unlock_failed">Failed to Unlock the app.</string>
+    <string name="device_is_secure">Device is now secure.</string>
+    <string name="security_device_cancelled">Device is not secure or user cancel the request.</string>
+    <string name="authenticate_again">Authenticate Again</string>
 </resources>

@@ -116,4 +116,8 @@ public interface Api_interface {
     @FormUrlEncoded
     Call<String> MobileRecharge(@Field("data") String data);
 
+
+    @POST("RechargeReport.php")
+    @FormUrlEncoded
+    Call<String> rechargeHistory(@Field("data") String data);
 }
