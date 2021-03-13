@@ -141,7 +141,7 @@ public class Register_screen extends AppCompatActivity {
                         String message = obj.optString("Message");
                         if (status.equalsIgnoreCase("true")) {
                             progress_layout.setVisibility(View.GONE);
-                            Toast.makeText(Register_screen.this, message, Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(Register_screen.this, message, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(Register_screen.this, Login_screen.class);
                             startActivity(i);
                             finish();
@@ -299,7 +299,7 @@ public class Register_screen extends AppCompatActivity {
                 //That gives all message to us.
                 // We need to get the code from inside with regex
                 String message = data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
-                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
 //                textViewMessage.setText(
 //                        String.format("%s - %s", getString(R.string.received_message), message));
                 getOtpFromMessage(message);

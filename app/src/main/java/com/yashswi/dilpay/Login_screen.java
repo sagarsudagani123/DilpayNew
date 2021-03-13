@@ -144,7 +144,7 @@ public class Login_screen extends AppCompatActivity {
                                     if (!task.isSuccessful()) {
                                         msg = "Failed to subscribe";
                                     }
-                                    Toast.makeText(Login_screen.this, msg, Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(Login_screen.this, msg, Toast.LENGTH_SHORT).show();
                                 }
                             });
                 }

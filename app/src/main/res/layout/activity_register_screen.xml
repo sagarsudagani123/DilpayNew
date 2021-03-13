@@ -82,6 +82,7 @@
                     android:layout_gravity="start"
                     android:layout_marginBottom="10dp"
                     android:text="Register"
+                    android:fontFamily="@font/righteous_regular"
                     android:textColor="@color/gradientStart"
                     android:textSize="22sp"
                     android:textStyle="bold" />

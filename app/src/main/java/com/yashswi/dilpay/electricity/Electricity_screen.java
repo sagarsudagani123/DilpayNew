@@ -397,7 +397,7 @@ public class Electricity_screen extends AppCompatActivity {
                 } else {
                     message = "Something went wrong! try again";
                 }
-                Toast.makeText(Electricity_screen.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Electricity_screen.this, message + ""+t.toString(), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

@@ -2,6 +2,7 @@ package com.yashswi.dilpay.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +15,6 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.yashswi.dilpay.Api_interface.Api_interface;
-import com.yashswi.dilpay.Api_interface.cashFree;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.bank.WithdrawAmount;
 import com.yashswi.dilpay.bank.BankAccounts;
@@ -39,7 +39,7 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
     Context context;
     static String tokenFinal;
     RelativeLayout progress;
-    JSONObject test=null;
+    JSONObject dataObj =null;
 
     public BankAccountsAdapter(String title, ArrayList<bankDetails> bankDetails, RelativeLayout progress, Context context) {
         this.bankDetails = bankDetails;
@@ -63,7 +63,6 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
         holder.IFSC.setText(bankDetails.get(position).getIfscCode());
         if (title.equalsIgnoreCase("Select Bank")) {
             holder.delete.setVisibility(View.GONE);
-//            holder.edit.setVisibility(View.GONE);
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -82,27 +81,22 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
             @Override
             public void onClick(View v) {
                 progress.setVisibility(View.VISIBLE);
-
-
                 getToken(bankDetails.get(position).getBeneficiaryID());
-//                deleted=((BankAccounts)context).removeBeneficiary(tokenFinal,bankDetails.get(position).getBeneficiaryID());
 
-                test = new JSONObject();
+                dataObj = new JSONObject();
                 try {
-                    test.put("beneficiaryID", bankDetails.get(position).getBeneficiaryID());
-                    test.put("username", new userDetails(context).getNumber());
-                    test.put("Name", new userDetails(context).getName());
-                    test.put("emial", bankDetails.get(position).getEmial());
-                    test.put("phone", new userDetails(context).getNumber());
-                    test.put("accountNumber", bankDetails.get(position).getAcntNumber());
-                    test.put("IFSC", bankDetails.get(position).getIfscCode());
-                    test.put("address", bankDetails.get(position).getAddress());
-                    test.put("Method", "Delete");
+                    dataObj.put("beneficiaryID", bankDetails.get(position).getBeneficiaryID());
+                    dataObj.put("username", new userDetails(context).getNumber());
+                    dataObj.put("Name", new userDetails(context).getName());
+                    dataObj.put("emial", bankDetails.get(position).getEmial());
+                    dataObj.put("phone", new userDetails(context).getNumber());
+                    dataObj.put("accountNumber", bankDetails.get(position).getAcntNumber());
+                    dataObj.put("IFSC", bankDetails.get(position).getIfscCode());
+                    dataObj.put("address", bankDetails.get(position).getAddress());
+                    dataObj.put("Method", "Delete");
                 } catch (Exception e) {
+                    Log.e("GetToken",e.toString());
                 }
-
-
-//                deleteAccount(test.toString());
             }
         });
     }
@@ -112,9 +106,6 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
         return bankDetails.size();
     }
 
-
-
-
     void getToken(String benId){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
@@ -122,7 +113,6 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
         Call<String> call = api.generatePayoutToken();
-//        Call<String> call = api.getToken("CF4207C0VN927A55OA211PLK80", "4eac8173d6023b23482d984c298b2cd69c7672cc");
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
@@ -131,13 +121,10 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
                     if (data.getString("status").equalsIgnoreCase("SUCCESS")) {
                         JSONObject tokenObj = data.getJSONObject("data");
                         tokenFinal = tokenObj.getString("token");
-                        ((BankAccounts)context).removeBeneficiary(tokenFinal,benId,test.toString());
-//                        deleteAccount(deleted);
-//                        Toast.makeText(context,"deleted="+deleted,Toast.LENGTH_SHORT).show();
+                        ((BankAccounts)context).removeBeneficiary(tokenFinal,benId, dataObj.toString());
                     } else {
                         tokenFinal = "";
                         Toast.makeText(context,data.toString(),Toast.LENGTH_SHORT).show();
-
                     }
                 } catch (Exception e) {
                     Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
@@ -156,28 +143,16 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
             }
         });
     }
-//    void deleteAccount(boolean deleted){
-//        Log.e("bankDetails==delete",test.toString());
-//        if(deleted){
-//            ((BankAccounts) context).deleteAccount(test.toString());
-//        }
-//        else{
-//            Toast.makeText(context,"Account can't be deleted",Toast.LENGTH_SHORT).show();
-//        }
-//    }
-
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView acntNumber, IFSC;
         ImageView delete;
-//        AppCompatButton edit;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             acntNumber = itemView.findViewById(R.id.acntNum);
             IFSC = itemView.findViewById(R.id.ifscNum);
             delete = itemView.findViewById(R.id.delete);
-//            edit = itemView.findViewById(R.id.edit);
         }
     }
 }

@@ -38,7 +38,7 @@ import static retrofit2.converter.gson.GsonConverterFactory.create;
 public class paymentStart extends AppCompatActivity {
     String status1, paymentMode1, orderId1, txTime1, referenceId1, txMsg1, signature1, orderAmount1;
     TextView status, paymentMode, orderId, txTime, refId, txMsg, sign, orderAmount;
-    ImageView success, failure, pending;
+    ImageView success, failure, pending,back;
     LinearLayout detailsLayout;
     RelativeLayout progress, mainLayout;
     com.yashswi.dilpay.models.userDetails userDetails;
@@ -64,6 +64,7 @@ public class paymentStart extends AppCompatActivity {
         success = findViewById(R.id.success1);
         failure = findViewById(R.id.failure);
         pending = findViewById(R.id.pending);
+        back=findViewById(R.id.back);
         detailsLayout = findViewById(R.id.detailsLayout);
         progress = findViewById(R.id.progress);
         mainLayout = findViewById(R.id.mainLayout);
@@ -80,6 +81,13 @@ public class paymentStart extends AppCompatActivity {
         RefCode = getIntent().getStringExtra("RefCode");
 
         finalData = new JSONObject();
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         if (FromPage.equalsIgnoreCase("BusConfirm")) {
             if (status1.equalsIgnoreCase("SUCCESS")) {
@@ -125,7 +133,7 @@ public class paymentStart extends AppCompatActivity {
 
                     finalData.put("username",new userDetails(paymentStart.this).getNumber());
                     finalData.put("Status", status1);
-                    finalData.put("PaymentFor", "Add Wallet Amount");
+                    finalData.put("PaymentFor", "Wallet Amount Added");
                     finalData.put("Mode", paymentMode1);
                     finalData.put("Amount", orderAmount1);
                     finalData.put("OrderID", orderId1);
@@ -168,33 +176,39 @@ public class paymentStart extends AppCompatActivity {
 
     private void updateWalletAmount(String data) {
         Log.e("WalletAmount",data);
-//        Retrofit retrofit = new Retrofit.Builder()
-//                .baseUrl(Api_interface.JSONURL)
-//                .addConverterFactory(ScalarsConverterFactory.create())
-//                .build();
-//        Api_interface api = retrofit.create(Api_interface.class);
-//        Call<String> call = api.updateWalletAmount(data);
-//        call.enqueue(new Callback<String>() {
-//            @Override
-//            public void onResponse(Call<String> call, Response<String> response) {
-//                Log.e("WalletAmount",response.body());
-//                Toast.makeText(paymentStart.this,"Message",Toast.LENGTH_SHORT).show();
-//                finish();
-//            }
-//
-//            @Override
-//            public void onFailure(Call<String> call, Throwable t) {
-//                String message = "";
-//                if (t instanceof UnknownHostException) {
-//                    message = "No internet connection";
-//                } else {
-//                    message = "Something went wrong! Please try again";
-//                }
-//                finish();
-//                Toast.makeText(paymentStart.this, message + t.toString(), Toast.LENGTH_SHORT).show();
-//                progress.setVisibility(View.GONE);
-//            }
-//        });
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api_interface.JSONURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        Api_interface api = retrofit.create(Api_interface.class);
+        Call<String> call = api.addWalletAmount(data);
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                Log.e("WalletAmount",response.body());
+                try {
+                    JSONObject responseObj=new JSONObject(response.body());
+                    Toast.makeText(paymentStart.this,responseObj.getString("Data"),Toast.LENGTH_SHORT).show();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                    Toast.makeText(paymentStart.this,e.toString(),Toast.LENGTH_SHORT).show();
+                }
+                finish();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                String message = "";
+                if (t instanceof UnknownHostException) {
+                    message = "No internet connection";
+                } else {
+                    message = "Something went wrong! Please try again";
+                }
+                finish();
+                Toast.makeText(paymentStart.this, message + t.toString(), Toast.LENGTH_SHORT).show();
+                progress.setVisibility(View.GONE);
+            }
+        });
     }
 
     private void confirmTicket(String finalData) {
@@ -240,12 +254,11 @@ public class paymentStart extends AppCompatActivity {
                         status.setText("Cancelled");
                         txMsg.setText(dataObj.getString("Message"));
                     } else {
+//                        else if(dataObj.getString("Status").equalsIgnoreCase("PENDING"))
                         success.setVisibility(View.GONE);
                         pending.setVisibility(View.VISIBLE);
                         failure.setVisibility(View.GONE);
-
                         detailsLayout.setVisibility(View.GONE);
-
                         status.setText("Penddding");
                         txMsg.setText(dataObj.getString("Message"));
                     }
@@ -286,7 +299,7 @@ public class paymentStart extends AppCompatActivity {
                 progress.setVisibility(View.GONE);
                 String message = "";
                 try {
-                    Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_SHORT).show();
                     JSONObject object = new JSONObject(response.body());
                     message = object.getString("Message");
                     if (object.getString("Status").equalsIgnoreCase("True")) {
@@ -294,6 +307,9 @@ public class paymentStart extends AppCompatActivity {
                         userDetails.setMembership("Paid");
                         Intent intent = new Intent(paymentStart.this, Profile.class);
                         startActivity(intent);
+                        finish();
+                    }
+                    else{
                         finish();
                     }
                     Toast.makeText(paymentStart.this, message, Toast.LENGTH_SHORT).show();

@@ -29,6 +29,7 @@
             android:layout_marginTop="25dp"
             android:text="Notifications"
             android:textColor="#fff"
+            android:fontFamily="@font/righteous_regular"
             android:textSize="18sp"
             android:textStyle="bold" />
     </RelativeLayout>
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/re1"
         android:clipToPadding="false"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="40dp" />
 
     <RelativeLayout
         android:id="@+id/progress"

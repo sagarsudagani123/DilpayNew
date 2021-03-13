@@ -29,6 +29,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
             android:text="About Us"
+            android:fontFamily="@font/modest_regular"
             android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -47,15 +48,17 @@
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="20dp">
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="15dp"
-                app:cardElevation="15dp">
+                android:layout_marginBottom="35dp"
+                app:cardElevation="15dp"
+                app:cardCornerRadius="5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -69,48 +72,55 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
+                        android:layout_marginBottom="2dp"
                         android:text="@string/about1"
                         android:textSize="16sp"
+                        android:fontFamily="@font/modest_regular"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/about2"
                         android:justificationMode="inter_word"
-                        android:textStyle="italic"/>
+                        android:textStyle="italic"
+                        android:fontFamily="@font/domine"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="0dp"
+                        android:layout_marginBottom="2dp"
                         android:text="@string/about3"
                         android:textSize="16sp"
+                        android:fontFamily="@font/modest_regular"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/about4"
                         android:justificationMode="inter_word"
+                        android:fontFamily="@font/domine"
                         android:textStyle="italic"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="0dp"
+                        android:layout_marginBottom="2dp"
                         android:text="@string/about5"
                         android:textSize="16sp"
+                        android:fontFamily="@font/modest_regular"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="8dp"
+                        android:layout_marginBottom="10dp"
                         android:text="@string/about6"
                         android:justificationMode="inter_word"
+                        android:fontFamily="@font/domine"
                         android:textStyle="italic"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

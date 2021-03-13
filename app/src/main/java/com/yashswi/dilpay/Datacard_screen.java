@@ -304,7 +304,7 @@ public class Datacard_screen extends AppCompatActivity {
                 } else {
                     message = "Something went wrong! try again";
                 }
-                Toast.makeText(Datacard_screen.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Datacard_screen.this, message + ""+t.toString() , Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

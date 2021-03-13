@@ -12,11 +12,11 @@
         android:layout_height="match_parent"
         >
 
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/pattern" />
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pattern" />
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -84,6 +84,7 @@
                     android:layout_gravity="start"
                     android:layout_marginBottom="10dp"
                     android:text="Login"
+                    android:fontFamily="@font/righteous_regular"
                     android:textColor="@color/gradientStart"
                     android:textSize="22sp"
                     android:textStyle="bold" />

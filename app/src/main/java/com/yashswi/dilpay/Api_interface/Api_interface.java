@@ -120,4 +120,9 @@ public interface Api_interface {
     @POST("RechargeReport.php")
     @FormUrlEncoded
     Call<String> rechargeHistory(@Field("data") String data);
+
+
+    @POST("AddMoney.php")
+    @FormUrlEncoded
+    Call<String> addWalletAmount(@Field("data") String data);
 }

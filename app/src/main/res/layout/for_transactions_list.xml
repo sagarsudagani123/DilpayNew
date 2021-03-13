@@ -54,6 +54,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Credited :"
+                    android:textColor="@color/green"
                     android:textStyle="bold" />
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -61,7 +62,7 @@
                     android:layout_width="20dp"
                     android:layout_height="15dp"
                     android:layout_marginTop="5dp"
-                    android:src="@drawable/rupee" />
+                    android:src="@drawable/rupeecredit" />
 
                 <TextView
                     android:id="@+id/credit_amount"
@@ -70,7 +71,7 @@
                     android:layout_marginEnd="20dp"
                     android:gravity="center"
                     android:text="250"
-                    android:textColor="@color/textColor" />
+                    android:textColor="@color/green" />
             </LinearLayout>
 
         <LinearLayout
@@ -86,6 +87,7 @@
                 android:paddingEnd="10dp"
                 android:paddingStart="2dp"
                 android:text="Debited  :"
+                android:textColor="@color/error"
                 android:textStyle="bold" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -93,7 +95,7 @@
                 android:layout_width="20dp"
                 android:layout_height="15dp"
                 android:layout_marginTop="5dp"
-                android:src="@drawable/rupee" />
+                android:src="@drawable/rupeedebit" />
 
             <TextView
                 android:id="@+id/debit_amount"
@@ -102,7 +104,7 @@
                 android:layout_marginEnd="20dp"
                 android:gravity="center"
                 android:text="250"
-                android:textColor="@color/textColor" />
+                android:textColor="@color/error" />
         </LinearLayout>
 
         </LinearLayout>

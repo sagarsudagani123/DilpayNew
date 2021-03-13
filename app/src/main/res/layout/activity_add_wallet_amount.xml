@@ -30,6 +30,7 @@
             android:text="Add wallet amount"
             android:textColor="#fff"
             android:textSize="18sp"
+            android:fontFamily="@font/righteous_regular"
             android:textStyle="bold" />
     </RelativeLayout>
 

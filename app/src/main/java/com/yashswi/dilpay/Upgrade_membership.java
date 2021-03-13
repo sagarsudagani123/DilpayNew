@@ -118,6 +118,7 @@ public class Upgrade_membership extends AppCompatActivity {
                             intent.putExtra("Number", userNumber);
                             intent.putExtra("RefCode", code);
                             startActivity(intent);
+                            finish();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();

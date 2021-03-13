@@ -74,7 +74,7 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
         TextView transactionId, creditAmount, debitAmount, dateTime, message;
-        ImageView rupeeSym;
+        ImageView rupeeDebit,ruperCredit;
         CardView cardView;
         LinearLayout creditLayout,debitLayout;
 
@@ -86,7 +86,8 @@ public class TransactionHistoryAdapter extends RecyclerView.Adapter<TransactionH
             dateTime = itemView.findViewById(R.id.date_time);
             message = itemView.findViewById(R.id.message);
             cardView = itemView.findViewById(R.id.transaction_card);
-            rupeeSym = itemView.findViewById(R.id.rupee_debit);
+            rupeeDebit = itemView.findViewById(R.id.rupee_debit);
+            ruperCredit=itemView.findViewById(R.id.rupee_credit);
             creditLayout=itemView.findViewById(R.id.creditLayout);
             debitLayout=itemView.findViewById(R.id.debitLayout);
         }

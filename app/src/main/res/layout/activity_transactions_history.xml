@@ -28,6 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
             android:text="Transactions History"
+            android:fontFamily="@font/righteous_regular"
             android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -39,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/re1"
         android:clipToPadding="false"
-        android:paddingBottom="20dp" />
+        android:paddingBottom="40dp" />
 
     <RelativeLayout
         android:id="@+id/progress_layout"

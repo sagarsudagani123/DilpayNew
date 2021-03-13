@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -95,10 +96,15 @@ public class messagingService extends FirebaseMessagingService {
             }
 
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL);
+
+
+            Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
+                    R.drawable.logo);
             notificationBuilder.setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setWhen(System.currentTimeMillis())
-                    .setSmallIcon(R.drawable.rupee)
+//                    .setSmallIcon()
+                    .setLargeIcon(bitmap)
                     .setTicker("Hearty365")
                     .setContentIntent(pendingIntent)
                     .setContentTitle(title)

@@ -393,7 +393,7 @@ public class Profile extends AppCompatActivity {
                 }
                 progress.setVisibility(View.GONE);
                 try {
-                    Toast.makeText(Profile.this, "/"+response.body(), Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Profile.this, "/"+response.body(), Toast.LENGTH_SHORT).show();
                     JSONObject obj = new JSONObject(response.body());
                     if (obj.getBoolean("success")) {
                         String imgUrl = "http://www.dilbus.in/api/uploads/" + obj.getString("UserImage");

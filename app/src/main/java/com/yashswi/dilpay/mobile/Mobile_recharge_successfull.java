@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -15,7 +16,7 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
     TextView status, transaction_id, number, amount, order, opid;
     ImageView success, failure, pending, back;
     String status1, number1, amount1, order1;
-    RelativeLayout details;
+    LinearLayout details;
     int opID;
     String transaction1;
 
@@ -54,7 +55,7 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
 //            opid.setText(String.valueOf(opID));
         } else if (status1.equalsIgnoreCase("pending")) {
             pending.setVisibility(View.VISIBLE);
-            status.setText(status1);
+            status.setText("ACCEPTED");
             transaction_id.setText(String.valueOf(transaction1));
             number.setText(String.valueOf(number1));
             amount.setText(amount1);

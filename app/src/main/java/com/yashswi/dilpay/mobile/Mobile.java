@@ -323,7 +323,7 @@ public class Mobile extends AppCompatActivity {
                 } else {
                     message = "Something went wrong! try again";
                 }
-                Toast.makeText(Mobile.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Mobile.this, message + ""+t.toString(), Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

@@ -27,6 +27,7 @@
             android:layout_centerVertical="true"
             android:layout_marginTop="25dp"
             android:text="Recharges History"
+            android:fontFamily="@font/modest_regular"
             android:textColor="#fff"
             android:textSize="18sp"
             android:textStyle="bold" />

@@ -84,7 +84,7 @@ public class AddWalletAmount extends AppCompatActivity {
                 .build();
         Timestamp stamp=new Timestamp(System.currentTimeMillis());
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        orderID="WALLET"+year+stamp.getTime();
+        orderID="DILPAY"+year+stamp.getTime();
         Api_interface api = retrofit.create(Api_interface.class);
         Call<String> call = api.generateToken(orderID, amount);
         call.enqueue(new Callback<String>() {
