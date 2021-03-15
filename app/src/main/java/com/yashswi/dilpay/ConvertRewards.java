@@ -101,20 +101,21 @@ RelativeLayout progress;
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
                 progress.setVisibility(View.INVISIBLE);
-                Toast.makeText(ConvertRewards.this,response.body(),Toast.LENGTH_SHORT).show();
                 try {
                     JSONObject jsonObject1=new JSONObject(response.body());
-//                    if (jsonObject1.getString("Status").equalsIgnoreCase("True")){
-                        Intent intent=new Intent(ConvertRewards.this,Profile.class);
-                        startActivity(intent);
-                        finish();
-
-//                    } else {
-
-//                    }
+                    String msg="";
+                    if (jsonObject1.getString("Status").equalsIgnoreCase("True")){
+                        msg=jsonObject1.getString("Message");
+                    } else {
+                        msg="Could not convert";
+                    }
+                    Toast.makeText(ConvertRewards.this, msg, Toast.LENGTH_SHORT).show();
+                    Intent intent=new Intent(ConvertRewards.this,Profile.class);
+                    startActivity(intent);
+                    finish();
                 } catch (JSONException e) {
-//                    Toast.makeText(ConvertRewards.this,e.toString(),Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
+                    Toast.makeText(ConvertRewards.this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 

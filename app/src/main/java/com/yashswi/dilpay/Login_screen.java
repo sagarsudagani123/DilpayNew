@@ -136,17 +136,6 @@ public class Login_screen extends AppCompatActivity {
                                     }
                                 }
                             });
-                    FirebaseMessaging.getInstance().subscribeToTopic("Offers")
-                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    String msg = "Subscribed";
-                                    if (!task.isSuccessful()) {
-                                        msg = "Failed to subscribe";
-                                    }
-//                                    Toast.makeText(Login_screen.this, msg, Toast.LENGTH_SHORT).show();
-                                }
-                            });
                 }
             }
         });
@@ -188,6 +177,39 @@ public class Login_screen extends AppCompatActivity {
                             userDetails.setMembership(details.getString("userstatus"));
                             userDetails.setComission(details.getString("Comission"));
                             userDetails.setProfilePic("http://www.dilbus.in/api/uploads/"+details.getString("UserImage"));
+                            if(details.getString("userstatus").equalsIgnoreCase("Free")){
+                                FirebaseMessaging.getInstance().subscribeToTopic("FreeMember")
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                String msg = "Subscribed";
+                                                if (!task.isSuccessful()) {
+                                                    Log.e("Subscription",msg);
+                                                }
+                                            }
+                                        });
+                                FirebaseMessaging.getInstance().subscribeToTopic("Offers")
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                String msg = "Subscribed";
+                                                if (!task.isSuccessful()) {
+                                                    Log.e("Subscription",msg);
+                                                }
+                                            }
+                                        });
+                            }else if(details.getString("userstatus").equalsIgnoreCase("Paid")){
+                                FirebaseMessaging.getInstance().subscribeToTopic("Offers")
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                String msg = "Subscribed";
+                                                if (!task.isSuccessful()) {
+                                                    Log.e("Subscription",msg);
+                                                }
+                                            }
+                                        });
+                            }
                             startActivity(i);
                             finish();
 
@@ -358,4 +380,6 @@ public class Login_screen extends AppCompatActivity {
             verifyOTP(number, matcher.group(0), "0");
         }
     }
+
+
 }

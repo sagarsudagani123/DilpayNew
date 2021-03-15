@@ -40,6 +40,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
 
@@ -55,6 +56,8 @@ public class Home_screen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
+
+
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
@@ -204,6 +207,26 @@ public class Home_screen extends AppCompatActivity {
         });
     }
 
+    private void TriggarNotification() {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api_interface.JSONURL)
+                .addConverterFactory(ScalarsConverterFactory.create())
+                .build();
+        Api_interface api = retrofit.create(Api_interface.class);
+        Call<String> call = api.Notification();
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+//                Toast.makeText(Home_screen.this,"Notification Triggered",Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+//                Toast.makeText(Home_screen.this,"Notification Triggered Failed"+t.toString(),Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     public void sliderviewWork() {
         SliderView sliderView = findViewById(R.id.imageSlider);
         SliderAdapter sliderAdapter = new SliderAdapter(this);
@@ -274,4 +297,9 @@ public class Home_screen extends AppCompatActivity {
         }
     };
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        TriggarNotification();
+    }
 }

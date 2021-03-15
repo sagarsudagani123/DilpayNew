@@ -51,14 +51,13 @@
             android:src="@drawable/ic_baseline_check_circle_outline_24"
             android:visibility="gone" />
 
-        <ImageView
-            android:id="@+id/pending"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+        <ProgressBar
+            android:layout_width="80dp"
+            android:layout_height="80dp"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/pending"
-            android:visibility="gone" />
+            android:layout_marginTop="20dp"
+            android:id="@+id/ProgressRecharge"
+            />
 
         <ImageView
             android:id="@+id/failure"
@@ -82,17 +81,6 @@
         android:textSize="16sp"
         android:textStyle="bold" />
 
-    <TextView
-        android:id="@+id/opid"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/success"
-        android:layout_centerHorizontal="true"
-        android:text=""
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
    <androidx.cardview.widget.CardView
        android:layout_width="match_parent"
        android:layout_height="wrap_content"
@@ -108,7 +96,41 @@
            android:layout_height="wrap_content"
            android:padding="8dp"
            android:orientation="vertical">
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal">
 
+               <TextView
+                   android:id="@+id/statusCheck"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
+                   android:layout_weight="2"
+                   android:gravity="start"
+                   android:text="Status"
+                   android:textSize="16sp"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:text="--"
+                   android:textSize="20sp"
+                   android:textStyle="bold" />
+
+               <TextView
+                   android:id="@+id/statusSub"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="3"
+                   android:gravity="start"
+                   android:layout_marginStart="10dp"
+                   android:text="Recharge Processing..."
+                   android:textColor="#2196F3" />
+           </LinearLayout>
            <LinearLayout
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
@@ -138,7 +160,7 @@
                    android:id="@+id/transaction_id1"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:layout_weight="2"
+                   android:layout_weight="3"
                    android:gravity="start"
                    android:layout_marginStart="15dp"
                    android:text="123456"
@@ -175,7 +197,7 @@
                    android:id="@+id/number1"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:layout_weight="2"
+                   android:layout_weight="3"
                    android:gravity="start"
                    android:layout_marginStart="15dp"
                    android:text="123456"
@@ -214,7 +236,7 @@
                    android:id="@+id/amount1"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
-                   android:layout_weight="2"
+                   android:layout_weight="3"
                    android:gravity="start"
                    android:layout_marginStart="15dp"
                    android:text="123456"
@@ -252,7 +274,46 @@
                    android:id="@+id/order1"
                    android:layout_width="0dp"
                    android:layout_height="wrap_content"
+                   android:layout_weight="3"
+                   android:gravity="start"
+                   android:layout_marginStart="15dp"
+                   android:text="123456"
+                   android:textColor="#2196F3" />
+           </LinearLayout>
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:orientation="horizontal"
+               android:id="@+id/opidLayout"
+               android:visibility="gone">
+
+               <TextView
+                   android:id="@+id/opid"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_marginStart="15dp"
                    android:layout_weight="2"
+                   android:gravity="start"
+                   android:text="Operator ID"
+                   android:textSize="16sp"
+                   android:textStyle="bold" />
+
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="1"
+                   android:gravity="center"
+                   android:text="--"
+                   android:textSize="20sp"
+                   android:textStyle="bold" />
+
+
+               <TextView
+                   android:id="@+id/opid1"
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_weight="3"
                    android:gravity="start"
                    android:layout_marginStart="15dp"
                    android:text="123456"

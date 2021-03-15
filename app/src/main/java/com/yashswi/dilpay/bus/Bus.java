@@ -26,6 +26,7 @@ import com.yashswi.dilpay.Home_screen;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.models.cityNames;
+import com.yashswi.dilpay.utils.CheckNetworkStatus;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -61,6 +62,10 @@ public class Bus extends AppCompatActivity {
         setContentView(R.layout.activity_bus);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
+        if (!CheckNetworkStatus.getConnectivityStatusString(Bus.this)) {
+            Toast.makeText(Bus.this, "No internet connection", Toast.LENGTH_SHORT).show();
+            finish();
+        }
         //CREATING INSTANCE FOR SINGLE TONE CLASS
         cityNames obj = cityNames.getInstance();
 

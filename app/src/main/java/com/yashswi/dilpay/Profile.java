@@ -72,18 +72,10 @@ public class Profile extends AppCompatActivity {
         setContentView(R.layout.activity_profile);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-
         userDetails = new userDetails(Profile.this);
-        getWalletAmount(userDetails.getNumber());
+//        getWalletAmount(userDetails.getNumber());
 
-        if (!CheckNetworkStatus.getConnectivityStatusString(Profile.this)) {
-            Toast.makeText(Profile.this, "No internet connection", Toast.LENGTH_SHORT).show();
-        } else {
-//            if(getIntent().getStringExtra("toProfile").equalsIgnoreCase("fromEditProfile")){
-            updateUserDetails();
-//            }
-        }
-
+        updateUserDetails();
 
         back = findViewById(R.id.back);
         logout = findViewById(R.id.logout);
@@ -101,7 +93,6 @@ public class Profile extends AppCompatActivity {
         amount = findViewById(R.id.amount);
         paidText = findViewById(R.id.membershipText);
 
-//        String updateTime = String.valueOf(System.currentTimeMillis());
         Glide.with(Profile.this)
                 .load(userDetails.getProfilePic())
                 .fitCenter()
@@ -111,7 +102,6 @@ public class Profile extends AppCompatActivity {
                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                 .into(customer_profilepic);
 //        Picasso.get().load(userDetails.getProfilePic()).into(customer_profilepic);
-//        Toast.makeText(Profile.this,userDetails.getProfilePic(),Toast.LENGTH_SHORT).show();
 
         amount.setText("Loading...");
         customer_name.setText(userDetails.getName());
@@ -248,6 +238,12 @@ public class Profile extends AppCompatActivity {
                         userDetails.setState(details.getString("fstate"));
                         userDetails.setZip(details.getString("fzip"));
                         userDetails.setCountry(details.getString("fcountry"));
+
+                        userDetails.setWallet(details.getString("Wallet"));
+                        userDetails.setComission(details.getString("Comission"));
+                        walletAmount = details.getString("Wallet");
+                        commissionAmount = details.getString("Comission");
+                        amount.setText(details.getString("Wallet"));
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -398,16 +394,15 @@ public class Profile extends AppCompatActivity {
                     if (obj.getBoolean("success")) {
                         String imgUrl = "http://www.dilbus.in/api/uploads/" + obj.getString("UserImage");
                         Log.e("urlImage", imgUrl);
-                        userDetails.setProfilePic(imgUrl);
+                        Toast.makeText(Profile.this,obj.getString("message"),Toast.LENGTH_SHORT).show();
                         Glide.with(Profile.this)
                                 .load(imgUrl)
                                 .signature(new ObjectKey(System.currentTimeMillis()))
                                 .error(R.drawable.profile_pic)
                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                 .into(customer_profilepic);
+                        userDetails.setProfilePic(imgUrl);
                     }
-
-                    Toast.makeText(Profile.this, obj.toString(), Toast.LENGTH_SHORT).show();
                 } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_SHORT).show();
@@ -430,8 +425,6 @@ public class Profile extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        Intent intent = new Intent(Profile.this, Home_screen.class);
-//        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-//        startActivity(intent);
+        finish();
     }
 }

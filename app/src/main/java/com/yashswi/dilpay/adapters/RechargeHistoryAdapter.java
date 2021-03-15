@@ -48,6 +48,11 @@ public class RechargeHistoryAdapter extends RecyclerView.Adapter<RechargeHistory
         holder.mobileNumber.setText(mobileNumber.get(i));
         holder.dateTime.setText(dateTime.get(i));
         holder.message.setText(message.get(i));
+        if(message.get(i).equalsIgnoreCase("Success")){
+            holder.message.setTextColor(context.getResources().getColor(R.color.green));
+        }else if(message.get(i).equalsIgnoreCase("Failure")){
+            holder.message.setTextColor(context.getResources().getColor(R.color.error));
+        }
     }
 
     @Override

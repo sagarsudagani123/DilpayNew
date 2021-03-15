@@ -89,7 +89,27 @@ public class Notification extends AppCompatActivity {
                                 JSONObject dataObj = jsonArray.getJSONObject(data);
                                 title.add(dataObj.getString("Title"));
                                 body.add(dataObj.getString("Message"));
-                                date.add(dataObj.getString("DateTime"));
+
+                                String dateTime=dataObj.getString("DateTime");
+                                String[] parts = dateTime.split(" ");
+                                String dateFinal=parts[0];
+                                String time=parts[1];
+
+                                String[] timeSeperate=time.split(":");
+                                int finalTime=Integer.parseInt(timeSeperate[0]);
+                                if(Integer.parseInt(timeSeperate[0])>12){
+                                    finalTime=finalTime-12;
+                                    time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" PM";
+                                }
+                                else if(Integer.parseInt(timeSeperate[0])==0){
+                                    finalTime=12;
+                                    time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" AM";
+                                }
+                                else{
+                                    time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" AM";
+                                }
+
+                                date.add(dateFinal+"  "+time);
 
                             }
                             NotificationsListAdapter adapter = new NotificationsListAdapter(title, body, date, Notification.this);

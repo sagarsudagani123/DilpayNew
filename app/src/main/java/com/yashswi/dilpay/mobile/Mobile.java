@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
@@ -236,13 +237,20 @@ public class Mobile extends AppCompatActivity {
                 Random rand = new Random();
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
-                if (number.length() < 10) {
+                if (number.length() < 10 ) {
                     Toast.makeText(Mobile.this, "Enter valid number", Toast.LENGTH_SHORT).show();
                 } else if (amount.equalsIgnoreCase("") || operator_code.equalsIgnoreCase("") || circle_code.equalsIgnoreCase("")) {
                     Toast.makeText(Mobile.this, "Please fill in all details", Toast.LENGTH_SHORT).show();
                 } else {
-                    progress.setVisibility(View.VISIBLE);
-                    getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
+                    if(Integer.parseInt(amount)<10){
+                        Toast.makeText(Mobile.this, "Please enter valid amount", Toast.LENGTH_SHORT).show();
+                    }
+                    else {
+                        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
+                        progress.setVisibility(View.VISIBLE);
+                        getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
+                    }
                 }
             }
         });
@@ -277,8 +285,9 @@ public class Mobile extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Log.e("testRecharge","success  "+response.body());
+                Log.e("StatusResponse","success  "+response.body());
                 progress.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
                     String status=obj.getString("Status");
@@ -294,7 +303,7 @@ public class Mobile extends AppCompatActivity {
                             Intent i = new Intent(Mobile.this, Mobile_recharge_successfull.class);
                             i.putExtra("status", rechargeStatus);
                             i.putExtra("txid", txid);
-//                          i.putExtra("opid",obj.getInt("opid"));
+                          i.putExtra("opid",obj.getString("opid"));
                             i.putExtra("number", rechargeNumber);
                             i.putExtra("amount", amount);
                             i.putExtra("orderid", orderid);
@@ -308,6 +317,7 @@ public class Mobile extends AppCompatActivity {
                         finish();
                     }
                 } catch (Exception e) {
+                    Log.e("StatusResponse",e.toString());
                     Toast.makeText(Mobile.this, e.toString(), Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
@@ -315,7 +325,7 @@ public class Mobile extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                Log.e("testRecharge","failed  "+t.toString());
+                Log.e("StatusResponse","failed  "+t.toString());
                 progress.setVisibility(View.GONE);
                 String message = "";
                 if (t instanceof UnknownHostException) {

@@ -164,7 +164,7 @@
                 android:layout_marginStart="15dp"
                 android:layout_marginTop="25dp"
                 android:text="Reward Points"
-                android:textColor="#DCFF5722"
+                android:textColor="@color/orange"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
@@ -184,7 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="..."
-                    android:textColor="#DCFF5722"
+                    android:textColor="@color/orange"
                     android:textSize="16sp"
                     android:textStyle="bold" />
 

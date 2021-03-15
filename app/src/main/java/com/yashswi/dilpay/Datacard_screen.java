@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
@@ -224,6 +225,8 @@ public class Datacard_screen extends AppCompatActivity {
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
                 progress.setVisibility(View.VISIBLE);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
             }
         });
@@ -260,6 +263,7 @@ public class Datacard_screen extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 Log.e("testRecharge","success  "+response.body());
                 progress.setVisibility(View.GONE);
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 try {
                     JSONObject obj = new JSONObject(response.body());
                     String status=obj.getString("Status");

@@ -33,6 +33,7 @@
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="10dp"
             android:text="date"
+            android:textStyle="bold"
             android:textSize="12sp" />
 
         <TextView

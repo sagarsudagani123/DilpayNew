@@ -41,7 +41,7 @@ RecyclerView recharge_recyclerview;
     ArrayList<String> mobileNumber = new ArrayList<>();
     ArrayList<String> service = new ArrayList<>();
 
-    ArrayList<String> dateTime = new ArrayList<>();
+    ArrayList<String> date = new ArrayList<>();
     ArrayList<String> message = new ArrayList<>();
     String serviceType;
     RelativeLayout progress;
@@ -110,13 +110,31 @@ RecyclerView recharge_recyclerview;
                                     amount.add(dataObject.getString("Amount"));
                                     mobileNumber.add(dataObject.getString("Mobilenumber"));
                                     service.add(dataObject.getString("Service"));
-                                    dateTime.add(dataObject.getString("Datetime"));
                                     message.add(dataObject.getString("Status"));
 
+                                    String dateTime=dataObject.getString("Datetime");
+                                    String[] parts = dateTime.split(" ");
+                                    String dateFinal=parts[0];
+                                    String time=parts[1];
+
+                                    String[] timeSeperate=time.split(":");
+                                    int finalTime=Integer.parseInt(timeSeperate[0]);
+                                    if(Integer.parseInt(timeSeperate[0])>12){
+                                        finalTime=finalTime-12;
+                                        time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" PM";
+                                    }
+                                    else if(Integer.parseInt(timeSeperate[0])==0){
+                                        finalTime=12;
+                                        time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" AM";
+                                    }
+                                    else{
+                                        time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" AM";
+                                    }
+                                    date.add(dateFinal+"  "+time);
                                 }
                             }
 
-                            RechargeHistoryAdapter adapter = new RechargeHistoryAdapter(transactionId, amount, mobileNumber, dateTime,  message, Recharge_history.this);
+                            RechargeHistoryAdapter adapter = new RechargeHistoryAdapter(transactionId, amount, mobileNumber, date,  message, Recharge_history.this);
                             recharge_recyclerview.setAdapter(adapter);
                             LinearLayoutManager manager = new LinearLayoutManager(Recharge_history.this, RecyclerView.VERTICAL, false);
                             recharge_recyclerview.setLayoutManager(manager);

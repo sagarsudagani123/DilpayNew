@@ -142,7 +142,7 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
                                 accountsList.setAdapter(adapter);
                             }
                         } else {
-                            Toast.makeText(BankAccounts.this, data.getString("Data"), Toast.LENGTH_SHORT).show();
+                            Toast.makeText(BankAccounts.this, "No Account Added!", Toast.LENGTH_SHORT).show();
                             available.setVisibility(View.VISIBLE);
                         }
                     } catch (JSONException e) {

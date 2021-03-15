@@ -84,7 +84,7 @@ public class messagingService extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
         try {
             NotificationManager noti = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            String NOTIFICATION_CHANNEL = "TESTCHANNEL";
+            String NOTIFICATION_CHANNEL = "DILPAYNOTIFICATION";
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                 NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL, "Dilpay notification", NotificationManager.IMPORTANCE_HIGH);
                 notificationChannel.setDescription("TEST channel for dilpay");
@@ -97,21 +97,19 @@ public class messagingService extends FirebaseMessagingService {
 
             NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, NOTIFICATION_CHANNEL);
 
-
             Bitmap icon = BitmapFactory.decodeResource(this.getResources(),
-                    R.drawable.logo);
+                    R.drawable.logo_noti);
             notificationBuilder.setAutoCancel(true)
                     .setDefaults(Notification.DEFAULT_ALL)
                     .setWhen(System.currentTimeMillis())
-//                    .setSmallIcon()
-                    .setLargeIcon(bitmap)
+                    .setSmallIcon(R.drawable.logo_noti)
+                    .setLargeIcon(icon)
+//                    .setStyle(new Notification.BigPictureStyle().bigPicture(icon))
                     .setTicker("Hearty365")
                     .setContentIntent(pendingIntent)
                     .setContentTitle(title)
                     .setContentText(content)
-                    .setStyle(new NotificationCompat.BigPictureStyle()
-                            .bigPicture(bitmap))
-
+                    .setStyle(new NotificationCompat.BigPictureStyle().bigPicture(bitmap))
                     .setContentInfo("info");
             noti.notify(1, notificationBuilder.build());
         } catch (Exception e) {

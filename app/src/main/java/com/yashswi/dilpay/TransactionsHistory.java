@@ -38,7 +38,7 @@ public class TransactionsHistory extends AppCompatActivity {
     ArrayList<String> transactionId = new ArrayList<>();
     ArrayList<String> creditAmount = new ArrayList<>();
     ArrayList<String> debitAmount = new ArrayList<>();
-    ArrayList<String> dateTime = new ArrayList<>();
+    ArrayList<String> date = new ArrayList<>();
     ArrayList<String> message = new ArrayList<>();
     String number;
     RelativeLayout progress;
@@ -100,13 +100,32 @@ public class TransactionsHistory extends AppCompatActivity {
                                     transactionId.add(dataObject.getString("Trid"));
                                     creditAmount.add(dataObject.getString("Credit"));
                                     debitAmount.add(dataObject.getString("Debit"));
-                                    dateTime.add(dataObject.getString("DateTime"));
+
                                     message.add(dataObject.getString("Message"));
+                                    String dateTime=dataObject.getString("DateTime");
+                                    String[] parts = dateTime.split(" ");
+                                    String dateFinal=parts[0];
+                                    String time=parts[1];
+
+                                    String[] timeSeperate=time.split(":");
+                                    int finalTime=Integer.parseInt(timeSeperate[0]);
+                                    if(Integer.parseInt(timeSeperate[0])>12){
+                                        finalTime=finalTime-12;
+                                        time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" PM";
+                                    }
+                                    else if(Integer.parseInt(timeSeperate[0])==0){
+                                        finalTime=12;
+                                        time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" AM";
+                                    }
+                                    else{
+                                        time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" AM";
+                                    }
+                                    date.add(dateFinal+"  "+time);
 
                                 }
                             }
 
-                            TransactionHistoryAdapter adapter = new TransactionHistoryAdapter(transactionId, creditAmount, debitAmount, dateTime, message, TransactionsHistory.this);
+                            TransactionHistoryAdapter adapter = new TransactionHistoryAdapter(transactionId, creditAmount, debitAmount, date, message, TransactionsHistory.this);
                             transactionsList.setAdapter(adapter);
                             LinearLayoutManager manager = new LinearLayoutManager(TransactionsHistory.this, RecyclerView.VERTICAL, false);
                             transactionsList.setLayoutManager(manager);

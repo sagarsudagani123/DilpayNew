@@ -11,5 +11,6 @@
     <color name="progressBGColor">#BA000000</color>
     <color name="cardBG">#1681237C</color>
     <color name="green">#57A504</color>
+    <color name="orange">#DCFF5722</color>
     <color name="darkGray">#615F5F</color>
 </resources>

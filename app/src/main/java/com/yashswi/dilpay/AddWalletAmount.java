@@ -6,6 +6,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
@@ -51,6 +52,8 @@ public class AddWalletAmount extends AppCompatActivity {
                 addAmount=amountEdit.getText().toString();
             if (!addAmount.equalsIgnoreCase("")){
                 progress.setVisibility(View.VISIBLE);
+                getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 generateToken(addAmount);
             }else{
                 Toast.makeText(AddWalletAmount.this,"Enter valid amount",Toast.LENGTH_SHORT).show();
@@ -109,6 +112,9 @@ public class AddWalletAmount extends AppCompatActivity {
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
+                        Toast.makeText(AddWalletAmount.this,e.toString(),Toast.LENGTH_SHORT).show();
+                        progress.setVisibility(View.GONE);
+                        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                     }
                 }
             }
@@ -122,7 +128,7 @@ public class AddWalletAmount extends AppCompatActivity {
                     message = "Something went wrong! try again";
                 }
                 finish();
-                Toast.makeText(AddWalletAmount.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(AddWalletAmount.this, message + ""+t.toString(), Toast.LENGTH_SHORT).show();
             }
         });
     }
