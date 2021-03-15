@@ -34,7 +34,9 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -276,8 +278,15 @@ public class Mobile extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.e("RechargeTest",dataObj.toString());
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(20, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
@@ -303,14 +312,14 @@ public class Mobile extends AppCompatActivity {
                             Intent i = new Intent(Mobile.this, Mobile_recharge_successfull.class);
                             i.putExtra("status", rechargeStatus);
                             i.putExtra("txid", txid);
-                          i.putExtra("opid",obj.getString("opid"));
+                            i.putExtra("opid",obj.getString("opid"));
                             i.putExtra("number", rechargeNumber);
                             i.putExtra("amount", amount);
                             i.putExtra("orderid", orderid);
                             startActivity(i);
                             finish();
                         }else {
-                            Toast.makeText(Mobile.this, "Enter valid details!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Mobile.this, "Enter valid details!"+response.body(), Toast.LENGTH_SHORT).show();
                         }
                     }else{
                         Toast.makeText(Mobile.this, obj.getString("Data"), Toast.LENGTH_SHORT).show();

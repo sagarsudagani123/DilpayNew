@@ -31,7 +31,9 @@ import org.json.JSONObject;
 import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -246,9 +248,15 @@ public class Available_buses extends AppCompatActivity {
 
     //GETTING AVAILABLE BUSES DATA
     private void getAvailableBusses() {
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(create())
+                .client(httpClient.build())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
         Call<String> call = api.available_buses(source_id, destination_id, journey_date);

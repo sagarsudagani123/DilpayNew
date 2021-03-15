@@ -25,7 +25,9 @@ import org.json.JSONObject;
 import java.net.UnknownHostException;
 import java.sql.Timestamp;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -103,8 +105,14 @@ public class WithdrawAmount extends AppCompatActivity {
             e.printStackTrace();
         }
         Log.e("amountCheck",jsonObject.toString());
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
@@ -167,8 +175,14 @@ public class WithdrawAmount extends AppCompatActivity {
         }
 
         Log.e("dataObj",dataObj.toString());
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
@@ -211,8 +225,14 @@ public class WithdrawAmount extends AppCompatActivity {
 
     private void initiateWithdraw(String tokenFinal, String beneficiaryID, String amount, String transfer_id) {
 //        progress.setVisibility(View.VISIBLE);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(cashFree.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         cashFree api = retrofit.create(cashFree.class);
@@ -297,9 +317,14 @@ public class WithdrawAmount extends AppCompatActivity {
 
         Log.e("transferAmt==update>>>", dummyData.toString());
 //        Toast.makeText(WithdrawAmount.this,data,Toast.LENGTH_SHORT).show();
-
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);

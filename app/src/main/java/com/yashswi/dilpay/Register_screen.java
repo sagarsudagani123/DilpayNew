@@ -34,9 +34,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -123,8 +125,14 @@ public class Register_screen extends AppCompatActivity {
 
     private void verifyOTP(String data) {
         progress_layout.setVisibility(View.VISIBLE);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
@@ -180,8 +188,14 @@ public class Register_screen extends AppCompatActivity {
 
     private void sendOtp(String number) {
         progress_layout.setVisibility(View.VISIBLE);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);

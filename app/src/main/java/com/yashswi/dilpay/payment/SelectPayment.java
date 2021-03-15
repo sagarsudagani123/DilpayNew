@@ -44,7 +44,7 @@ public class SelectPayment extends AppCompatActivity {
     AppCompatButton cardSubmit;
     TextInputEditText card_number, holder_name, card_month, card_year, cvv;
     String token, orderID, amount, name, number, cardNum, holderName, cardMonth, cardYear, cardCvv;
-    String FromPage, RefCode = "";
+    String FromPage, RefCode = "",paymentMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,7 @@ public class SelectPayment extends AppCompatActivity {
                 if (cardNum.length() < 16 || cardCvv.length() < 3 || cardNum.equalsIgnoreCase("") || holderName.equalsIgnoreCase("") || cardMonth.equalsIgnoreCase("") || cardYear.equalsIgnoreCase("") || cardCvv.equalsIgnoreCase("")) {
                     Toast.makeText(SelectPayment.this, "Invalid card details", Toast.LENGTH_SHORT).show();
                 } else {
+                    paymentMode="CARD";
                     payment(token, orderID, amount, name, number, "card");
                 }
             }
@@ -89,6 +90,7 @@ public class SelectPayment extends AppCompatActivity {
         upi_card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                paymentMode="UPI";
                 payment(token, orderID, amount, name, number, "upi");
             }
         });
@@ -128,23 +130,24 @@ public class SelectPayment extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        Log.d("paymentcheck", "ReqCode : " + CFPaymentService.REQ_CODE);
+//        Toast.makeText(SelectPayment.this,data.toString(),Toast.LENGTH_SHORT).show();
+        Log.e("paymentcheck", "ReqCode : " + CFPaymentService.REQ_CODE);
         if (data != null) {
             Bundle bundle = data.getExtras();
             if (bundle != null) {
                 for (String key : bundle.keySet()) {
                     if (bundle.getString(key) != null) {
-                        Log.d("paymentcheck", key + " : " + bundle.getString(key));
+                        Log.e("paymentcheck", key + " : " + bundle.getString(key));
 //
                     }
                 }
                 String status = bundle.getString("txStatus");
-                String paymentMode = bundle.getString("paymentMode");
+//                String paymentMode = bundle.getString("paymentMode");
                 String orderId = bundle.getString("orderId");
                 String txTime = bundle.getString("txTime");
                 String referenceId = bundle.getString("referenceId");
                 String txMsg = bundle.getString("txMsg");
-                String signature = bundle.getString("signature");
+//                String signature = bundle.getString("signature");
                 String orderAmount = bundle.getString("orderAmount");
                 if (status.equalsIgnoreCase("success")) {
                     Intent intent = new Intent(SelectPayment.this, paymentStart.class);
@@ -152,13 +155,13 @@ public class SelectPayment extends AppCompatActivity {
                     intent.putExtra("status", status);
                     intent.putExtra("paymentMode", paymentMode);
                     intent.putExtra("orderId", orderId);
-                    intent.putExtra("txTime", txTime);
+//                    intent.putExtra("txTime", txTime);
                     intent.putExtra("referenceId", referenceId);
                     intent.putExtra("txMsg", txMsg);
-                    intent.putExtra("signature", signature);
+//                    intent.putExtra("signature", signature);
                     intent.putExtra("orderAmount", orderAmount);
                     intent.putExtra("RefCode", RefCode);
-//                    Log.e("sendingData",status+""+);
+//                    Log.e("sendingData",);
                     startActivity(intent);
                     finish();
 

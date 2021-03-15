@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,11 +27,14 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static retrofit2.converter.gson.GsonConverterFactory.create;
@@ -37,14 +42,14 @@ import static retrofit2.converter.gson.GsonConverterFactory.create;
 
 public class paymentStart extends AppCompatActivity {
     String status1, paymentMode1, orderId1, txTime1, referenceId1, txMsg1, signature1, orderAmount1;
-    TextView status, paymentMode, orderId, txTime, refId, txMsg, sign, orderAmount;
-    ImageView success, failure, pending,back;
-    LinearLayout detailsLayout;
-    RelativeLayout progress, mainLayout;
+
+    TextView status, paymentMode, orderId, pnrNumber, refId, txMsg, sign, orderAmount,success;
+    ImageView success1, failure,back;
+    ProgressBar ProgressRecharge;
     com.yashswi.dilpay.models.userDetails userDetails;
     String FromPage, RefCode;
     JSONObject finalData;
-
+    MediaPlayer mediaPlayerSuccess,mediaPlayerFailure;
     String jsonData = null;
 
     @Override
@@ -53,32 +58,41 @@ public class paymentStart extends AppCompatActivity {
         setContentView(R.layout.activity_payment_start);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
-        status = findViewById(R.id.txStatus1);
-        paymentMode = findViewById(R.id.paymentMode1);
-        orderId = findViewById(R.id.orderId1);
-        txTime = findViewById(R.id.txTime1);
-        refId = findViewById(R.id.refId1);
-        txMsg = findViewById(R.id.txMessage);
+        status = findViewById(R.id.statusSub);
+        paymentMode = findViewById(R.id.paymentmode1);
+        orderId = findViewById(R.id.order1);
+        pnrNumber = findViewById(R.id.pnrNumber);
+        refId = findViewById(R.id.refrenceID);
+        txMsg = findViewById(R.id.success);
 //        sign=findViewById(R.id.status);
-        orderAmount = findViewById(R.id.orderAmount1);
-        success = findViewById(R.id.success1);
+        orderAmount = findViewById(R.id.amount1);
+        success1 = findViewById(R.id.success1);
         failure = findViewById(R.id.failure);
-        pending = findViewById(R.id.pending);
         back=findViewById(R.id.back);
-        detailsLayout = findViewById(R.id.detailsLayout);
-        progress = findViewById(R.id.progress);
-        mainLayout = findViewById(R.id.mainLayout);
+        ProgressRecharge = findViewById(R.id.ProgressRecharge);
+        mediaPlayerSuccess=MediaPlayer.create(this,R.raw.success_tone1);
+        mediaPlayerFailure=MediaPlayer.create(this,R.raw.success_tone);
 
         status1 = getIntent().getStringExtra("status");
         paymentMode1 = getIntent().getStringExtra("paymentMode");
         orderId1 = getIntent().getStringExtra("orderId");
-        txTime1 = getIntent().getStringExtra("txTime");
+//        txTime1 = getIntent().getStringExtra("txTime");
         referenceId1 = getIntent().getStringExtra("referenceId");
         txMsg1 = getIntent().getStringExtra("txMsg");
-        signature1 = getIntent().getStringExtra("signature");
+//        signature1 = getIntent().getStringExtra("signature");
         orderAmount1 = getIntent().getStringExtra("orderAmount");
         FromPage = getIntent().getStringExtra("FromPage");
         RefCode = getIntent().getStringExtra("RefCode");
+        Log.e("confirmTest",status1);
+        Log.e("confirmTest",paymentMode1);
+        Log.e("confirmTest",orderId1);
+//        Log.e("confirmTest",txTime1);
+        Log.e("confirmTest",referenceId1);
+        Log.e("confirmTest",txMsg1);
+//        Log.e("confirmTest",signature1);
+        Log.e("confirmTest",orderAmount1);
+        Log.e("confirmTest",FromPage);
+//        Log.e("confirmTest",RefCode);
 
         finalData = new JSONObject();
 
@@ -138,7 +152,7 @@ public class paymentStart extends AppCompatActivity {
                     finalData.put("Amount", orderAmount1);
                     finalData.put("OrderID", orderId1);
                     finalData.put("RefID", referenceId1);
-                    finalData.put("TxTime", txTime1);
+//                    finalData.put("TxTime", txTime1);
                     finalData.put("Message", txMsg1);
                     finalData.put("Signature", signature1);
                     updateWalletAmount(finalData.toString());
@@ -176,8 +190,14 @@ public class paymentStart extends AppCompatActivity {
 
     private void updateWalletAmount(String data) {
         Log.e("WalletAmount",data);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
@@ -206,14 +226,23 @@ public class paymentStart extends AppCompatActivity {
                 }
                 finish();
                 Toast.makeText(paymentStart.this, message + t.toString(), Toast.LENGTH_SHORT).show();
-                progress.setVisibility(View.GONE);
+//                progress.setVisibility(View.GONE);
             }
         });
     }
 
     private void confirmTicket(String finalData) {
+
+        Log.e("confirmTest",finalData);
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(2, TimeUnit.MINUTES)
+                .readTimeout(90, TimeUnit.SECONDS)
+                .writeTimeout(90, TimeUnit.SECONDS);
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(ScalarsConverterFactory.create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
@@ -222,49 +251,32 @@ public class paymentStart extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                mainLayout.setVisibility(View.VISIBLE);
-                Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_LONG).show();
-                progress.setVisibility(View.GONE);
-//                Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_SHORT).show();
-                Log.e("confirmTest", response.body());
-                JSONObject dataObj = new JSONObject();
-                try {
-                    if (dataObj.getString("Status").equalsIgnoreCase("SUCCESS")) {
-                        success.setVisibility(View.VISIBLE);
-                        failure.setVisibility(View.GONE);
-                        pending.setVisibility(View.GONE);
-
-
-                        detailsLayout.setVisibility(View.VISIBLE);
-
-                        status.setText(status1);
-                        paymentMode.setText(paymentMode1);
-                        orderAmount.setText(orderAmount1);
-                        orderId.setText(orderId1);
-                        txTime.setText(txTime1);
-                        txMsg.setText(txMsg1);
-                        refId.setText(referenceId1);
-                    } else if (dataObj.getString("Status").equalsIgnoreCase("CANCELLED")) {
-                        success.setVisibility(View.GONE);
-                        pending.setVisibility(View.GONE);
-                        failure.setVisibility(View.VISIBLE);
-
-                        detailsLayout.setVisibility(View.GONE);
-
-                        status.setText("Cancelled");
-                        txMsg.setText(dataObj.getString("Message"));
-                    } else {
-//                        else if(dataObj.getString("Status").equalsIgnoreCase("PENDING"))
-                        success.setVisibility(View.GONE);
-                        pending.setVisibility(View.VISIBLE);
-                        failure.setVisibility(View.GONE);
-                        detailsLayout.setVisibility(View.GONE);
-                        status.setText("Penddding");
-                        txMsg.setText(dataObj.getString("Message"));
+                if(response.body()!=null){
+                    try {
+                        JSONObject dataObj=new JSONObject(response.body());
+                        if(dataObj.getString("Status").equalsIgnoreCase("SUCCESS")){
+                            ProgressRecharge.setVisibility(View.GONE);
+                            success1.setVisibility(View.VISIBLE);
+                            txMsg.setText(dataObj.getString("Message"));
+                            paymentMode.setText(paymentMode1);
+                            pnrNumber.setText(dataObj.getString("PNR"));
+                            orderAmount.setText(orderAmount1);
+                            orderId.setText(orderId1);
+                            refId.setText(referenceId1);
+                            status.setText(dataObj.getString("Status"));
+                            mediaPlayerSuccess.start();
+                        }
+                        else{
+                            txMsg.setText(dataObj.getString("Message"));
+                            failure.setVisibility(View.VISIBLE);
+                            mediaPlayerFailure.start();
+//                            finish();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(paymentStart.this, "Failed", Toast.LENGTH_SHORT).show();
+                        finish();
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                    Toast.makeText(paymentStart.this, e.toString(), Toast.LENGTH_LONG).show();
                 }
 
             }
@@ -275,11 +287,11 @@ public class paymentStart extends AppCompatActivity {
                 if (t instanceof UnknownHostException) {
                     message = "No internet connection";
                 } else {
-                    message = "Something went wrong! Please try again";
+                    message = "Something went wrong! try again ";
 
                 }
                 Toast.makeText(paymentStart.this, message + t.toString(), Toast.LENGTH_SHORT).show();
-                progress.setVisibility(View.GONE);
+                finish();
             }
         });
     }
@@ -296,7 +308,7 @@ public class paymentStart extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                progress.setVisibility(View.GONE);
+//                progress.setVisibility(View.GONE);
                 String message = "";
                 try {
 //                    Toast.makeText(paymentStart.this, response.body(), Toast.LENGTH_SHORT).show();
@@ -322,7 +334,7 @@ public class paymentStart extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<String> call, Throwable t) {
-                progress.setVisibility(View.GONE);
+//                progress.setVisibility(View.GONE);
                 Toast.makeText(paymentStart.this, t.toString(), Toast.LENGTH_SHORT).show();
             }
         });

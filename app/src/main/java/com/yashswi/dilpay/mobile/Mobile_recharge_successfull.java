@@ -3,6 +3,7 @@ package com.yashswi.dilpay.mobile;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,7 +23,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.UnknownHostException;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -37,6 +40,7 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
     String status1, number1, amount1, order1, opid;
     LinearLayout details,opidLayout;
     String transaction1;
+    MediaPlayer mediaPlayerSuccess,mediaPlayerFailure;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,6 +67,8 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
         amount1 = (String) this.getIntent().getSerializableExtra("amount");
         order1 = (String) this.getIntent().getSerializableExtra("orderid");
         opid = this.getIntent().getStringExtra("opid");
+        mediaPlayerSuccess=MediaPlayer.create(this,R.raw.success_tone1);
+        mediaPlayerFailure=MediaPlayer.create(this,R.raw.success_tone);
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +87,7 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
             number.setText(String.valueOf(""));
             amount.setText("");
             order.setText("");
+            mediaPlayerFailure.start();
 //            opid.setText(String.valueOf(opID));
         } else if (status1.equalsIgnoreCase("Pending")) {
             progressRecharge.setVisibility(View.VISIBLE);
@@ -104,14 +111,21 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
             number.setText(String.valueOf(number1));
             amount.setText(amount1);
             order.setText(order1);
+            mediaPlayerSuccess.start();
         }
 
 
     }
 
     private void getStatusUpdate(String username, String order1) {
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
@@ -133,16 +147,20 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
                     if(dataObj.getString("status").equalsIgnoreCase("Success")){
                         statusSub.setText("Recharge Success");
                         status.setText("Success");
+                        statusSub.setTextColor(getResources().getColor(R.color.green));
                         progressRecharge.setVisibility(View.GONE);
                         success.setVisibility(View.VISIBLE);
                         opidLayout.setVisibility(View.VISIBLE);
                         opid1.setText(opid);
+                        mediaPlayerSuccess.start();
                     }
                     else if(dataObj.getString("status").equalsIgnoreCase("Failure")){
                         statusSub.setText("Recharge Failed");
+                        statusSub.setTextColor(getResources().getColor(R.color.error));
                         status.setText("Failed");
                         progressRecharge.setVisibility(View.GONE);
                         failure.setVisibility(View.VISIBLE);
+                        mediaPlayerFailure.start();
                     }
                     else{
                         getStatusUpdate(new userDetails(Mobile_recharge_successfull.this).getNumber(),order1);

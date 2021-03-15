@@ -26,7 +26,9 @@ import org.json.JSONObject;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -84,8 +86,14 @@ RecyclerView recharge_recyclerview;
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
+                .client(httpClient.build())
                 .addConverterFactory(create())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
@@ -126,6 +134,9 @@ RecyclerView recharge_recyclerview;
                                     else if(Integer.parseInt(timeSeperate[0])==0){
                                         finalTime=12;
                                         time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" AM";
+                                    }
+                                    else if(Integer.parseInt(timeSeperate[0])==12){
+                                        time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" PM";
                                     }
                                     else{
                                         time=finalTime+":"+timeSeperate[1]+":"+timeSeperate[2]+" AM";
