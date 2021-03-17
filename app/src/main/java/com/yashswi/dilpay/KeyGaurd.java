@@ -23,9 +23,8 @@ public class KeyGaurd extends AppCompatActivity {
         progress=findViewById(R.id.progress_layout);
         authenticateApp();
     }
-    //method to authenticate app
+
     private void authenticateApp() {
-        //Get the instance of KeyGuardManager
         KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
 
         //Check if the device version is greater than or equal to Lollipop(21)
@@ -50,6 +49,11 @@ public class KeyGaurd extends AppCompatActivity {
                 }
             }
         }
+        else{
+            Intent intent= new Intent(KeyGaurd.this, Home_screen.class);
+            startActivity(intent);
+            finish();
+        }
     }
 
     @Override
@@ -63,39 +67,35 @@ public class KeyGaurd extends AppCompatActivity {
                     Intent intent= new Intent(KeyGaurd.this, Home_screen.class);
                     startActivity(intent);
                     finish();
-                } else {
+                }
+                else
+                 {
                     progress.setVisibility(View.GONE);
                     Toast.makeText(this, getResources().getString(R.string.unlock_failed), Toast.LENGTH_SHORT).show();
                     finish();
-                    //If screen lock authentication is failed update text
-                    // textView.setText(getResources().getString(R.string.unlock_failed));
                 }
                 break;
             case SECURITY_SETTING_REQUEST_CODE:
-                //When user is enabled Security settings then we don't get any kind of RESULT_OK
-                //So we need to check whether device has enabled screen lock or not
                 if (isDeviceSecure()) {
-                    //If screen lock enabled show toast and start intent to authenticate user
                     Toast.makeText(this, getResources().getString(R.string.device_is_secure), Toast.LENGTH_SHORT).show();
                     authenticateApp();
                 } else {
-                    //If screen lock is not enabled just update text
                     Toast.makeText(this, getResources().getString(R.string.security_device_cancelled), Toast.LENGTH_SHORT).show();
-                    //textView.setText(getResources().getString(R.string.security_device_cancelled));
                 }
                 break;
         }
     }
-    /**
-     * method to return whether device has screen lock enabled or not
-     **/
+
     private boolean isDeviceSecure() {
         KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
 
         //this method only work whose api level is greater than or equal to Jelly_Bean (16)
         return Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN && keyguardManager.isKeyguardSecure();
+    }
 
-        //You can also use keyguardManager.isDeviceSecure(); but it requires API Level 23
-
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

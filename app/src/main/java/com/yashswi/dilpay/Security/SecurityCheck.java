@@ -8,6 +8,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,32 +24,37 @@ public class SecurityCheck extends AppCompatActivity {
     TextInputEditText userEnteredNumber;
     TextView dateOfBirth;
     AppCompatButton submit;
-    boolean dateChecked=false;
-    String userEnteredDOB="";
+    boolean dateChecked = false;
+    String userEnteredDOB = "";
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_security_check);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-        userEnteredNumber=findViewById(R.id.number);
-        dateOfBirth=findViewById(R.id.dob);
-        submit=findViewById(R.id.submit);
-
+        back = findViewById(R.id.back);
+        userEnteredNumber = findViewById(R.id.number);
+        dateOfBirth = findViewById(R.id.dob);
+        submit = findViewById(R.id.submit);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userEntered=userEnteredNumber.getText().toString();
-                if(!(userEnteredNumber.length()<10)){
-                    if(Validations.numberValidate(userEntered)){
-                        validateDetails(userEntered,userEnteredDOB);
+                String userEntered = userEnteredNumber.getText().toString();
+                if (!(userEnteredNumber.length() < 10)) {
+                    if (Validations.numberValidate(userEntered)) {
+                        validateDetails(userEntered, userEnteredDOB);
+                    } else {
+                        Toast.makeText(SecurityCheck.this, "Enter valid mobile number", Toast.LENGTH_SHORT).show();
                     }
-                    else{
-                        Toast.makeText(SecurityCheck.this,"Enter valid mobile number",Toast.LENGTH_SHORT).show();
-                    }
-                }else{
-                    Toast.makeText(SecurityCheck.this,"Enter valid mobile number",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(SecurityCheck.this, "Enter valid mobile number", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -89,16 +95,15 @@ public class SecurityCheck extends AppCompatActivity {
     }
 
     private void validateDetails(String userEntered, String userEnteredDOB) {
-        userDetails userDetails=new userDetails(SecurityCheck.this);
-        String userNumber=userDetails.getNumber();
-        String userDOB=userDetails.getDOB();
-        if(userNumber.equalsIgnoreCase(userEntered) && userDOB.equalsIgnoreCase(userEnteredDOB)){
-            Intent intent=new Intent(SecurityCheck.this,GeneratePin.class);
+        userDetails userDetails = new userDetails(SecurityCheck.this);
+        String userNumber = userDetails.getNumber();
+        String userDOB = userDetails.getDOB();
+        if (userNumber.equalsIgnoreCase(userEntered) && userDOB.equalsIgnoreCase(userEnteredDOB)) {
+            Intent intent = new Intent(SecurityCheck.this, GeneratePin.class);
             startActivity(intent);
             finish();
-        }
-        else{
-            Toast.makeText(SecurityCheck.this,"invalid details",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(SecurityCheck.this, "invalid details", Toast.LENGTH_SHORT).show();
         }
 
     }

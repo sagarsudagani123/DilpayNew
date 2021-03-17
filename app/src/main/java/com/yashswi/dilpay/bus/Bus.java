@@ -170,7 +170,7 @@ public class Bus extends AppCompatActivity {
         itemImg.add(R.drawable.my_bookings_new);
         itemImg.add(R.drawable.offers_new);
         itemName.add("My Bookings");//
-        itemName.add("Offers");
+        itemName.add("No Offers Available");
 
         //ITEMS ADAPTER
         items_list_adapter adapter = new items_list_adapter(itemImg, itemName, "Bus", this);
@@ -230,9 +230,7 @@ public class Bus extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-//        Intent intent=new Intent(Bus.this, Home_screen.class);
-//        startActivity(intent);
-//        finish();
+        finish();
     }
 }
 

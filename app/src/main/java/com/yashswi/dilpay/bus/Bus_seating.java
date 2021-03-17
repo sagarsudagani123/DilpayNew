@@ -309,16 +309,8 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                                             isSelected.add(false);
                                             seatNumber.add(seatNum);
                                             counterLower = m;
-                                            if (isaval) {
-                                                isAvailable.add(true);
-                                            } else {
-                                                isAvailable.add(false);
-                                            }
-                                            if (idLads) {
-                                                isLadies.add(true);
-                                            } else {
-                                                isLadies.add(false);
-                                            }
+                                            isAvailable.add(isaval);
+                                            isLadies.add(idLads);
                                             if (length.equalsIgnoreCase("1") && width.equalsIgnoreCase("1")) {
                                                 //seater
                                                 seatType.add("seater");
@@ -358,16 +350,8 @@ public class Bus_seating extends AppCompatActivity implements seatSelection {
                                         zindexisSelected.add(false);
                                         zindexseatNumber.add(seatNum);
                                         counterUpper = m;
-                                        if (isaval) {
-                                            zindexIsAvailable.add(true);
-                                        } else {
-                                            zindexIsAvailable.add(false);
-                                        }
-                                        if (idLads) {
-                                            zindexIsLadies.add(true);
-                                        } else {
-                                            zindexIsLadies.add(false);
-                                        }
+                                        zindexIsAvailable.add(isaval);
+                                        zindexIsLadies.add(idLads);
                                         //seater
                                         if (length.equalsIgnoreCase("1") && width.equalsIgnoreCase("1")) {
                                             zindexSeatType.add("seater");

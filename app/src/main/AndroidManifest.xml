@@ -32,10 +32,12 @@
         android:usesCleartextTraffic="true"
         tools:node="merge"
         tools:targetApi="m">
+        <meta-data android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/gradientEnd" />
         <activity android:name=".Security.GeneratePin"></activity>
-        <activity android:name=".Security.SecurityPin" />
+        <activity android:name=".Security.SecurityPin"/>
         <activity android:name=".Security.SecurityCheck" />
-        <activity android:name=".KeyGaurd" />
+        <activity android:name=".KeyGaurd" android:exported="false" />
         <activity android:name=".Recharge_history" />
         <activity android:name=".AddWalletAmount" />
         <activity android:name=".ConvertRewards" />
@@ -54,7 +56,7 @@
         <activity android:name=".Upgrade_membership" /> <!-- <meta-data android:name="com.google.android.gms.version" -->
         <!-- android:value="@integer/google_play_services_version" /> -->
         <activity android:name=".bus.My_bookings" />
-        <activity android:name=".payment.SelectPayment" />
+        <activity android:name=".payment.SelectPayment" android:exported="false" />
         <activity android:name=".MyWallet" />
         <activity android:name=".bus.Booking_details" />
         <activity android:name=".Gas_booking_successfull" />
@@ -75,15 +77,15 @@
         <activity android:name=".About_us" />
         <activity android:name=".Support_screen" />
         <activity android:name=".bank.Add_account_details" />
-        <activity android:name=".Profile" />
+        <activity android:name=".Profile" android:exported="false"/>
         <activity android:name=".bus.Available_buses" />
         <activity android:name=".mobile.Mobile" />
         <activity android:name=".bus.Bus" />
         <activity android:name=".More" />
         <activity android:name=".Home_screen" />
-        <activity android:name=".Register_screen" />
+        <activity android:name=".Register_screen" android:exported="false"/>
         <activity android:name=".Welcome_screen" />
-        <activity android:name=".Login_screen" />
+        <activity android:name=".Login_screen" android:exported="false"/>
         <activity android:name=".payment.paymentStart" />
         <activity android:name=".Splash_screen">
             <intent-filter>
@@ -93,7 +95,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Broadcast.SmsReceiver">
+        <receiver android:name=".Broadcast.SmsReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>

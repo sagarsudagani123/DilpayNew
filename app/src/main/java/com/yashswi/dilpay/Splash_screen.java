@@ -35,13 +35,15 @@ public class Splash_screen extends AppCompatActivity {
             if (userDetails.getLoged()) {
                 intent = new Intent(Splash_screen.this, KeyGaurd.class);
                 startActivity(intent);
+                finish();
 //                authenticateApp();
             } else {
                 intent = new Intent(Splash_screen.this, Welcome_screen.class);
                 startActivity(intent);
+                finish();
             }
 
-            finish();
+
         }, 2000);
     }
     //method to authenticate app

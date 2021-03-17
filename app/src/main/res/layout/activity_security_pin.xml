@@ -34,132 +34,162 @@
             android:textStyle="bold" />
     </RelativeLayout>
 
-    <com.goodiebag.pinview.Pinview
-        android:id="@+id/pin"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/re1"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="15dp"
-        app:inputType="number"
-        app:pinLength="6"
-        app:pinWidth="30dp" />
+        android:layout_centerInParent="true"
+        android:layout_margin="8dp"
+        android:padding="15dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="20dp">
 
-    <TextView
-        android:id="@+id/generate_pin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/pin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="15dp"
-        android:padding="10dp"
-        android:text="Generate Pin"
-        android:textColor="@color/textColor"
-        android:textSize="16sp"
-        android:textStyle="normal" />
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/errorMessage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/generate_pin"
-        android:layout_centerHorizontal="true"
-        android:text=""
-        android:textColor="@color/error"
-        android:textSize="14sp" />
+            <TextView
+                android:id="@+id/title1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/righteous_regular"
+                android:padding="10dp"
+                android:text="Enter your security pin"
+                android:textColor="@color/gradientEnd"
+                android:textStyle="bold" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/errorMessage"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/otpOne"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/edit_background_inactive"
-            android:gravity="center"
-            android:inputType="numberPassword"
-            android:text=""
-            android:textSize="20sp"
-            android:maxLength="1"
-            android:nextFocusRight="@+id/otpTwo"
-            android:textStyle="bold" />
+            <com.alimuzaffar.lib.pin.PinEntryEditText
+                android:id="@+id/pin"
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_below="@+id/title1"
+                android:cursorVisible="false"
+                android:digits="1234567890"
+                android:inputType="numberPassword"
+                android:maxLength="6"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:textStyle="bold"
+                app:pinCharacterMask="*"
+                android:focusable="true"
+                app:pinLineColors="@color/gradientEnd" />
 
-        <EditText
-            android:id="@+id/otpTwo"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/edit_background_inactive"
-            android:gravity="center"
-            android:text=""
-            android:inputType="numberPassword"
-            android:textSize="20sp"
-            android:maxLength="1"
-            android:nextFocusRight="@+id/otpThree"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/generate_pin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/pin"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"
+                android:padding="10dp"
+                android:text="Generate Pin"
+                android:textColor="@color/textColor"
+                android:textSize="16sp"
+                android:textStyle="normal" />
 
-        <EditText
-            android:id="@+id/otpThree"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/edit_background_inactive"
-            android:gravity="center"
-            android:inputType="numberPassword"
-            android:text=""
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:nextFocusRight="@+id/otpFour"
-            android:maxLength="1"
-            />
+            <TextView
+                android:id="@+id/errorMessage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/generate_pin"
+                android:layout_centerHorizontal="true"
+                android:text=""
+                android:textColor="@color/error"
+                android:textSize="14sp" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
 
-        <EditText
-            android:id="@+id/otpFour"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/edit_background_inactive"
-            android:gravity="center"
-            android:text=""
-            android:inputType="numberPassword"
-            android:textSize="20sp"
-            android:maxLength="1"
-            android:nextFocusRight="@+id/otpFive"
-            android:textStyle="bold" />
+    <!--    <LinearLayout-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:layout_below="@+id/errorMessage"-->
+    <!--        android:layout_centerHorizontal="true"-->
+    <!--        android:gravity="center"-->
+    <!--        android:orientation="horizontal">-->
 
-        <EditText
-            android:id="@+id/otpFive"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/edit_background_inactive"
-            android:gravity="center"
-            android:text=""
-            android:inputType="numberPassword"
-            android:textSize="20sp"
-            android:maxLength="1"
-            android:nextFocusRight="@+id/otpSix"
-            android:textStyle="bold" />
+    <!--        <EditText-->
+    <!--            android:id="@+id/otpOne"-->
+    <!--            android:layout_width="40dp"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_marginStart="8dp"-->
+    <!--            android:background="@drawable/edit_background_inactive"-->
+    <!--            android:gravity="center"-->
+    <!--            android:inputType="numberPassword"-->
+    <!--            android:text=""-->
+    <!--            android:textSize="20sp"-->
+    <!--            android:maxLength="1"-->
+    <!--            android:nextFocusRight="@+id/otpTwo"-->
+    <!--            android:textStyle="bold" />-->
 
-        <EditText
-            android:id="@+id/otpSix"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="8dp"
-            android:background="@drawable/edit_background_inactive"
-            android:gravity="center"
-            android:text=""
-            android:inputType="numberPassword"
-            android:maxLength="1"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-    </LinearLayout>
+    <!--        <EditText-->
+    <!--            android:id="@+id/otpTwo"-->
+    <!--            android:layout_width="40dp"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_marginStart="8dp"-->
+    <!--            android:background="@drawable/edit_background_inactive"-->
+    <!--            android:gravity="center"-->
+    <!--            android:text=""-->
+    <!--            android:inputType="numberPassword"-->
+    <!--            android:textSize="20sp"-->
+    <!--            android:maxLength="1"-->
+    <!--            android:nextFocusRight="@+id/otpThree"-->
+    <!--            android:textStyle="bold" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/otpThree"-->
+    <!--            android:layout_width="40dp"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_marginStart="8dp"-->
+    <!--            android:background="@drawable/edit_background_inactive"-->
+    <!--            android:gravity="center"-->
+    <!--            android:inputType="numberPassword"-->
+    <!--            android:text=""-->
+    <!--            android:textSize="20sp"-->
+    <!--            android:textStyle="bold"-->
+    <!--            android:nextFocusRight="@+id/otpFour"-->
+    <!--            android:maxLength="1"-->
+    <!--            />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/otpFour"-->
+    <!--            android:layout_width="40dp"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_marginStart="8dp"-->
+    <!--            android:background="@drawable/edit_background_inactive"-->
+    <!--            android:gravity="center"-->
+    <!--            android:text=""-->
+    <!--            android:inputType="numberPassword"-->
+    <!--            android:textSize="20sp"-->
+    <!--            android:maxLength="1"-->
+    <!--            android:nextFocusRight="@+id/otpFive"-->
+    <!--            android:textStyle="bold" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/otpFive"-->
+    <!--            android:layout_width="40dp"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_marginStart="8dp"-->
+    <!--            android:background="@drawable/edit_background_inactive"-->
+    <!--            android:gravity="center"-->
+    <!--            android:text=""-->
+    <!--            android:inputType="numberPassword"-->
+    <!--            android:textSize="20sp"-->
+    <!--            android:maxLength="1"-->
+    <!--            android:nextFocusRight="@+id/otpSix"-->
+    <!--            android:textStyle="bold" />-->
+
+    <!--        <EditText-->
+    <!--            android:id="@+id/otpSix"-->
+    <!--            android:layout_width="40dp"-->
+    <!--            android:layout_height="60dp"-->
+    <!--            android:layout_marginStart="8dp"-->
+    <!--            android:background="@drawable/edit_background_inactive"-->
+    <!--            android:gravity="center"-->
+    <!--            android:text=""-->
+    <!--            android:inputType="numberPassword"-->
+    <!--            android:maxLength="1"-->
+    <!--            android:textSize="20sp"-->
+    <!--            android:textStyle="bold" />-->
+    <!--    </LinearLayout>-->
 
 </RelativeLayout>

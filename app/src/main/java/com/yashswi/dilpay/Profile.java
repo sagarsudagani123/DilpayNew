@@ -153,6 +153,7 @@ public class Profile extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(Profile.this, EditProfile.class);
                 startActivity(intent);
+                finish();
             }
         });
 

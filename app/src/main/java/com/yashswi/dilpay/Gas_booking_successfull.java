@@ -44,8 +44,8 @@ public class Gas_booking_successfull extends AppCompatActivity {
             failure.setVisibility(View.VISIBLE);
             status.setText(status1);
             details.setVisibility(View.GONE);
-            transaction_id.setText(String.valueOf(""));
-            number.setText(String.valueOf(""));
+            transaction_id.setText("");
+            number.setText("");
             amount.setText("");
             order.setText("");
 //            opid.setText(String.valueOf(opID));

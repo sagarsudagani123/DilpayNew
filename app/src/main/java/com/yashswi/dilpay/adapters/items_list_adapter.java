@@ -63,37 +63,41 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                         Intent i = new Intent(context, Bus.class);
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("Mobile")) {
-
                         Intent i = new Intent(context, SecurityPin.class);
                         i.putExtra("category","Mobile");
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("dth")) {
-                        Intent i = new Intent(context, Dth_screen.class);
+                        Intent i = new Intent(context, SecurityPin.class);
+                        i.putExtra("category","dth");
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("datacard")) {
-                        Intent i = new Intent(context, Datacard_screen.class);
+                        Intent i = new Intent(context, SecurityPin.class);
+                        i.putExtra("category","datacard");
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("postpaid")) {
-                        Intent i = new Intent(context, Postpaid_screen.class);
+                        Intent i = new Intent(context, SecurityPin.class);
+                        i.putExtra("category","postpaid");
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("electricity")) {
-                        Intent i = new Intent(context, Electricity_screen.class);
+                        Intent i = new Intent(context, SecurityPin.class);
+                        i.putExtra("category","electricity");
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("gas")) {
-                        Intent i = new Intent(context, Gas_screen.class);
+                        Intent i = new Intent(context, SecurityPin.class);
+                        i.putExtra("category","gas");
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("Money Transfer")) {
-                        Intent intent = new Intent(context, BankAccounts.class);
-                        intent.putExtra("title", "Select Bank");
-                        context.startActivity(intent);
+                        Intent i = new Intent(context, SecurityPin.class);
+                        i.putExtra("category","Money Transfer");
+                        i.putExtra("title", "Select Bank");
+                        context.startActivity(i);
                     }
                 }
                 if (fromCategory.equalsIgnoreCase("Bus")) {
                     if (name_value.equalsIgnoreCase("My Bookings")) {
                         Intent i = new Intent(context, My_bookings.class);
                         context.startActivity(i);
-//                        Toast.makeText(context,name_value,Toast.LENGTH_SHORT).show();
-                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                    } else if (name_value.equalsIgnoreCase("No Offers Available")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -102,7 +106,7 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                         Intent intent=new Intent(context, Recharge_history.class);
                         intent.putExtra("Service","Mobile");
                         context.startActivity(intent);
-                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                    } else if (name_value.equalsIgnoreCase("No Offers Available")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -111,7 +115,7 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                         Intent intent=new Intent(context, Recharge_history.class);
                         intent.putExtra("Service","DTH");
                         context.startActivity(intent);
-                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                    } else if (name_value.equalsIgnoreCase("No Offers Available")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -120,7 +124,7 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                         Intent intent=new Intent(context, Recharge_history.class);
                         intent.putExtra("Service","Data Card");
                         context.startActivity(intent);
-                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                    } else if (name_value.equalsIgnoreCase("No Offers Available")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -129,7 +133,7 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                             Intent intent=new Intent(context, Recharge_history.class);
                             intent.putExtra("Service","PostPaid");
                             context.startActivity(intent);
-                        }else if (name_value.equalsIgnoreCase("Offers")) {
+                        }else if (name_value.equalsIgnoreCase("No Offers Available")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -138,7 +142,7 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                         Intent intent=new Intent(context, Recharge_history.class);
                         intent.putExtra("Service","Electricity");
                         context.startActivity(intent);
-                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                    } else if (name_value.equalsIgnoreCase("No Offers Available")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -147,7 +151,7 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                         Intent intent=new Intent(context, Recharge_history.class);
                         intent.putExtra("Service","Gas");
                         context.startActivity(intent);
-                    } else if (name_value.equalsIgnoreCase("Offers")) {
+                    } else if (name_value.equalsIgnoreCase("No Offers Available")) {
                         Toast.makeText(context, name_value, Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -130,7 +130,7 @@ public class SelectPayment extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        Toast.makeText(SelectPayment.this,data.toString(),Toast.LENGTH_SHORT).show();
+
         Log.e("paymentcheck", "ReqCode : " + CFPaymentService.REQ_CODE);
         if (data != null) {
             Bundle bundle = data.getExtras();
@@ -138,7 +138,6 @@ public class SelectPayment extends AppCompatActivity {
                 for (String key : bundle.keySet()) {
                     if (bundle.getString(key) != null) {
                         Log.e("paymentcheck", key + " : " + bundle.getString(key));
-//
                     }
                 }
                 String status = bundle.getString("txStatus");

@@ -83,8 +83,8 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
             statusSub.setText("Recharge Failed");
             statusSub.setTextColor(getResources().getColor(R.color.error));
             details.setVisibility(View.GONE);
-            transaction_id.setText(String.valueOf(""));
-            number.setText(String.valueOf(""));
+            transaction_id.setText("");
+            number.setText("");
             amount.setText("");
             order.setText("");
             mediaPlayerFailure.start();

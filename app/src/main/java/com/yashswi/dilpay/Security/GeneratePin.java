@@ -4,16 +4,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-import com.goodiebag.pinview.Pinview;
+import com.alimuzaffar.lib.pin.PinEntryEditText;
+//import com.goodiebag.pinview.Pinview;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.R;
 import com.yashswi.dilpay.bus.busDetailsConfirmation;
+import com.yashswi.dilpay.mobile.Mobile;
 import com.yashswi.dilpay.models.userDetails;
 
 import org.json.JSONException;
@@ -30,45 +34,53 @@ import retrofit2.Retrofit;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class GeneratePin extends AppCompatActivity {
-    Pinview newPin,verifyPin;
-    String pinOne,pinTwo;
+    PinEntryEditText newPin, verifyPin;
+    String pinOne, pinTwo;
     AppCompatButton submit;
+    ImageView back;
     userDetails userDetails;
     RelativeLayout progress;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_generate_pin);
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
-
-        newPin=findViewById(R.id.newPin);
-        verifyPin=findViewById(R.id.verifyPin);
-        submit=findViewById(R.id.submit);
-        userDetails=new userDetails(GeneratePin.this);
-        progress=findViewById(R.id.progress_layout);
-
-        newPin.setPinViewEventListener(new Pinview.PinViewEventListener() {
+        back = findViewById(R.id.back);
+        newPin = findViewById(R.id.newPin);
+        verifyPin = findViewById(R.id.verifyPin);
+        submit = findViewById(R.id.submit);
+        userDetails = new userDetails(GeneratePin.this);
+        progress = findViewById(R.id.progress_layout);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataEntered(Pinview pinview, boolean fromUser) {
-                pinOne=pinview.getValue();
+            public void onClick(View v) {
+                finish();
             }
         });
-        verifyPin.setPinViewEventListener(new Pinview.PinViewEventListener() {
+        newPin.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
             @Override
-            public void onDataEntered(Pinview pinview, boolean fromUser) {
-                pinTwo=pinview.getValue();
+            public void onPinEntered(CharSequence str) {
+                pinOne = str.toString();
+
             }
         });
+        verifyPin.setOnPinEnteredListener(new PinEntryEditText.OnPinEnteredListener() {
+            @Override
+            public void onPinEntered(CharSequence str) {
+                pinTwo = str.toString();
+            }
+        });
+
 
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(pinOne.equalsIgnoreCase(pinTwo)){
+                if (pinOne.equalsIgnoreCase(pinTwo)) {
                     progress.setVisibility(View.VISIBLE);
                     updatePin(pinOne);
-                }
-                else{
-                    Toast.makeText(GeneratePin.this,"Pin Mismatch",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(GeneratePin.this, "Pin Mismatch", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -76,14 +88,14 @@ public class GeneratePin extends AppCompatActivity {
     }
 
     private void updatePin(String pinOne) {
-        JSONObject dataObj=new JSONObject();
+        JSONObject dataObj = new JSONObject();
         try {
-            dataObj.put("username",userDetails.getNumber());
-            dataObj.put("SecurityPin",pinOne);
+            dataObj.put("username", userDetails.getNumber());
+            dataObj.put("SecurityPin", pinOne);
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e("TEstPIN",dataObj.toString());
+        Log.e("TEstPIN", dataObj.toString());
         OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
                 .callTimeout(2, TimeUnit.MINUTES)
                 .connectTimeout(90, TimeUnit.SECONDS)
@@ -102,15 +114,15 @@ public class GeneratePin extends AppCompatActivity {
             public void onResponse(Call<String> call, Response<String> response) {
                 progress.setVisibility(View.GONE);
                 try {
-                    JSONObject dataObj=new JSONObject(response.body());
-                    if(dataObj.getString("Status").equalsIgnoreCase("True")){
+                    JSONObject dataObj = new JSONObject(response.body());
+                    if (dataObj.getString("Status").equalsIgnoreCase("True")) {
                         userDetails.setSPin(pinOne);
                         finish();
                     }
-                    Toast.makeText(GeneratePin.this,dataObj.getString("Message"),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GeneratePin.this, dataObj.getString("Message"), Toast.LENGTH_SHORT).show();
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(GeneratePin.this,e.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(GeneratePin.this, e.toString(), Toast.LENGTH_SHORT).show();
                 }
             }
 

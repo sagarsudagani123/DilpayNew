@@ -30,7 +30,6 @@
                 android:padding="2dp"
                 >
                 <ImageView
-                    android:id="@+id/icon1"
                     android:layout_width="300dp"
                     android:layout_height="300dp"
                     android:layout_centerHorizontal="true"
