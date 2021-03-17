@@ -36,7 +36,7 @@
                     android:layout_width="300dp"
                     android:layout_height="240dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/logo"
+                    android:src="@drawable/dilpay_logo"
                     android:scaleType="centerCrop"
                     android:text="DilPay"
                     android:textColor="#000"

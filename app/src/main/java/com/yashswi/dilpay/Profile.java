@@ -246,7 +246,7 @@ public class Profile extends AppCompatActivity {
                         userDetails.setState(details.getString("fstate"));
                         userDetails.setZip(details.getString("fzip"));
                         userDetails.setCountry(details.getString("fcountry"));
-
+                        userDetails.setDOB(details.getString("DateOfBirth"));
                         userDetails.setWallet(details.getString("Wallet"));
                         userDetails.setComission(details.getString("Comission"));
                         walletAmount = details.getString("Wallet");

@@ -19,7 +19,6 @@
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
             app:cardCornerRadius="10dp"
             android:layout_above="@id/card"
             app:cardElevation="0dp"
@@ -33,11 +32,11 @@
                 <ImageView
                     android:id="@+id/icon1"
                     android:layout_width="300dp"
-                    android:layout_height="240dp"
+                    android:layout_height="300dp"
                     android:layout_centerHorizontal="true"
-                    android:src="@drawable/logo"
+                    android:src="@drawable/dilpay_logo"
                     android:scaleType="centerCrop"
-                     />
+                    />
 
                 <!--                <TextView-->
                 <!--                    android:layout_width="wrap_content"-->
@@ -63,7 +62,7 @@
             android:layout_marginLeft="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="-8dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:padding="8dp"
             app:cardCornerRadius="8dp">
 
@@ -98,7 +97,15 @@
                         android:lines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
-
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/dob"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/date_back"
+                    android:padding="10dp"
+                    android:text="Date Of Birth"
+                    android:textColor="#000" />
                 <com.google.android.material.textfield.TextInputLayout
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"

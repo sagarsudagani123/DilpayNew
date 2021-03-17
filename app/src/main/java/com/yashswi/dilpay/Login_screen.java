@@ -181,6 +181,8 @@ public class Login_screen extends AppCompatActivity {
                             userDetails.setLoged(true);
                             userDetails.setName(details.getString("fname1"));
                             userDetails.setNumber(details.getString("MobileNo"));
+                            userDetails.setDOB(details.getString("DateOfBirth"));
+                            userDetails.setSPin(details.getString("TrPin"));
                             userDetails.setWallet(details.getString("Wallet"));
                             userDetails.setMembership(details.getString("userstatus"));
                             userDetails.setComission(details.getString("Comission"));
@@ -243,7 +245,7 @@ public class Login_screen extends AppCompatActivity {
                 progress_layout.setVisibility(View.GONE);
                 String message;
                 if (t instanceof NetworkError) {
-                    message = "Nointernet connection!";
+                    message = "No internet connection!";
                     Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                 } else {
                     message = "Something went wrong! Please try again after some time!!";

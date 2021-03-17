@@ -132,4 +132,8 @@ public interface Api_interface {
     @POST("RechargeReportCheck.php")
     @FormUrlEncoded
     Call<String> RechargeReportCheck(@Field("data") String data);
+
+    @POST("PinValidation.php")
+    @FormUrlEncoded
+    Call<String> updatePin(@Field("data") String data);
 }

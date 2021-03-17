@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Security.SecurityPin">
+
+    <RelativeLayout
+        android:id="@+id/re1"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@color/gradientEnd">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:padding="7dp"
+            android:src="@drawable/ic_baseline_chevron_left_24" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="25dp"
+            android:fontFamily="@font/righteous_regular"
+            android:text="Security Pin"
+            android:textColor="#fff"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <com.goodiebag.pinview.Pinview
+        android:id="@+id/pin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/re1"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        app:inputType="number"
+        app:pinLength="6"
+        app:pinWidth="30dp" />
+
+    <TextView
+        android:id="@+id/generate_pin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/pin"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="15dp"
+        android:padding="10dp"
+        android:text="Generate Pin"
+        android:textColor="@color/textColor"
+        android:textSize="16sp"
+        android:textStyle="normal" />
+
+    <TextView
+        android:id="@+id/errorMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/generate_pin"
+        android:layout_centerHorizontal="true"
+        android:text=""
+        android:textColor="@color/error"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/errorMessage"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/otpOne"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/edit_background_inactive"
+            android:gravity="center"
+            android:inputType="numberPassword"
+            android:text=""
+            android:textSize="20sp"
+            android:maxLength="1"
+            android:nextFocusRight="@+id/otpTwo"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/otpTwo"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/edit_background_inactive"
+            android:gravity="center"
+            android:text=""
+            android:inputType="numberPassword"
+            android:textSize="20sp"
+            android:maxLength="1"
+            android:nextFocusRight="@+id/otpThree"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/otpThree"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/edit_background_inactive"
+            android:gravity="center"
+            android:inputType="numberPassword"
+            android:text=""
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:nextFocusRight="@+id/otpFour"
+            android:maxLength="1"
+            />
+
+        <EditText
+            android:id="@+id/otpFour"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/edit_background_inactive"
+            android:gravity="center"
+            android:text=""
+            android:inputType="numberPassword"
+            android:textSize="20sp"
+            android:maxLength="1"
+            android:nextFocusRight="@+id/otpFive"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/otpFive"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/edit_background_inactive"
+            android:gravity="center"
+            android:text=""
+            android:inputType="numberPassword"
+            android:textSize="20sp"
+            android:maxLength="1"
+            android:nextFocusRight="@+id/otpSix"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/otpSix"
+            android:layout_width="40dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="8dp"
+            android:background="@drawable/edit_background_inactive"
+            android:gravity="center"
+            android:text=""
+            android:inputType="numberPassword"
+            android:maxLength="1"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</RelativeLayout>

@@ -8,7 +8,7 @@ public class userDetails {
     String name1, number1, wallet1;
     Boolean isLoged;
     Context context;
-    String profilePicKey = "profilePicKey", nameKey = "name", idKey = "ID", cityKey = "CITY", stateKey = "STATE", zipKey = "ZIP", countryKey = "COUNTRY", addressKey = "ADDRESS", numberKey = "number", walletKey = "wallet", logedKey = "isLoged", membershipKey = "membership", comissionKey = "Comission";
+    String profilePicKey = "profilePicKey",SPinKey="SPinKey",dobKey="DOB", nameKey = "name", idKey = "ID", cityKey = "CITY", stateKey = "STATE", zipKey = "ZIP", countryKey = "COUNTRY", addressKey = "ADDRESS", numberKey = "number", walletKey = "wallet", logedKey = "isLoged", membershipKey = "membership", comissionKey = "Comission";
     SharedPreferences sharedPreferences;
     SharedPreferences.Editor editor;
 
@@ -123,6 +123,24 @@ public class userDetails {
 
     public void setProfilePic(String city) {
         editor.putString(profilePicKey, city);
+        editor.commit();
+    }
+
+    public String getDOB() {
+        return sharedPreferences.getString(dobKey, "");
+    }
+
+    public void setDOB(String dob) {
+        editor.putString(dobKey, dob);
+        editor.commit();
+    }
+
+    public String getSPin() {
+        return sharedPreferences.getString(SPinKey, "");
+    }
+
+    public void setSPin(String dob) {
+        editor.putString(SPinKey, dob);
         editor.commit();
     }
 

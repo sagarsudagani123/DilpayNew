@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.yashswi.dilpay.Datacard_screen;
 import com.yashswi.dilpay.Recharge_history;
+import com.yashswi.dilpay.Security.SecurityPin;
 import com.yashswi.dilpay.bank.BankAccounts;
 import com.yashswi.dilpay.bus.My_bookings;
 import com.yashswi.dilpay.gas.Gas_screen;
@@ -62,7 +63,9 @@ public class items_list_adapter extends RecyclerView.Adapter<items_list_adapter.
                         Intent i = new Intent(context, Bus.class);
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("Mobile")) {
-                        Intent i = new Intent(context, Mobile.class);
+
+                        Intent i = new Intent(context, SecurityPin.class);
+                        i.putExtra("category","Mobile");
                         context.startActivity(i);
                     } else if (name_value.equalsIgnoreCase("dth")) {
                         Intent i = new Intent(context, Dth_screen.class);

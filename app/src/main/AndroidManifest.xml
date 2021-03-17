@@ -32,9 +32,12 @@
         android:usesCleartextTraffic="true"
         tools:node="merge"
         tools:targetApi="m">
-        <activity android:name=".KeyGaurd"/>
-        <activity android:name=".Recharge_history"/>
-        <activity android:name=".AddWalletAmount"/>
+        <activity android:name=".Security.GeneratePin"></activity>
+        <activity android:name=".Security.SecurityPin" />
+        <activity android:name=".Security.SecurityCheck" />
+        <activity android:name=".KeyGaurd" />
+        <activity android:name=".Recharge_history" />
+        <activity android:name=".AddWalletAmount" />
         <activity android:name=".ConvertRewards" />
         <activity android:name=".bank.WithdrawAmount" />
         <activity android:name=".TransactionsHistory" />
