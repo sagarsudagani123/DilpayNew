@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -130,6 +131,10 @@ public class SelectPayment extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+//        ComponentName name = data.resolveActivity(getPackageManager());
+//        if (name.getPackageName().equals(name.getPackageName())&&name.getClassName().equals(name.getClassName())){
+//            Toast.makeText(SelectPayment.this, "True Package", Toast.LENGTH_SHORT).show();
+//        }
 
         Log.e("paymentcheck", "ReqCode : " + CFPaymentService.REQ_CODE);
         if (data != null) {
