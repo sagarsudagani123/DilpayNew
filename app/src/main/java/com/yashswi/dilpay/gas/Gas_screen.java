@@ -21,6 +21,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.Mobile_interface;
 import com.yashswi.dilpay.R;
+import com.yashswi.dilpay.Security.SecurityPin;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.bus.Available_buses;
 import com.yashswi.dilpay.dth.Dth_screen;
@@ -228,10 +229,16 @@ public class Gas_screen extends AppCompatActivity {
                 Random rand = new Random();
                 int rand_int1 = rand.nextInt(1000000);
                 int year = Calendar.getInstance().get(Calendar.YEAR);
-                progress.setVisibility(View.VISIBLE);
+                progress.setVisibility(View.GONE);
                 getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                         WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
+//                getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
+                Intent intent =new Intent(Gas_screen.this, SecurityPin.class);
+                intent.putExtra("number",number);
+                intent.putExtra("amount",amount);
+                intent.putExtra("operatorCode",operator_code);
+                intent.putExtra("circleCode",circle_code);
+                startActivity(intent);
             }
         });
         back = findViewById(R.id.back);

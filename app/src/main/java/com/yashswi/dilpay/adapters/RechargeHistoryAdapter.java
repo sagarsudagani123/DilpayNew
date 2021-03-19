@@ -53,6 +53,9 @@ public class RechargeHistoryAdapter extends RecyclerView.Adapter<RechargeHistory
         }else if(message.get(i).equalsIgnoreCase("Failure")){
             holder.message.setTextColor(context.getResources().getColor(R.color.error));
         }
+        else if(message.get(i).equalsIgnoreCase("Proccessing")){
+            holder.message.setTextColor(context.getResources().getColor(R.color.orange));
+        }
     }
 
     @Override

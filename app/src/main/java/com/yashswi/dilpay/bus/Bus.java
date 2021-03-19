@@ -47,7 +47,7 @@ import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
 public class Bus extends AppCompatActivity {
     MaterialTextView date1;
     boolean dateChecked = false;
-    TextView fetch, depart, arrival, error;
+    TextView  depart, arrival, error;
     AppCompatButton search;
     ImageView back;
     String source_id, destination_id, journey_date;
@@ -75,7 +75,6 @@ public class Bus extends AppCompatActivity {
         date1 = findViewById(R.id.date1);
         search = findViewById(R.id.search);
         back = findViewById(R.id.back);
-        fetch = findViewById(R.id.t1);
         from = findViewById(R.id.e_from);
         depart = findViewById(R.id.depart_time);
         arrival = findViewById(R.id.arrival_time);
@@ -170,7 +169,7 @@ public class Bus extends AppCompatActivity {
         itemImg.add(R.drawable.my_bookings_new);
         itemImg.add(R.drawable.offers_new);
         itemName.add("My Bookings");//
-        itemName.add("No Offers Available");
+        itemName.add("Offers");
 
         //ITEMS ADAPTER
         items_list_adapter adapter = new items_list_adapter(itemImg, itemName, "Bus", this);

@@ -22,6 +22,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.Api_interface.Mobile_interface;
 import com.yashswi.dilpay.R;
+import com.yashswi.dilpay.Security.SecurityPin;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.bus.Available_buses;
 import com.yashswi.dilpay.dth.Dth_screen;
@@ -250,8 +251,14 @@ public class Mobile extends AppCompatActivity {
                     else {
                         getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                                 WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
-                        progress.setVisibility(View.VISIBLE);
-                        getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
+                        progress.setVisibility(View.GONE);
+//                        getResponse(number, year + "" + rand_int1, username, password, amount, operator_code, circle_code);
+                        Intent intent =new Intent(Mobile.this, SecurityPin.class);
+                        intent.putExtra("number",number);
+                        intent.putExtra("amount",amount);
+                        intent.putExtra("operatorCode",operator_code);
+                        intent.putExtra("circleCode",circle_code);
+                        startActivity(intent);
                     }
                 }
             }

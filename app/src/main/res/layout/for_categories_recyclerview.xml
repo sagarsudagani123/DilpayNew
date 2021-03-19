@@ -8,6 +8,7 @@
     android:clickable="true"
     android:focusable="true"
     app:cardCornerRadius="6dp"
+    android:id="@+id/item"
     app:cardElevation="15dp">
 
     <RelativeLayout

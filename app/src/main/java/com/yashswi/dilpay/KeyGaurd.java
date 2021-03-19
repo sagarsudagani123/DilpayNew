@@ -58,6 +58,10 @@ public class KeyGaurd extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(data!=null) {
+            if (((data.getFlags() & Intent.FLAG_GRANT_READ_URI_PERMISSION) == 0) && ((data.getFlags() & Intent.FLAG_GRANT_WRITE_URI_PERMISSION) == 0)) {
+            }
+        }
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode) {
             case LOCK_REQUEST_CODE:
@@ -66,14 +70,13 @@ public class KeyGaurd extends AppCompatActivity {
 //                    textView.setText(getResources().getString(R.string.unlock_success));
                     Intent intent= new Intent(KeyGaurd.this, Home_screen.class);
                     startActivity(intent);
-                    finish();
                 }
                 else
                  {
                     progress.setVisibility(View.GONE);
                     Toast.makeText(this, getResources().getString(R.string.unlock_failed), Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+                 }
+                finish();
                 break;
             case SECURITY_SETTING_REQUEST_CODE:
                 if (isDeviceSecure()) {

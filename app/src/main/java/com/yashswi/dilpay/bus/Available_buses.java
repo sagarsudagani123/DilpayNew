@@ -75,7 +75,6 @@ public class Available_buses extends AppCompatActivity {
         progress.setVisibility(View.VISIBLE);
         rv = findViewById(R.id.buses_list_recyclerview);
         rv.setHasFixedSize(true);
-        t1 = findViewById(R.id.t1);
         card = findViewById(R.id.card);
         depart = findViewById(R.id.depart_time);
         arrive = findViewById(R.id.arrival_time);

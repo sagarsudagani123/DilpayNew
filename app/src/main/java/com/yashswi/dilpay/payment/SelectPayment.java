@@ -1,12 +1,14 @@
 package com.yashswi.dilpay.payment;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -128,14 +130,23 @@ public class SelectPayment extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-//        ComponentName name = data.resolveActivity(getPackageManager());
-//        if (name.getPackageName().equals(name.getPackageName())&&name.getClassName().equals(name.getClassName())){
-//            Toast.makeText(SelectPayment.this, "True Package", Toast.LENGTH_SHORT).show();
-//        }
 
+        if(data!=null) {
+            if (((data.getFlags() & Intent.FLAG_GRANT_READ_URI_PERMISSION) != 0) && ((data.getFlags() & Intent.FLAG_GRANT_WRITE_URI_PERMISSION) != 0)) {
+                data.removeFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                data.removeFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+            }
+            parseIntentData(data);
+        }
+
+
+    }
+
+    void parseIntentData(Intent data){
         Log.e("paymentcheck", "ReqCode : " + CFPaymentService.REQ_CODE);
         if (data != null) {
             Bundle bundle = data.getExtras();

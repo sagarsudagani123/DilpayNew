@@ -1,6 +1,7 @@
 package com.yashswi.dilpay;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.AppCompatButton;
@@ -9,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Base64;
@@ -106,8 +108,10 @@ public class Profile extends AppCompatActivity {
 //        Picasso.get().load(userDetails.getProfilePic()).into(customer_profilepic);
 
         amount.setText("Loading...");
+        String number=userDetails.getNumber();
+        String encodeNumber=number.substring(0,2)+"*******"+number.charAt(number.length()-1);
         customer_name.setText(userDetails.getName());
-        customer_mobile.setText(userDetails.getNumber());
+        customer_mobile.setText(encodeNumber);
 
         if (userDetails.getMembership().equalsIgnoreCase("Paid")) {
             upgradeBtn.setVisibility(View.GONE);
@@ -349,25 +353,21 @@ public class Profile extends AppCompatActivity {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK) {
-            Uri uri = data.getData();
-            uri.getPath();
-            addr = uri.getPath();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(Profile.this.getContentResolver(), uri);
-                customer_profilepic.setImageBitmap(bitmap);
-                uploadImage();
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_SHORT).show();
+        if(data!=null) {
+            if (((data.getFlags() & Intent.FLAG_GRANT_READ_URI_PERMISSION) != 0) && ((data.getFlags() & Intent.FLAG_GRANT_WRITE_URI_PERMISSION) != 0)) {
+                data.removeFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                data.removeFlags(Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
             }
-        } else {
-            Toast.makeText(Profile.this, "Try other option", Toast.LENGTH_SHORT).show();
+            if (resultCode == RESULT_OK) {
+                parseIntentData(data);
+            } else {
+                Toast.makeText(Profile.this, "Try other option", Toast.LENGTH_SHORT).show();
+            }
         }
 
 
@@ -446,5 +446,20 @@ public class Profile extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         finish();
+    }
+
+    void parseIntentData(Intent data){
+            Uri uri = data.getData();
+            uri.getPath();
+            addr = uri.getPath();
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(Profile.this.getContentResolver(), uri);
+                customer_profilepic.setImageBitmap(bitmap);
+                uploadImage();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_SHORT).show();
+            }
     }
 }

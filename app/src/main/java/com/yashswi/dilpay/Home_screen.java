@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
@@ -24,6 +25,7 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 import com.yashswi.dilpay.Api_interface.Api_interface;
 import com.yashswi.dilpay.adapters.SliderAdapter;
+import com.yashswi.dilpay.adapters.Transport_items_adapter;
 import com.yashswi.dilpay.adapters.items_list_adapter;
 import com.yashswi.dilpay.models.cityNames;
 import com.yashswi.dilpay.utils.CheckNetworkStatus;
@@ -49,10 +51,13 @@ import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
 public class Home_screen extends AppCompatActivity {
     ArrayList<Integer> buton_img = new ArrayList<>();
     ArrayList<String> buton_names = new ArrayList<>();
-    RecyclerView rv;
+    RecyclerView rv,transport_recycler;
     ImageView menu, profile;
     private static final int REQUEST_CODE = 101;
     BoomMenuButton boomMenuButton;
+
+    ArrayList<Integer> buton_im = new ArrayList<>();
+    ArrayList<String> buton_name = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +76,8 @@ public class Home_screen extends AppCompatActivity {
             new Thread(runnable).start();
         }
 
+        transport_recycler=findViewById(R.id.transport_recyclerview);
+        transport_recycler.setHasFixedSize(true);
         rv = findViewById(R.id.recyclerview_dashboard);
         rv.setHasFixedSize(true);
 //        menu=findViewById(R.id.menu);
@@ -108,6 +115,23 @@ public class Home_screen extends AppCompatActivity {
         imagesnew.add(R.drawable.terms);
         imagesnew.add(R.drawable.faq);
         imagesnew.add(R.drawable.customer);
+
+        buton_im.add(R.drawable.bus_new);
+        buton_im.add(R.drawable.tour_bus);
+        buton_im.add(R.drawable.trans);
+        buton_im.add(R.drawable.hire_bu);
+        buton_im.add(R.drawable.trans);
+
+        buton_name.add("Bus");
+        buton_name.add("Tourism");
+        buton_name.add("Transport");
+        buton_name.add("Hire Bus");
+        buton_name.add("Money Transfer");
+
+        Transport_items_adapter adapter1 = new Transport_items_adapter(buton_im, buton_name, Home_screen.this,"Main" );
+        transport_recycler.setAdapter(adapter1);
+        LinearLayoutManager manager1 = new LinearLayoutManager(Home_screen.this, RecyclerView.HORIZONTAL, false);
+        transport_recycler.setLayoutManager(manager1);
 
 
         boomMenuButton = findViewById(R.id.bmb);
@@ -153,7 +177,6 @@ public class Home_screen extends AppCompatActivity {
         }
 
 
-        buton_img.add(R.drawable.bus_new);
         buton_img.add(R.drawable.mobile_new);
         buton_img.add(R.drawable.dth_new);
         buton_img.add(R.drawable.datacard_new);
@@ -162,7 +185,7 @@ public class Home_screen extends AppCompatActivity {
         buton_img.add(R.drawable.gas_new);
 //        buton_img.add(R.drawable.money_trans_new);
 
-        buton_names.add("Bus");
+
         buton_names.add("Mobile");
         buton_names.add("DTH");
         buton_names.add("Datacard");

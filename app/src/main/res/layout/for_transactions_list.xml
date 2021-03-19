@@ -58,9 +58,10 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/rupee_credit"
-                    android:layout_width="20dp"
-                    android:layout_height="15dp"
-                    android:layout_marginTop="5dp"
+                    android:layout_width="15dp"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_gravity="center"
                     android:src="@drawable/rupeecredit" />
 
                 <TextView
@@ -90,9 +91,10 @@
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/rupee_debit"
-                android:layout_width="20dp"
-                android:layout_height="15dp"
-                android:layout_marginTop="5dp"
+                android:layout_width="15dp"
+                android:layout_height="10dp"
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center"
                 android:src="@drawable/rupeedebit" />
 
             <TextView

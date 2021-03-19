@@ -26,7 +26,7 @@
         android:layout_marginTop="80dp"
         android:scaleType="fitCenter"
         android:text="DilPay"
-        android:src="@drawable/logo"
+        android:src="@drawable/dilpay_logo"
          />
 
 <!--    <TextView-->
