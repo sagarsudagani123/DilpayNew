@@ -25,7 +25,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Dilpay Services"
+        android:text="DilPay Services"
         android:textColor="#0EE3F6"
         android:fontFamily="@font/akronim_regular"
         android:layout_margin="20dp"

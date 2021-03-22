@@ -65,15 +65,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:layout_below="@+id/title1"
-                android:cursorVisible="false"
+                android:cursorVisible="true"
                 android:digits="1234567890"
-                android:inputType="numberPassword"
+                android:inputType="number"
                 android:maxLength="6"
                 android:paddingStart="40dp"
                 android:paddingEnd="40dp"
                 android:textStyle="bold"
                 app:pinCharacterMask="*"
-                android:focusable="true"
                 app:pinLineColors="@color/gradientEnd" />
             <TextView
                 android:layout_width="wrap_content"
@@ -215,7 +214,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
+            android:id="@+id/progressBar"
             />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Processing.Please wiat...."
+            android:layout_below="@+id/progressBar"
+            android:layout_centerHorizontal="true"
+            />
+
     </RelativeLayout>
 
 </RelativeLayout>

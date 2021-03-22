@@ -7,7 +7,36 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:515995497412:android:d6938337ec8e9085c26a91",
+        "mobilesdk_app_id": "1:515995497412:android:7daa7a063171f9a8c26a91",
+        "android_client_info": {
+          "package_name": "com.dilpay.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "515995497412-qjhf4bn6cjqqdds29fo6oad1m0g62111.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBfRNvmh_7CEMWiLV7xaHMzV57-Hf3VKcA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "515995497412-qjhf4bn6cjqqdds29fo6oad1m0g62111.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:515995497412:android:11e87c49065e80e5c26a91",
         "android_client_info": {
           "package_name": "com.yashswi.dilpay"
         }

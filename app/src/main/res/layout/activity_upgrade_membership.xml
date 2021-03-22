@@ -87,6 +87,7 @@
                         android:imeOptions="actionDone"
                         android:inputType="number"
                         android:longClickable="false"
+                        android:importantForAutofill="no"
                         android:maxLength="10" />
 
                 </com.google.android.material.textfield.TextInputLayout>

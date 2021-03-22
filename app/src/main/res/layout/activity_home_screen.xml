@@ -24,7 +24,7 @@
                 <RelativeLayout
                     android:id="@+id/re1"
                     android:layout_width="match_parent"
-                    android:layout_height="200dp">
+                    android:layout_height="150dp">
 
                     <com.smarteist.autoimageslider.SliderView
                         android:id="@+id/imageSlider"
@@ -42,12 +42,14 @@
                         app:sliderIndicatorSelectedColor="#667A7A7A"
                         app:sliderIndicatorUnselectedColor="#66FFFFFF"
                         app:sliderScrollTimeInSec="2"
-                        app:sliderStartAutoCycle="true" />
+                        app:sliderStartAutoCycle="true" >
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#1A000000" />
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#1A000000" />
+                    </com.smarteist.autoimageslider.SliderView>
+
                     <!--                <ImageView-->
                     <!--                    android:id="@+id/menu"-->
                     <!--                    android:layout_width="wrap_content"-->
@@ -93,20 +95,156 @@
                         android:paddingTop="2dp"
                         tools:ignore="NotSibling">
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/transport_recyclerview"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingStart="15dp"
-                            android:clipToPadding="false"
-                            android:paddingEnd="15dp"
-                            android:paddingBottom="2dp" />
+<!--                        <androidx.cardview.widget.CardView-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            app:cardElevation="10dp"-->
+<!--                            android:layout_margin="8dp"-->
+<!--                            app:cardCornerRadius="5dp"-->
+<!--                            -->
+<!--                            >-->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/servicesLayout"
+                                android:orientation="horizontal">
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:id="@+id/busLayout"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:paddingTop="5dp"
+                                    >
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:id="@+id/circularBus"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginEnd="10dp"
+                                        android:src="@drawable/bus"
+                                        android:elevation="8dp"/>
+
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="30dp"
+                                        android:layout_below="@id/circularBus"
+                                        android:layout_centerHorizontal="true"
+                                        android:textColor="@color/black"
+                                        android:textSize="13sp"
+                                        android:gravity="center|top"
+                                        android:layout_marginTop="2dp"
+                                        android:text="Bus"
+                                        android:fontFamily="@font/domine"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:id="@+id/tourismLayout"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:padding="5dp"
+                                    >
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:id="@+id/circularTourism"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginEnd="10dp"
+                                        android:src="@drawable/tourism"
+                                        android:elevation="8dp"/>
+
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="30dp"
+                                        android:layout_below="@id/circularTourism"
+                                        android:layout_centerHorizontal="true"
+                                        android:textColor="@color/black"
+                                        android:textSize="13sp"
+                                        android:gravity="center|top"
+                                        android:layout_marginTop="2dp"
+                                        android:text="Tourism"
+                                        android:fontFamily="@font/domine"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:id="@+id/transportLayout"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:padding="5dp"
+                                    >
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:id="@+id/circularTransport"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginEnd="10dp"
+                                        android:src="@drawable/transport"
+                                        android:elevation="8dp"/>
+
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="30dp"
+                                        android:layout_below="@id/circularTransport"
+                                        android:layout_centerHorizontal="true"
+                                        android:textColor="@color/black"
+                                        android:textSize="13sp"
+                                        android:text="Transport"
+                                        android:gravity="center|top"
+                                        android:layout_marginTop="2dp"
+                                        android:fontFamily="@font/domine"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:id="@+id/hireLayout"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerHorizontal="true"
+                                    android:padding="5dp"
+                                    >
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="60dp"
+                                        android:id="@+id/circularHire"
+                                        android:layout_centerHorizontal="true"
+                                        android:layout_marginEnd="10dp"
+                                        android:src="@drawable/hire_bus"
+                                        android:elevation="8dp"/>
+
+
+                                    <com.google.android.material.textview.MaterialTextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="30dp"
+                                        android:layout_below="@id/circularHire"
+                                        android:layout_centerHorizontal="true"
+                                        android:textColor="@color/black"
+                                        android:textSize="13sp"
+                                        android:gravity="center|top"
+                                        android:layout_marginTop="2dp"
+                                        android:text="Hire Bus"
+                                        android:fontFamily="@font/domine"
+                                        android:textStyle="bold" />
+
+                                </RelativeLayout>
+                            </LinearLayout>
+
+<!--                        </androidx.cardview.widget.CardView>-->
 
                         <View
                             android:id="@+id/v2"
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
-                            android:layout_below="@id/transport_recyclerview"
+                            android:layout_below="@id/servicesLayout"
                             android:layout_marginStart="15dp"
                             android:layout_marginTop="8dp"
                             android:layout_marginEnd="15dp"
@@ -131,9 +269,7 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/v2"
                             android:clipToPadding="false"
-                            android:paddingStart="15dp"
-                            android:paddingEnd="15dp"
-                            android:paddingBottom="10dp" />
+                            android:padding="15dp" />
                     </RelativeLayout>
                 </RelativeLayout>
 
@@ -148,7 +284,7 @@
                         android:layout_marginStart="15dp"
                         android:layout_marginTop="15dp"
                         android:layout_marginBottom="12dp"
-                        android:text="Why Recharge With Dilpay"
+                        android:text="Why Recharge With DilPay"
                         android:textColor="#000"
                         android:textStyle="bold" />
 
@@ -236,7 +372,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:gravity="center"
-                                            android:text="100% payment protection,Easy return policy" />
+                                            android:text="100% Payment Protection,Easy return policy" />
                                     </LinearLayout>
                                 </com.google.android.material.card.MaterialCardView>
 
@@ -269,7 +405,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:gravity="center"
-                                            android:text="Invite a friend to signup and earn upto Rs.100" />
+                                            android:text="Invite a friend to SignUp and earn upto Rs.100" />
                                     </LinearLayout>
                                 </com.google.android.material.card.MaterialCardView>
 

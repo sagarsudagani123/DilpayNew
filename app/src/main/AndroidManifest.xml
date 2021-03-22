@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.yashswi.dilpay">
+    package="com.dilpay.app">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,7 +20,7 @@
     </queries>
 
     <application
-        android:name=".Myapp"
+        android:name="com.dilpay.app.Myapp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -33,60 +33,60 @@
         tools:targetApi="m">
         <meta-data android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/gradientEnd" />
-        <activity android:name=".Security.GeneratePin"></activity>
-        <activity android:name=".Security.SecurityPin"/>
-        <activity android:name=".Security.SecurityCheck" />
-        <activity android:name=".KeyGaurd" android:exported="false" />
-        <activity android:name=".Recharge_history" />
-        <activity android:name=".AddWalletAmount" />
-        <activity android:name=".ConvertRewards" />
-        <activity android:name=".bank.WithdrawAmount" />
-        <activity android:name=".TransactionsHistory" />
-        <activity android:name=".EditProfile" />
-        <activity android:name=".Notification">
+        <activity android:name="com.dilpay.app.Security.GeneratePin"></activity>
+        <activity android:name="com.dilpay.app.Security.SecurityPin"/>
+        <activity android:name="com.dilpay.app.Security.SecurityCheck" />
+        <activity android:name="com.dilpay.app.KeyGaurd" android:exported="false" />
+        <activity android:name="com.dilpay.app.Recharge_history" />
+        <activity android:name="com.dilpay.app.AddWalletAmount" />
+        <activity android:name="com.dilpay.app.ConvertRewards" />
+        <activity android:name="com.dilpay.app.bank.WithdrawAmount" />
+        <activity android:name="com.dilpay.app.TransactionsHistory" />
+        <activity android:name="com.dilpay.app.EditProfile" />
+        <activity android:name="com.dilpay.app.Notification">
             <intent-filter>
                 <action android:name="com.yashswi.dilpay.notification_action" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".bus.FilterActivity" />
-        <activity android:name=".bank.BankAccounts" />
-        <activity android:name=".Upgrade_membership" /> <!-- <meta-data android:name="com.google.android.gms.version" -->
+        <activity android:name="com.dilpay.app.bus.FilterActivity" />
+        <activity android:name="com.dilpay.app.bank.BankAccounts" />
+        <activity android:name="com.dilpay.app.Upgrade_membership" /> <!-- <meta-data android:name="com.google.android.gms.version" -->
         <!-- android:value="@integer/google_play_services_version" /> -->
-        <activity android:name=".bus.My_bookings" />
-        <activity android:name=".payment.SelectPayment" android:exported="false" />
-        <activity android:name=".MyWallet" />
-        <activity android:name=".bus.Booking_details" />
-        <activity android:name=".Gas_booking_successfull" />
-        <activity android:name=".gas.Gas_screen" />
-        <activity android:name=".Datacard_screen" />
-        <activity android:name=".electricity.Electricity_screen" />
-        <activity android:name=".postpaid.Postpaid_screen" />
-        <activity android:name=".dth.Dth_screen" />
-        <activity android:name=".mobile.Mobile_recharge_successfull" />
-        <activity android:name=".bus.busDetailsConfirmation" />
-        <activity android:name=".bus.passengerDetails" />
-        <activity android:name=".bus.Bus_seating" />
-        <activity android:name=".bus.Bus_customer_details" />
-        <activity android:name=".Terms_conditions" />
-        <activity android:name=".Privacy_policy" />
-        <activity android:name=".Faq" />
-        <activity android:name=".Contact_us" />
-        <activity android:name=".About_us" />
-        <activity android:name=".Support_screen" />
-        <activity android:name=".bank.Add_account_details" />
-        <activity android:name=".Profile" android:exported="false"/>
-        <activity android:name=".bus.Available_buses" />
-        <activity android:name=".mobile.Mobile" />
-        <activity android:name=".bus.Bus" />
-        <activity android:name=".More" />
-        <activity android:name=".Home_screen" />
-        <activity android:name=".Register_screen" android:exported="false"/>
-        <activity android:name=".Welcome_screen" />
-        <activity android:name=".Login_screen" android:exported="false"/>
-        <activity android:name=".payment.paymentStart" />
-        <activity android:name=".Splash_screen">
+        <activity android:name="com.dilpay.app.bus.My_bookings" />
+        <activity android:name="com.dilpay.app.payment.SelectPayment" android:exported="false" />
+        <activity android:name="com.dilpay.app.MyWallet" />
+        <activity android:name="com.dilpay.app.bus.Booking_details" />
+        <activity android:name="com.dilpay.app.Gas_booking_successfull" />
+        <activity android:name="com.dilpay.app.gas.Gas_screen" />
+        <activity android:name="com.dilpay.app.Datacard_screen" />
+        <activity android:name="com.dilpay.app.electricity.Electricity_screen" />
+        <activity android:name="com.dilpay.app.postpaid.Postpaid_screen" />
+        <activity android:name="com.dilpay.app.dth.Dth_screen" />
+        <activity android:name="com.dilpay.app.mobile.Mobile_recharge_successfull" />
+        <activity android:name="com.dilpay.app.bus.busDetailsConfirmation" />
+        <activity android:name="com.dilpay.app.bus.passengerDetails" />
+        <activity android:name="com.dilpay.app.bus.Bus_seating" />
+        <activity android:name="com.dilpay.app.bus.Bus_customer_details" />
+        <activity android:name="com.dilpay.app.Terms_conditions" />
+        <activity android:name="com.dilpay.app.Privacy_policy" />
+        <activity android:name="com.dilpay.app.Faq" />
+        <activity android:name="com.dilpay.app.Contact_us" />
+        <activity android:name="com.dilpay.app.About_us" />
+        <activity android:name="com.dilpay.app.Support_screen" />
+        <activity android:name="com.dilpay.app.bank.Add_account_details" />
+        <activity android:name="com.dilpay.app.Profile" android:exported="false"/>
+        <activity android:name="com.dilpay.app.bus.Available_buses" />
+        <activity android:name="com.dilpay.app.mobile.Mobile" />
+        <activity android:name="com.dilpay.app.bus.Bus" />
+        <activity android:name="com.dilpay.app.More" />
+        <activity android:name="com.dilpay.app.Home_screen" />
+        <activity android:name="com.dilpay.app.Register_screen" android:exported="false"/>
+        <activity android:name="com.dilpay.app.Welcome_screen" />
+        <activity android:name="com.dilpay.app.Login_screen" android:exported="false"/>
+        <activity android:name="com.dilpay.app.payment.paymentStart" />
+        <activity android:name="com.dilpay.app.Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -94,13 +94,13 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".Broadcast.SmsReceiver" android:exported="false">
+        <receiver android:name="com.dilpay.app.Broadcast.SmsReceiver" android:exported="false">
             <intent-filter>
                 <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
             </intent-filter>
         </receiver>
 
-        <service android:name=".firebase.messagingService">
+        <service android:name="com.dilpay.app.firebase.messagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
