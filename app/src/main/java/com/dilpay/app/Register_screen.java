@@ -79,6 +79,7 @@ public class Register_screen extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(Register_screen.this, Login_screen.class);
                 startActivity(i);
+                finish();
             }
         });
 
@@ -145,7 +146,6 @@ public class Register_screen extends AppCompatActivity {
                         String message = obj.optString("Message");
                         if (status.equalsIgnoreCase("true")) {
                             progress_layout.setVisibility(View.GONE);
-//                            Toast.makeText(Register_screen.this, message, Toast.LENGTH_SHORT).show();
                             Intent i = new Intent(Register_screen.this, Login_screen.class);
                             startActivity(i);
                             finish();
@@ -155,13 +155,13 @@ public class Register_screen extends AppCompatActivity {
                             Toast.makeText(Register_screen.this, message, Toast.LENGTH_SHORT).show();
                         } else {
                             progress_layout.setVisibility(View.GONE);
-                            Toast.makeText(Register_screen.this, "Error in server", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register_screen.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (Exception e) {
                         e.printStackTrace();
                         progress_layout.setVisibility(View.GONE);
-                        Toast.makeText(Register_screen.this, "Something went wrong! please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register_screen.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -175,9 +175,9 @@ public class Register_screen extends AppCompatActivity {
                 if (t instanceof UnknownHostException) {
                     message = "No internet connection!";
                 } else {
-                    message = "Something went wrong! try again";
+                    message = "Something went wrong!";
                 }
-                Toast.makeText(Register_screen.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register_screen.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -220,11 +220,11 @@ public class Register_screen extends AppCompatActivity {
                             Toast.makeText(Register_screen.this, message, Toast.LENGTH_SHORT).show();
                         } else {
                             progress_layout.setVisibility(View.GONE);
-                            Toast.makeText(Register_screen.this, "Error in server", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Register_screen.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (Exception e) {
-                        Toast.makeText(Register_screen.this, "Something went wrong! please try again" + e.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Register_screen.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         progress_layout.setVisibility(View.GONE);
 
                     }
@@ -240,9 +240,9 @@ public class Register_screen extends AppCompatActivity {
                 if (t instanceof UnknownHostException) {
                     message = "No internet connection!";
                 } else {
-                    message = "Something went wrong! try again";
+                    message = "Something went wrong!";
                 }
-                Toast.makeText(Register_screen.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Register_screen.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -262,7 +262,6 @@ public class Register_screen extends AppCompatActivity {
                 new SmsBroadcastReceiver.SmsBroadcastReceiverListener() {
                     @Override
                     public void onSuccess(Intent intent) {
-                        Toast.makeText(Register_screen.this, "message recieved", Toast.LENGTH_SHORT).show();
                         startActivityForResult(intent, REQ_USER_CONSENT);
                     }
 
@@ -283,19 +282,14 @@ public class Register_screen extends AppCompatActivity {
 
     //STARTING SMSM BROADCAST REGISTER PROCESS
     private void startSmsUserConsent() {
-//        Toast.makeText(getApplicationContext(), "Called user consent", Toast.LENGTH_LONG).show();
         SmsRetrieverClient client = SmsRetriever.getClient(this);
-        //We can add sender phone number or leave it blank
-        // I'm adding null here
         client.startSmsUserConsent(null).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-//                Toast.makeText(getApplicationContext(), "On Success", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
             public void onFailure(@NonNull Exception e) {
-//                Toast.makeText(getApplicationContext(), "On OnFailure", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -306,17 +300,11 @@ public class Register_screen extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQ_USER_CONSENT) {
             if ((resultCode == RESULT_OK) && (data != null)) {
-                //That gives all message to us.
-                // We need to get the code from inside with regex
                 String message = data.getStringExtra(SmsRetriever.EXTRA_SMS_MESSAGE);
-//                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_LONG).show();
-//                textViewMessage.setText(
-//                        String.format("%s - %s", getString(R.string.received_message), message));
                 getOtpFromMessage(message);
             }
             if (resultCode == RESULT_CANCELED) {
-                Toast.makeText(Register_screen.this, "permission Cancled", Toast.LENGTH_SHORT).show();
-//                startActivityForResult(data, REQ_USER_CONSENT);
+                Toast.makeText(Register_screen.this, "permission Canceled", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -327,7 +315,6 @@ public class Register_screen extends AppCompatActivity {
         Pattern pattern = Pattern.compile("(|^)\\d{6}");
         Matcher matcher = pattern.matcher(message);
         if (matcher.find()) {
-//            otpText.setText(matcher.group(0));
             password.setText(matcher.group(0));
 
         }

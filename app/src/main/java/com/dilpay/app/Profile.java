@@ -248,7 +248,6 @@ public class Profile extends AppCompatActivity {
         call.enqueue(new Callback<String>() {
             @Override
             public void onResponse(Call<String> call, Response<String> response) {
-                Log.e("EEEEEEE", response.body());
                 progress.setVisibility(View.GONE);
                 try {
                     JSONObject data = new JSONObject(response.body());
@@ -270,7 +269,7 @@ public class Profile extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Profile.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -281,9 +280,9 @@ public class Profile extends AppCompatActivity {
                 if (t instanceof UnknownHostException) {
                     message = "No internet connection!";
                 } else {
-                    message = "Something went wrong! try again";
+                    message = "Something went wrong!";
                 }
-                Toast.makeText(Profile.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Profile.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -435,7 +434,7 @@ public class Profile extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
-                    Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Profile.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -446,7 +445,7 @@ public class Profile extends AppCompatActivity {
                 if (t instanceof UnknownHostException) {
                     message = "No internet connection!";
                 } else {
-                    message = "Something went wrong! try again";
+                    message = "Something went wrong!";
                 }
                 Toast.makeText(Profile.this, message + "", Toast.LENGTH_SHORT).show();
             }
@@ -469,7 +468,6 @@ public class Profile extends AppCompatActivity {
 
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(Profile.this, e.toString(), Toast.LENGTH_SHORT).show();
             }
     }
 }

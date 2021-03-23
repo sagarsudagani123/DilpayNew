@@ -54,7 +54,7 @@ public class AddWalletAmount extends AppCompatActivity {
                 addAmount=amountEdit.getText().toString();
             if (!addAmount.equalsIgnoreCase("")){
                 int amountAdd=Integer.parseInt(addAmount);
-                if(amountAdd>=500){
+                if(amountAdd>=400){
                     progress.setVisibility(View.VISIBLE);
                     getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
                             WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);

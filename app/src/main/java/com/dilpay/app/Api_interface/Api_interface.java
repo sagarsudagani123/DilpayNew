@@ -127,4 +127,8 @@ public interface Api_interface {
     @POST("PinValidation.php")
     @FormUrlEncoded
     Call<String> updatePin(@Field("data") String data);
+
+    @POST("")
+    @FormUrlEncoded
+    Call<String> validateRefral(@Field("data") String data);
 }

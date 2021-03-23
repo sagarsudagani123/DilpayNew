@@ -204,7 +204,7 @@ public class SecurityPin extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     Log.e("StatusResponse", e.toString());
-                    Toast.makeText(SecurityPin.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(SecurityPin.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 }
             }
@@ -219,7 +219,7 @@ public class SecurityPin extends AppCompatActivity {
                 } else {
                     message = "Something went wrong! try again";
                 }
-                Toast.makeText(SecurityPin.this, message + "" + t.toString(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(SecurityPin.this, message + "", Toast.LENGTH_SHORT).show();
                 finish();
             }
         });

@@ -22,7 +22,9 @@ import org.json.JSONObject;
 
 import java.net.UnknownHostException;
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
+import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -119,9 +121,15 @@ public class EditProfile extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+                .callTimeout(2, TimeUnit.MINUTES)
+                .connectTimeout(90, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
+                .writeTimeout(30, TimeUnit.SECONDS);
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)
                 .addConverterFactory(ScalarsConverterFactory.create())
+                .client(httpClient.build())
                 .build();
         Api_interface api = retrofit.create(Api_interface.class);
         Call<String> call = api.updateDetails(createData.toString());
@@ -142,7 +150,7 @@ public class EditProfile extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(EditProfile.this, e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(EditProfile.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                 }
             }
 

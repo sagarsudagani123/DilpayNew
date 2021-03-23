@@ -20,7 +20,6 @@ public class More extends AppCompatActivity {
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         back = findViewById(R.id.back);
-        support = findViewById(R.id.card6);
         about = findViewById(R.id.card1);
         contact = findViewById(R.id.card2);
         faq = findViewById(R.id.card5);
@@ -33,13 +32,6 @@ public class More extends AppCompatActivity {
             }
         });
 
-        support.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(More.this, Support_screen.class);
-                startActivity(i);
-            }
-        });
         about.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

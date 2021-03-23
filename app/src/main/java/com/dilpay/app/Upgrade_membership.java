@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.dilpay.app.utils.RetroFitClient;
 import com.google.android.material.textfield.TextInputEditText;
 import com.dilpay.app.Api_interface.Api_interface;
 import com.dilpay.app.payment.SelectPayment;
@@ -54,36 +55,37 @@ public class Upgrade_membership extends AppCompatActivity {
         e_refferalcode = findViewById(R.id.e_refferalcode);
         progress = findViewById(R.id.progress_layout);
 
-        e_refferalcode.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
-
-            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-                return false;
-            }
-
-            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-                return false;
-            }
-
-            public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
-                return false;
-            }
-
-            public void onDestroyActionMode(ActionMode actionMode) {
-            }
-        });
+//        e_refferalcode.setCustomSelectionActionModeCallback(new ActionMode.Callback() {
+//
+//            public boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+//                return false;
+//            }
+//
+//            public boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+//                return false;
+//            }
+//
+//            public boolean onActionItemClicked(ActionMode actionMode, MenuItem item) {
+//                return false;
+//            }
+//
+//            public void onDestroyActionMode(ActionMode actionMode) {
+//            }
+//        });
 
         userNumber = getIntent().getStringExtra("number");
 
         upgrade.setOnClickListener(v -> {
             String refCode = e_refferalcode.getText().toString();
             if (refCode.equalsIgnoreCase("")) {
-//                upgradeMember(userNumber,"NOREFFRAL");
+                upgradeMember(userNumber,"NOREFFRAL");
                 progress.setVisibility(View.VISIBLE);
-                generateToken("NOREFFRAL");
+//                generateToken("NOREFFRAL");
 
             } else {
                 if (numberValidate(refCode) && !refCode.equalsIgnoreCase("0000000000")) {
-                    generateToken(refCode);
+//                    generateToken(refCode);
+                    upgradeMember(userNumber,refCode);
                     progress.setVisibility(View.VISIBLE);
                 } else {
                     Toast.makeText(Upgrade_membership.this, "Enter valid referral  number", Toast.LENGTH_SHORT).show();
@@ -91,6 +93,56 @@ public class Upgrade_membership extends AppCompatActivity {
             }
         });
         skip.setOnClickListener(v -> finish());
+    }
+
+    private void upgradeMember(String userNumber, String refCode) {
+        JSONObject dataObj=new JSONObject();
+        try {
+            dataObj.put("username",userNumber);
+            dataObj.put("refCode",refCode);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RetroFitClient retroFitClient=new RetroFitClient();
+        Retrofit retrofit=retroFitClient.getRetroFitClientScalar();
+        Api_interface api=retrofit.create(Api_interface.class);
+        Call<String> call=api.validateRefral(dataObj.toString());
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.body()!=null){
+                    if(!response.body().isEmpty()){
+                        try {
+                            JSONObject dataObj=new JSONObject(response.body());
+                            String status=dataObj.getString("Status");
+                            String message=dataObj.getString("Message");
+                            if(status.equalsIgnoreCase("True")){
+                                generateToken(refCode);
+                            }
+                            else{
+                                Toast.makeText(Upgrade_membership.this, message, Toast.LENGTH_SHORT).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+                String message = "";
+                if (t instanceof UnknownHostException) {
+                    message = "No internet connection!";
+                } else {
+                    message = "Something went wrong! try again";
+                }
+                finish();
+                Toast.makeText(Upgrade_membership.this, message + "", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void generateToken(String code) {

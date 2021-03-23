@@ -128,19 +128,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <TextView
-                    android:id="@+id/readOtp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="start"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:text="READ OTP"
-                    android:textColor="@color/gradientStart"
-                    android:textSize="18sp"
-                    android:textStyle="normal"
-                    android:visibility="gone" />
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/getOTP"

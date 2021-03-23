@@ -89,7 +89,7 @@ public class Mobile extends AppCompatActivity {
         operatorName.add("Airtel(Backup)");
         operatorName.add("Vodafone(Backup)");
         operatorName.add("JIO");
-        operatorName.add("V!");
+        operatorName.add("V! (idea / vodafone)");
         operatorName.add("BSNL-STV");
         operatorName.add("V!(Backup)");
         operatorName.add("JIO(Direct)");

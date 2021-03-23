@@ -124,10 +124,9 @@ public class BankAccountsAdapter extends RecyclerView.Adapter<BankAccountsAdapte
                         ((BankAccounts)context).removeBeneficiary(tokenFinal,benId, dataObj.toString());
                     } else {
                         tokenFinal = "";
-                        Toast.makeText(context,data.toString(),Toast.LENGTH_SHORT).show();
                     }
                 } catch (Exception e) {
-                    Toast.makeText(context, e.toString(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Something went wrong!", Toast.LENGTH_SHORT).show();
                 }
             }
 

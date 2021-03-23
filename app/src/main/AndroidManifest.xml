@@ -99,6 +99,14 @@
                 <action android:name="com.google.android.gms.auth.api.phone.SMS_RETRIEVED" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name="com.dilpay.app.Broadcast.NetworkStatus"
+            android:label="NetworkChangeReceiver" >
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
 
         <service android:name="com.dilpay.app.firebase.messagingService">
             <intent-filter>

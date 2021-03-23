@@ -125,7 +125,7 @@ public class SelectPayment extends AppCompatActivity {
                 params.put(PARAM_CARD_YYYY, cardYear); // Card Expiry Year in YYYY
                 params.put(PARAM_CARD_HOLDER, holderName); // Card Holder name
                 params.put(PARAM_CARD_CVV, cardCvv);
-                cfPaymentService.doPayment(SelectPayment.this, params, token, "PROD", "#a82069", "#FAFAFA", false);
+                cfPaymentService.doPayment(SelectPayment.this, params, token, "PROD", "#822659", "#a82069", false);
             }
             if (type.equalsIgnoreCase("upi")) {
                 cfPaymentService.upiPayment(SelectPayment.this, params, token, "PROD");

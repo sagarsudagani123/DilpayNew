@@ -27,25 +27,16 @@ public class KeyGaurd extends AppCompatActivity {
     private void authenticateApp() {
         KeyguardManager keyguardManager = (KeyguardManager) getSystemService(KEYGUARD_SERVICE);
 
-        //Check if the device version is greater than or equal to Lollipop(21)
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            //Create an intent to open device screen lock screen to authenticate
-            //Pass the Screen Lock screen Title and Description
             Intent i = keyguardManager.createConfirmDeviceCredentialIntent(getResources().getString(R.string.unlock), getResources().getString(R.string.confirm_pattern));
             try {
-                //Start activity for result
                 startActivityForResult(i, LOCK_REQUEST_CODE);
                 progress.setVisibility(View.VISIBLE);
             } catch (Exception e) {
-                //If some exception occurs means Screen lock is not set up please set screen lock
-                //Open Security screen directly to enable patter lock
                 Intent intent = new Intent(Settings.ACTION_SECURITY_SETTINGS);
                 try {
-                    //Start activity for result
                     startActivityForResult(intent, SECURITY_SETTING_REQUEST_CODE);
                 } catch (Exception ex) {
-                    //If app is unable to find any Security settings then user has to set screen lock manually
-//                    textView.setText(getResources().getString(R.string.setting_label));
                 }
             }
         }
@@ -66,8 +57,6 @@ public class KeyGaurd extends AppCompatActivity {
         switch (requestCode) {
             case LOCK_REQUEST_CODE:
                 if (resultCode == RESULT_OK) {
-                    //If screen lock authentication is success update text
-//                    textView.setText(getResources().getString(R.string.unlock_success));
                     Intent intent= new Intent(KeyGaurd.this, Home_screen.class);
                     startActivity(intent);
                 }

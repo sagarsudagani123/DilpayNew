@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.dilpay.app.utils.RetroFitClient;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.nightonke.boommenu.BoomButtons.TextOutsideCircleButton;
 import com.nightonke.boommenu.BoomMenuButton;
@@ -41,6 +42,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 import static retrofit2.converter.scalars.ScalarsConverterFactory.create;
@@ -54,15 +56,11 @@ public class Home_screen extends AppCompatActivity {
     private static final int REQUEST_CODE = 101;
     BoomMenuButton boomMenuButton;
 
-    ArrayList<Integer> buton_im = new ArrayList<>();
-    ArrayList<String> buton_name = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
-
-
 
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
@@ -73,11 +71,10 @@ public class Home_screen extends AppCompatActivity {
         } else {
             new Thread(runnable).start();
         }
+
         rv = findViewById(R.id.recyclerview_dashboard);
         rv.setHasFixedSize(true);
-//        menu=findViewById(R.id.menu);
         profile = findViewById(R.id.profile_buton_dashboard);
-
         bus=findViewById(R.id.busLayout);
         transport=findViewById(R.id.transportLayout);
         hire=findViewById(R.id.hireLayout);
@@ -306,6 +303,7 @@ public class Home_screen extends AppCompatActivity {
     }
 
     public ArrayList<String> getPlaceNames() {
+
         ArrayList<String> names = new ArrayList<>();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(Api_interface.JSONURL)

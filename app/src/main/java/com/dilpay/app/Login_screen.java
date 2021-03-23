@@ -51,7 +51,6 @@ import retrofit2.converter.scalars.ScalarsConverterFactory;
 public class Login_screen extends AppCompatActivity {
     AppCompatButton getOTP, login;
     Button signup;
-    TextView readOtp;
     TextInputLayout passLayout;
     TextInputEditText mobile_number;
     TextInputEditText password;
@@ -77,13 +76,7 @@ public class Login_screen extends AppCompatActivity {
         mobile_number = findViewById(R.id.e_mobile);
         password = findViewById(R.id.e_password);
         progress_layout = findViewById(R.id.progress_layout);
-        readOtp = findViewById(R.id.readOtp);
-        readOtp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
         //SIGNUP ACTION
         signup.setOnClickListener(v -> {
             Intent i = new Intent(Login_screen.this, Register_screen.class);
@@ -127,9 +120,6 @@ public class Login_screen extends AppCompatActivity {
                                     // Get new Instance ID token
                                     token = task.getResult().getToken();
                                     if (token != null) {
-                                        Log.e("testToken", token);
-//                                        Intent intent=new Intent(Login_screen.this,Home_screen.class);
-//                                        startActivity(intent);
                                         sendOtp(number, password, token);
                                     }
                                 }
@@ -229,7 +219,7 @@ public class Login_screen extends AppCompatActivity {
 
                     } catch (Exception e) {
                         e.printStackTrace();
-                        Toast.makeText(Login_screen.this, "Something went wrong! please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login_screen.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -242,11 +232,10 @@ public class Login_screen extends AppCompatActivity {
                 String message;
                 if (t instanceof NetworkError) {
                     message = "No internet connection!";
-                    Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                 } else {
-                    message = "Something went wrong! Please try again after some time!!";
-                    Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
+                    message = "Something went wrong!";
                 }
+                Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -289,11 +278,11 @@ public class Login_screen extends AppCompatActivity {
                             Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
                         } else {
                             progress_layout.setVisibility(View.GONE);
-                            Toast.makeText(Login_screen.this, "Error in server", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Login_screen.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                         }
 
                     } catch (Exception e) {
-                        Toast.makeText(Login_screen.this, "Something went wrong! please try again", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(Login_screen.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -303,9 +292,9 @@ public class Login_screen extends AppCompatActivity {
                 progress_layout.setVisibility(View.GONE);
                 String message;
                 if (t instanceof UnknownHostException) {
-                    message = "Cannot connect to Internet...Please check your connection!";
+                    message = "No internet connection";
                 } else {
-                    message = "Something went wrong! Please try again after some time!!";
+                    message = "Something went wrong!";
                 }
                 Toast.makeText(Login_screen.this, message, Toast.LENGTH_SHORT).show();
             }

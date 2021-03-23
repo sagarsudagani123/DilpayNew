@@ -147,11 +147,8 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
-                        Toast.makeText(BankAccounts.this, e.toString(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(BankAccounts.this, "Something went wrong!", Toast.LENGTH_SHORT).show();
                     }
-                } else {
-                    available.setVisibility(View.VISIBLE);
-                    Toast.makeText(BankAccounts.this, "null response", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -163,7 +160,7 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
                 if (t instanceof UnknownHostException) {
                     message = "No internet connection!";
                 } else {
-                    message = "Something went wrong! try again";
+                    message = "Something went wrong!";
                 }
                 Toast.makeText(BankAccounts.this, message + "", Toast.LENGTH_SHORT).show();
             }
@@ -215,9 +212,9 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
                 if (t instanceof UnknownHostException) {
                     message = "No internet connection!";
                 } else {
-                    message = "Something went wrong! try again";
+                    message = "Something went wrong!";
                 }
-                Toast.makeText(BankAccounts.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BankAccounts.this, message, Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -228,7 +225,6 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
         try {
             Log.e("bankAdd", token);
         }catch (Exception e){
-            Toast.makeText(BankAccounts.this,e.toString(),Toast.LENGTH_SHORT).show();
         }
         JSONObject data=new JSONObject();
         try {
@@ -257,15 +253,13 @@ public class BankAccounts extends AppCompatActivity implements bankAddDelete {
                     JSONObject data = new JSONObject(response.body());
                     Log.e("bankAdd", data.toString());
                     if (data.getString("status").equalsIgnoreCase("SUCCESS")) {
-                        //add bank details to database
                         deleteAccount(acntDetails);
-//                        Toast.makeText(BankAccounts.this,deleted+"====",Toast.LENGTH_SHORT).show();
                     } else {
                         Toast.makeText(BankAccounts.this, data.getString("message"), Toast.LENGTH_SHORT).show();
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                    Toast.makeText(BankAccounts.this,e.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BankAccounts.this,"Something went wrong!",Toast.LENGTH_SHORT).show();
                 }
             }
 

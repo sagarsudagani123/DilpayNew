@@ -80,11 +80,12 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
             status.setText(status1);
             statusSub.setText("Recharge Failed");
             statusSub.setTextColor(getResources().getColor(R.color.error));
-            details.setVisibility(View.GONE);
-            transaction_id.setText("");
-            number.setText("");
-            amount.setText("");
-            order.setText("");
+            details.setVisibility(View.VISIBLE);
+            transaction_id.setText(String.valueOf(transaction1));
+            number.setText(String.valueOf(number1));
+            amount.setText(amount1);
+            opid1.setText(opid);
+            order.setText(order1);
             mediaPlayerFailure.start();
 //            opid.setText(String.valueOf(opID));
         } else if (status1.equalsIgnoreCase("Pending")) {
@@ -134,7 +135,7 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Log.e("StatusResponse",data.toString());
+        Log.e("StatusResponse==",data.toString());
         Call<String> call = api.RechargeReportCheck(data.toString());
         call.enqueue(new Callback<String>() {
             @Override
@@ -166,7 +167,7 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                     Log.e("StatusResponse",e.toString());
-                    Toast.makeText(Mobile_recharge_successfull.this,e.toString(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Mobile_recharge_successfull.this,"Something went wrong!",Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -176,9 +177,9 @@ public class Mobile_recharge_successfull extends AppCompatActivity {
                 if (t instanceof UnknownHostException) {
                     message = "No internet connection!";
                 } else {
-                    message = "Something went wrong! try again";
+                    message = "Something went wrong!";
                 }
-                Toast.makeText(Mobile_recharge_successfull.this, message + "", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Mobile_recharge_successfull.this, message, Toast.LENGTH_SHORT).show();
                 finish();
             }
         });
